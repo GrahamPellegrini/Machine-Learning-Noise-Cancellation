@@ -1,0 +1,16 @@
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a password is required
+sudo: a terminal is required to read the password; either use the -S option to read from standard input or configure an askpass helper
+sudo: a password is required
+Aborting: Refusing to destructively overwrite repo history since
+this does not look like a fresh clone.
+  (expected freshly packed repo)
+Please operate on a fresh clone instead.  If you want to proceed
+anyway, use --force.
+remote: error: Trace: 1f87abd0cfecc41f6a02acda46b6deab92d67408ec179d3bf8d484e8274b21e4        
+remote: error: See https://gh.io/lfs for more information.        
+remote: error: File .Project/Models/UNet_dynamic.pth is 107.89 MB; this exceeds GitHub's file size limit of 100.00 MB        
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.        
+To https://github.com/GrahamPellegrini/Neural-Noise-Cancellation.git
+ ! [remote rejected] main -> main (pre-receive hook declined)
+error: failed to push some refs to 'https://github.com/GrahamPellegrini/Neural-Noise-Cancellation.git'

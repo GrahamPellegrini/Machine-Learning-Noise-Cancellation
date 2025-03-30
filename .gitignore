@@ -1,0 +1,7 @@
+nnc-venv/
+ED-Noisy-Speech-Datashare/
+.Project/Models/UNet_dynamic.pth
+
+tests/
+.Project/Models/UNet_dynamic.pth
+.Project/Models/UNet_dynamic.pth
