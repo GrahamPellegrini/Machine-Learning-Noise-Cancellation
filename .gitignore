@@ -5,3 +5,4 @@ ED-Noisy-Speech-Datashare/
 tests/
 .Project/Models/UNet_dynamic.pth
 .Project/Models/UNet_dynamic.pth
+.Project/Models/*.pth
