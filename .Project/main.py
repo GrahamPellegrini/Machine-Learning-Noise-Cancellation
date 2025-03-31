@@ -12,7 +12,7 @@ from Utils.train import train_eval
 from Utils.optuna import objective
 from Utils.denoise import denoise, single_denoise
 from Utils.classical import classical, single_classical
-from Utils.models import CNN, CNN_CED, RCED, UNet, ConvTasNet
+from Utils.models import CNN, CED, RCED, UNet, ConvTasNet
 from Utils.dataset import DynamicBuckets, StaticBuckets, PTODataset, pto_collate, BucketSampler, visualize_dataset_padding
 
 
@@ -104,8 +104,8 @@ if __name__ == "__main__":
         print(f"Initializing `{model_name}` model.")
         if model_name == "CNN":
             model = CNN()
-        elif model_name == "CNN_CED":
-            model = CNN_CED()
+        elif model_name == "CED":
+            model = CED()
         elif model_name == "RCED":
             model = RCED()
         elif model_name == "UNet":
@@ -181,8 +181,8 @@ if __name__ == "__main__":
             print(f"Initializing `{model_name}` model.")
             if model_name == "CNN":
                 model = CNN()
-            elif model_name == "CNN_CED":
-                model = CNN_CED()
+            elif model_name == "CED":
+                model = CED()
             elif model_name == "RCED":
                 model = RCED()
             elif model_name == "UNet":

@@ -1,2 +1,24 @@
 Virtual environment found, activating
-Job finished successfully
+Using GPU: NVIDIA GeForce RTX 3060
+Device set to: cuda
+Using `dynamic` dataset padding method.
+Loading cached bucket assignments from cache/dynamic/trainset_56spk_buckets.pkl...
+Loading cached bucket assignments from cache/dynamic/trainset_28spk_buckets.pkl...
+✅ Plot saved at: Output/png/dynamic_padding.png
+Initializing `ConvTasNet` model.
+Training & Evaluating Model...
+🔍 Max GPU Allocated: 10.65 GB
+🔍 Max GPU Reserved: 11.62 GB
+Epoch [1/25] - Loss: 0.0716, Val Loss: 0.0825, Val SNR: 4.34 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0825)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.62 GB
+Epoch [2/25] - Loss: 0.0363, Val Loss: 0.0664, Val SNR: 4.99 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0664)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.62 GB
+Epoch [3/25] - Loss: 0.0331, Val Loss: 0.0673, Val SNR: 4.83 dB
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.56 GB
+Epoch [4/25] - Loss: 0.0313, Val Loss: 0.0598, Val SNR: 5.21 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0598)

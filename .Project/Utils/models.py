@@ -10,13 +10,12 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-# === Simple CNN Architecture ===
-# This is a simple CNN architecture using 3 convolutional layers and 2 fully connected layers. The foward pass moves through an encoder and decoder structure, with a bottleneck layer in between for feature extraction. The Architecure is used for the baseline model in the project and focus on the correct in and output shapes for the spectrogram data.
+# === CNN Architecture (Convolutional Neural Network) ===
 class CNN(nn.Module):
     def __init__(self):
         super(CNN, self).__init__()
 
-        # Encoder (Downsampling)
+        # Encoder (Conv → ReLU) × 3
         self.encoder = nn.Sequential(
             # Input: 2 channels (real and imaginary)
             nn.Conv2d(2, 32, kernel_size=3, stride=1, padding=1),
@@ -27,13 +26,13 @@ class CNN(nn.Module):
             nn.ReLU(),
         )
 
-        # Bottleneck Layer
+        # Bottleneck Layer (Conv → ReLU)
         self.bottleneck = nn.Sequential(
             nn.Conv2d(128, 256, kernel_size=3, stride=1, padding=1),
             nn.ReLU(),
         )
 
-        # Decoder (Upsampling)
+        # Decoder (ConvTranspose → ReLU) × 3
         self.decoder = nn.Sequential(
             nn.ConvTranspose2d(256, 128, kernel_size=3, stride=2, padding=1, output_padding=1),
             nn.ReLU(),
@@ -64,10 +63,10 @@ class CNN(nn.Module):
         out_real, out_imag = torch.chunk(x, 2, dim=1)
         return out_real, out_imag
 
-# === CNN model (CED Style) ===
-class CNN_CED(nn.Module):
+# === CED Architecture (Convolutional Encoder-Decoder) ===
+class CED(nn.Module):
     def __init__(self):
-        super(CNN_CED, self).__init__()
+        super(CED, self).__init__()
 
         # Encoder (Conv → BN → ReLU → MaxPool) × 5
         self.encoder = nn.Sequential(
@@ -96,7 +95,7 @@ class CNN_CED(nn.Module):
             nn.ReLU()
         )
 
-        # Decoder (Conv → BN → ReLU → Upsample) × 5
+        # Decoder (Upsample → Conv → BN → ReLU) × 4
         self.decoder = nn.Sequential(
             nn.Upsample(scale_factor=(2, 1)),
             nn.Conv2d(32, 24, kernel_size=(7, 1), padding=(3, 0)),
@@ -119,8 +118,8 @@ class CNN_CED(nn.Module):
             nn.ReLU()
         )
 
-        # Final Conv Layer to get 2-channel output (real + imag)
-        self.output_layer = nn.Conv2d(12, 2, kernel_size=(8, 1), padding=(4, 0))
+        # Final Conv Layer (kernel=129 per paper)
+        self.output_layer = nn.Conv2d(12, 2, kernel_size=(129, 1), padding=(64, 0))
         self.activation = nn.Tanh()
 
     def forward(self, real, imag):
@@ -133,26 +132,28 @@ class CNN_CED(nn.Module):
         x = F.interpolate(x, size=orig_size, mode="bilinear", align_corners=False)
         out_real, out_imag = torch.chunk(x, 2, dim=1)
         return out_real, out_imag
-    
 
-# === R-CED model (Fully Conv, No Pooling/Upsampling) ===
+# === R-CED Architecture (Residual Convolutional Encoder-Decoder) ===
 class RCED(nn.Module):
     def __init__(self):
         super(RCED, self).__init__()
 
+        # Define the filter and kernels configurations
         filters = [12, 16, 20, 24, 32, 24, 20, 16, 12]
-        kernels = [13, 11, 9, 7, 7, 9, 11, 13, 8]
+        kernels = [13, 11, 9, 7, 7, 9, 11, 13]
         layers = []
 
         in_channels = 2  # Input real + imag
-        for out_channels, k in zip(filters, kernels):
+
+        # Intermediate conv layers
+        for out_channels, k in zip(filters[:-1], kernels):
             layers.append(nn.Conv2d(in_channels, out_channels, kernel_size=(k, 1), padding=(k // 2, 0)))
             layers.append(nn.ReLU())
             layers.append(nn.BatchNorm2d(out_channels))
             in_channels = out_channels
 
-        # Final output layer (2 channels: real + imag)
-        layers.append(nn.Conv2d(in_channels, 2, kernel_size=(129, 1), padding=(129 // 2, 0)))
+        # Final conv layer (kernel=129) → Output
+        layers.append(nn.Conv2d(in_channels, 2, kernel_size=(129, 1), padding=(64, 0)))
         layers.append(nn.Tanh())
 
         self.network = nn.Sequential(*layers)
@@ -166,37 +167,36 @@ class RCED(nn.Module):
         return out_real, out_imag
 
 
-# === UNet Architecture ===
-# This is a U-Net architecture usally used for image segmentation. The model is adapted for the spectrogram data by changing the input and output channels to 2 (real and imaginary). The model uses GroupNorm instead of BatchNorm for memory efficiency and PReLU activations. The model uses skip connections to improve the flow of information between the encoder and decoder. The model promises better performance than the simple CNN architecture, due to the skip connections and deeper architecture.
+# === U-Net Architecture ===
 class UNet(nn.Module):
     def __init__(self):
         super(UNet, self).__init__()
 
-        # Encoder
+        # Encoder (Conv → InstanceNorm → PReLU) × 5
         self.enc1 = self.conv_block(2, 64)
         self.enc2 = self.conv_block(64, 128, stride=2)
         self.enc3 = self.conv_block(128, 256, stride=2)
         self.enc4 = self.conv_block(256, 512, stride=2)
         self.enc5 = self.conv_block(512, 1024, stride=2)  # ✨ new
 
-        # Bottleneck
+        # Bottleneck Layer (Conv → InstanceNorm → PReLU)
         self.bottleneck = self.conv_block(1024, 1024)
 
-        # Decoder
+        # Decoder (ConvTranspose → InstanceNorm → PReLU) × 5
         self.dec5 = self.deconv_block(1024 + 1024, 512)
         self.dec4 = self.deconv_block(512 + 512, 256)
         self.dec3 = self.deconv_block(256 + 256, 128)
         self.dec2 = self.deconv_block(128 + 128, 64)
         self.dec1 = self.deconv_block(64 + 64, 32)
 
-        # Output Layer (no Tanh for now)
+        # Output Layer (
         self.out_layer = nn.Conv2d(32, 2, kernel_size=3, stride=1, padding=1)
-        self.activation = nn.Identity()  # 👈 Replace with Tanh() after tuning if needed
+        self.activation = nn.Tanh()
 
     def conv_block(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1):
         return nn.Sequential(
             nn.Conv2d(in_channels, out_channels, kernel_size, stride, padding),
-            nn.InstanceNorm2d(out_channels),  # 👈 Updated normalization
+            nn.InstanceNorm2d(out_channels),
             nn.PReLU()
         )
 

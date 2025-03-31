@@ -4,7 +4,7 @@
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
-#SBATCH --mem-per-cpu=1G
+#SBATCH --mem-per-cpu=2G
 #SBATCH --time=7-00:00:00   # 7 days (168 hours)
 ##SBATCH --reservation=cce3015
 
@@ -13,7 +13,7 @@
 #SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/main.out
 #SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/main.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=UNet
+#SBATCH --job-name=ConvTasNet
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt
