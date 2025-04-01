@@ -1,2 +1,7 @@
 /opt/users/gpel0001/nnc-fyp/.Project/main.py:34: UserWarning: torchaudio._backend.set_audio_backend has been deprecated. With dispatcher enabled, this function is no-op. You can remove the function call.
   torchaudio.set_audio_backend("soundfile")
+Traceback (most recent call last):
+  File "/opt/users/gpel0001/nnc-fyp/.Project/main.py", line 116, in <module>
+    raise ValueError(f"Invalid MODEL: {model_name}\n Choose from ['CNN', 'UNet', 'ConvTasNet']")
+ValueError: Invalid MODEL: a
+ Choose from ['CNN', 'UNet', 'ConvTasNet']

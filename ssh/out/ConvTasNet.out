@@ -1,1 +1,17 @@
 Virtual environment found, activating
+Using GPU: NVIDIA A100 80GB PCIe
+Device set to: cuda
+Using `dynamic` dataset padding method.
+Loading cached bucket assignments from cache/dynamic/trainset_56spk_buckets.pkl...
+Loading cac🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.93 GB
+Epoch [14/25] - Loss: 0.0242, Val Loss: 0.0511, Val SNR: 5.71 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0511)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.97 GB
+Epoch [15/25] - Loss: 0.0241, Val Loss: 0.0508, Val SNR: 5.74 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0508)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.97 GB
+Epoch [16/25] - Loss: 0.0239, Val Loss: 0.0508, Val SNR: 5.72 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0508)

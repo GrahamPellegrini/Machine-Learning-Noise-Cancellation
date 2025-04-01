@@ -5,118 +5,104 @@
 \section{Datasets}
 \label{sec:datasets}
 
-Following Section~\ref{sec:variable_length_handling}, we now explore how different dataset implementations manage variable-length audio sequences. Within the defined \texttt{datasets.py} utility file, three custom datasets are implemented by inheriting from PyTorch’s \texttt{Dataset} class. These datasets share similar but not identical initialisation routines. These initialisations set up the data in a format that can be consistently fetched and used for training.
+Following Section~\ref{sec:variable_length_handling}, this section describes the dataset handling mechanisms implemented to accommodate variable-length audio signals. The custom dataset classes developed for this project inherit from PyTorch’s \texttt{Dataset} class and are used in both training and denoising pipelines. These implementations are central to managing waveform padding, STFT conversion, and batch preparation for deep learning models.
 
-Reviewing the \texttt{\_\_init\_\_} method across the dataset classes, there are six parameters common to all three implementations: \texttt{self}, \texttt{dataset\_dir}, \texttt{set\_type}, \texttt{rate}, \texttt{n\_fft}, and \texttt{hop\_length}.
+Each class implements three essential methods that are all similarly structured but differ in their approach to handling variable-length data. The \texttt{\_\_init\_\_} method initializes key parameters, constructs paths for clean and noisy speech files, and prepares required caches. Here the amount of parameter varies based on the approach as some methods require more configuration than others. The \texttt{\_\_len\_\_} method is a simple return function that provides the total number of samples in the dataset. The \texttt{\_\_getitem\_\_} method applies necessary transformations to the audio files such as mono conversion, resampling, and STFT. It also handles the padding and truncation of audio samples to ensure consistent input dimensions across batches. Real and imaginary STFT components are used as input-output pairs, ensuring a consistent format across all datasets. A critical motivation for this implementation is real-time deployment. The STFT inherently segments audio into short overlapping frames, simulating real-time input. This makes training models on STFT frames suitable for later real-time inference.
 
-\begin{itemize}
-\item \texttt{self} refers to the current instance of the class, enabling access to class attributes and methods.
-\item \texttt{dataset\_dir} specifies the path to the dataset files.
-\item \texttt{set\_type} indicates the subset type (train, validation, or test). In this project, the 56-speaker dataset is used for training as it provides the most variation—a common practice to help the model generalise effectively. The 26-speaker subset is used for validation, while the provided test set is used as-is for evaluation.
-\item \texttt{rate} sets the sampling rate of the audio files (in this case, 42kHz).
-\item \texttt{n\_fft} and \texttt{hop\_length} define the parameters used for computing the Short-Time Fourier Transform (STFT), which separates the signal into its real and imaginary components.
-\end{itemize}
+\subsection{Static Bucketing}
+\label{subsec:static_dataset}
 
-In addition to these, the static and dynamic bucketing dataset variants require an extra parameter each: \texttt{bucket\_sizes} for the static method and \texttt{num\_buckets} for the dynamic method. All three datasets begin by self-assigning the parameters passed to them. Based on the dataset directory and the set type, file string manipulation is used to construct the paths for clean and noisy audio files, which are then sorted and stored in lists. For each method, certain computationally intensive processes are cached, since their results do not change between runs. Thus, a cache file path is also defined.
+The first dataset implementation explored to address the variable-length issue and limitations of fixed-length padding is the static bucketing method. This approach uses a predefined set of bucket sizes, each corresponding to a fixed number of audio samples. In this project, sizes were derived by multiplying the sampling rate (48~kHz) by target durations (e.g., 1s, 2s, 3s), resulting in discrete, fixed-length buckets.
 
-Beginning with the static dataset, the \texttt{bucket\_sizes} parameter is a list of integers that defines the sizes of the buckets. These sizes usually correspond to durations in seconds when divided by the sampling rate. For example, a value three times the sampling rate corresponds to a 3-second audio segment. The bucket handler function first checks whether the cache file exists. If it does, the bucket assignments are loaded. If not, the function computes the bucket indices by iterating through the clean audio files, measuring their lengths, and assigning them to the appropriate bucket based on predefined sizes. The result is cached and used to group files for consistent batching during training.
+Each audio file is assigned to the first bucket that can fully contain it. For example, an audio clip of 2.5 seconds is assigned to the 3s bucket, since the 2s bucket is insufficient, and the 3s bucket is the next available option.
 
-The dynamic dataset, on the other hand, does not take predefined bucket sizes. Instead, it uses the \texttt{num\_buckets} parameter to dynamically generate an optimal set of buckets. This is achieved in the sub-function \texttt{compute\_bucket\_sizes}, by performing K-Means clustering on the distribution of audio lengths, allowing the model to identify natural groupings. These cluster centres become the dynamic bucket sizes. Each audio file is then assigned to the closest bucket, and the mapping is cached for later use.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{static_pad.png}
+    \caption{Static bucketing histogram and bucket allocation}
+    \label{fig:static_pad}
+\end{figure}
 
-Both static and dynamic bucketing implementations include a \texttt{collate} method that ensures each audio waveform is either padded or truncated to match its target bucket size. This guarantees uniformity within batches, which is required for efficient training.
+The \texttt{bucket\_handler} method iterates over all clean files, assigns them to buckets, and caches these assignments to avoid redundant processing in future runs. During training, a custom \texttt{collate} function pads or truncates audio waveforms to match their bucket’s target length. This guarantees consistent input dimensions within each batch, which is essential for batch-based processing in neural networks.
 
-Lastly, the Padding-Truncation Output-Truncation (PTO) dataset offers a different approach. Instead of bucketing, it uses a fixed padding strategy based on the longest sample within each batch. A custom \texttt{pto\_collate} function is defined to first align all inputs along the frequency axis and then pad the time axis to a uniform length. This method retains the original lengths of the sequences, which are then used after the model has been trained so that the extra padding can be removed. Essentially, the PTO dataset uses the maximum length of the sequences in a batch to determine the padding size, but since we keep the original lengths, we eliminate the negative effects of padding. This is particularly useful since many audio models are sensitive to the amount of padding in the input sequences.
+While static bucketing does not eliminate padding altogether, it significantly reduces the amount of excess padding compared to a naive fixed-length strategy. As shown in Figure~\ref{fig:static_pad}, most samples naturally group into the smaller buckets (3s), improving efficiency and reducing unnecessary computation.
 
-All datasets have their respective \texttt{\_\_getitem\_\_} method, which applies a set of digital signal processing (DSP) transformations. These transformations are not defined as a collective transform parameter, as is usually done for data augmentation. Instead, they are applied directly within the \texttt{\_\_getitem\_\_} method to ensure the output of the real and imaginary components of the noisy and clean audio files is consistent. The DSP transformations include mono conversion, resampling, STFT computation, and normalisation. Prior to normalisation, the bucketing methods also invoke their respective \texttt{collate} method to ensure the audio files are padded or truncated to the correct size.
+\subsection{Dynamic Bucketing}
+\label{subsec:dynamic_dataset}
 
-A custom \texttt{BucketSampler} class is also defined for use with the bucketing strategies. This sampler groups indices based on their bucket assignment and constructs balanced mini-batches by randomly shuffling indices within each bucket. This is necessary since we are now splitting the batches into smaller buckets, each with different lengths. As such, we cannot train all the buckets at once, so we need to sample from each bucket. The result of the sampler is then used to create the dataloader.
+The dynamic bucketing method improves upon static bucketing by adapting the bucket sizes to the actual distribution of audio file lengths. Instead of predefined durations, the method uses K-Means clustering on the waveform lengths to compute optimal bucket centers. This enables buckets that reflect the natural variance in the dataset.
 
-Finally, the \texttt{visualize\_dataset\_padding} function enables the inspection of the original and processed sequence lengths. It generates histograms and bar plots depending on the method used, helping to evaluate how effectively padding and bucketing strategies are applied across the dataset.
+During initialization, the method measures the length of each clean file and applies K-Means with a specified number of clusters (\texttt{num\_buckets}). These cluster centers become the bucket sizes, and each sample is assigned to the closest one. Like static bucketing, this assignment is cached.
 
-Together, these dataset classes and utilities form the backbone of the training and evaluation pipeline. They ensure that variable-length input sequences are handled consistently, enabling the fair comparison of different models and preprocessing strategies.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{dynamic_pad.png}
+    \caption{Dynamic bucketing histogram and bucket allocation}
+    \label{fig:dynamic_pad}
+\end{figure}
 
-\section{Model Definitions}
-\label{sec:model_definitions}
+The \texttt{collate} method then pads or truncates each waveform to its bucket's target size. Compared to static bucketing, dynamic bucketing leads to tighter groupings, minimizing the average amount of padding per batch. This results in better memory utilization and more efficient training.
 
-One of the most important implementation challenges encountered during this project, aside from those discussed in Section~\ref{sec:model_architecture}, was adapting the U-Net and Conv-TasNet architectures to the limited GPU memory available through remote access.
+Dynamic bucketing combines flexibility with performance, adapting to the dataset rather than imposing fixed constraints. It is particularly effective when the data contains a wide or uneven distribution of sequence lengths. When comparing dynamic to static bucketing, we observe that the dynamic method identifies two buckets around the 2-second mark that are heavily populated—clearly illustrating its ability to adapt to the underlying structure of the dataset more effectively than the fixed approach.
 
-The U-Net architecture is a deeper model than a typical CNN and may contain convolutional blocks stacked to a depth of 10 or more. In this project, the model was implemented with a depth of 4 and kernel sizes of 3. Although the model was tested with deeper architectures, these configurations failed during training due to memory constraints. The GPU attempted to allocate memory dynamically during execution, which resulted in CUDA memory allocation errors.
+\subsection{Padding-Truncation Output-Truncation (PTO)}
+\label{subsec:pto_dataset}
 
-Similar limitations were encountered with the Conv-TasNet architecture. Being more complex and resource-intensive, further precautions were necessary. Firstly, the batch size was reduced to 1 or 2 instead of the usual 4. This meant the model was trained with fewer samples per step, which increased training time. Additional strategies were applied, including CUDA memory management settings and enabling mixed precision training to reduce the model's memory footprint.
+The Padding-Truncation Output-Truncation (PTO) approach avoids both fixed-length and bucketing strategies. Instead, it applies padding on a per-batch basis, using the longest sample in the batch as a reference. This ensures minimal padding while maintaining alignment within the batch.
 
-Did these adjustments affect model performance? The mixed precision training, CUDA optimisations, and reduced batch size did not significantly impact model performance, as they only controlled how much data was processed at once. However, the reduced depth and kernel sizes of both the U-Net and Conv-TasNet architectures did pose limitations. If larger kernel sizes and deeper networks could have been implemented, the model would likely have learned more complex features, leading to improved performance and generalisation.
+The core idea is drawn from the work of Zhao et al.~\cite{applsci1004092}, which proposed an output-truncation mechanism for real-time audio processing. During training, each sample is padded to match the maximum length in the batch, and its original length is stored. After inference, the output is cropped back to the original length, ensuring alignment with the unpadded input.
 
-Another critical aspect of the implementation was ensuring consistent input and output dimensionality across models. Since the aim was to use a unified training function for all models—to reduce repetitive code and keep tests unbiased—the input and output formats had to be consistent. A common issue was decoding mismatches caused by dimension reduction in encoders or skip layers. Incorrect dimensionality would result in mismatched tensors during training. To prevent this, stride and padding values in convolutional layers were carefully adjusted. For example, a stride of 1 and padding of 1 was used to ensure input and output shapes remained consistent, even when processing audio with odd-length dimensions. This was crucial for seamless training and evaluation across different model architectures.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{pto_pad.png}
+    \caption{Padding effect using the PTO method}
+    \label{fig:pto_pad}
+\end{figure}
 
-\section{Training and Evaluation}
-\label{sec:training_and_evaluation}
+In this implementation, a custom \texttt{pto\_collate} function first aligns the frequency dimension using bilinear interpolation, then pads the time axis. The model is trained on uniformly shaped tensors, but retains the ability to reconstruct clean speech at its original length, mitigating the impact of zero-padding.
 
-A crucial part of the implementation was the training and evaluation process, which was encapsulated in the \texttt{train.py} file. This file contained a single \texttt{train\_eval} function with four main responsibilities.
+The PTO method simulates real-time signal processing by training on frame-aligned STFT inputs, making it highly suitable for deployment in low-latency scenarios. Unlike bucketing methods, it does not require predefined groups or length clustering, making it the most dynamic and adaptive option in the dataset pipeline. However, it does come with its own computational overheads, as padding is still required. Furthermore, output truncation introduces an additional processing step. Although padding is mitigated at inference by truncating the output, the model is still trained on padded inputs—therefore, the cost of padding is not entirely eliminated.
 
-First, model training was implemented. The function accounted for the different dataset formats by using a flag for PTO datasets, which output an additional original length value. After training, this was used to reshape the model output and remove the padding added earlier. The training loop followed standard practice: gradients were zeroed, a forward pass was conducted, and the loss was computed using a specified criterion. The optimiser and loss function were passed as parameters to allow for hyperparameter tuning. Training batches were drawn only from the training loader.
+\subsection{Helper Functions}
+\label{subsec:helper_functions}
 
-Second, the function handled evaluation. This process was similar to training but used the validation loader and set the model to evaluation mode. The same PTO flag was used to reshape outputs and remove padding. Loss values were computed across the validation set.
-
-Third, model checkpointing was integrated. After every epoch, validation loss was compared to the previous best. If improved, the model was saved to a checkpoint directory.
-
-Finally, a visual performance plot was generated and saved to the output directory. This plot included two subplots: one showing training and validation loss over epochs, and another showing signal-to-noise ratio (SNR) performance on the validation set. This visual feedback provided key insight into model behaviour, revealing signs of overfitting or underfitting. Overall, the training and evaluation pipeline was essential in developing, monitoring, and comparing all models in a fair and consistent manner.
-
-
-\section{Denoising}
-\label{sec:denoising}
-
-The other pipeline implemented in this project is the denoising pipeline. This pipeline is responsible for taking noisy audio files and applying the trained models to produce clean audio outputs. There are two main flags in the \texttt{config.py} file that allow for four different modes and output combinations. These flags are \texttt{SINGLE} and \texttt{CLASSICAL}.
-
-The \texttt{SINGLE} flag indicates whether the batch loader for the test set should be used to compute performance metrics. If set to \texttt{False}, the test loader processes the full test dataset for objective evaluation using performance metrics. If set to \texttt{True}, a single user-defined audio file is denoised and saved as output. This mode is ideal for subjective listening tests, allowing users to assess the perceptual quality of the denoising process. In contrast, the batch mode is intended for objective assessment through quantitative metrics.
-
-The \texttt{CLASSICAL} flag determines whether the denoising should be performed using classical methods or trained models. This setup enables consistent testing on the same test dataset across both classical and deep learning-based approaches, allowing for fair comparison. The \texttt{denoise.py} file contains the deep learning-based denoising methods, while the \texttt{classical.py} file contains the classical methods.
-
-A key point during implementation was to use reliable library imports for classical methods. Specifically, \texttt{torchaudio} and \texttt{scipy.signal} were used to implement Spectral Subtraction and Wiener Filtering to minimise implementation error. These libraries offer well-optimised and tested routines, ensuring consistency and correctness without reinventing the wheel.
-
-Similarly, established libraries were also used for performance metrics. The PESQ and STOI metrics, which are relatively complex to implement manually, were imported from their respective packages. Initially, SNR and MSE were implemented manually but were later replaced with built-in \texttt{torchmetrics} functions for accuracy and standardisation.
-
-However, no standard function exists for computing the Log-Spectral Distance (LSD) metric in \texttt{torchaudio} or \texttt{torchmetrics}. Although \texttt{librosa} includes related functions, it was not used elsewhere in the project. Therefore, the LSD metric was self-implemented using a widely accepted methodology \cite{enwiki_lsd}.
-
-
-\section{Memory Management Strategies for Training Stability}
-
-To address frequent \texttt{CUDA out-of-memory (OOM)} issues encountered during model training, especially when using deeper architectures such as Conv-TasNet, a combination of memory-efficient practices was implemented. These techniques ensured model convergence without compromising performance while remaining within the GPU memory constraints.
+A few support functions are implemented to ensure that batching and visualization are handled effectively across dataset variants:
 
 \begin{itemize}
-    \item \textbf{Expandable Memory Segments:} The environment variable \texttt{PYTORCH\_CUDA\_ALLOC\_CONF=expandable\_segments:True} was set both in the SLURM submission script and within the training script. This setting allows PyTorch to allocate memory in expandable segments, reducing fragmentation and improving allocation efficiency.
-
-    \item \textbf{Mixed Precision Training (AMP):} PyTorch's Automatic Mixed Precision (AMP) was applied using \texttt{torch.amp.autocast()} and \texttt{torch.amp.GradScaler()}. This approach performs calculations in FP16 where safe, leading to a significant reduction in memory consumption and faster computation times.
-
-    \item \textbf{Gradient Accumulation:} Instead of increasing the batch size—which would raise memory demand—gradients were accumulated over multiple smaller batches using the \texttt{accumulation\_steps} hyperparameter. Weight updates were only performed after several mini-batches:
-    \begin{verbatim}
-loss = loss / accumulation_steps
-scaler.scale(loss).backward()
-if (batch_idx + 1) % accumulation_steps == 0:
-    scaler.step(optimizer)
-    scaler.update()
-    optimizer.zero_grad()
-    \end{verbatim}
-
-    \item \textbf{Gradient Clipping:} To prevent gradient explosion—especially in deep architectures like Conv-TasNet—gradients were clipped with a maximum L2 norm of 1.0:
-    \begin{verbatim}
-torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=1.0)
-    \end{verbatim}
-
-    \item \textbf{Manual Memory Cleanup:} At the start of each epoch, garbage collection was invoked and unused CUDA memory was explicitly freed using:
-    \begin{verbatim}
-gc.collect()
-torch.cuda.empty_cache()
-torch.cuda.reset_peak_memory_stats()
-    \end{verbatim}
-
-    \item \textbf{Normalization Layer Selection:} Group Normalization was preferred over Batch Normalization to maintain training stability with small batch sizes and lower memory overhead.
-
-    \item \textbf{Batch Size Reduction:} The training batch size was reduced from 8 or 16 to 4, and occasionally to 2, depending on the architecture and sequence length. This minimized peak memory usage during both forward and backward passes.
-
-    \item \textbf{Deferred Output Activation:} In some experimental runs, the \texttt{Tanh()} activation function at the output layer was temporarily replaced with an identity function during training to avoid saturation and reduce memory load.
-
-    \item \textbf{Model Pruning for Conv-TasNet:} When OOM persisted despite optimizations, the number of temporal convolution layers and residual blocks was reduced to lower the parameter count and memory requirements.
+    \item \texttt{pto\_collate}: A custom collate function used by the PTO dataset. It aligns all spectrograms along the frequency axis and pads them along the time axis, while retaining the original lengths for post-processing.
+    \item \texttt{BucketSampler}: Used with static and dynamic bucketing. It ensures that batches contain only samples from the same bucket, preventing dimension mismatch during training. It randomizes batches within buckets to improve generalization.
+    \item \texttt{visualize\_dataset\_padding}: A diagnostic utility that plots the distribution of original lengths and the effects of padding for each method. It provides insights into the efficiency and overhead introduced by each strategy.
 \end{itemize}
 
-These strategies collectively enabled training deep speech enhancement models like UNet and Conv-TasNet under GPU memory constraints while preserving performance and training efficiency.
+\section{Out Of Memory (OOM) Handling}
+\label{sec:oom_handling}
 
+Given the depth of the model architectures and the limitations of a shared remote GPU. Out-of-Memory (OOM) errors are common when training deep learning models on constrained hardware, especially when dealing with large spectrogram tensors derived from high-resolution audio. These experienced and mitigated in implementation through several techniques employed to reduce memory footprint and ensure training stability:
+
+\begin{itemize}
+    \item \textbf{Expandable CUDA Segments:} Before initiating training, the environment variable \texttt{PYTORCH\_CUDA\_ALLOC\_CONF=expandable\_segments:True} is set. This enables PyTorch’s new memory allocator with segment expansion, which helps alleviate fragmentation issues and allows the allocator to resize memory segments dynamically. This is the first suggestion from the PyTorch documentation for OOM errors.
+
+    \item \textbf{Mixed Precision Training:} Automatic mixed precision (AMP) was used via PyTorch’s \texttt{autocast()} and \texttt{GradScaler}. This allows intermediate tensors to be stored in 16-bit floating point (FP16) format, reducing memory usage and increasing throughput, while maintaining model weights and gradient computations in 32-bit (FP32) for stability. Figure~\ref{fig:fp16_vs_fp32} illustrates the reduced bit-width and structure of FP16 compared to FP32, highlighting the potential for nearly half the memory usage in forward and backward passes~\cite{mindspore_mixed_precision}. This approach significantly extends the trainable capacity of a model under constrained GPU environments.
+
+    \item \textbf{Gradient Accumulation:} Since memory limitations restricted the feasible batch size, gradient accumulation was implemented to simulate larger effective batch sizes. By accumulating gradients over multiple mini-batches and only updating model weights every \texttt{accumulation\_steps} iterations, the training process maintains the same learning dynamics as a larger batch size without requiring the memory for it. This technique proved essential for deeper models like the RCED and ConvTasNet.
+
+    \item \textbf{Manual Memory Management:} To ensure memory is cleared between epochs and reduce fragmentation, memory cleanup routines are explicitly called at the start of every epoch: \texttt{gc.collect()}, \texttt{torch.cuda.empty\_cache()}, and \texttt{torch.cuda.reset\_peak\_memory\_stats()}. This manual intervention is particularly beneficial in a shared GPU setting, where residual allocations from other users or previous epochs may linger.
+
+    \item \textbf{Gradient Clipping:} To prevent exploding gradients, which can rapidly consume memory, gradient norms were clipped using \texttt{torch.nn.utils.clip\_grad\_norm\_()}. This maintains training stability and prevents sudden memory spikes during backpropagation, which is especially important when using high learning rates or unregularized architectures.
+
+    \item \textbf{Learning Rate Scheduling:} An optional scheduler progressively lowers the learning rate using a step-decay approach. This helps reduce volatile updates later in training, smoothing out the optimization process and reducing the likelihood of erratic memory usage. The sheduler also saves on resources, especially in the cases when smaller models saturate at earlier epochs.
+
+    \item \textbf{Memory Profiling:} At the end of each epoch, GPU memory statistics are logged using \texttt{torch.cuda.max\_memory\_allocated()} and \texttt{torch.cuda.max\_memory\_reserved()}. This aids in profiling memory behavior and catching potential leaks or inefficiencies across training epochs. 
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{fp16_vs_fp32.png}
+    \caption{Comparison of memory allocation structure between FP16 and FP32 formats \cite{mindspore_mixed_precision}.}
+    \label{fig:fp16_vs_fp32}
+\end{figure}
+
+These combined methods provided the foundation for training deep models across all dataset variants with minimal interruptions. Even with GPU constraints, these optimizations enabled stable, high-performance training and evaluation of multiple architectures, supporting both experimentation and reproducibility in a limited computing environment.
+
+\section{Denosing Metrics}
+\label{sec:denoising_metrics}

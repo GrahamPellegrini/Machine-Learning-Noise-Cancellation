@@ -1,1 +1,76 @@
 Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 2080 Ti
+Device set to: cuda
+Using `dynamic` dataset padding method.
+Loading cached bucket assignments from cache/dynamic/trainset_56spk_buckets.pkl...
+Loading cached bucket assignments from cache/dynamic/trainset_28spk_buckets.pkl...
+✅ Plot saved at: Output/png/dynamic_padding.png
+Initializing `UNet` model.
+Training & Evaluating Model...
+🔍 Max GPU Allocated: 6.25 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [1/25] - Loss: 0.4027, Val Loss: 0.8039, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8039)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [2/25] - Loss: 0.3988, Val Loss: 0.8017, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8017)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [3/25] - Loss: 0.3982, Val Loss: 0.8010, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8010)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.39 GB
+Epoch [4/25] - Loss: 0.3979, Val Loss: 0.8013, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [5/25] - Loss: 0.3976, Val Loss: 0.8005, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8005)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.74 GB
+Epoch [6/25] - Loss: 0.3974, Val Loss: 0.8001, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8001)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [7/25] - Loss: 0.3972, Val Loss: 0.7998, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7998)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [8/25] - Loss: 0.3970, Val Loss: 0.7991, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7991)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [9/25] - Loss: 0.3966, Val Loss: 0.7990, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7990)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.37 GB
+Epoch [10/25] - Loss: 0.3966, Val Loss: 0.7988, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7988)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [11/25] - Loss: 0.3964, Val Loss: 0.7985, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7985)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [12/25] - Loss: 0.3963, Val Loss: 0.7985, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7985)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [13/25] - Loss: 0.3962, Val Loss: 0.7984, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7984)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [14/25] - Loss: 0.3961, Val Loss: 0.7984, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7984)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [15/25] - Loss: 0.3961, Val Loss: 0.7983, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7983)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [16/25] - Loss: 0.3960, Val Loss: 0.7984, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [17/25] - Loss: 0.3960, Val Loss: 0.7983, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB

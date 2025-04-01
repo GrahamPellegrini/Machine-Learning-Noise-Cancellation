@@ -1,1 +1,103 @@
 Virtual environment found, activating
+Using GPU: NVIDIA RTX A5500
+Device set to: cuda
+Using `dynamic` dataset padding method.
+Loading cached bucket assignments from cache/dynamic/trainset_56spk_buckets.pkl...
+Loading cached bucket assignments from cache/dynamic/trainset_28spk_buckets.pkl...
+✅ Plot saved at: Output/png/dynamic_padding.png
+Initializing `RCED` model.
+Training & Evaluating Model...
+🔍 Max GPU Allocated: 1.35 GB
+🔍 Max GPU Reserved: 1.51 GB
+Epoch [1/25] - Loss: 0.4046, Val Loss: 0.8121, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8121)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.51 GB
+Epoch [2/25] - Loss: 0.4017, Val Loss: 0.8107, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8107)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [3/25] - Loss: 0.4014, Val Loss: 0.8093, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8093)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [4/25] - Loss: 0.4011, Val Loss: 0.8106, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [5/25] - Loss: 0.4009, Val Loss: 0.8087, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8087)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [6/25] - Loss: 0.4008, Val Loss: 0.8091, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.51 GB
+Epoch [7/25] - Loss: 0.4007, Val Loss: 0.8098, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.53 GB
+Epoch [8/25] - Loss: 0.4006, Val Loss: 0.8087, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [9/25] - Loss: 0.4005, Val Loss: 0.8086, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8086)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [10/25] - Loss: 0.4004, Val Loss: 0.8087, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [11/25] - Loss: 0.4003, Val Loss: 0.8084, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8084)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [12/25] - Loss: 0.4002, Val Loss: 0.8083, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8083)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [13/25] - Loss: 0.4002, Val Loss: 0.8085, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [14/25] - Loss: 0.4001, Val Loss: 0.8083, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8083)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [15/25] - Loss: 0.4001, Val Loss: 0.8080, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8080)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [16/25] - Loss: 0.4000, Val Loss: 0.8084, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [17/25] - Loss: 0.4000, Val Loss: 0.8079, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8079)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [18/25] - Loss: 0.3999, Val Loss: 0.8078, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8078)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [19/25] - Loss: 0.3999, Val Loss: 0.8078, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [20/25] - Loss: 0.3998, Val Loss: 0.8078, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8078)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [21/25] - Loss: 0.3997, Val Loss: 0.8077, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8077)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [22/25] - Loss: 0.3997, Val Loss: 0.8076, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8076)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [23/25] - Loss: 0.3997, Val Loss: 0.8077, Val SNR: 1.11 dB
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [24/25] - Loss: 0.3997, Val Loss: 0.8076, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8076)
+🔍 Max GPU Allocated: 1.36 GB
+🔍 Max GPU Reserved: 1.49 GB
+Epoch [25/25] - Loss: 0.3996, Val Loss: 0.8075, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamic.pth (Best Val Loss: 0.8075)
+🎉 Training complete!
+Plots saved to `Output/png` directory.
+Job finished successfully
