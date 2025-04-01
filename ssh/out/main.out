@@ -22,3 +22,29 @@ Epoch [3/25] - Loss: 0.0331, Val Loss: 0.0673, Val SNR: 4.83 dB
 🔍 Max GPU Reserved: 11.56 GB
 Epoch [4/25] - Loss: 0.0313, Val Loss: 0.0598, Val SNR: 5.21 dB
 ✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0598)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.62 GB
+Epoch [5/25] - Loss: 0.0296, Val Loss: 0.0612, Val SNR: 5.15 dB
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.60 GB
+Epoch [6/25] - Loss: 0.0292, Val Loss: 0.0614, Val SNR: 5.07 dB
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.62 GB
+Epoch [7/25] - Loss: 0.0282, Val Loss: 0.0553, Val SNR: 5.39 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0553)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.62 GB
+Epoch [8/25] - Loss: 0.0266, Val Loss: 0.0549, Val SNR: 5.40 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0549)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.62 GB
+Epoch [9/25] - Loss: 0.0269, Val Loss: 0.0523, Val SNR: 5.57 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0523)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.58 GB
+Epoch [10/25] - Loss: 0.0256, Val Loss: 0.0518, Val SNR: 5.59 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0518)
+🔍 Max GPU Allocated: 10.67 GB
+🔍 Max GPU Reserved: 11.58 GB
+Epoch [11/25] - Loss: 0.0244, Val Loss: 0.0499, Val SNR: 5.73 dB
+✔ Model saved to Models/ConvTasNet_dynamic.pth (Best Val Loss: 0.0499)

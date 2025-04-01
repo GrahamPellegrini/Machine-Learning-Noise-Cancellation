@@ -1,0 +1,110 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060
+Device set to: cuda
+Using `dynamic` dataset padding method.
+Loading cached bucket assignments from cache/dynamic/trainset_56spk_buckets.pkl...
+Loading cached bucket assignments from cache/dynamic/trainset_28spk_buckets.pkl...
+✅ Plot saved at: Output/png/dynamic_padding.png
+Initializing `CED` model.
+Training & Evaluating Model...
+🔍 Max GPU Allocated: 0.96 GB
+🔍 Max GPU Reserved: 1.10 GB
+Epoch [1/25] - Loss: 0.4283, Val Loss: 0.8440, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8440)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [2/25] - Loss: 0.4188, Val Loss: 0.8388, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8388)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.10 GB
+Epoch [3/25] - Loss: 0.4174, Val Loss: 0.8375, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8375)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [4/25] - Loss: 0.4166, Val Loss: 0.8363, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8363)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [5/25] - Loss: 0.4161, Val Loss: 0.8354, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8354)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.10 GB
+Epoch [6/25] - Loss: 0.4157, Val Loss: 0.8347, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8347)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [7/25] - Loss: 0.4153, Val Loss: 0.8342, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8342)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [8/25] - Loss: 0.4150, Val Loss: 0.8335, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8335)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [9/25] - Loss: 0.4147, Val Loss: 0.8324, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8324)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [10/25] - Loss: 0.4145, Val Loss: 0.8320, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8320)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [11/25] - Loss: 0.4141, Val Loss: 0.8316, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8316)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [12/25] - Loss: 0.4140, Val Loss: 0.8314, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8314)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [13/25] - Loss: 0.4139, Val Loss: 0.8311, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8311)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.10 GB
+Epoch [14/25] - Loss: 0.4138, Val Loss: 0.8309, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8309)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [15/25] - Loss: 0.4136, Val Loss: 0.8307, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8307)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.10 GB
+Epoch [16/25] - Loss: 0.4135, Val Loss: 0.8305, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8305)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.10 GB
+Epoch [17/25] - Loss: 0.4134, Val Loss: 0.8303, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8303)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.10 GB
+Epoch [18/25] - Loss: 0.4133, Val Loss: 0.8301, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8301)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [19/25] - Loss: 0.4132, Val Loss: 0.8300, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8300)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [20/25] - Loss: 0.4131, Val Loss: 0.8298, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8298)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [21/25] - Loss: 0.4129, Val Loss: 0.8295, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8295)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [22/25] - Loss: 0.4129, Val Loss: 0.8295, Val SNR: 1.10 dB
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [23/25] - Loss: 0.4128, Val Loss: 0.8293, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8293)
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [24/25] - Loss: 0.4128, Val Loss: 0.8293, Val SNR: 1.10 dB
+🔍 Max GPU Allocated: 0.97 GB
+🔍 Max GPU Reserved: 1.12 GB
+Epoch [25/25] - Loss: 0.4127, Val Loss: 0.8291, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8291)
+🎉 Training complete!
+Plots saved to `Output/png` directory.
+Job finished successfully

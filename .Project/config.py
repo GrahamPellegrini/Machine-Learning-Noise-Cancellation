@@ -26,7 +26,7 @@ NUM_BUCKET = 5  # Number of dynamic buckets (dynamic only)
 
 
 # Model Parameters
-MODEL = "ConvTasNet"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
+MODEL = "UNet"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
 EPOCHS = 25  # Number of epochs to train the model
 LEARNING_RATE = 1e-3  # Learning rate for the model
 SCHEDULER = True  # Use a learning rate scheduler

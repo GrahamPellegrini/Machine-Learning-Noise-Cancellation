@@ -1,6 +1,7 @@
 #!/bin/bash
 # ALWAYS specify CPU and RAM resources needed as well as walltime
-##SBATCH --partition=teaching_gpu
+#SBATCH --partition=research_gpu
+#SBATCH --qos=normal
 #SBATCH --ntasks=1
 #SBATCH --gres=gpu:1
 #SBATCH --cpus-per-task=4
@@ -10,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/main.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/main.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/UNet.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/UNet.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=ConvTasNet
+#SBATCH --job-name=UNet
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt

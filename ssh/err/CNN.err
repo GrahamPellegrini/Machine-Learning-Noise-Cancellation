@@ -4,4 +4,3 @@
   scaler = GradScaler()
 /opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:66: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
   with autocast():
-slurmstepd-ict-d0-01: error: *** JOB 44674 ON ict-d0-01 CANCELLED AT 2025-04-01T08:41:07 ***
