@@ -74,3 +74,29 @@ Epoch [16/25] - Loss: 0.3960, Val Loss: 0.7984, Val SNR: 1.12 dB
 Epoch [17/25] - Loss: 0.3960, Val Loss: 0.7983, Val SNR: 1.12 dB
 🔍 Max GPU Allocated: 6.26 GB
 🔍 Max GPU Reserved: 6.76 GB
+Epoch [18/25] - Loss: 0.3959, Val Loss: 0.7983, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.7983)
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.39 GB
+Epoch [19/25] - Loss: 0.3959, Val Loss: 0.7983, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [20/25] - Loss: 0.3958, Val Loss: 0.7984, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [21/25] - Loss: 0.3957, Val Loss: 0.7984, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [22/25] - Loss: 0.3957, Val Loss: 0.7984, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [23/25] - Loss: 0.3957, Val Loss: 0.7985, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.78 GB
+Epoch [24/25] - Loss: 0.3956, Val Loss: 0.7985, Val SNR: 1.12 dB
+🔍 Max GPU Allocated: 6.26 GB
+🔍 Max GPU Reserved: 6.76 GB
+Epoch [25/25] - Loss: 0.3956, Val Loss: 0.7986, Val SNR: 1.12 dB
+🎉 Training complete!
+Plots saved to `Output/png` directory.
+Job finished successfully

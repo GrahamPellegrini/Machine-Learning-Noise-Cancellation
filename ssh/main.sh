@@ -11,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/ConvTasNet.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/ConvTasNet.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/CED_STC.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/CED_STC.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=ConvTasNet
+#SBATCH --job-name=CED_STC
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt

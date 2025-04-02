@@ -19,6 +19,8 @@ import torch
 from torch.cuda.amp import autocast, GradScaler
 import matplotlib.pyplot as plt
 import gc
+import time
+
 
 
 # === Training & Evaluation Function ===
@@ -37,37 +39,49 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
     # Training and Validation variables
     best_val_loss = float('inf')  
     train_losses, val_losses = [], []  
-    val_snrs = []  
+    val_snrs = []
 
-    # Training Loop over epochs
+    # Initialize PTO truncation time
+    pto_truncation_time = 0.0
+
+    # Loop through epochs
     for epoch in range(epochs):
 
+        # Garbage collection and CUDA memory management
         gc.collect()
         torch.cuda.empty_cache()
         torch.cuda.reset_peak_memory_stats()
 
+        # Set model to training mode
         model.train()
         total_train_loss = 0.0
 
-        # Training Loop 
+        # -- Training Loop ---
         for batch_idx, batch in enumerate(train_loader):
-        
+            
+            # Load batch data
             if pto:
                 tn_real, tn_imag, tc_real, tc_imag, orig_lengths = batch  
             else:
                 tn_real, tn_imag, tc_real, tc_imag = batch  
 
+            # Move data to device
             noisy_real, noisy_imag = tn_real.to(device), tn_imag.to(device)
             clean_real, clean_imag = tc_real.to(device), tc_imag.to(device)
 
+            # Clear gradients
             optimizer.zero_grad()
             
             # Forward pass with mixed precision (FP16 rather than FP32)
             with autocast():
                 outputs_real, outputs_imag = model(noisy_real, noisy_imag)
 
-                # Handle PTO Dataset
+                # Handle PTO Dataset Truncation
                 if pto:
+                    # Start the timer for PTO train truncation
+                    start = time.time()
+                    
+                    # Truncate the outputs and clean signals to the original lengths
                     truncated_real = []
                     truncated_imag = []
                     clean_real_trunc = []
@@ -84,13 +98,20 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
                     truncated_imag = torch.stack(truncated_imag)
                     clean_real = torch.stack(clean_real_trunc)
                     clean_imag = torch.stack(clean_imag_trunc)
+
+                    # Compute and append the truncation time
+                    end = time.time()
+                    train_time = end - start
+                    pto_truncation_time += train_time
+
                 else:
                     truncated_real, truncated_imag = outputs_real, outputs_imag
 
                 # Compute loss
                 loss = criterion(truncated_real, clean_real) + criterion(truncated_imag, clean_imag)
 
-            loss = loss / accumulation_steps  # Scale loss
+            # Backward pass with gradient scaling
+            loss = loss / accumulation_steps
             scaler.scale(loss).backward()
 
             # Perform optimizer step every N mini-batches
@@ -100,34 +121,40 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
                 scaler.update()
                 optimizer.zero_grad()
 
-
+            # Append the loss for this batch
             total_train_loss += loss.item()
 
-        print(f"🔍 Max GPU Allocated: {torch.cuda.max_memory_allocated() / 1024**3:.2f} GB")
-        print(f"🔍 Max GPU Reserved: {torch.cuda.max_memory_reserved() / 1024**3:.2f} GB")
-
+        # Compute average training loss for the epoch
         avg_train_loss = total_train_loss / len(train_loader)
         train_losses.append(avg_train_loss)
 
-        # Evaluation Loop
+        # Set model to evaluation mode
         model.eval()
         total_val_loss = 0.0
         snr_sum, snr_count = 0.0, 0  
 
+        # -- Validation Loop ---
         with torch.no_grad():
             for batch in val_loader:
+
+                # Load batch data
                 if pto:
                     vn_real, vn_imag, vc_real, vc_imag, orig_lengths = batch
                 else:
                     vn_real, vn_imag, vc_real, vc_imag = batch
 
+                # Move data to device
                 val_real, val_imag = vn_real.to(device), vn_imag.to(device)
                 val_clean_real, val_clean_imag = vc_real.to(device), vc_imag.to(device)
 
                 val_outputs_real, val_outputs_imag = model(val_real, val_imag)
 
-                # Handle PTO Dataset
+                # Handle PTO Dataset Truncation
                 if pto:
+                    # Start the timer for PTO val truncation
+                    start = time.time()
+
+                    # Truncate the outputs and clean signals to the original lengths
                     val_truncated_real = []
                     val_truncated_imag = []
                     val_clean_real_trunc = []
@@ -144,24 +171,32 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
                     val_truncated_imag = torch.stack(val_truncated_imag)
                     val_clean_real = torch.stack(val_clean_real_trunc)
                     val_clean_imag = torch.stack(val_clean_imag_trunc)
+
+                    # Compute and append the truncation time
+                    end = time.time()
+                    val_time = end - start
+                    pto_truncation_time += val_time
                 else:
                     val_truncated_real, val_truncated_imag = val_outputs_real, val_outputs_imag
 
+                # Compute validation loss
                 val_loss = criterion(val_truncated_real, val_clean_real) + criterion(val_truncated_imag, val_clean_imag)
                 total_val_loss += val_loss.item()
 
-                # Compute SNR
+                # Compute SNR for validation
                 snr_real = (val_clean_real.norm() / (val_truncated_real - val_clean_real).norm()).item()
                 snr_imag = (val_clean_imag.norm() / (val_truncated_imag - val_clean_imag).norm()).item()
                 avg_snr = (snr_real + snr_imag) / 2
                 snr_sum += avg_snr
                 snr_count += 1
 
+        # Compute average validation loss and SNR for the epoch
         avg_val_loss = total_val_loss / len(val_loader)
         avg_val_snr = snr_sum / snr_count 
         val_losses.append(avg_val_loss)
         val_snrs.append(avg_val_snr)
 
+        # Print training and validation statistics
         print(f"Epoch [{epoch+1}/{epochs}] - Loss: {avg_train_loss:.4f}, Val Loss: {avg_val_loss:.4f}, Val SNR: {avg_val_snr:.2f} dB")
 
         # Save the best model
@@ -174,9 +209,13 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
         if scheduler:
             lr_scheduler.step()
 
-    print("🎉 Training complete!")
+    print("--- Training Complete ---")
 
-    # 🚀 Save Loss & Accuracy Trends
+    # Print the total time taken for PTO truncation
+    if pto:
+        print(f"@ Time PTO Truncation: {pto_truncation_time:.2f} seconds")
+
+    # Save Loss & Accuracy Trends
     plt.figure(figsize=(12, 5))
 
     plt.subplot(1, 2, 1)
@@ -197,5 +236,3 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
     plt.legend()
     plt.savefig("Output/png/"+save_pth.split("/")[-1].replace(".pth", "_plot.png"))
     plt.show()
-
-    print("Plots saved to `Output/png` directory.")

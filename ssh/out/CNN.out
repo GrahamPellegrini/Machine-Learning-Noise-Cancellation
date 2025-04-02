@@ -9,99 +9,44 @@ Initializing `CNN` model.
 Training & Evaluating Model...
 🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.39 GB
-Epoch [1/25] - Loss: 0.4456, Val Loss: 0.8924, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8924)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [2/25] - Loss: 0.4421, Val Loss: 0.8886, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8886)
-🔍 Max GPU Allocated: 1.11 GB
+Epoch [1/10] - Loss: 0.4455, Val Loss: 0.8908, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8908)
+🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.43 GB
-Epoch [3/25] - Loss: 0.4416, Val Loss: 0.8883, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8883)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.43 GB
-Epoch [4/25] - Loss: 0.4414, Val Loss: 0.8880, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8880)
-🔍 Max GPU Allocated: 1.11 GB
+Epoch [2/10] - Loss: 0.4420, Val Loss: 0.8907, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8907)
+🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.41 GB
-Epoch [5/25] - Loss: 0.4413, Val Loss: 0.8877, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8877)
-🔍 Max GPU Allocated: 1.11 GB
+Epoch [3/10] - Loss: 0.4417, Val Loss: 0.8903, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8903)
+🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.41 GB
-Epoch [6/25] - Loss: 0.4411, Val Loss: 0.8875, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8875)
-🔍 Max GPU Allocated: 1.11 GB
+Epoch [4/10] - Loss: 0.4415, Val Loss: 0.8899, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8899)
+🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.41 GB
-Epoch [7/25] - Loss: 0.4410, Val Loss: 0.8872, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8872)
-🔍 Max GPU Allocated: 1.11 GB
+Epoch [5/10] - Loss: 0.4412, Val Loss: 0.8897, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8897)
+🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.41 GB
-Epoch [8/25] - Loss: 0.4409, Val Loss: 0.8871, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8871)
-🔍 Max GPU Allocated: 1.11 GB
+Epoch [6/10] - Loss: 0.4410, Val Loss: 0.8894, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8894)
+🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.41 GB
-Epoch [9/25] - Loss: 0.4408, Val Loss: 0.8870, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8870)
-🔍 Max GPU Allocated: 1.11 GB
+Epoch [7/10] - Loss: 0.4409, Val Loss: 0.8892, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8892)
+🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.41 GB
-Epoch [10/25] - Loss: 0.4407, Val Loss: 0.8868, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8868)
-🔍 Max GPU Allocated: 1.11 GB
+Epoch [8/10] - Loss: 0.4408, Val Loss: 0.8891, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8891)
+🔍 Max GPU Allocated: 1.10 GB
+🔍 Max GPU Reserved: 1.39 GB
+Epoch [9/10] - Loss: 0.4407, Val Loss: 0.8889, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8889)
+🔍 Max GPU Allocated: 1.10 GB
 🔍 Max GPU Reserved: 1.41 GB
-Epoch [11/25] - Loss: 0.4405, Val Loss: 0.8865, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8865)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [12/25] - Loss: 0.4405, Val Loss: 0.8865, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8865)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.43 GB
-Epoch [13/25] - Loss: 0.4404, Val Loss: 0.8864, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8864)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.43 GB
-Epoch [14/25] - Loss: 0.4404, Val Loss: 0.8864, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8864)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.43 GB
-Epoch [15/25] - Loss: 0.4403, Val Loss: 0.8863, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8863)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [16/25] - Loss: 0.4403, Val Loss: 0.8863, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8863)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.43 GB
-Epoch [17/25] - Loss: 0.4403, Val Loss: 0.8862, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8862)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [18/25] - Loss: 0.4402, Val Loss: 0.8862, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8862)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [19/25] - Loss: 0.4402, Val Loss: 0.8861, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8861)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [20/25] - Loss: 0.4402, Val Loss: 0.8861, Val SNR: 1.06 dB
-✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8861)
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [21/25] - Loss: 0.4401, Val Loss: 0.8864, Val SNR: 1.06 dB
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [22/25] - Loss: 0.4401, Val Loss: 0.8864, Val SNR: 1.06 dB
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [23/25] - Loss: 0.4400, Val Loss: 0.8864, Val SNR: 1.06 dB
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [24/25] - Loss: 0.4400, Val Loss: 0.8863, Val SNR: 1.06 dB
-🔍 Max GPU Allocated: 1.11 GB
-🔍 Max GPU Reserved: 1.41 GB
-Epoch [25/25] - Loss: 0.4400, Val Loss: 0.8863, Val SNR: 1.06 dB
+Epoch [10/10] - Loss: 0.4406, Val Loss: 0.8888, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8888)
 🎉 Training complete!
 Plots saved to `Output/png` directory.
 Job finished successfully

@@ -1,6 +1,6 @@
 import os
+import time
 import matplotlib.pyplot as plt
-import optuna
 
 import torch
 import torchaudio
@@ -31,7 +31,7 @@ if __name__ == "__main__":
     print(f"Device set to: {device}")
 
     # Set the audio backend to soundfile (Uncomment if needed)
-    torchaudio.set_audio_backend("soundfile")
+    # torchaudio.set_audio_backend("soundfile")
 
     # === Load Dataset Parameters ===
     dataset_dir = config.DATASET_DIR
@@ -56,7 +56,9 @@ if __name__ == "__main__":
         model_pth = config.MODEL_PTH
 
         # === Load Dataset ===
-        print(f"Using `{pad_method}` dataset padding method.")
+
+        # Start the timing for dataset loading
+        start_time = time.time()
         if pad_method == "dynamic":
             # Initialize DynamicBuckets
             train_dataset = DynamicBuckets(dataset_dir, "trainset_56spk", sr, n_fft, hop_length, num_bucket)
@@ -94,6 +96,17 @@ if __name__ == "__main__":
 
         else:
             raise ValueError(f"Invalid PAD_METHOD: {pad_method}\n Choose from ['static', 'dynamic', 'pto']")
+        # End the timing for dataset loading
+        end_time = time.time()
+
+        # Calculate the time taken for dataset loading
+        loading_time = end_time - start_time
+
+        # Dataset loaded completion message
+        print(f"--- Dataset {dataset_dir} loaded successfully ---")
+
+        # Print the time taken for dataset loading
+        print(f"@ Time {dataset_dir} Loading: {loading_time:.2f} seconds")
         
         # Visualize Dataset Padding
         if config.VISUALIZE:
@@ -101,7 +114,6 @@ if __name__ == "__main__":
             visualize_dataset_padding(train_dataset, pad_method, visualize_pth)
 
         # === Load Model ===
-        print(f"Initializing `{model_name}` model.")
         if model_name == "CNN":
             model = CNN()
         elif model_name == "CED":
@@ -114,6 +126,9 @@ if __name__ == "__main__":
             model = ConvTasNet()
         else:
             raise ValueError(f"Invalid MODEL: {model_name}\n Choose from ['CNN', 'UNet', 'ConvTasNet']")
+        
+        # Loaded model completion message
+        print(f"--- Model `{model_name}` loaded successfully ---")
         
         # Define the optimizer and criterion
         optimizer = torch.optim.Adam(model.parameters(), lr=lr)
@@ -155,6 +170,9 @@ if __name__ == "__main__":
         else:
             raise ValueError(f"Invalid PAD_METHOD: {pad_method}")
         
+        # Test dataset loaded completion message
+        print(f"--- Test Dataset {dataset_dir} loaded successfully ---")
+        
         # Classical Denoising
         if config.CLASSICAL:
             classical_method = config.CLASSICAL_METHOD
@@ -178,7 +196,6 @@ if __name__ == "__main__":
             model_pth = config.MODEL_PTH
 
             # === Load Model ===
-            print(f"Initializing `{model_name}` model.")
             if model_name == "CNN":
                 model = CNN()
             elif model_name == "CED":
@@ -192,6 +209,8 @@ if __name__ == "__main__":
             else:
                 raise ValueError(f"Invalid MODEL: {model_name}\n Choose from ['CNN', 'UNet', 'ConvTasNet', 'OptimizedConvTasNet']")
             
+            # Load model successfully message
+            print(f"--- Model `{model_name}` loaded successfully ---")
             
             # Single Model Denoising
             if config.SINGLE:
@@ -203,19 +222,3 @@ if __name__ == "__main__":
             else:
                 # Model Denoising
                 denoise(device, model, model_pth, test_loader, sr, n_fft, hop_length, metric_pth, pto=(pad_method == "pto"))
-
-    elif config.MODE == "hyperparam":
-        # Set the objective to minimize the validation loss
-        study = optuna.create_study(direction="minimize") 
-        # Run the optimization for 20 trials
-        study.optimize(objective, n_trials=20) 
-
-        # Print the best hyperparameters
-        print("Best Hyperparameters:")
-        print(study.best_trial.params)
-
-        # Save the best hyperparameters to metric path
-        path = config.METRICS_PTH.replace("metrics.txt", "hyperparams.txt")
-        with open(path, "w") as f:
-            f.write(str(study.best_trial.params))
-            

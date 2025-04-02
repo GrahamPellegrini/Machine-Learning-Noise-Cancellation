@@ -5,24 +5,24 @@
 \section{Project Structure}
 \label{sec:project_structure}
 
-The overall project structure is modular, enabling seamless integration of different components and allowing for future extensibility. The system is divided into three main pipelines: training, denoising, and hyperparameter tuning. Each pipeline is implemented as a collection of functions with their respective parameters and outputs. These pipelines are coordinated through the \texttt{main.py} file, which serves as the entry and execution point for the entire project.
+The overall structure of the project is modular, enabling clean separation of concerns and supporting future extensibility. The project is organized around three main pipelines: \textbf{training}, \textbf{denoising}, and \textbf{deployment}. Each pipeline is implemented as a collection of dedicated modules, coordinated through the central \texttt{main.py} script, which serves as the entry point for running the system.
 
-All helper modules are organized under a \textit{Utils} folder, which contains essential functionality for dataset handling, model architecture definitions, training routines, denoising logic, and hyperparameter tuning. Additionally, a central configuration file, \texttt{config.py}, is located outside the \textit{Utils} folder near the \texttt{main.py} file. This file manages all the project’s parameters in the form of a dictionary, providing a centralized and easily modifiable interface. This approach enhances usability, allowing users to modify settings in one place and execute the pipeline directly through the main script.
+The training and denoising pipelines constitute the core of the project and are discussed in detail throughout this report. The deployment pipeline is discussed separately in Chapter~\ref{chp:deployment}, following the evaluation of model performance.
 
-A brief overview of the key files in the \textit{Utils} folder is provided below:
+To maintain clarity and modularity, all helper modules are organized within a \textit{Utils} directory. This directory contains the core functionality for dataset handling, model definitions, training routines, inference logic, and baseline methods. Additionally, a centralized configuration file, \texttt{config.py}, located alongside \texttt{main.py}, manages all project parameters using a dictionary-based structure. This design allows users to easily modify hyperparameters or experiment settings in a single location, improving usability and reproducibility.
+
+An overview of the key files in the \textit{Utils} directory is provided below:
 
 \begin{itemize}
-    \item \texttt{dataset.py}: This file defines all dataset classes used in the project. These are implemented as PyTorch \texttt{Dataset} objects and support different strategies for handling variable-length audio inputs, as discussed in Section~\ref{sec:variable_length_handling}. This module also includes the definition of the \texttt{BucketSampler} class, which groups audio files of similar lengths to minimize padding and improve training efficiency. Additionally, it defines the \texttt{pto\_collate} function for batch collation and the \texttt{visualize\_dataset\_padding} function for visualizing the padding distribution in the dataset.
-    
-    \item \texttt{model.py}: This file defines all model architectures used in the project. Each model is implemented as a class inheriting from PyTorch’s \texttt{nn.Module}. Separating model definitions into their own module helps maintain a clean pipeline and facilitates experimentation with different architectures and hyperparameters.
+    \item \texttt{dataset.py}: Contains all dataset classes used in the project, implemented as PyTorch \texttt{Dataset} objects. The file supports multiple strategies for handling variable-length audio inputs, as discussed in Section~\ref{sec:variable_length_handling}. It also defines the \texttt{BucketSampler} class for length-based batch sampling, the \texttt{pto\_collate} function for efficient collation, and a visualization utility for analyzing padding distribution.
 
-    \item \texttt{train.py}: This file contains all functions related to model training, including the training loop, validation logic, and final evaluation. The training pipeline supports input from all three datasets defined in \texttt{dataset.py}, providing flexibility in training under different input-handling strategies. The modular design enables simple experimentation with alternative training setups and parameters.
+    \item \texttt{model.py}: Defines the neural network architectures used for speech enhancement. Each model is implemented as a subclass of PyTorch’s \texttt{nn.Module}, and the module is designed for easy experimentation with new architectures or changes in hyperparameters.
 
-    \item \texttt{denoise.py}: This module handles the denoising process and post-training evaluation. It follows a structure similar to the training pipeline but focuses on inference and metric computation. It supports both dataset-wide evaluation and single-sample inference. Additionally, this module allows the user to apply either of the two classical methods to the noisy input for comparison purposes, producing corresponding evaluation metrics.
+    \item \texttt{train.py}: Implements the training loop, validation logic, and performance tracking. It supports training using any of the dataset classes defined in \texttt{dataset.py}, allowing for flexible experimentation with different data-handling strategies.
 
-    \item \texttt{classical.py}: This file implements traditional signal processing-based denoising algorithms used as baselines. These methods are implemented as standalone functions that take noisy waveforms as input and return denoised outputs. Where applicable, established libraries are used to implement these classical methods to avoid re-implementing known algorithms from scratch.
+    \item \texttt{denoise.py}: Handles inference and evaluation post-training. It mirrors the training pipeline structure but focuses on running the model in inference mode and computing objective metrics. The module also allows switching between learned models and classical methods for direct comparison.
 
-    \item \texttt{optuna.py}: This module handles hyperparameter tuning using the Optuna framework. It defines an optimization function that takes the training and validation datasets and returns the best-performing hyperparameter configuration. Due to the high memory requirements of certain models and datasets, this tuning pipeline is still being optimized for improved stability and efficiency.
+    \item \texttt{classical.py}: Implements traditional signal processing–based denoising algorithms used as baseline comparisons. These functions operate on waveform inputs and are implemented using either custom code or well-established signal processing libraries where appropriate.
 \end{itemize}
 
 \section{Variable Length Handling}

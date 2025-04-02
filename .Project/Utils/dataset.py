@@ -111,7 +111,6 @@ class DynamicBuckets(Dataset):
 
     # Function to compute the optimal bucket sizes
     def compute_bucket_sizes(self, num_buckets):
-        print("Analyzing dataset for optimal bucket sizes...")
         lengths = []
         for file in self.clean_files:
             waveform, _ = torchaudio.load(file)
@@ -131,7 +130,7 @@ class DynamicBuckets(Dataset):
     def bucket_handler(self, num_buckets):
         # If cache file exists, load it
         if os.path.exists(self.cache_file):
-            print(f"Loading cached bucket assignments from {self.cache_file}...")
+            print(f"Loaded cache file: {self.cache_file}")
             with open(self.cache_file, "rb") as f:
                 return pickle.load(f)
 
@@ -139,7 +138,6 @@ class DynamicBuckets(Dataset):
         bucket_sizes = self.compute_bucket_sizes(num_buckets)
         bucket_indices = []
 
-        print(f"Assigning files to {len(bucket_sizes)} buckets...")
         for file in self.clean_files:
             waveform, _ = torchaudio.load(file)
             length = waveform.shape[1]
@@ -150,6 +148,7 @@ class DynamicBuckets(Dataset):
         # Save to cache
         with open(self.cache_file, "wb") as f:
             pickle.dump((bucket_sizes, bucket_indices), f)
+            print(f"Saved cache file: {self.cache_file}")
 
         return bucket_sizes, bucket_indices
     
@@ -224,12 +223,11 @@ class StaticBuckets(Dataset):
     def bucket_handler(self):
         # If cache file exists, load it
         if os.path.exists(self.cache_file):
-            print(f"Loading cached bucket assignments from {self.cache_file}...")
+            print(f"Loaded cache file: {self.cache_file}")
             with open(self.cache_file, "rb") as f:
                 return pickle.load(f)
         # Otherwise, compute and cache
         else:
-            print(f"Computing bucket assignments and caching to {self.cache_file}...")
             bucket_indices = []
             for file in self.clean_files:
                 waveform, _ = torchaudio.load(file)
@@ -240,6 +238,7 @@ class StaticBuckets(Dataset):
             # Save to cache
             with open(self.cache_file, "wb") as f:
                 pickle.dump(bucket_indices, f)
+                print(f"Saved cache file: {self.cache_file}")
 
             return bucket_indices
 
@@ -401,6 +400,5 @@ def visualize_dataset_padding(dataset, method, save_path=None):
     # Save or show the plot
     if save_path:
         plt.savefig(save_path, dpi=300)
-        print(f"✅ Plot saved at: {save_path}")
     else:
         plt.show()

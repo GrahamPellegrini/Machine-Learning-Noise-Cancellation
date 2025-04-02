@@ -1,0 +1,4 @@
+Job 44700 with name RCED has COMPLETED with Exit Code 0 after a runtime of 05:35:08
+
+You have requested 8G of RAM and you used 66.05% of it, that is, 5.28G
+You have requested 4 CPUS and you used 66.00% of them

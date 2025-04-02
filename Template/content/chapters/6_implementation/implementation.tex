@@ -104,5 +104,74 @@ Given the depth of the model architectures and the limitations of a shared remot
 
 These combined methods provided the foundation for training deep models across all dataset variants with minimal interruptions. Even with GPU constraints, these optimizations enabled stable, high-performance training and evaluation of multiple architectures, supporting both experimentation and reproducibility in a limited computing environment.
 
-\section{Denosing Metrics}
+\section{Denoising Metrics}
 \label{sec:denoising_metrics}
+
+The denoising pipeline is just as critical as the training pipeline. Even if a model is trained effectively on high-quality data, improper evaluation or denoising procedures can lead to misleading results. This system supports both single-file inference (to output a denoised waveform) and batch processing (to compute objective evaluation metrics). Both deep learning and classical DSP approaches are supported, with behavior controlled via configuration flags and parameters.
+
+To ensure fairness and reproducibility, all evaluations are conducted using standardized methodologies and widely adopted libraries wherever available. The following subsections outline the metrics used in the denoising pipeline to evaluate model performance.
+
+\subsection{Signal-to-Noise Ratio (SNR)}
+\label{subsec:snr}
+
+Signal-to-Noise Ratio (SNR) measures the strength of the target signal relative to the background noise. It is defined as:
+
+\begin{equation}
+\text{SNR (dB)} = 10 \cdot \log_{10} \left( \frac{\| s \|^2}{\| s - \hat{s} \|^2} \right)
+\end{equation}
+
+where $s$ is the clean reference signal and $\hat{s}$ is the denoised signal. A higher SNR implies better denoising. In this project, SNR is computed using built-in PyTorch functions and is used as a fast, real-time-friendly performance indicator during validation and evaluation.
+
+\subsection{Mean Squared Error (MSE)}
+\label{subsec:mse}
+
+Mean Squared Error (MSE) quantifies the average squared difference between the clean and denoised signals:
+
+\begin{equation}
+\text{MSE} = \frac{1}{N} \sum_{i=1}^{N} (s_i - \hat{s}_i)^2
+\end{equation}
+
+Although it does not correlate strongly with perceived audio quality, MSE remains a reliable signal fidelity measure and loss function. In this project, it is used to evaluate both real and imaginary components of STFT-transformed signals via \texttt{torch.nn.functional.mse\_loss}.
+
+\subsection{Perceptual Evaluation of Speech Quality (PESQ)}
+\label{subsec:pesq}
+
+PESQ is a perceptual model developed to evaluate speech quality by simulating the human auditory system. Standardized by ITU-T in Recommendation P.862~\cite{pesq_metric}, PESQ scores range from 0 (poor) to 4.5 (excellent) and are widely used in speech enhancement and telephony.
+
+PESQ is computed as:
+
+\begin{equation}
+\text{PESQ} = f(s, \hat{s})
+\end{equation}
+
+where $f$ is the perceptual transformation that compares the clean and denoised signals.
+
+In this project, PESQ is computed using the \texttt{pesq} Python library in wideband mode. Since the library requires inputs to be sampled at 16 kHz, all signals are resampled from the dataset's native 48 kHz using \texttt{torchaudio.transforms.Resample} prior to evaluation.
+
+\subsection{Short-Time Objective Intelligibility (STOI)}
+\label{subsec:stoi}
+
+STOI is designed to estimate speech intelligibility, particularly in noisy conditions. It compares time-aligned short-time spectral envelopes of clean and denoised signals and outputs a score between 0 and 1, with higher scores indicating better intelligibility.
+
+\begin{equation}
+\text{STOI} = g(s, \hat{s})
+\end{equation}
+
+The implementation used in this project is based on the open-source \texttt{pystoi} library, which adheres closely to the official MATLAB reference implementation.
+
+\textbf{Note:} Like PESQ, STOI also requires inputs to be sampled at 16 kHz. Resampling is performed using \texttt{torchaudio.transforms.Resample} prior to computation to ensure compatibility and accurate results.
+
+\subsection{Log Spectral Distance (LSD)}
+\label{subsec:lsd}
+
+Log Spectral Distance (LSD) measures the divergence between the log-magnitude spectra of clean and denoised signals. It captures frequency-specific distortions, making it particularly useful for evaluating audio quality in the spectral domain:
+
+\begin{equation}
+\text{LSD} = \frac{1}{F} \sum_{f=1}^{F} \sqrt{ \frac{1}{T} \sum_{t=1}^{T} \left( \log S(f, t) - \log \hat{S}(f, t) \right)^2 }
+\end{equation}
+
+where $S(f, t)$ and $\hat{S}(f, t)$ represent the magnitude spectrograms of clean and denoised signals, respectively. Since no standard library implementation exists, LSD was implemented from scratch using PyTorch tensor operations.
+
+\vspace{1em}
+In summary, these metrics collectively provide a comprehensive evaluation framework by capturing signal fidelity (SNR, MSE), perceptual quality (PESQ), intelligibility (STOI), and frequency-domain accuracy (LSD).
+

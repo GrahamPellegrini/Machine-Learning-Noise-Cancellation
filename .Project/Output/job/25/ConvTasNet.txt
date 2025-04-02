@@ -1,0 +1,4 @@
+Job 44703 with name ConvTasNet has COMPLETED with Exit Code 0 after a runtime of 11:07:24
+
+You have requested 8G of RAM and you used 64.60% of it, that is, 5.17G
+You have requested 4 CPUS and you used 47.23% of them
