@@ -1,0 +1,27 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060 Ti
+Device set to: cuda
+Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
+Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 1.44 seconds
+--- Model `RCED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.8087, Val Loss: 0.8126, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamicOOM_.pth (Best Val Loss: 0.8126)
+Epoch [2/10] - Loss: 0.8030, Val Loss: 0.8081, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamicOOM_.pth (Best Val Loss: 0.8081)
+Epoch [3/10] - Loss: 0.8026, Val Loss: 0.8077, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamicOOM_.pth (Best Val Loss: 0.8077)
+Epoch [4/10] - Loss: 0.8022, Val Loss: 0.8078, Val SNR: 1.11 dB
+Epoch [5/10] - Loss: 0.8020, Val Loss: 0.8082, Val SNR: 1.11 dB
+Epoch [6/10] - Loss: 0.8017, Val Loss: 0.8077, Val SNR: 1.11 dB
+Epoch [7/10] - Loss: 0.8015, Val Loss: 0.8083, Val SNR: 1.11 dB
+Epoch [8/10] - Loss: 0.8012, Val Loss: 0.8122, Val SNR: 1.11 dB
+Epoch [9/10] - Loss: 0.8011, Val Loss: 0.8082, Val SNR: 1.11 dB
+Epoch [10/10] - Loss: 0.8008, Val Loss: 0.8080, Val SNR: 1.11 dB
+--- Training Complete ---
+@ Total Training Time: 10673.08 seconds
+@ Total Training Time: 177.88 minutes
+@ Total Training Time: 2.96 hours
+Job finished successfully

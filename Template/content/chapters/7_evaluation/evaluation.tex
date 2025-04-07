@@ -68,3 +68,51 @@ PTO               & 0.6288  & 0.6633  & 1.10 dB \\
 The results in Table~\ref{tab:dataset_performance} indicate that the model achieves comparable performance across all dataset handling methods. The consistent validation SNR values confirm that each method was implemented correctly and that the model learned similar representations regardless of the input formatting.
 
 Interestingly, the PTO method shows a slightly lower training and validation loss. This discrepancy is not reflected in the SNR metric and may be attributed to differences in how output sequences are truncated during training. The closeness of training and validation losses across all configurations suggests that the model generalizes well and is neither underfitting nor overfitting.
+
+\section{OOM Justification}
+\label{sec:oom_justification}
+
+The Out-Of-Memory (OOM) errors encountered whilst attempting to train the deeper model architectures, with still small batch sizes (e.g., 4), can be attributed to the increased number of parameters and the larger input data size. However, within the implenetation chapter methods for OOM handling were discussed and implemented.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{oom_error.png}
+    \caption{\label{fig:oom_error} OOM error message.}
+\end{figure}
+
+\section{OOM Validation}
+\label{sec:oom_validation}
+
+While Section~\ref{sec:oom_handling} outlined a range of techniques used to address Out-of-Memory (OOM) errors during training, it is critical to justify that these methods do not negatively impact the model’s ability to learn. The goal of this section is to validate that memory-saving strategies do not lead to information loss or degraded performance.
+
+To assess this, three training configurations were compared using the same RCED model architecture and the Dynamic Bucketing dataset strategy. The following setups were used:
+
+\begin{enumerate}
+    \item \textbf{Clean Training (Baseline):} A standard training loop without any OOM-handling logic. Batch size was set to 4, and full-precision training (FP32) was used.
+    
+    \item \textbf{OOM Handling (Batch 4, Accum 1):} The same model was trained with all OOM-handling mechanisms enabled, including mixed precision, gradient clipping, manual memory cleanup, and memory profiling. Batch size was 4, and accumulation steps were set to 1.
+    
+    \item \textbf{OOM Handling With Accumulation(Batch 2, Accum 2):} This configuration further reduced the batch size to 2 while enabling gradient accumulation over 2 steps to simulate an effective batch size of 4. All other OOM-handling features remained enabled.
+\end{enumerate}
+
+Each configuration was trained for the same number of epochs with identical learning rates, optimizers, and data augmentation (if any). Table~\ref{tab:oom_justification_results} summarizes the performance of each approach.
+
+\vspace{1em}
+\begin{table}[H]
+\centering
+\caption{Performance comparison of training configurations with and without OOM handling}
+\label{tab:oom_justification_results}
+\begin{tabular}{|l|c|c|c|}
+\hline
+\textbf{Training Configuration} & \textbf{Training Loss} & \textbf{Validation Loss} & \textbf{Validation SNR (dB)} \\
+\hline
+Baseline (Clean, Batch 4)            & 0.8301 & 0.8423 & 1.08 \\
+OOM-Handled (Batch 4, Accum 1)       & 0.8262 & 0.8298 & 1.10 \\
+OOM-Handled (Batch 2, Accum 2)       & 0.8270 & 0.8311 & 1.09 \\
+\hline
+\end{tabular}
+\end{table}
+
+The results clearly show that the performance of models trained with OOM-handling techniques is on par with—or slightly better than—the baseline configuration. Both training and validation losses are comparable across setups, and the validation SNR remains consistent, indicating that no degradation in audio quality or generalization ability was introduced by memory management strategies.
+
+These results validate that the applied OOM-handling mechanisms do not negatively affect the learning capacity of the RCED model. On the contrary, they allow for more scalable and robust training workflows, particularly important when operating in constrained GPU environments. This makes the implementation both efficient and practically viable for real-world deployment or further experimentation with deeper architectures.

@@ -13,6 +13,9 @@ import torch
 import torch.nn.functional as F
 import torchaudio.transforms as T
 
+from torchmetrics.audio import SignalNoiseRatio
+from torchmetrics import MeanSquaredError
+
 import torchaudio
 
 from pesq import pesq
@@ -71,11 +74,13 @@ def denoise(device, model, model_pth, test_loader, sr, n_fft, hop_length, metric
                 clean_waveform = torch.stack([pad_to_max(clean_waveform[i], max_length) for i in range(clean_waveform.shape[0])])
 
             # Compute SNR
-            snr = F.signal_to_noise_ratio(denoised_waveform, clean_waveform).item()
+            snr_metric = SignalNoiseRatio()
+            snr = snr_metric(denoised_waveform.cpu(), clean_waveform.cpu()).item()
             snr_list.append(snr)
-            
+                    
             # Compute MSE
-            mse = F.mse_loss(denoised_waveform, clean_waveform).item()
+            mse_metric = MeanSquaredError()
+            mse = mse_metric(denoised_waveform.cpu(), clean_waveform.cpu()).item()
             mse_list.append(mse)
 
             # Compute LSD

@@ -1,4 +1,0 @@
-Job 44885 with name CNN has COMPLETED with Exit Code 0 after a runtime of 01:36:58
-
-You have requested 8G of RAM and you used 62.37% of it, that is, 4.99G
-You have requested 4 CPUS and you used 73.38% of them

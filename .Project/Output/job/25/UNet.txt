@@ -1,4 +1,0 @@
-Job 44702 with name UNet has COMPLETED with Exit Code 0 after a runtime of 10:27:27
-
-You have requested 8G of RAM and you used 68.49% of it, that is, 5.48G
-You have requested 4 CPUS and you used 45.97% of them

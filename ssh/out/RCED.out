@@ -4,6 +4,6 @@ Device set to: cuda
 Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
 Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
 --- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
-@ Time ../ED-Noisy-Speech-Datashare Loading: 0.88 seconds
---- Model `CED` loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 0.13 seconds
+--- Model `RCED` loaded successfully ---
 Training & Evaluating Model...

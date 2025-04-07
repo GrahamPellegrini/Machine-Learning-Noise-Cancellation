@@ -1,0 +1,4 @@
+Job 44960 with name RCED_OOM_ACCUM has COMPLETED with Exit Code 0 after a runtime of 03:02:53
+
+You have requested 8G of RAM and you used 62.01% of it, that is, 4.96G
+You have requested 4 CPUS and you used 48.92% of them

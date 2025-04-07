@@ -11,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/RCED.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/RCED.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/CED.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/CED.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=RCED
+#SBATCH --job-name=CED
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt
@@ -35,7 +35,8 @@ fi
 # Cd into the directory where the script is located
 cd /opt/users/gpel0001/nnc-fyp/.Project
 
-export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:16
+
 
 # Run python script
 python3 main.py

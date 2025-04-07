@@ -12,7 +12,8 @@ The training and validation loss trends are plotted and saved to the `Output/` d
 
 import os
 # Set the environment variable to allow for expandable CUDA memory allocation
-os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True,max_split_size_mb:32"
+
 
 
 import torch
@@ -111,7 +112,9 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
                     truncated_real, truncated_imag = outputs_real, outputs_imag
 
             # Compute the true loss without scalling for plotting
-            raw_loss = criterion(truncated_real, clean_real) + criterion(truncated_imag, clean_imag)
+            # ✅ Ensure inputs to loss are in float32 (AMP compatibility)
+            raw_loss = criterion(truncated_real.float(), clean_real.float()) + criterion(truncated_imag.float(), clean_imag.float())
+
             # Append the true loss to the total training loss
             total_train_loss += raw_loss.item()
 

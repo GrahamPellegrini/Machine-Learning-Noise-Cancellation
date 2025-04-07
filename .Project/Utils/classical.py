@@ -14,7 +14,8 @@ import torch.nn.functional as F
 import torchaudio.transforms as T
 import torchaudio.functional as AF
 
-from scipy.signal import wiener
+from torchmetrics.audio import SignalNoiseRatio
+from torchmetrics import MeanSquaredError
 
 from pesq import pesq
 from pystoi import stoi
@@ -78,12 +79,14 @@ def classical(test_loader, sr, method, pto=False):
             denoised_waveform = denoised_waveform[..., :min_length]
             clean_waveform = clean_waveform[..., :min_length]
             
-            # Compute SNR
-            snr = F.signal_to_noise_ratio(denoised_waveform, clean_waveform).item()
+           # Compute SNR
+            snr_metric = SignalNoiseRatio()
+            snr = snr_metric(denoised_waveform.cpu(), clean_waveform.cpu()).item()
             snr_list.append(snr)
-            
+                    
             # Compute MSE
-            mse = F.mse_loss(denoised_waveform, clean_waveform).item()
+            mse_metric = MeanSquaredError()
+            mse = mse_metric(denoised_waveform.cpu(), clean_waveform.cpu()).item()
             mse_list.append(mse)
 
             # Compute LSD

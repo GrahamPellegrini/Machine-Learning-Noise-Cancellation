@@ -1,4 +1,0 @@
-Job 44686 with name CED has COMPLETED with Exit Code 0 after a runtime of 06:20:18
-
-You have requested 8G of RAM and you used 64.83% of it, that is, 5.19G
-You have requested 4 CPUS and you used 53.56% of them

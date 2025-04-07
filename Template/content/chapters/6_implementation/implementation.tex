@@ -74,10 +74,19 @@ A few support functions are implemented to ensure that batching and visualizatio
     \item \texttt{visualize\_dataset\_padding}: A diagnostic utility that plots the distribution of original lengths and the effects of padding for each method. It provides insights into the efficiency and overhead introduced by each strategy.
 \end{itemize}
 
-\section{Out Of Memory (OOM) Handling}
+
+\section{Out-of-Memory (OOM) Handling}
 \label{sec:oom_handling}
 
-Given the depth of the model architectures and the limitations of a shared remote GPU. Out-of-Memory (OOM) errors are common when training deep learning models on constrained hardware, especially when dealing with large spectrogram tensors derived from high-resolution audio. These experienced and mitigated in implementation through several techniques employed to reduce memory footprint and ensure training stability:
+Out-of-Memory (OOM) errors were encountered while training deeper model architectures, even with relatively small batch sizes (e.g., 4). These errors are common in GPU-constrained environments due to the increased number of trainable parameters and the large size of spectrogram tensors derived from high-resolution audio. Figure~\ref{fig:oom_error} shows a representative OOM error message encountered during training.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{oom_error.png}
+    \caption{\label{fig:oom_error} PyTorch CUDA out-of-memory error message.}
+\end{figure}
+
+To address these limitations, several memory management strategies were implemented to stabilize training and enable deeper models to run within the available GPU resources. These methods also allowed the system to simulate larger batch sizes and achieve better convergence. The following techniques were used to mitigate OOM errors:
 
 \begin{itemize}
     \item \textbf{Expandable CUDA Segments:} Before initiating training, the environment variable \texttt{PYTORCH\_CUDA\_ALLOC\_CONF=expandable\_segments:True} is set. This enables PyTorch’s new memory allocator with segment expansion, which helps alleviate fragmentation issues and allows the allocator to resize memory segments dynamically. This is the first suggestion from the PyTorch documentation for OOM errors.

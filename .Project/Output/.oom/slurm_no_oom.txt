@@ -1,0 +1,4 @@
+Job 44962 with name RCED_NO_OOM has COMPLETED with Exit Code 0 after a runtime of 04:24:45
+
+You have requested 8G of RAM and you used 60.54% of it, that is, 4.84G
+You have requested 4 CPUS and you used 40.46% of them
