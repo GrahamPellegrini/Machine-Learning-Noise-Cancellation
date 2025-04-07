@@ -1,0 +1,4 @@
+Job 44816 with name CED_PTO has COMPLETED with Exit Code 0 after a runtime of 03:13:33
+
+You have requested 8G of RAM and you used 121.15% of it, that is, 9.69G
+You have requested 4 CPUS and you used 55.48% of them

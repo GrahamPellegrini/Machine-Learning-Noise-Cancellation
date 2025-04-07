@@ -1,6 +1,4 @@
-/opt/users/gpel0001/nnc-fyp/.Project/main.py:34: UserWarning: torchaudio._backend.set_audio_backend has been deprecated. With dispatcher enabled, this function is no-op. You can remove the function call.
-  torchaudio.set_audio_backend("soundfile")
-/opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:35: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+/opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:37: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
   scaler = GradScaler()
-/opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:66: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+/opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:76: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
   with autocast():

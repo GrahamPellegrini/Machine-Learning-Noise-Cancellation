@@ -1,0 +1,4 @@
+Job 44817 with name CED_DYN has COMPLETED with Exit Code 0 after a runtime of 02:22:19
+
+You have requested 8G of RAM and you used 64.71% of it, that is, 5.18G
+You have requested 4 CPUS and you used 55.35% of them

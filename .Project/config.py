@@ -14,19 +14,19 @@ DATASET_DIR = "../ED-Noisy-Speech-Datashare"  # Path to the dataset
 SAMPLE_RATE = 48000  # Dataset sample rate
 N_FFT = 1024  # Number of FFT points
 HOP_LENGTH = 256  # Hop length for the STFT
-BATCH_SIZE = 4  # Batch size for the model
-ACCUMULATION_STEPS = 1  # Gradient accumulation steps
+BATCH_SIZE = 2 # Batch size for the model
+ACCUMULATION_STEPS = 2 # Gradient accumulation steps
 NUM_WORKERS = 4  # Number of workers for the DataLoader
 
 
 # Padding Methods
-PAD_METHOD = "static" # OPTIONS: "dynamic", "static",  "pto"
+PAD_METHOD = "dynamic" # OPTIONS: "dynamic", "static",  "pto"
 VISUALIZE = False  # Visualize the padding method
 NUM_BUCKET = 5  # Number of dynamic buckets (dynamic only)
 
 
 # Model Parameters
-MODEL = "CED"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
+MODEL = "RCED"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
 EPOCHS = 10  # Number of epochs to train the model
 LEARNING_RATE = 1e-3  # Learning rate for the model
 SCHEDULER = True  # Use a learning rate scheduler

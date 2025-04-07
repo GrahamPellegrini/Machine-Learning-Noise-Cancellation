@@ -82,6 +82,69 @@ Wiener filtering can be seen toprovide an optimal solution in the minimum mean s
 
 Despite its assumptions, Wiener filtering is still widely used as a foundational method in speech enhancement and often forms part of more complex hybrid pipelines or adaptive filtering systems \cite{dubey2016evaluation, loizou2013speech}.
 
+
+\section{Evaluation Metrics}
+\label{sec:evaluation_metrics}
+
+To evaluate the performance of noise reduction algorithms, several objective metrics are commonly used. These metrics provide quantitative measures of the quality and intelligibility of enhanced speech signals when compared to their clean references. The following subsections describe the most widely adopted metrics in speech enhancement research, all of which are utilised in this project.
+
+\subsection{Signal-to-Noise Ratio (SNR)}
+\label{subsec:snr}
+
+The Signal-to-Noise Ratio (SNR) is a fundamental metric that quantifies the relative strength of the desired speech signal compared to the background noise. A higher SNR indicates better separation between speech and noise components, which typically translates to improved intelligibility and perceived quality.
+
+SNR is defined as:
+
+\begin{equation}
+    \text{SNR} = 10 \log_{10} \left( \frac{P_s}{P_n} \right)
+\end{equation}
+
+where \( P_s \) is the power of the clean speech signal and \( P_n \) is the power of the noise (or error) component. In practice, SNR can be computed in both time and frequency domains and is commonly used as a baseline performance indicator for denoising systems.
+
+\subsection{Mean Squared Error (MSE)}
+\label{subsec:mse}
+
+The Mean Squared Error (MSE) measures the average squared difference between the enhanced and reference clean signals. It reflects the overall fidelity of the enhancement process but does not necessarily correlate with perceptual quality.
+
+MSE is given by:
+
+\begin{equation}
+    \text{MSE} = \frac{1}{N} \sum_{n=1}^{N} (x(n) - \hat{x}(n))^2
+\end{equation}
+
+where \( N \) is the number of signal samples, \( x(n) \) is the clean signal, and \( \hat{x}(n) \) is the enhanced signal. Lower MSE values indicate better approximation of the clean signal.
+
+\subsection{Perceptual Evaluation of Speech Quality (PESQ)}
+\label{subsec:pesq}
+
+The Perceptual Evaluation of Speech Quality (PESQ) is an objective metric designed to estimate the perceptual quality of speech, taking into account human auditory perception. Standardised by ITU-T Recommendation P.862, PESQ is widely used in speech enhancement and telecommunication systems.
+
+PESQ simulates the auditory perception process and compares the clean and enhanced signals using psychoacoustic models. The PESQ score ranges from -0.5 to 4.5, with higher scores indicating better perceptual quality. A score above 3.0 is generally considered acceptable for most applications.
+
+\subsection{Short-Time Objective Intelligibility (STOI)}
+\label{subsec:stoi}
+
+The Short-Time Objective Intelligibility (STOI) metric is designed to assess the intelligibility of speech, especially in noisy or distorted conditions. It works by comparing the short-time spectral envelopes of clean and enhanced speech segments.
+
+The STOI score lies between 0 and 1, where higher values indicate better intelligibility. Scores above 0.5 typically suggest acceptable levels of speech understanding. STOI is particularly useful when intelligibility, rather than perceptual quality alone, is of primary concern.
+
+\subsection{Log Spectral Distance (LSD)}
+\label{subsec:lsd}
+
+The Log Spectral Distance (LSD) metric quantifies the spectral distortion introduced by a denoising algorithm. It measures the average distance between the logarithmic power spectra of the clean and enhanced signals across time and frequency.
+
+LSD is defined as:
+
+\begin{equation}
+    \text{LSD} = \frac{1}{F} \sum_{f=1}^{F} \sqrt{ \frac{1}{T} \sum_{t=1}^{T} \left( \log S(f, t) - \log \hat{S}(f, t) \right)^2 }
+\end{equation}
+
+where \( S(f, t) \) and \( \hat{S}(f, t) \) are the clean and enhanced magnitude spectra at frequency bin \( f \) and time frame \( t \), respectively. Lower LSD values indicate better preservation of spectral characteristics and less distortion.
+
+\vspace{1em}
+Individually, these metrics suffer to provide complete meaningful evaluations of the performance of noise reduction algorithms. For example, SNR and MSE are sensitive to the absolute power levels of the signals, while PESQ and STOI focus on perceptual aspects. Therefore, a comprehensive evaluation should consider multiple metrics to capture different dimensions of performance and together a well-rounded assessment can be achieved.
+
+
 \section{Project Progression}
 \label{sec:project_progression}
 

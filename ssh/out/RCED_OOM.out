@@ -1,0 +1,11 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060 Ti
+Device set to: cuda
+Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
+Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 1.44 seconds
+--- Model `RCED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.8087, Val Loss: 0.8126, Val SNR: 1.11 dB
+✔ Model saved to Models/RCED_dynamicOOM_.pth (Best Val Loss: 0.8126)

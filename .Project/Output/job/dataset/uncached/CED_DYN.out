@@ -1,0 +1,31 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060
+Device set to: cuda
+Dynamic bucket sizes: [104159 142038 192173 298145 466744]
+Saved cache file: cache/dynamic/trainset_56spk_buckets.pkl
+Dynamic bucket sizes: [ 96810 128649 169242 226863 380764]
+Saved cache file: cache/dynamic/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 602.56 seconds
+--- Model `CED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.8477, Val Loss: 0.8381, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8381)
+Epoch [2/10] - Loss: 0.8323, Val Loss: 0.8339, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8339)
+Epoch [3/10] - Loss: 0.8304, Val Loss: 0.8332, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8332)
+Epoch [4/10] - Loss: 0.8293, Val Loss: 0.8321, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8321)
+Epoch [5/10] - Loss: 0.8284, Val Loss: 0.8313, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8313)
+Epoch [6/10] - Loss: 0.8277, Val Loss: 0.8308, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8308)
+Epoch [7/10] - Loss: 0.8272, Val Loss: 0.8298, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8298)
+Epoch [8/10] - Loss: 0.8264, Val Loss: 0.8292, Val SNR: 1.10 dB
+✔ Model saved to Models/CED_dynamic.pth (Best Val Loss: 0.8292)
+Epoch [9/10] - Loss: 0.8259, Val Loss: 0.8303, Val SNR: 1.10 dB
+Epoch [10/10] - Loss: 0.8251, Val Loss: 0.8301, Val SNR: 1.10 dB
+--- Training Complete ---
+Job finished successfully

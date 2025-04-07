@@ -30,6 +30,8 @@ class PTODataset(Dataset):
         self.n_fft = n_fft
         self.hop_length = hop_length
         self.cache_file = os.path.join("cache/pto", f"{set_type}_lengths.pkl")
+        # Make sure the cache directory exists
+        os.makedirs(os.path.dirname(self.cache_file), exist_ok=True)
 
         # Get all clean and noisy files
         clean_dir = os.path.join(dataset_dir, f"clean_{set_type}_wav")
@@ -95,6 +97,8 @@ class DynamicBuckets(Dataset):
         self.n_fft = n_fft
         self.hop_length = hop_length
         self.cache_file = os.path.join("cache/dynamic/", f"{set_type}_buckets.pkl")
+        # Make sure the cache directory exists
+        os.makedirs(os.path.dirname(self.cache_file), exist_ok=True)
 
         # Get all clean and noisy files
         clean_dir = os.path.join(dataset_dir, f"clean_{set_type}_wav")
@@ -205,6 +209,8 @@ class StaticBuckets(Dataset):
         self.hop_length = hop_length
         self.bucket_sizes = bucket_sizes
         self.cache_file = os.path.join("cache/static/", f"{set_type}_buckets.pkl")
+        # Make sure the cache directory exists
+        os.makedirs(os.path.dirname(self.cache_file), exist_ok=True)
 
         # Get all clean and noisy files
         clean_dir = os.path.join(dataset_dir, f"clean_{set_type}_wav")

@@ -1,0 +1,4 @@
+/opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:40: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+/opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:79: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():

@@ -2,29 +2,6 @@
 \chapter{Desing}
 \label{chp:design}
 
-\section{Project Structure}
-\label{sec:project_structure}
-
-The overall structure of the project is modular, enabling clean separation of concerns and supporting future extensibility. The project is organized around three main pipelines: \textbf{training}, \textbf{denoising}, and \textbf{deployment}. Each pipeline is implemented as a collection of dedicated modules, coordinated through the central \texttt{main.py} script, which serves as the entry point for running the system.
-
-The training and denoising pipelines constitute the core of the project and are discussed in detail throughout this report. The deployment pipeline is discussed separately in Chapter~\ref{chp:deployment}, following the evaluation of model performance.
-
-To maintain clarity and modularity, all helper modules are organized within a \textit{Utils} directory. This directory contains the core functionality for dataset handling, model definitions, training routines, inference logic, and baseline methods. Additionally, a centralized configuration file, \texttt{config.py}, located alongside \texttt{main.py}, manages all project parameters using a dictionary-based structure. This design allows users to easily modify hyperparameters or experiment settings in a single location, improving usability and reproducibility.
-
-An overview of the key files in the \textit{Utils} directory is provided below:
-
-\begin{itemize}
-    \item \texttt{dataset.py}: Contains all dataset classes used in the project, implemented as PyTorch \texttt{Dataset} objects. The file supports multiple strategies for handling variable-length audio inputs, as discussed in Section~\ref{sec:variable_length_handling}. It also defines the \texttt{BucketSampler} class for length-based batch sampling, the \texttt{pto\_collate} function for efficient collation, and a visualization utility for analyzing padding distribution.
-
-    \item \texttt{model.py}: Defines the neural network architectures used for speech enhancement. Each model is implemented as a subclass of PyTorch’s \texttt{nn.Module}, and the module is designed for easy experimentation with new architectures or changes in hyperparameters.
-
-    \item \texttt{train.py}: Implements the training loop, validation logic, and performance tracking. It supports training using any of the dataset classes defined in \texttt{dataset.py}, allowing for flexible experimentation with different data-handling strategies.
-
-    \item \texttt{denoise.py}: Handles inference and evaluation post-training. It mirrors the training pipeline structure but focuses on running the model in inference mode and computing objective metrics. The module also allows switching between learned models and classical methods for direct comparison.
-
-    \item \texttt{classical.py}: Implements traditional signal processing–based denoising algorithms used as baseline comparisons. These functions operate on waveform inputs and are implemented using either custom code or well-established signal processing libraries where appropriate.
-\end{itemize}
-
 \section{Variable Length Handling}
 \label{sec:variable_length_handling}
 

@@ -26,6 +26,9 @@ import time
 # === Training & Evaluation Function ===
 def train_eval(device, model, train_loader, val_loader, optimizer, criterion, epochs, accumulation_steps, save_pth, pto=False, scheduler=False):
 
+    # Start the timer for the training process
+    train_time = time.time()
+
     # Move model to device
     model.to(device)
 
@@ -107,11 +110,14 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
                 else:
                     truncated_real, truncated_imag = outputs_real, outputs_imag
 
-                # Compute loss
-                loss = criterion(truncated_real, clean_real) + criterion(truncated_imag, clean_imag)
+            # Compute the true loss without scalling for plotting
+            raw_loss = criterion(truncated_real, clean_real) + criterion(truncated_imag, clean_imag)
+            # Append the true loss to the total training loss
+            total_train_loss += raw_loss.item()
 
-            # Backward pass with gradient scaling
-            loss = loss / accumulation_steps
+            # Divide loss before backprop to implement gradient accumulation
+            loss = raw_loss / accumulation_steps
+            # Apply gradient scaling for mixed precision
             scaler.scale(loss).backward()
 
             # Perform optimizer step every N mini-batches
@@ -120,9 +126,6 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
                 scaler.step(optimizer)
                 scaler.update()
                 optimizer.zero_grad()
-
-            # Append the loss for this batch
-            total_train_loss += loss.item()
 
         # Compute average training loss for the epoch
         avg_train_loss = total_train_loss / len(train_loader)
@@ -214,6 +217,12 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
     # Print the total time taken for PTO truncation
     if pto:
         print(f"@ Time PTO Truncation: {pto_truncation_time:.2f} seconds")
+    
+    # Print the total training time
+    total_time = time.time() - train_time
+    print(f"@ Total Training Time: {total_time:.2f} seconds")
+    print(f"@ Total Training Time: {total_time/60:.2f} minutes")
+    print(f"@ Total Training Time: {total_time/3600:.2f} hours")
 
     # Save Loss & Accuracy Trends
     plt.figure(figsize=(12, 5))

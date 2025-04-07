@@ -1,7 +1,4 @@
-/opt/users/gpel0001/nnc-fyp/.Project/main.py:34: UserWarning: torchaudio._backend.set_audio_backend has been deprecated. With dispatcher enabled, this function is no-op. You can remove the function call.
-  torchaudio.set_audio_backend("soundfile")
-Traceback (most recent call last):
-  File "/opt/users/gpel0001/nnc-fyp/.Project/main.py", line 116, in <module>
-    raise ValueError(f"Invalid MODEL: {model_name}\n Choose from ['CNN', 'UNet', 'ConvTasNet']")
-ValueError: Invalid MODEL: a
- Choose from ['CNN', 'UNet', 'ConvTasNet']
+/opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:37: FutureWarning: `torch.cuda.amp.GradScaler(args...)` is deprecated. Please use `torch.amp.GradScaler('cuda', args...)` instead.
+  scaler = GradScaler()
+/opt/users/gpel0001/nnc-fyp/.Project/Utils/train.py:76: FutureWarning: `torch.cuda.amp.autocast(args...)` is deprecated. Please use `torch.amp.autocast('cuda', args...)` instead.
+  with autocast():

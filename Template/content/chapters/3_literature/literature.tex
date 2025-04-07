@@ -4,10 +4,34 @@
 
 This chapter presents an overview of deep learning methods for speech enhancement, with a focus on the autoencoder architecture. It outlines the basic principles, training process, and recent advancements in this field, while also introducing the performance metrics used to evaluate enhancement models.
 
-\section{Deep Learning}
-\label{subsec:deep_learning}
 
-Deep learning has significantly advanced speech enhancement, with specialised neural network architectures tailored for this task. One of the most widely adopted structures is the \textit{autoencoder}, a neural network designed to reconstruct its input through a compressed internal representation \cite{azarang2020review}.
+\section{Neural Networks}
+\label{sec:neural_networks}
+
+Machine learning models, particularly neural networks, have been widely adopted for noise cancellation. Neural networks, inspired by biological neurons in the human brain, are composed of layers of interconnected processing units known as \textit{neurons}. Each artificial neuron receives multiple inputs, performs a weighted summation, applies a bias, and passes the result through an activation function to produce its output.
+
+This structure draws direct inspiration from the way biological neurons function—where dendrites receive signals, the cell body processes them, and the axon transmits the signal to the next neuron. Figure~\ref{fig:neuron_vs_ann} illustrates this analogy.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.75\textwidth]{neuron_vs_ann.png}
+    \caption{Biological neuron vs. Artificial neuron structure.\cite{ghosh2020perceptron}}
+    \label{fig:neuron_vs_ann}
+\end{figure}
+
+A typical neural network for noise cancellation consists of the following components:
+\begin{itemize}
+    \item \textbf{Input layer:} Receives the noisy speech signal (e.g., a time-domain waveform or its spectrogram).
+    \item \textbf{Hidden layers:} Perform nonlinear transformations to extract key features and patterns from the input. These layers may include convolutional, recurrent, or fully connected neurons depending on the network architecture.
+    \item \textbf{Output layer:} Produces the denoised speech signal by mapping the learned features back to the clean signal domain.
+\end{itemize}
+
+The network is trained using pairs of clean and noisy audio samples. It gradually learns to reduce the difference between its predicted output and the actual clean signal. Once trained, the model can take in new noisy speech and output a cleaner version. This learning-based approach allows neural networks to adapt to complex noise patterns, often performing better than traditional signal processing methods in real-world situations.
+
+\section{Machine Learning}
+\label{sec:machine_learning}
+
+Machine learning (ML) is a subset of artificial intelligence (AI) that focuses on the development of algorithms and statistical models that enable computers to perform specific tasks without explicit instructions. Instead, these systems learn from data, identifying patterns and making decisions based on their experiences. In the context of speech enhancement, ML has provided basis for advanced with specialised neural network architectures tailored for this task. One of the most widely adopted structures is the \textit{autoencoder}, a neural network designed to reconstruct its input through a compressed internal representation \cite{azarang2020review}.
 
 \begin{figure}[h]
     \centering

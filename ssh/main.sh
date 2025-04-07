@@ -11,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/CED_STC.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/CED_STC.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/RCED.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/RCED.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=CED_STC
+#SBATCH --job-name=RCED
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt

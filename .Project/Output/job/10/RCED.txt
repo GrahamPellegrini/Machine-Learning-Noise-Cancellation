@@ -1,0 +1,4 @@
+Job 44882 with name RCED has COMPLETED with Exit Code 0 after a runtime of 03:48:46
+
+You have requested 8G of RAM and you used 62.78% of it, that is, 5.02G
+You have requested 4 CPUS and you used 42.44% of them
