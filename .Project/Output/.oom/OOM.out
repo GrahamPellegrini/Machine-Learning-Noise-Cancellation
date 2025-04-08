@@ -25,3 +25,8 @@ Epoch [10/10] - Loss: 0.8008, Val Loss: 0.8080, Val SNR: 1.11 dB
 @ Total Training Time: 177.88 minutes
 @ Total Training Time: 2.96 hours
 Job finished successfully
+
+Job 44959 with name RCED_OOM has COMPLETED with Exit Code 0 after a runtime of 02:58:13
+
+You have requested 8G of RAM and you used 63.21% of it, that is, 5.06G
+You have requested 4 CPUS and you used 48.44% of them

@@ -32,11 +32,11 @@ Both uncached and cached runs were executed, and the relevant timing metrics wer
 \label{tab:dataset_loading_times}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Dataset Type} & \textbf{Initial Load (Uncached)} & \textbf{Re-run Load (Cached)} & \textbf{Epoch Truncation Overhead (PTO only)} \\
+\textbf{Dataset} & \textbf{Uncached} & \textbf{Cached} & \textbf{Truncation Overhead} \\
 \hline
-Static Bucketing  & 298.05  & 0.81  & N/A    \\
-Dynamic Bucketing & 602.56  & 0.58  & N/A    \\
-PTO               & 311.21  & 0.58  & 58.56  \\
+Static Bucketing  & 298.05 s  & 0.81 s   & N/A    \\
+Dynamic Bucketing & 602.56 s& 0.58 s  & N/A    \\
+PTO               & 311.21 s & 0.58 s  & 58.56 s  \\
 \hline
 \end{tabular}
 \end{table}
@@ -56,7 +56,7 @@ To evaluate the impact of dataset handling strategies on model learning, all mod
 \label{tab:dataset_performance}
 \begin{tabular}{|l|c|c|c|}
 \hline
-\textbf{Dataset Type} & \textbf{Training Loss} & \textbf{Validation Loss} & \textbf{Validation SNR} \\
+\textbf{Dataset} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val SNR} \\
 \hline
 Static Bucketing  & 0.8367  & 0.8410  & 1.09 dB \\
 Dynamic Bucketing & 0.8262  & 0.8298  & 1.10 dB \\  
@@ -69,50 +69,66 @@ The results in Table~\ref{tab:dataset_performance} indicate that the model achie
 
 Interestingly, the PTO method shows a slightly lower training and validation loss. This discrepancy is not reflected in the SNR metric and may be attributed to differences in how output sequences are truncated during training. The closeness of training and validation losses across all configurations suggests that the model generalizes well and is neither underfitting nor overfitting.
 
-\section{OOM Justification}
-\label{sec:oom_justification}
-
-The Out-Of-Memory (OOM) errors encountered whilst attempting to train the deeper model architectures, with still small batch sizes (e.g., 4), can be attributed to the increased number of parameters and the larger input data size. However, within the implenetation chapter methods for OOM handling were discussed and implemented.
-
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=0.8\textwidth]{oom_error.png}
-    \caption{\label{fig:oom_error} OOM error message.}
-\end{figure}
 
 \section{OOM Validation}
 \label{sec:oom_validation}
 
-While Section~\ref{sec:oom_handling} outlined a range of techniques used to address Out-of-Memory (OOM) errors during training, it is critical to justify that these methods do not negatively impact the model’s ability to learn. The goal of this section is to validate that memory-saving strategies do not lead to information loss or degraded performance.
+While Section~\ref{sec:oom_handling} outlined several techniques to mitigate Out-of-Memory (OOM) errors during training, it is important to demonstrate that these strategies do not compromise model learning. The goal of this section is to validate that memory-saving methods do not lead to information loss or degraded performance.
 
-To assess this, three training configurations were compared using the same RCED model architecture and the Dynamic Bucketing dataset strategy. The following setups were used:
+To assess this, three training configurations were evaluated using the same RCED model architecture and the Dynamic Bucketing dataset strategy:
 
 \begin{enumerate}
-    \item \textbf{Clean Training (Baseline):} A standard training loop without any OOM-handling logic. Batch size was set to 4, and full-precision training (FP32) was used.
+    \item \textbf{Clean Training (Baseline):} A standard training loop without any OOM-handling logic, using a batch size of 4. This configuration serves as the control, with no memory management mechanisms.
     
-    \item \textbf{OOM Handling (Batch 4, Accum 1):} The same model was trained with all OOM-handling mechanisms enabled, including mixed precision, gradient clipping, manual memory cleanup, and memory profiling. Batch size was 4, and accumulation steps were set to 1.
+    \item \textbf{OOM Handling (Batch 4, Accum 1):} OOM-handling techniques were enabled while maintaining a batch size of 4. This included fixed-point precision (FP16) and garbage collection (GC), allowing for a more memory-efficient training process.
     
-    \item \textbf{OOM Handling With Accumulation(Batch 2, Accum 2):} This configuration further reduced the batch size to 2 while enabling gradient accumulation over 2 steps to simulate an effective batch size of 4. All other OOM-handling features remained enabled.
+    \item \textbf{OOM + Accumulation (Batch 2, Accum 2):} The batch size was reduced to 2 with gradient accumulation set to 2, simulating an effective batch size of 4. All OOM-handling techniques remained enabled. This configuration is designed to reduce memory usage while preserving gradient stability.
 \end{enumerate}
 
-Each configuration was trained for the same number of epochs with identical learning rates, optimizers, and data augmentation (if any). Table~\ref{tab:oom_justification_results} summarizes the performance of each approach.
+Each configuration was trained for the same number of epochs, using identical learning rates, optimizers, and data augmentation (if any). Table~\ref{tab:oom_training} summarizes the training and validation performance.
 
 \vspace{1em}
 \begin{table}[H]
 \centering
-\caption{Performance comparison of training configurations with and without OOM handling}
-\label{tab:oom_justification_results}
-\begin{tabular}{|l|c|c|c|}
+\caption{Training Performance Across OOM Configurations}
+\label{tab:oom_training}
+\begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Training Configuration} & \textbf{Training Loss} & \textbf{Validation Loss} & \textbf{Validation SNR (dB)} \\
+\textbf{Train Config} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val SNR} & \textbf{Training Time} \\
 \hline
-Baseline (Clean, Batch 4)            & 0.8301 & 0.8423 & 1.08 \\
-OOM-Handled (Batch 4, Accum 1)       & 0.8262 & 0.8298 & 1.10 \\
-OOM-Handled (Batch 2, Accum 2)       & 0.8270 & 0.8311 & 1.09 \\
+Baseline               & 0.7985 & 0.8048 & 1.12 dB & 4.24 h \\
+OOM Handling           & 0.8026 & 0.8077 & 1.11 dB & 2.58 h \\
+OOM + Accumulation     & 0.8007 & 0.8077 & 1.11 dB & 3.02 h \\
 \hline
 \end{tabular}
 \end{table}
 
-The results clearly show that the performance of models trained with OOM-handling techniques is on par with—or slightly better than—the baseline configuration. Both training and validation losses are comparable across setups, and the validation SNR remains consistent, indicating that no degradation in audio quality or generalization ability was introduced by memory management strategies.
+As shown in Table~\ref{tab:oom_training}, OOM-handling techniques do not significantly affect model performance. Although the training and validation losses are slightly higher than the baseline, the differences are minimal and outweighed by the substantial reduction in training time. This speedup likely results from improved memory efficiency via FP16 computation, garbage collection, and reduced GPU memory overhead.
 
-These results validate that the applied OOM-handling mechanisms do not negatively affect the learning capacity of the RCED model. On the contrary, they allow for more scalable and robust training workflows, particularly important when operating in constrained GPU environments. This makes the implementation both efficient and practically viable for real-world deployment or further experimentation with deeper architectures.
+Each model was also evaluated in the full denoising pipeline. Table~\ref{tab:oom_metrics} presents the performance metrics across key evaluation criteria.
+
+\vspace{1em}
+\begin{table}[H]
+\centering
+\caption{Denoising Metrics Across OOM Configurations}
+\label{tab:oom_metrics}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Train Config} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} \\
+\hline
+Baseline               & 0.9751 & 0.002083 & 1.3867 & 0.8205 & 0.7857 \\
+OOM Handling           & 0.9648 & 0.002088 & 1.2244 & 0.8037 & 1.0361 \\
+OOM + Accumulation     & 0.9714 & 0.002085 & 1.2611 & 0.8044 & 0.9004 \\
+\hline
+\end{tabular}
+\end{table}
+
+Once again, the results in Table~\ref{tab:oom_metrics} confirm that OOM-handling techniques do not degrade model output quality in any significant way. The baseline configuration achieves slightly better metrics, which may be attributed to longer training duration and full-precision computation. However, the differences are negligible, and the gains in training efficiency justify the use of OOM-handling strategies in practice.
+
+
+\section{Model Performance}
+\label{sec:model_performance}
+
+This section presents the most critical part of the evaluation process and the main focus of this project. The assesment of the compartivive performances of the classical methods and the five machine learning models is shown in this section. Unlike the previous evaluations taken place, which focused on dataset handling strategies and OOM mitigation techniques using a fixed models to conduct testing over. This section will keep the established dynamic bucketing and OOM handeling strategies, but will focus on the model architecture itself and how it affects the training efficiency and denoising performance.
+
+However, before analysing the individual models built and trained, it is important to establish the metrics of the classical methods from which we will be comparing our results.

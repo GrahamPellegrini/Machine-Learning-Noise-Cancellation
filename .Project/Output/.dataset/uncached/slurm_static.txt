@@ -1,4 +1,0 @@
-Job 44840 with name CED_STC has COMPLETED with Exit Code 0 after a runtime of 02:45:33
-
-You have requested 8G of RAM and you used 64.56% of it, that is, 5.16G
-You have requested 4 CPUS and you used 53.00% of them

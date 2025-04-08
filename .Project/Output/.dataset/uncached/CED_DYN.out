@@ -29,3 +29,9 @@ Epoch [9/10] - Loss: 0.8259, Val Loss: 0.8303, Val SNR: 1.10 dB
 Epoch [10/10] - Loss: 0.8251, Val Loss: 0.8301, Val SNR: 1.10 dB
 --- Training Complete ---
 Job finished successfully
+
+
+Job 44841 with name CED_DYN has COMPLETED with Exit Code 0 after a runtime of 02:35:01
+
+You have requested 8G of RAM and you used 63.22% of it, that is, 5.06G
+You have requested 4 CPUS and you used 51.71% of them

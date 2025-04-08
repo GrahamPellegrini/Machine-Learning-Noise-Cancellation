@@ -27,3 +27,8 @@ Epoch [10/10] - Loss: 0.6281, Val Loss: 0.6603, Val SNR: 1.10 dB
 --- Training Complete ---
 @ Time PTO Truncation: 57.02 seconds
 Job finished successfully
+
+Job 44839 with name CED_PTO has COMPLETED with Exit Code 0 after a runtime of 03:21:18
+
+You have requested 8G of RAM and you used 116.51% of it, that is, 9.32G
+You have requested 4 CPUS and you used 53.89% of them

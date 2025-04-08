@@ -1,0 +1,59 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060 Ti
+Device set to: cuda
+Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
+Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 0.13 seconds
+--- Model `UNet` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/25] - Loss: 0.8103, Val Loss: 0.8064, Val SNR: 1.11 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8064)
+Epoch [2/25] - Loss: 0.8003, Val Loss: 0.8038, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8038)
+Epoch [3/25] - Loss: 0.7981, Val Loss: 0.8024, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8024)
+Epoch [4/25] - Loss: 0.7972, Val Loss: 0.8021, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8021)
+Epoch [5/25] - Loss: 0.7968, Val Loss: 0.8016, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8016)
+Epoch [6/25] - Loss: 0.7964, Val Loss: 0.8013, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8013)
+Epoch [7/25] - Loss: 0.7961, Val Loss: 0.8015, Val SNR: 1.12 dB
+Epoch [8/25] - Loss: 0.7959, Val Loss: 0.8011, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8011)
+Epoch [9/25] - Loss: 0.7957, Val Loss: 0.8010, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8010)
+Epoch [10/25] - Loss: 0.7954, Val Loss: 0.8010, Val SNR: 1.12 dB
+Epoch [11/25] - Loss: 0.7951, Val Loss: 0.8005, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8005)
+Epoch [12/25] - Loss: 0.7950, Val Loss: 0.8006, Val SNR: 1.12 dB
+Epoch [13/25] - Loss: 0.7949, Val Loss: 0.8004, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8004)
+Epoch [14/25] - Loss: 0.7948, Val Loss: 0.8004, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8004)
+Epoch [15/25] - Loss: 0.7947, Val Loss: 0.8004, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8004)
+Epoch [16/25] - Loss: 0.7946, Val Loss: 0.8003, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8003)
+Epoch [17/25] - Loss: 0.7945, Val Loss: 0.8003, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8003)
+Epoch [18/25] - Loss: 0.7945, Val Loss: 0.8003, Val SNR: 1.12 dB
+✔ Model saved to Models/UNet_dynamic.pth (Best Val Loss: 0.8003)
+Epoch [19/25] - Loss: 0.7944, Val Loss: 0.8003, Val SNR: 1.12 dB
+Epoch [20/25] - Loss: 0.7944, Val Loss: 0.8003, Val SNR: 1.12 dB
+Epoch [21/25] - Loss: 0.7942, Val Loss: 0.8003, Val SNR: 1.12 dB
+Epoch [22/25] - Loss: 0.7942, Val Loss: 0.8003, Val SNR: 1.12 dB
+Epoch [23/25] - Loss: 0.7942, Val Loss: 0.8003, Val SNR: 1.12 dB
+Epoch [24/25] - Loss: 0.7942, Val Loss: 0.8003, Val SNR: 1.12 dB
+Epoch [25/25] - Loss: 0.7941, Val Loss: 0.8003, Val SNR: 1.12 dB
+--- Training Complete ---
+@ Total Training Time: 52325.09 seconds
+@ Total Training Time: 872.08 minutes
+@ Total Training Time: 14.53 hours
+Job finished successfully
+
+Job 45024 with name UNet has COMPLETED with Exit Code 0 after a runtime of 14:32:14
+
+You have requested 8G of RAM and you used 67.69% of it, that is, 5.41G
+You have requested 4 CPUS and you used 36.28% of them

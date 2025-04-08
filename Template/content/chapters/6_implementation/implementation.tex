@@ -100,12 +100,12 @@ To address these limitations, several memory management strategies were implemen
         \label{fig:fp16_vs_fp32}
     \end{figure}
 
-    \item \textbf{Gradient Accumulation:} Due to memory limitations that constrained the feasible batch size, gradient accumulation was employed to simulate a larger effective batch size. By accumulating gradients over multiple mini-batches and updating the model weights only every \texttt{accumulation_steps} iterations, the training process preserves the learning dynamics of a larger batch size without exceeding memory constraints. However, directly plotting the scaled loss can result in misleading visualizations—such as those shown in Figure~\ref{fig:scaled_loss}—where the logged values may appear artificially small or flat. To mitigate this, the raw (unscaled) loss is computed and stored separately before scaling. This ensures that both training and validation loss curves accurately reflect model performance trends, even when gradients are accumulated across steps.
+    \item \textbf{Gradient Accumulation:} Due to memory limitations that constrained the feasible batch size, gradient accumulation was employed to simulate a larger effective batch size. By accumulating gradients over multiple mini-batches and updating the model weights only every \texttt{accumulation\_steps} iterations, the training process preserves the learning dynamics of a larger batch size without exceeding memory constraints. However, directly plotting the scaled loss can result in misleading visualizations—such as those shown in Figure~\ref{fig:scaled_loss}—where the logged values may appear artificially small or flat. To mitigate this, the raw (unscaled) loss is computed and stored separately before scaling. This ensures that both training and validation loss curves accurately reflect model performance trends, even when gradients are accumulated across steps.
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{scaled_loss.png}
-        \caption{Comparison of scaled and unscaled loss values during training}
+        \caption{Plot Result When Scalling Losses}
         \label{fig:scaled_loss}
     \end{figure}
 

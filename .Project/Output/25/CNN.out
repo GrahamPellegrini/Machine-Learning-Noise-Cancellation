@@ -1,0 +1,69 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060 Ti
+Device set to: cuda
+Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
+Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 0.82 seconds
+--- Model `CNN` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/25] - Loss: 0.8956, Val Loss: 0.8963, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8963)
+Epoch [2/25] - Loss: 0.8865, Val Loss: 0.8933, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8933)
+Epoch [3/25] - Loss: 0.8844, Val Loss: 0.8910, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8910)
+Epoch [4/25] - Loss: 0.8835, Val Loss: 0.8904, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8904)
+Epoch [5/25] - Loss: 0.8831, Val Loss: 0.8903, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8903)
+Epoch [6/25] - Loss: 0.8829, Val Loss: 0.8902, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8902)
+Epoch [7/25] - Loss: 0.8828, Val Loss: 0.8901, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8901)
+Epoch [8/25] - Loss: 0.8826, Val Loss: 0.8900, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8900)
+Epoch [9/25] - Loss: 0.8825, Val Loss: 0.8899, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8899)
+Epoch [10/25] - Loss: 0.8824, Val Loss: 0.8898, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8898)
+Epoch [11/25] - Loss: 0.8821, Val Loss: 0.8891, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8891)
+Epoch [12/25] - Loss: 0.8820, Val Loss: 0.8890, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8890)
+Epoch [13/25] - Loss: 0.8820, Val Loss: 0.8889, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8889)
+Epoch [14/25] - Loss: 0.8819, Val Loss: 0.8889, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8889)
+Epoch [15/25] - Loss: 0.8818, Val Loss: 0.8888, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8888)
+Epoch [16/25] - Loss: 0.8818, Val Loss: 0.8887, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8887)
+Epoch [17/25] - Loss: 0.8817, Val Loss: 0.8887, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8887)
+Epoch [18/25] - Loss: 0.8817, Val Loss: 0.8886, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8886)
+Epoch [19/25] - Loss: 0.8816, Val Loss: 0.8886, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8886)
+Epoch [20/25] - Loss: 0.8816, Val Loss: 0.8886, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8886)
+Epoch [21/25] - Loss: 0.8815, Val Loss: 0.8884, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8884)
+Epoch [22/25] - Loss: 0.8814, Val Loss: 0.8884, Val SNR: 1.06 dB
+Epoch [23/25] - Loss: 0.8814, Val Loss: 0.8883, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8883)
+Epoch [24/25] - Loss: 0.8814, Val Loss: 0.8883, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8883)
+Epoch [25/25] - Loss: 0.8813, Val Loss: 0.8883, Val SNR: 1.06 dB
+✔ Model saved to Models/CNN_dynamic.pth (Best Val Loss: 0.8883)
+--- Training Complete ---
+@ Total Training Time: 12135.17 seconds
+@ Total Training Time: 202.25 minutes
+@ Total Training Time: 3.37 hours
+Job finished successfully
+
+
+Job 45028 with name CNN has COMPLETED with Exit Code 0 after a runtime of 03:22:31
+
+You have requested 8G of RAM and you used 63.32% of it, that is, 5.07G
+You have requested 4 CPUS and you used 84.96% of them
