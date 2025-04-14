@@ -24,7 +24,7 @@ All three methods were implemented for testing and evaluation. Their role in the
 \section{Model Architecture}
 \label{sec:model_architecture}
 
-The model architecture is the highlight of the system design. It is the core component that determines how the system processes input data, how hidden layers and their connections are defined, and how the final output is generated. The modular design of the project as a whole facilitates the exploration of various model architectures. The main structure for speech enhancement models has already been introduced in Chapter~\ref{chp:literature_review}. With the concept of autoencoders being well-established in the literature, the most basic model defined in this work is a convolutional neural network (CNN) autoencoder.
+The model architecture is the highlight of the system design. It is the core component that determines how the system processes input data, how hidden layers and their connections are defined, and how the final output is generated. The modular design of the project as a whole facilitates the exploration of various model architectures. The main structure for speech enhancement models has already been introduced in \ref{sec:machine_learning}. With the concept of autoencoders being well-established in the literature, the most basic model defined in this work is a convolutional neural network (CNN) autoencoder.
 
 \subsection{Convolutional Neural Network (CNN)}
 
@@ -36,7 +36,7 @@ The CNN model implemented in this project serves as the baseline architecture. I
     \caption{\label{fig:cnn}Basic CNN architecture.}
 \end{figure}
 
-The encoder then passes the compressed representation to the bottleneck layer, which is used to further transform the feature space and encourage the model to learn a more compact and expressive representation of the input. Bottleneck layers in deep learning architectures are often used to reduce the dimensionality of the latent representation, act as a regularizer, or increase non-linearity before reconstruction. In this implementation, the bottleneck is intentionally kept simple: it consists of a single additional convolutional layer with a higher channel depth (126 -> 256), followed by a PReLU activation function. This layer is placed outside of the encoder and decoder blocks to preserve architectural modularity and to isolate the representation-learning stage from the downsampling and upsampling operations. While not a traditional bottleneck in terms of dimensionality reduction, it acts as a feature transformer and deepens the network's capacity without affecting the input/output resolution.
+The encoder then passes the compressed representation to the bottleneck layer, which is used to further transform the feature space and encourage the model to learn a more compact and expressive representation of the input. Bottleneck layers in machine learning architectures are often used to reduce the dimensionality of the latent representation, act as a regularizer, or increase non-linearity before reconstruction. In this implementation, the bottleneck is intentionally kept simple: it consists of a single additional convolutional layer with a higher channel depth (126 -> 256), followed by a PReLU activation function. This layer is placed outside of the encoder and decoder blocks to preserve architectural modularity and to isolate the representation-learning stage from the downsampling and upsampling operations. While not a traditional bottleneck in terms of dimensionality reduction, it acts as a feature transformer and deepens the network's capacity without affecting the input/output resolution.
 
 Following the bottleneck, the decoder reconstructs the spectrogram from the transformed latent features. It mirrors the encoder structure by using two transposed convolutional layers (also known as deconvolution layers), each followed by a PReLU activation function. These layers progressively upsample the feature maps, restoring the spatial dimensions that were reduced during the encoding process. The decoder is responsible for reintroducing fine-grained details and structural patterns necessary to reconstruct a clean version of the original spectrogram from its compressed representation.
 
@@ -123,13 +123,12 @@ While the original Conv-TasNet operates entirely in the time domain, the impleme
 This approach enables the model to benefit from Conv-TasNet’s efficient and powerful separation mechanism while remaining compatible with the spectrogram-based processing pipeline used throughout this project.
 
 
-\subsection*{Summary}
+\vspace{1em}
+This project explores a range of neural network architectures for speech enhancement, beginning with a simple CNN-based autoencoder as a baseline. It then advances to more complex models like the Convolutional Encoder Decoder (CED) and Redundant CED (R-CED), based on established work in the field \cite{park2017acoustic}, which introduce deeper hierarchies and redundancy without resolution loss.
 
-The development of the model architectures in this project reflects a systematic exploration of both foundational and state-of-the-art neural network designs for speech enhancement. Starting from a simple CNN-based autoencoder, which establishes a reliable and interpretable baseline, the project progresses to more sophisticated architectures including the Convolutional Encoder Decoder (CED) and Redundant CED (R-CED), both of which are based on established research in speech enhancement literature \cite{park2017acoustic}. These architectures introduce structural innovations such as deeper convolutional hierarchies and redundancy without resolution loss.
+The U-Net further enhances performance with skip connections and a deep encoder-decoder structure, while the Conv-TasNet \cite{luo2019conv}—originally designed for speech separation—is adapted to process complex-valued spectrograms for denoising.
 
-Building upon this, the U-Net architecture leverages skip connections and a deep encoder-decoder pathway to improve information flow and detail preservation across layers. Finally, the project incorporates an adaptation of the Conv-TasNet model \cite{luo2019conv}, a powerful TCN-based architecture originally designed for end-to-end speech separation, repurposed here to operate on complex-valued spectrograms for denoising tasks.
-
-By designing and implementing this diverse set of models, the project aim to provide a robust comparison of learning-based techniques, evaluate their architectural trade-offs, and ultimately benchmark them against classical signal processing approaches.
+Together, these models offer a comprehensive comparison of machine learning approaches, highlighting architectural trade-offs and benchmarking them against classical signal processing methods.
 
 
 

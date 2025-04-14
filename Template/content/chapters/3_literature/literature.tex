@@ -2,7 +2,7 @@
 \chapter{Literature Review}
 \label{sec:literature_review}
 
-This chapter presents an overview of deep learning methods for speech enhancement, with a focus on the autoencoder architecture. It outlines the basic principles, training process, and recent advancements in this field, while also introducing the performance metrics used to evaluate enhancement models.
+This chapter presents an overview of machine learning methods for speech enhancement, with a focus on the autoencoder architecture. It outlines the basic principles, training process, and recent advancements in this field, while also introducing the performance metrics used to evaluate enhancement models.
 
 
 \section{Neural Networks}
@@ -55,6 +55,6 @@ A critical question arises: how does the autoencoder learn to denoise during tra
 
 The training process proceeds iteratively. A forward pass propagates the noisy input through the network to produce an output. This output is compared with the clean target using the loss function. The error is then propagated backwards through the network via backpropagation to calculate gradients. These gradients are used to update the model’s weights and biases using an optimisation algorithm, such as Stochastic Gradient Descent (SGD) or Adam. This loop is repeated over many epochs until the model converges to a configuration that minimises reconstruction error.
 
-Recent advancements continue to refine both model architectures and training strategies in deep learning for speech enhancement. New variations introduce more robust designs capable of generalising to a broader range of noise conditions. One notable example is a study that proposed a residual-attention Gated Linear Unit (GLU) structure for end-to-end (E2E) speech enhancement \cite{kim2024residual}. The model demonstrated superior performance over state-of-the-art (SOTA) systems such as FAIR-Denoiser and CleanUNet across a range of signal-to-noise ratios (SNR) from 0 to 15 dB.
+Recent advancements continue to refine both model architectures and training strategies in machine learning for speech enhancement. New variations introduce more robust designs capable of generalising to a broader range of noise conditions. One notable example is a study that proposed a residual-attention Gated Linear Unit (GLU) structure for end-to-end (E2E) speech enhancement \cite{kim2024residual}. The model demonstrated superior performance over state-of-the-art (SOTA) systems such as FAIR-Denoiser and CleanUNet across a range of signal-to-noise ratios (SNR) from 0 to 15 dB.
 
-Moreover, the evaluation metrics adopted in these studies—such as SNR, PESQ, STOI, and MSE—are integral to assessing model performance and will also be employed in this project to benchmark classical and deep learning approaches. These metrics will be explored further in Chapter~\ref{chp:evaluation}.
+Moreover, the evaluation metrics adopted in these studies—such as SNR, PESQ, STOI, and MSE—are integral to assessing model performance and will also be employed in this project to benchmark classical and machine learning approaches. These metrics will be explored further in Chapter~\ref{chp:evaluation}.

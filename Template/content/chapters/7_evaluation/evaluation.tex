@@ -131,24 +131,74 @@ Once again, the results in Table~\ref{tab:oom_metrics} confirm that OOM-handling
 
 This section presents the most critical part of the evaluation process and the main focus of this project. The compartivive assesment of the classical methods and the five machine learning models performances is shown in this section. Unlike the previous evaluations taken place, which focused on dataset handling strategies and OOM mitigation techniques using fixed models to conduct the implementation justification. However, the main scope of this project is to justify the use of machine learning models for speech enhancement, and to evaluate their performance against classical methods.
 
-This section will keep the established dynamic bucketing and OOM handeling strategies, but will focus on the model architecture itself and how it affects the training efficiency and denoising performance. The first analysis to be made is that of the classical methods, which will then provide a baseline comparison for the machine learning models trained and denoised.
+The evaluation retains the previously established dynamic bucketing and OOM handling strategies but now focuses on how model design impacts training efficiency and denoising performance. The section begins with an analysis of classical denoising methods to establish a meaningful baseline for comparison.
 
 \subsection{Classical Methods}
 \label{sec:classical_methods}
 
-The classical methods to be evaluated are the Spectral Subtraction (SS) and Wiener Filtering (WF) methods that follow a single channel approach. Being the most common methods used in the literature, they provide relevance and ease of implementation. The classical method flag was set to true in the configuration file, and the model was trained using the same parameters as the machine learning models. The only difference is that the classical methods do not require a training phase, and therefore, there are no training metrics to be reported. The denoising metrics are shown in Table~\ref{tab:classical_metrics}.
+The classical methods evaluated include Spectral Subtraction (SS), Wiener Filtering (WF), and the Minimum Mean Square Error - Log Spectral Amplitude estimator (MMSE-LSA), all implemented in a single-channel setting. SS and WF are well-established in the literature, while MMSE-LSA represents a more recent and perceptually motivated approach. Since these methods do not require training, the classical evaluation bypasses model training and instead focuses solely on denoising performance using the same denosing pipeline and evaluation metrics as the learning-based models.
+
 
 \vspace{1em}
 \begin{table}[H]
 \centering
 \caption{Classical Denoised Metrics}
 \label{tab:classical_metrics}
-\begin{tabular}{|l|c|c|c|c|c|}
+\begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
-\textbf{Classical Method} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} \\
+\textbf{Method} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} & \textbf{Denoise Time} \\
 \hline
-Spectral Subtraction & 0.9731 & 0.002083 & 1.3867 & 0.8205 & 0.7857 \\
-Wiener Filtering    & 0.9731 & 0.002083 & 1.3867 & 0.8205 & 0.7857 \\
+SS          & 1.5406 & 0.002210 & 1.4574 & 0.8538 & 0.7747 & 01.17 m \\
+WF          & -3.3796 & 0.006702 & 1.8721 & 0.8968 & 0.9278 & 01.33 m \\
+MMSE-LSA    & -2.3929 & 0.005440 & 2.0671 & 0.8974 & 0.8274 & 01.51 m \\
 \hline
 \end{tabular}
 \end{table}
+
+
+The results in Table~\ref{tab:classical_metrics} highlight key trade-offs between signal fidelity and perceptual quality. SS achieved the best SNR and MSE, suggesting strong numerical suppression of noise. However, it underperformed in perceptual metrics, likely due to spectral distortion and residual artifacts introduced by aggressive subtraction.
+
+In contrast, MMSE-LSA produced the best perceptual outcomes, achieving the highest PESQ and STOI scores, despite a negative SNR. This confirms its ability to preserve intelligibility and speech naturalness, aligning with its design as a perceptually motivated algorithm. WF offered a balanced result, performing reasonably well across all metrics. Notably, all classical methods completed denoising in under two minutes, indicating no significant differences in computational cost. These findings support MMSE-LSA as the most effective classical method overall, particularly for real-world speech enhancement scenarios where perceptual clarity is prioritized.
+
+\subsection{Training Machine Learning Models}
+\label{sec:training_ml_models}
+
+With the classical methods evaluated, the focus now shifts to the machine learning models. These models were trained using the same dataset handling strategies and OOM mitigation techniques previously established. Each model followed a consistent training configuration: a batch size of 2, accumulation steps of 4, 25 training epochs, and a learning rate of $1\text{e}{-3}$. The table below summarizes the training performance for each model.
+
+\vspace{1em}
+\begin{table}[H]
+\centering
+\caption{Machine Learning Models Training Performance}
+\label{tab:ml_training}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Model} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val SNR} & \textbf{Training Time} \\
+\hline
+CNN         & 0.8813 & 0.8883 & 1.06 dB & 3.22 h \\
+CED         & 0.8302 & 0.8334 & 1.10 dB & 5.27 h \\
+RCED        & 0.8001 & 0.8071 & 1.11 dB & 7.32 h \\
+UNet        & 0.7941 & 0.8003 & 1.12 dB & 14.32 h \\
+ConvTasNet  & 0.0764 & 0.0760 & 4.76 dB & 13.09 h \\
+\hline
+\end{tabular}
+\end{table}
+
+The results in Table~\ref{tab:ml_training} reveal a steady trend: as model complexity increases, training and validation losses generally decrease, while validation SNR improves. This is particularly evident when moving from CNN to RCED and UNet. Notably, ConvTasNet demonstrates a dramatic jump in validation SNR—from 1.12 dB to 4.76 dB—highlighting its architectural advantage in capturing signal structure. While loss values alone do not fully reflect denoising effectiveness, the ConvTasNet's performance indicates strong generalization and learning during training.
+
+\subsubsection{CNN Training}
+\label{sec:cnn_training}
+
+The CNN model was introduced as a simple baseline to validate the project’s training and evaluation pipeline. Despite its minimal architecture, it achieved solid performance and served as a valuable reference point for more complex models.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{CNN_plot.png}
+    \caption{\label{fig:cnn_training_plot} CNN training plot.}
+\end{figure}
+
+The training plot in Figure~\ref{fig:cnn_training_plot} shows a steady upward trend in SNR, indicating consistent learning across epochs. A small gap between training and validation loss is observed, which might suggest mild overfitting. However, the magnitude of this gap (0.007) is negligible, and the model retains good generalization performance, making it a reliable benchmark. The training time of 3.22 hours is reasonable, given the model's simplicity and the dataset size.
+
+\subsubsection{CED Training}
+\label{sec:ced_training}
+
+
