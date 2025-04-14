@@ -7,7 +7,7 @@ The configuration file for the project. This file contains all the parameters fo
 """
 
 # Application Mode
-MODE = "train"  # OPTIONS: "train" or "denoise"
+MODE = "denoise"  # OPTIONS: "train" or "denoise"
 
 # Dataset Parameters
 DATASET_DIR = "../ED-Noisy-Speech-Datashare"  # Path to the dataset
@@ -26,21 +26,29 @@ NUM_BUCKET = 5  # Number of dynamic buckets (dynamic only)
 
 
 # Model Parameters
-MODEL = "CNN"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
+MODEL = "ConvTasNet"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
 EPOCHS = 25  # Number of epochs to train the model
 LEARNING_RATE = 1e-3  # Learning rate for the model
 SCHEDULER = True  # Use a learning rate scheduler
-MODEL_PTH = "Models/" + MODEL + "_" + PAD_METHOD + ".pth"  # Path to save the model
+MODEL_PTH = "Models/25/" + MODEL + "_" + PAD_METHOD + ".pth"  # Path to save the model
+
+# Classical Denoising Parameters
+CLASSICAL = True  # Use classical methods for denoising
+CLASSICAL_METHOD = "spectral_sub"  # Options: 'spectral_sub','wiener', 'mmse_lsa'
 
 
 # Denoise Parameters
 SINGLE = False  # Denoise a single audio file
-METRICS_PTH = "Output/txt/" + MODEL + "_" + PAD_METHOD + "_metrics.txt"  # Path to save the metrics
+METRICS_PTH = (
+    "Output/txt/" + CLASSICAL_METHOD + "_metrics.txt"
+    if CLASSICAL else
+    "Output/txt/" + MODEL + "_" + PAD_METHOD + "_metrics.txt"
+)
 NOISY_PTH = DATASET_DIR + "/noisy_testset_wav/p232_014.wav"  # Path to the noisy audio file
 CLEAN_PTH = DATASET_DIR + "/clean_testset_wav/p232_014.wav"  # Path to the clean audio file
-OUTPUT_PTH = "Output/wav/" + MODEL + "_" + PAD_METHOD + "_p232_014.wav"  # Path to save the denoised audio file
+OUTPUT_PTH = (
+    "Output/wav/" + CLASSICAL_METHOD + "_p232_014.wav"
+    if CLASSICAL else
+    "Output/wav/" + MODEL + "_" + PAD_METHOD + "_p232_014.wav"
+)
 
-
-# Classical Denoising Parameters
-CLASSICAL = False  # Use classical methods for denoising
-CLASSICAL_METHOD = "wiener"  # OPTIONS: "spectral_sub", "wiener"

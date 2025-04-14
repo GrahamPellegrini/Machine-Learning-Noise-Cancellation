@@ -11,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/CNN.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/CNN.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/Denoise.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/Denoise.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=CNN
+#SBATCH --job-name=Denoise
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt

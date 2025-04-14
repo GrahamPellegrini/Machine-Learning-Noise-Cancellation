@@ -129,6 +129,26 @@ Once again, the results in Table~\ref{tab:oom_metrics} confirm that OOM-handling
 \section{Model Performance}
 \label{sec:model_performance}
 
-This section presents the most critical part of the evaluation process and the main focus of this project. The assesment of the compartivive performances of the classical methods and the five machine learning models is shown in this section. Unlike the previous evaluations taken place, which focused on dataset handling strategies and OOM mitigation techniques using a fixed models to conduct testing over. This section will keep the established dynamic bucketing and OOM handeling strategies, but will focus on the model architecture itself and how it affects the training efficiency and denoising performance.
+This section presents the most critical part of the evaluation process and the main focus of this project. The compartivive assesment of the classical methods and the five machine learning models performances is shown in this section. Unlike the previous evaluations taken place, which focused on dataset handling strategies and OOM mitigation techniques using fixed models to conduct the implementation justification. However, the main scope of this project is to justify the use of machine learning models for speech enhancement, and to evaluate their performance against classical methods.
 
-However, before analysing the individual models built and trained, it is important to establish the metrics of the classical methods from which we will be comparing our results.
+This section will keep the established dynamic bucketing and OOM handeling strategies, but will focus on the model architecture itself and how it affects the training efficiency and denoising performance. The first analysis to be made is that of the classical methods, which will then provide a baseline comparison for the machine learning models trained and denoised.
+
+\subsection{Classical Methods}
+\label{sec:classical_methods}
+
+The classical methods to be evaluated are the Spectral Subtraction (SS) and Wiener Filtering (WF) methods that follow a single channel approach. Being the most common methods used in the literature, they provide relevance and ease of implementation. The classical method flag was set to true in the configuration file, and the model was trained using the same parameters as the machine learning models. The only difference is that the classical methods do not require a training phase, and therefore, there are no training metrics to be reported. The denoising metrics are shown in Table~\ref{tab:classical_metrics}.
+
+\vspace{1em}
+\begin{table}[H]
+\centering
+\caption{Classical Denoised Metrics}
+\label{tab:classical_metrics}
+\begin{tabular}{|l|c|c|c|c|c|}
+\hline
+\textbf{Classical Method} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} \\
+\hline
+Spectral Subtraction & 0.9731 & 0.002083 & 1.3867 & 0.8205 & 0.7857 \\
+Wiener Filtering    & 0.9731 & 0.002083 & 1.3867 & 0.8205 & 0.7857 \\
+\hline
+\end{tabular}
+\end{table}

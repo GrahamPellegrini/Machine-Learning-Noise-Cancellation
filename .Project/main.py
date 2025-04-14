@@ -10,8 +10,7 @@ from torch.utils.data import DataLoader
 import config
 from Utils.train import train_eval
 from Utils.optuna import objective
-from Utils.denoise import denoise, single_denoise
-from Utils.classical import classical, single_classical
+from Utils.denoise import batch_denoise, single_denoise
 from Utils.models import CNN, CED, RCED, UNet, ConvTasNet
 from Utils.dataset import DynamicBuckets, StaticBuckets, PTODataset, pto_collate, BucketSampler, visualize_dataset_padding
 
@@ -150,52 +149,39 @@ if __name__ == "__main__":
             scheduler=config.SCHEDULER
         )
 
-    elif config.MODE == "denoise":
-        # Load Metrics Path and Padding Method
-        metric_pth = config.METRICS_PTH
-        pad_method = config.PAD_METHOD
 
-        # Load Test Dataset
+    elif config.MODE == "denoise":
+        # === Load padding method and test dataset ===
+        pad_method = config.PAD_METHOD
+        metric_pth = config.METRICS_PTH
+
         if pad_method == "dynamic":
             test_dataset = DynamicBuckets(dataset_dir, "testset", sr, n_fft, hop_length, config.NUM_BUCKET)
             test_sampler = BucketSampler(test_dataset.bucket_indices, batch_size=batch_size)
             test_loader = DataLoader(test_dataset, batch_sampler=test_sampler, num_workers=num_workers)
+
         elif pad_method == "static":
             test_dataset = StaticBuckets(dataset_dir, "testset", sr, n_fft, hop_length, [sr, sr*2, sr*3, sr*4, sr*5])
             test_sampler = BucketSampler(test_dataset.bucket_indices, batch_size=batch_size)
             test_loader = DataLoader(test_dataset, batch_sampler=test_sampler, num_workers=num_workers)
+
         elif pad_method == "pto":
             test_dataset = PTODataset(dataset_dir, "testset", sr, n_fft, hop_length)
             test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False, num_workers=4, collate_fn=pto_collate)
+
         else:
             raise ValueError(f"Invalid PAD_METHOD: {pad_method}")
-        
-        # Test dataset loaded completion message
+
         print(f"--- Test Dataset {dataset_dir} loaded successfully ---")
-        
-        # Classical Denoising
+
+        # === Determine denoising path (classical or model-based) ===
         if config.CLASSICAL:
-            classical_method = config.CLASSICAL_METHOD
-
-            # Single classical method
-            if config.SINGLE:
-                noisy_pth = config.NOISY_PTH
-                output_pth ="Output/wav/" + noisy_pth.split("/")[-1].replace(".wav", f"_{classical_method}.wav")
-
-                noisy_signal, orig_sr = torchaudio.load(noisy_pth)
-
-                single_classical(noisy_signal, orig_sr, sr , classical_method, output_pth)
-
-            else:
-                classical(test_loader, sr, classical_method, pto=(pad_method == "pto"))
-
-        # Model Denoising     
+            model = None
+            model_pth = None
         else:
-            # Load Model
             model_name = config.MODEL
             model_pth = config.MODEL_PTH
 
-            # === Load Model ===
             if model_name == "CNN":
                 model = CNN()
             elif model_name == "CED":
@@ -205,20 +191,35 @@ if __name__ == "__main__":
             elif model_name == "UNet":
                 model = UNet()
             elif model_name == "ConvTasNet":
-                model = ConvTasNet()
+                model = ConvTasNet(enc_dim=128, feature_dim=48, kernel_size=(3, 3), num_layers=3, num_stacks=1)
             else:
-                raise ValueError(f"Invalid MODEL: {model_name}\n Choose from ['CNN', 'UNet', 'ConvTasNet', 'OptimizedConvTasNet']")
-            
-            # Load model successfully message
+                raise ValueError(f"Invalid MODEL: {model_name}")
+
             print(f"--- Model `{model_name}` loaded successfully ---")
-            
-            # Single Model Denoising
-            if config.SINGLE:
-                noisy_pth = config.NOISY_PTH
-                output_pth = config.OUTPUT_PTH
 
-                single_denoise(device, model, model_pth, noisy_pth, output_pth, sr, n_fft, hop_length)
-
-            else:
-                # Model Denoising
-                denoise(device, model, model_pth, test_loader, sr, n_fft, hop_length, metric_pth, pto=(pad_method == "pto"))
+        # === Run appropriate denoising mode ===
+        if config.SINGLE:
+            single_denoise(
+                device,
+                model,
+                model_pth,
+                config.NOISY_PTH,
+                config.OUTPUT_PTH,
+                sr,
+                n_fft,
+                hop_length,
+                classical_method=config.CLASSICAL_METHOD if config.CLASSICAL else None
+            )
+        else:
+            batch_denoise(
+                device,
+                model,
+                model_pth,
+                config.CLASSICAL_METHOD if config.CLASSICAL else None,
+                test_loader,
+                sr,
+                n_fft,
+                hop_length,
+                metric_pth,
+                pto=(pad_method == "pto")
+            )
