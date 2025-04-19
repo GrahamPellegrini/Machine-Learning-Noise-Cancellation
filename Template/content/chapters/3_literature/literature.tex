@@ -2,7 +2,7 @@
 \chapter{Literature Review}
 \label{sec:literature_review}
 
-This chapter presents an overview of machine learning methods for speech enhancement, with a focus on the autoencoder architecture. It outlines the basic principles, training process, and recent advancements in this field, while also introducing the performance metrics used to evaluate enhancement models.
+This chapter presents an overview of relevant machine learning methods used for speech enhancement, with particular emphasis on the autoencoder architecture. It begins by introducing the fundamental principles behind neural networks and their biological inspiration, followed by a detailed discussion of machine learning techniques applied to noise suppression. Recent architectural advancements and training strategies are covered, culminating in the evaluation metrics used throughout this project to benchmark both classical and machine learning approaches.
 
 
 \section{Neural Networks}
@@ -31,7 +31,7 @@ The network is trained using pairs of clean and noisy audio samples. It graduall
 \section{Machine Learning}
 \label{sec:machine_learning}
 
-Machine learning (ML) is a subset of artificial intelligence (AI) that focuses on the development of algorithms and statistical models that enable computers to perform specific tasks without explicit instructions. Instead, these systems learn from data, identifying patterns and making decisions based on their experiences. In the context of speech enhancement, ML has provided basis for advanced with specialised neural network architectures tailored for this task. One of the most widely adopted structures is the \textit{autoencoder}, a neural network designed to reconstruct its input through a compressed internal representation \cite{azarang2020review}.
+Machine learning (ML), a subset of artificial intelligence (AI), focuses on developing algorithms that enable systems to learn patterns from data and make decisions without being explicitly programmed. In speech enhancement, ML has enabled the design of specialised neural network architectures capable of recovering clean speech from noisy inputs. One widely used architecture is the \textit{autoencoder}, which learns to reconstruct its input via a compressed latent representation \cite{azarang2020review}.
 
 \begin{figure}[h]
     \centering
@@ -39,13 +39,11 @@ Machine learning (ML) is a subset of artificial intelligence (AI) that focuses o
     \caption{\label{fig:autoencoder} Block diagram of an autoencoder architecture \cite{vachhani2017dae}.}
 \end{figure}
 
-An autoencoder typically comprises two main components: the encoder and the decoder. The encoder compresses the input data \(x\) into a lower-dimensional latent representation. This component often consists of multiple layers—such as convolutional, pooling, and fully connected layers—each applying a set of learnable parameters to extract increasingly abstract features. The goal of the encoder is to distil essential information from the input while discarding noise and irrelevant variations.
+An autoencoder consists of two main components: an encoder and a decoder. The encoder compresses the input signal \(x\) into a low-dimensional latent space by passing it through convolutional, pooling, or fully connected layers. A central \textit{bottleneck} layer enforces this compression, encouraging the model to retain only the most salient features—such as speech structure—while discarding irrelevant noise.
 
-Between the encoder and decoder lies the bottleneck layer. This layer enforces compression by limiting the dimensionality of the latent representation, encouraging the network to retain only the most salient features. As a result, the model learns a compact representation that captures the structure of clean speech while ignoring extraneous noise.
+The decoder then reconstructs the signal \(y\) from the latent representation, typically using upsampling, transposed convolutions, or dense layers in a mirrored arrangement. The objective is to recover the clean speech with minimal reconstruction error.
 
-The decoder then reconstructs the output \(y\) from this compressed form, typically using upsampling, deconvolutional, and dense layers arranged in a mirrored architecture relative to the encoder. Its objective is to restore the original input with minimal error, ideally recovering a clean version of the speech signal from its noisy counterpart.
-
-A critical question arises: how does the autoencoder learn to denoise during training? The key lies in the use of paired datasets consisting of noisy and clean speech samples. During training, the model receives the noisy signal as input and is optimised to minimise the difference between its output and the clean reference. This difference is quantified using a loss function, most commonly the Mean Squared Error (MSE) or Mean Absolute Error (MAE), which measures the average discrepancy between the reconstructed and target signals.
+Autoencoders are trained using paired datasets of noisy and clean speech. During training, the noisy input is passed through the network, and the output is compared to the clean reference. The model is optimised to minimise the difference—typically using a loss function such as Mean Squared Error (MSE) or Mean Absolute Error (MAE).
 
 \begin{figure}[h]
     \centering
@@ -53,8 +51,8 @@ A critical question arises: how does the autoencoder learn to denoise during tra
     \caption{\label{fig:weigths} Loss and weight update process in an autoencoder \cite{epoch2021}.}
 \end{figure}
 
-The training process proceeds iteratively. A forward pass propagates the noisy input through the network to produce an output. This output is compared with the clean target using the loss function. The error is then propagated backwards through the network via backpropagation to calculate gradients. These gradients are used to update the model’s weights and biases using an optimisation algorithm, such as Stochastic Gradient Descent (SGD) or Adam. This loop is repeated over many epochs until the model converges to a configuration that minimises reconstruction error.
+Training proceeds iteratively. A forward pass generates an output, and the loss function quantifies the error. This error is then propagated backward through the network via backpropagation to compute gradients, which are used to update the model’s weights using optimisers like Stochastic Gradient Descent (SGD) or Adam. This cycle continues for many epochs until convergence.
 
-Recent advancements continue to refine both model architectures and training strategies in machine learning for speech enhancement. New variations introduce more robust designs capable of generalising to a broader range of noise conditions. One notable example is a study that proposed a residual-attention Gated Linear Unit (GLU) structure for end-to-end (E2E) speech enhancement \cite{kim2024residual}. The model demonstrated superior performance over state-of-the-art (SOTA) systems such as FAIR-Denoiser and CleanUNet across a range of signal-to-noise ratios (SNR) from 0 to 15 dB.
+Recent advances have introduced more robust architectures. For example, Kim et al.~\cite{kim2024residual} proposed a residual-attention Gated Linear Unit (GLU) model for end-to-end (E2E) speech enhancement. Their model outperformed SOTA methods such as FAIR-Denoiser and CleanUNet across a wide SNR range (0–15 dB), showcasing the effectiveness of modern ML approaches.
 
-Moreover, the evaluation metrics adopted in these studies—such as SNR, PESQ, STOI, and MSE—are integral to assessing model performance and will also be employed in this project to benchmark classical and machine learning approaches. These metrics will be explored further in Chapter~\ref{chp:evaluation}.
+Evaluation metrics such as SNR, PESQ, STOI, and MSE—used in these studies—will also be used in this project to assess and compare both classical and ML-based denoising systems. These metrics are discussed in detail in Chapter~\ref{chp:evaluation}.

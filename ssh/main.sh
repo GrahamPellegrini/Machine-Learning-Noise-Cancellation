@@ -14,7 +14,7 @@
 #SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/Denoise.out
 #SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/Denoise.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=Denoise
+#SBATCH --job-name=Denoise_UNet
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt

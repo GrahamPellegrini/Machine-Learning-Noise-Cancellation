@@ -19,3 +19,16 @@ Conduct Hyperparmater tuning
 
 Deployment Code
 
+
+Possible needs for changes:
+
+
+-1.1  However, during evaluation and benchmarking, pre-trained models
+will be used for comparison to assess their effectiveness against the proposed
+approach.
+
+-1.1 The project is structured into three core phases: training, denoising,
+and deployment....
+
+-2.5 and assess their feasibility for real-time embedded deployment
+

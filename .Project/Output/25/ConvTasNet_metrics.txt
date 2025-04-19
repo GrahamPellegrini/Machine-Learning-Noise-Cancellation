@@ -1,0 +1,10 @@
+↑SNR: 17.9050
+↓MSE: 0.000063
+↓LSD: 0.688067
+↑PESQ: 2.3001
+↑STOI: 0.9001
+
+Job 45373 with name Denoise_ConvTasNet has COMPLETED with Exit Code 0 after a runtime of 00:01:44
+
+You have requested 8G of RAM and you used 39.25% of it, that is, 3.14G
+You have requested 4 CPUS and you used 55.92% of them
