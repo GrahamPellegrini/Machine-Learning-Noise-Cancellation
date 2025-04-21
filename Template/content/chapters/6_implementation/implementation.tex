@@ -50,7 +50,7 @@ Dynamic bucketing combines flexibility with performance, adapting to the dataset
 
 The Padding-Truncation Output-Truncation (PTO) approach avoids both fixed-length and bucketing strategies. Instead, it applies padding on a per-batch basis, using the longest sample in the batch as a reference. This ensures minimal padding while maintaining alignment within the batch.
 
-The core idea is drawn from the work of Zhao et al.~\cite{applsci1004092}, which proposed an output-truncation mechanism for real-time audio processing. During training, each sample is padded to match the maximum length in the batch, and its original length is stored. After inference, the output is cropped back to the original length, ensuring alignment with the unpadded input.
+The core idea is drawn from the work of Zhao et al.~\cite{yoon2020pto}, which proposed an output-truncation mechanism for real-time audio processing. During training, each sample is padded to match the maximum length in the batch, and its original length is stored. After inference, the output is cropped back to the original length, ensuring alignment with the unpadded input.
 
 \begin{figure}[H]
     \centering
@@ -100,7 +100,7 @@ To address these limitations, several memory management strategies were implemen
         \label{fig:fp16_vs_fp32}
     \end{figure}
 
-    \item \textbf{Gradient Accumulation:} Due to memory limitations that constrained the feasible batch size, gradient accumulation was employed to simulate a larger effective batch size. By accumulating gradients over multiple mini-batches and updating the model weights only every \texttt{accumulation\_steps} iterations, the training process preserves the learning dynamics of a larger batch size without exceeding memory constraints. However, directly plotting the scaled loss can result in misleading visualizations—such as those shown in Figure~\ref{fig:scaled_loss}—where the logged values may appear artificially small or flat. To mitigate this, the raw (unscaled) loss is computed and stored separately before scaling. This ensures that both training and validation loss curves accurately reflect model performance trends, even when gradients are accumulated across steps.
+    \item \textbf{Gradient Accumulation:} Due to memory limitations that constrained the feasible batch size, gradient accumulation was employed to simulate a larger effective batch size. By accumulating gradients over multiple mini-batches and updating the model weights only every \texttt{accumulation\_steps} iterations, the training process preserves the learning dynamics of a larger batch size without exceeding memory constraints. However, directly plotting the scaled loss can result in misleading visualizations, such as those shown in Figure~\ref{fig:scaled_loss}. Where the logged values may appear artificially small or flat. To mitigate this, the raw (unscaled) loss is computed and stored separately before scaling. This ensures that both training and validation loss curves accurately reflect model performance trends, even when gradients are accumulated across steps.
 
     \begin{figure}[H]
         \centering

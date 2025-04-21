@@ -22,7 +22,6 @@ Latexmk: References changed.
 Latexmk: References changed.
 Latexmk: Log file says output to 'main.pdf'
 Latexmk: List of undefined refs and citations:
-  Citation 'applsci1004092' on page 26 undefined on input line 53
   Citation 'azarang2020review' on page 11 undefined on input line 34
   Citation 'ccby4' on page 13 undefined on input line 10
   Citation 'dubey2016evaluation' on page 3 undefined on input line 17
@@ -42,28 +41,28 @@ Latexmk: List of undefined refs and citations:
   Citation 'loizou2013speech' on page 4 undefined on input line 43
   Citation 'loizou2013speech' on page 5 undefined on input line 67
   Citation 'luo2019conv' on page 21 undefined on input line 107
-  Citation 'luo2019conv' on page 22 undefined on input line 112
-  Citation 'luo2019conv' on page 23 undefined on input line 129
+  Citation 'luo2019conv' on page 21 undefined on input line 112
+  Citation 'luo2019conv' on page 22 undefined on input line 125
   Citation 'luo2019conv' on page 40 undefined on input line 259
   Citation 'mindspore_mixed_precision' on page 28 undefined on input line 94
   Citation 'mindspore_mixed_precision' on page 28 undefined on input line 99
-  Citation 'park2017acoustic' on page 17 undefined on input line 49
-  Citation 'park2017acoustic' on page 18 undefined on input line 54
-  Citation 'park2017acoustic' on page 19 undefined on input line 67
-  Citation 'park2017acoustic' on page 19 undefined on input line 72
-  Citation 'park2017acoustic' on page 23 undefined on input line 127
+  Citation 'park2017acoustic' on page 17 undefined on input line 52
+  Citation 'park2017acoustic' on page 18 undefined on input line 57
+  Citation 'park2017acoustic' on page 19 undefined on input line 69
+  Citation 'park2017acoustic' on page 19 undefined on input line 74
+  Citation 'park2017acoustic' on page 22 undefined on input line 123
   Citation 'park2017acoustic' on page 37 undefined on input line 194
   Citation 'park2017acoustic' on page 39 undefined on input line 249
-  Citation 'ronneberger2015unet' on page 20 undefined on input line 85
+  Citation 'ronneberger2015unet' on page 20 undefined on input line 88
   Citation 'vachhani2017dae' on page 11 undefined on input line 39
   Citation 'wei2016mmse' on page 7 undefined on input line 92
   Citation 'yoon2020pto' on page 15 undefined on input line 20
+  Citation 'yoon2020pto' on page 26 undefined on input line 53
   Reference `chp:deployment' on page 41 undefined on input line 6
   Reference `chp:evaluation' on page 12 undefined on input line 58
   Reference `chp:evaluation' on page 16 undefined on input line 22
   Reference `chp:implementation' on page 16 undefined on input line 22
   Reference `fig:cnn_training_plot' on page 36 undefined on input line 186
-  Reference `fig:convtasnet' on page 21 undefined on input line 107
   Reference `fig:dataset_config' on page 31 undefined on input line 18
   Reference `fig:dataset_structure' on page 13 undefined on input line 21
   Reference `fig:fp16_vs_fp32' on page 28 undefined on input line 94
@@ -128,10 +127,9 @@ Latexmk: Found input bbl file 'build/main.bbl'
 Latexmk: References changed.
 Latexmk: Log file says output to 'main.pdf'
 Latexmk: List of undefined refs and citations:
-  Citation 'applsci1004092' on page 26 undefined on input line 53
   Citation 'luo2019conv' on page 21 undefined on input line 107
-  Citation 'luo2019conv' on page 22 undefined on input line 112
-  Citation 'luo2019conv' on page 23 undefined on input line 129
+  Citation 'luo2019conv' on page 21 undefined on input line 112
+  Citation 'luo2019conv' on page 22 undefined on input line 125
   Citation 'luo2019conv' on page 40 undefined on input line 259
   Reference `chp:deployment' on page 43 undefined on input line 6
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
@@ -164,10 +162,9 @@ Running 'lualatex  -halt-on-error -synctex=1 -recorder -output-directory="build"
 Latexmk: Found input bbl file 'build/main.bbl'
 Latexmk: Log file says output to 'main.pdf'
 Latexmk: List of undefined refs and citations:
-  Citation 'applsci1004092' on page 26 undefined on input line 53
   Citation 'luo2019conv' on page 21 undefined on input line 107
-  Citation 'luo2019conv' on page 22 undefined on input line 112
-  Citation 'luo2019conv' on page 23 undefined on input line 129
+  Citation 'luo2019conv' on page 21 undefined on input line 112
+  Citation 'luo2019conv' on page 22 undefined on input line 125
   Citation 'luo2019conv' on page 40 undefined on input line 259
   Reference `chp:deployment' on page 43 undefined on input line 6
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
@@ -184,13 +181,12 @@ Running 'lualatex  -halt-on-error -synctex=1 -recorder -output-directory="build"
 Latexmk: Found input bbl file 'build/main.bbl'
 Latexmk: Log file says output to 'main.pdf'
 Latexmk: List of undefined refs and citations:
-  Citation 'applsci1004092' on page 26 undefined on input line 53
   Citation 'luo2019conv' on page 21 undefined on input line 107
-  Citation 'luo2019conv' on page 22 undefined on input line 112
-  Citation 'luo2019conv' on page 23 undefined on input line 129
+  Citation 'luo2019conv' on page 21 undefined on input line 112
+  Citation 'luo2019conv' on page 22 undefined on input line 125
   Citation 'luo2019conv' on page 40 undefined on input line 259
   Reference `chp:deployment' on page 43 undefined on input line 6
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Latexmk: Summary of warnings from last run of *latex:
   Latex failed to resolve 2 reference(s)
-  Latex failed to resolve 7 citation(s)
+  Latex failed to resolve 5 citation(s)

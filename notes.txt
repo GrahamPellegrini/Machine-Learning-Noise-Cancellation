@@ -1,17 +1,4 @@
-Add MMSE-LSA to the background with the citation to the paper
-
-@INPROCEEDINGS{7868556,
-  author={Wei, Jie and Wang, Ming and Yang, Hongxiao},
-  booktitle={2016 IEEE International Conference on Digital Signal Processing (DSP)}, 
-  title={MMSE-LSA based wavelet threshold denoising algorithm for low SNR speech}, 
-  year={2016},
-  volume={},
-  number={},
-  pages={253-256},
-  keywords={Speech;Noise reduction;Signal to noise ratio;Speech enhancement;Noise measurement;Mathematical model;Information processing technology;Speech denoising;MMSE-LSA;Wavelet threshold;Low SNR},
-  doi={10.1109/ICDSP.2016.7868556}}
-
-
+Make sure english is not american 
 
 Change the appendix section of the project structure to the encapsulated single denoise now.
 
