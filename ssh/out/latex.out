@@ -166,351 +166,390 @@ LaTeX Warning: Citation 'loizou2013speech' on page 1 undefined on input line 7.
 [1]) (./content/chapters/2_background/background.tex [2]
 Chapter 2.
 
-LaTeX Warning: Citation 'loizou2013speech' on page 3 undefined on input line 10
+LaTeX Warning: Citation 'loizou2013speech' on page 3 undefined on input line 11
 .
 
 
 LaTeX Warning: Citation 'dubey2016evaluation' on page 3 undefined on input line
- 17.
+ 18.
 
 
 LaTeX Warning: Citation 'dubey2016evaluation' on page 3 undefined on input line
- 17.
+ 18.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 
 LaTeX Warning: Citation 'dubey2016evaluation' on page 3 undefined on input line
- 20.
+ 21.
 
-[3<./content/chapters/2_background/figures//specsub.png>]
+[3]
 
-LaTeX Warning: Citation 'loizou2013speech' on page 4 undefined on input line 37
+LaTeX Warning: Citation 'loizou2013speech' on page 4 undefined on input line 38
 .
 
 
-LaTeX Warning: Citation 'loizou2013speech' on page 4 undefined on input line 43
+LaTeX Warning: Citation 'loizou2013speech' on page 4 undefined on input line 44
 .
 
 
 LaTeX Warning: Citation 'dubey2016evaluation' on page 4 undefined on input line
- 43.
+ 44.
 
-[4]
-
-LaTeX Warning: Citation 'dubey2016evaluation' on page 5 undefined on input line
- 62.
-
+[4<./content/chapters/2_background/figures//specsub.png>]
 
 LaTeX Warning: Citation 'dubey2016evaluation' on page 5 undefined on input line
- 62.
+ 63.
 
 
 LaTeX Warning: Citation 'dubey2016evaluation' on page 5 undefined on input line
- 67.
+ 63.
 
 
-LaTeX Warning: Citation 'loizou2013speech' on page 5 undefined on input line 67
+LaTeX Warning: Citation 'dubey2016evaluation' on page 5 undefined on input line
+ 68.
+
+
+LaTeX Warning: Citation 'loizou2013speech' on page 5 undefined on input line 68
 .
 
 
 LaTeX Warning: Citation 'ephraim1984speech' on page 5 undefined on input line 7
-2.
+4.
 
 [5<./content/chapters/2_background/figures//wiener_block.png>]
 
 LaTeX Warning: Reference `fig:mmse_lsa_block' on page 6 undefined on input line
- 82.
+ 84.
 
 [6<./content/chapters/2_background/figures//mmse-lsa.png>]
 
-LaTeX Warning: Citation 'wei2016mmse' on page 7 undefined on input line 92.
+LaTeX Warning: Citation 'wei2016mmse' on page 7 undefined on input line 94.
 
-[7]
 
-LaTeX Warning: Citation 'itutp862' on page 8 undefined on input line 128.
+LaTeX Warning: Citation 'azarang2020review' on page 7 undefined on input line 9
+9.
 
-[8]) (./content/chapters/3_literature/literature.tex [9]
+
+LaTeX Warning: Citation 'vachhani2017dae' on page 7 undefined on input line 104
+.
+
+
+LaTeX Warning: Citation 'vachhani2017dae' on page 7 undefined on input line 104
+.
+
+[7<./content/chapters/2_background/figures//autoencoder.png>]
+
+LaTeX Warning: Citation 'epoch2021' on page 8 undefined on input line 116.
+
+
+LaTeX Warning: Citation 'epoch2021' on page 8 undefined on input line 116.
+
+[8<./content/chapters/2_background/figures//weigths.png>]
+
+LaTeX Warning: Citation 'itutp862' on page 9 undefined on input line 156.
+
+[9] [10]) (./content/chapters/3_literature/literature.tex [11]
 Chapter 3.
 
-LaTeX Warning: Reference `fig:neuron_vs_ann' on page 10 undefined on input line
- 13.
+LaTeX Warning: Reference `sec:variable_length_handling' on page 12 undefined on
+ input line 8.
 
 
-LaTeX Warning: Citation 'ghosh2020perceptron' on page 10 undefined on input lin
-e 18.
+LaTeX Warning: Citation 'yoon2020pto' on page 12 undefined on input line 8.
 
 
-LaTeX Warning: Citation 'ghosh2020perceptron' on page 10 undefined on input lin
-e 18.
-
-[10<./content/chapters/3_literature/figures//neuron_vs_ann.png>]
-
-LaTeX Warning: Citation 'azarang2020review' on page 11 undefined on input line 
-34.
+LaTeX Warning: Reference `subsec:pto_dataset' on page 12 undefined on input lin
+e 16.
 
 
-LaTeX Warning: Citation 'vachhani2017dae' on page 11 undefined on input line 39
-.
+LaTeX Warning: Reference `sec:dataset_performance' on page 12 undefined on inpu
+t line 16.
 
 
-LaTeX Warning: Citation 'vachhani2017dae' on page 11 undefined on input line 39
-.
+LaTeX Warning: Citation 'park2017acoustic' on page 12 undefined on input line 2
+3.
 
-[11<./content/chapters/3_literature/figures//autoencoder.png>]
+[12]
 
-LaTeX Warning: Citation 'epoch2021' on page 12 undefined on input line 51.
-
-
-LaTeX Warning: Citation 'epoch2021' on page 12 undefined on input line 51.
+LaTeX Warning: Citation 'park2017acoustic' on page 13 undefined on input line 3
+3.
 
 
-LaTeX Warning: Citation 'kim2024residual' on page 12 undefined on input line 56
-.
+LaTeX Warning: Citation 'park2017acoustic' on page 13 undefined on input line 3
+3.
 
 
-LaTeX Warning: Reference `chp:evaluation' on page 12 undefined on input line 58
-.
+LaTeX Warning: Reference `fig:fcns_results' on page 13 undefined on input line 
+37.
 
-) (./content/chapters/4_specification/specification.tex [12<./content/chapters/
-3_literature/figures//weigths.png>]
+
+LaTeX Warning: Citation 'luo2019conv' on page 13 undefined on input line 43.
+
+[13<./content/chapters/3_literature/figures//CED_RCED.png>]
+
+LaTeX Warning: Citation 'luo2019conv' on page 14 undefined on input line 52.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 14 undefined on input line 52.
+
+) (./content/chapters/4_specification/specification.tex [14<./content/chapters/
+3_literature/figures//TwoSpeakSeperation.png>]
 Chapter 4.
 
-LaTeX Warning: Citation 'edinburghdataset' on page 13 undefined on input line 1
+LaTeX Warning: Citation 'edinburghdataset' on page 15 undefined on input line 1
 0.
 
 
-LaTeX Warning: Citation 'ccby4' on page 13 undefined on input line 10.
+LaTeX Warning: Citation 'ccby4' on page 15 undefined on input line 10.
 
 
-LaTeX Warning: Reference `fig:dataset_structure' on page 13 undefined on input 
+LaTeX Warning: Reference `fig:dataset_structure' on page 15 undefined on input 
 line 21.
 
-[13<./content/chapters/4_specification/figures//dataset_structure.png>])
-(./content/chapters/5_design/design.tex [14<./content/chapters/4_specification/
+[15<./content/chapters/4_specification/figures//dataset_structure.png>])
+(./content/chapters/5_design/design.tex [16<./content/chapters/4_specification/
 figures//sample_waveform_and_transcript.png>]
 Chapter 5.
 
-LaTeX Warning: Reference `sec:dataset_exploration' on page 15 undefined on inpu
+LaTeX Warning: Reference `sec:dataset_exploration' on page 17 undefined on inpu
 t line 8.
 
 
-LaTeX Warning: Reference `fig:max_padding' on page 15 undefined on input line 1
+LaTeX Warning: Reference `fig:max_padding' on page 17 undefined on input line 1
 8.
 
 
-LaTeX Warning: Citation 'yoon2020pto' on page 15 undefined on input line 20.
+LaTeX Warning: Reference `sec:pto_variable_length_sequences' on page 17 undefin
+ed on input line 20.
 
-[15<./content/chapters/5_design/figures//max_padding.png>]
+[17<./content/chapters/5_design/figures//max_padding.png>]
 
-LaTeX Warning: Reference `chp:implementation' on page 16 undefined on input lin
+LaTeX Warning: Reference `chp:implementation' on page 18 undefined on input lin
 e 22.
 
 
-LaTeX Warning: Reference `chp:evaluation' on page 16 undefined on input line 22
+LaTeX Warning: Reference `chp:evaluation' on page 18 undefined on input line 22
 .
 
 
-LaTeX Warning: Reference `sec:machine_learning' on page 16 undefined on input l
+LaTeX Warning: Reference `sec:machine_learning' on page 18 undefined on input l
 ine 27.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[16]
+[18]
 
-LaTeX Warning: Citation 'park2017acoustic' on page 17 undefined on input line 5
+LaTeX Warning: Citation 'park2017acoustic' on page 19 undefined on input line 5
 2.
 
-[17<./content/chapters/5_design/figures//cnn.png>]
 
-LaTeX Warning: Citation 'park2017acoustic' on page 18 undefined on input line 5
-7.
+LaTeX Warning: Reference `sec:fcns' on page 19 undefined on input line 52.
 
+[19<./content/chapters/5_design/figures//cnn.png>]
 
-LaTeX Warning: Citation 'park2017acoustic' on page 18 undefined on input line 5
-7.
-
-[18<./content/chapters/5_design/figures//ced.png>]
-
-LaTeX Warning: Citation 'park2017acoustic' on page 19 undefined on input line 6
-9.
+LaTeX Warning: Citation 'park2017acoustic' on page 20 undefined on input line 5
+8.
 
 
-LaTeX Warning: Citation 'park2017acoustic' on page 19 undefined on input line 7
-4.
+LaTeX Warning: Citation 'park2017acoustic' on page 20 undefined on input line 5
+8.
+
+[20<./content/chapters/5_design/figures//ced.png>]
+
+LaTeX Warning: Citation 'park2017acoustic' on page 21 undefined on input line 7
+0.
 
 
-LaTeX Warning: Citation 'park2017acoustic' on page 19 undefined on input line 7
-4.
-
-[19<./content/chapters/5_design/figures//r-ced.png>]
-
-LaTeX Warning: Citation 'ronneberger2015unet' on page 20 undefined on input lin
-e 88.
-
-[20<./content/chapters/5_design/figures//unet.png>]
-
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 107.
+LaTeX Warning: Reference `sec:fcns' on page 21 undefined on input line 70.
 
 
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 112.
+LaTeX Warning: Citation 'park2017acoustic' on page 21 undefined on input line 7
+5.
 
 
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 112.
+LaTeX Warning: Citation 'park2017acoustic' on page 21 undefined on input line 7
+5.
+
+[21<./content/chapters/5_design/figures//r-ced.png>]
+
+LaTeX Warning: Citation 'ronneberger2015unet' on page 22 undefined on input lin
+e 89.
+
+[22<./content/chapters/5_design/figures//unet.png>]
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 109.
+
+
+LaTeX Warning: Reference `sec:convtasnet_lit_review' on page 23 undefined on in
+put line 109.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 116.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 116.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21]
+[23]
 
-LaTeX Warning: Citation 'park2017acoustic' on page 22 undefined on input line 1
-23.
+LaTeX Warning: Citation 'park2017acoustic' on page 24 undefined on input line 1
+29.
 
 
-LaTeX Warning: Citation 'luo2019conv' on page 22 undefined on input line 125.
+LaTeX Warning: Citation 'luo2019conv' on page 24 undefined on input line 131.
 
-[22<./content/chapters/5_design/figures//conv-tasnet.png>])
-(./content/chapters/6_implementation/implementation.tex [23]
+[24<./content/chapters/5_design/figures//conv-tasnet.png>])
+(./content/chapters/6_implementation/implementation.tex [25]
 Chapter 6.
 
-LaTeX Warning: Reference `sec:variable_length_handling' on page 24 undefined on
+LaTeX Warning: Reference `sec:variable_length_handling' on page 26 undefined on
  input line 8.
 
-[24]
+[26]
 
-LaTeX Warning: Reference `fig:static_pad' on page 25 undefined on input line 28
+LaTeX Warning: Reference `fig:static_pad' on page 27 undefined on input line 28
 .
 
-[25<./content/chapters/6_implementation/figures//static_pad.png>]
+[27<./content/chapters/6_implementation/figures//static_pad.png>]
 
-LaTeX Warning: Citation 'yoon2020pto' on page 26 undefined on input line 53.
-
-[26<./content/chapters/6_implementation/figures//dynamic_pad.png>]
-
-LaTeX Warning: Reference `fig:oom_error' on page 27 undefined on input line 81.
+LaTeX Warning: Citation 'yoon2020pto' on page 28 undefined on input line 52.
 
 
-[27<./content/chapters/6_implementation/figures//pto_pad.png>]
+LaTeX Warning: Reference `sec:distortion_free_handling' on page 28 undefined on
+ input line 52.
 
-LaTeX Warning: Reference `fig:fp16_vs_fp32' on page 28 undefined on input line 
-94.
+[28<./content/chapters/6_implementation/figures//dynamic_pad.png>] [29<./conten
+t/chapters/6_implementation/figures//pto_pad.png>]
+
+LaTeX Warning: Reference `fig:oom_error' on page 30 undefined on input line 86.
 
 
-LaTeX Warning: Citation 'mindspore_mixed_precision' on page 28 undefined on inp
-ut line 94.
+
+LaTeX Warning: Reference `fig:fp16_vs_fp32' on page 30 undefined on input line 
+99.
 
 
-LaTeX Warning: Citation 'mindspore_mixed_precision' on page 28 undefined on inp
+LaTeX Warning: Citation 'mindspore_mixed_precision' on page 30 undefined on inp
 ut line 99.
 
 
-LaTeX Warning: Citation 'mindspore_mixed_precision' on page 28 undefined on inp
-ut line 99.
+LaTeX Warning: Citation 'mindspore_mixed_precision' on page 30 undefined on inp
+ut line 104.
 
-[28<./content/chapters/6_implementation/figures//oom_error.png>]
 
-LaTeX Warning: Reference `fig:scaled_loss' on page 29 undefined on input line 1
-03.
+LaTeX Warning: Citation 'mindspore_mixed_precision' on page 30 undefined on inp
+ut line 104.
 
-[29<./content/chapters/6_implementation/figures//fp16_vs_fp32.png><./content/ch
+[30<./content/chapters/6_implementation/figures//oom_error.png>]
+
+LaTeX Warning: Reference `fig:scaled_loss' on page 31 undefined on input line 1
+08.
+
+[31<./content/chapters/6_implementation/figures//fp16_vs_fp32.png><./content/ch
 apters/6_implementation/figures//scaled_loss.png>])
-(./content/chapters/7_evaluation/evaluation.tex [30]
+(./content/chapters/7_evaluation/evaluation.tex [32]
 Chapter 7.
 
-LaTeX Warning: Reference `fig:dataset_config' on page 31 undefined on input lin
+LaTeX Warning: Reference `fig:dataset_config' on page 33 undefined on input lin
 e 18.
-
-[31]
-
-LaTeX Warning: Reference `tab:dataset_loading_times' on page 32 undefined on in
-put line 26.
-
-
-LaTeX Warning: Reference `tab:dataset_loading_times' on page 32 undefined on in
-put line 44.
-
-[32<./content/chapters/7_evaluation/figures//dataset_config.png>]
-
-LaTeX Warning: Reference `tab:dataset_performance' on page 33 undefined on inpu
-t line 50.
-
-
-LaTeX Warning: Reference `tab:dataset_performance' on page 33 undefined on inpu
-t line 68.
-
-
-LaTeX Warning: Reference `sec:oom_handling' on page 33 undefined on input line 
-77.
 
 [33]
 
-LaTeX Warning: Reference `tab:oom_training' on page 34 undefined on input line 
-87.
+LaTeX Warning: Reference `tab:dataset_loading_times' on page 34 undefined on in
+put line 26.
 
 
-LaTeX Warning: Reference `tab:oom_training' on page 34 undefined on input line 
-105.
+LaTeX Warning: Reference `tab:dataset_loading_times' on page 34 undefined on in
+put line 44.
+
+[34<./content/chapters/7_evaluation/figures//dataset_config.png>]
+
+LaTeX Warning: Reference `tab:dataset_performance' on page 35 undefined on inpu
+t line 50.
 
 
-LaTeX Warning: Reference `tab:oom_metrics' on page 34 undefined on input line 1
-07.
+LaTeX Warning: Reference `tab:dataset_performance' on page 35 undefined on inpu
+t line 68.
 
 
-LaTeX Warning: Reference `tab:oom_metrics' on page 34 undefined on input line 1
-25.
-
-[34]
-
-LaTeX Warning: Reference `tab:classical_metrics' on page 35 undefined on input 
-line 159.
+LaTeX Warning: Reference `sec:oom_handling' on page 35 undefined on input line 
+77.
 
 [35]
 
-LaTeX Warning: Reference `tab:ml_training' on page 36 undefined on input line 1
-86.
+LaTeX Warning: Reference `tab:oom_training' on page 36 undefined on input line 
+87.
 
 
-LaTeX Warning: Reference `fig:cnn_training_plot' on page 36 undefined on input 
-line 186.
+LaTeX Warning: Reference `tab:oom_training' on page 36 undefined on input line 
+105.
+
+
+LaTeX Warning: Reference `tab:oom_metrics' on page 36 undefined on input line 1
+07.
+
+
+LaTeX Warning: Reference `tab:oom_metrics' on page 36 undefined on input line 1
+25.
 
 [36]
 
-LaTeX Warning: Citation 'park2017acoustic' on page 37 undefined on input line 1
+LaTeX Warning: Reference `tab:classical_metrics' on page 37 undefined on input 
+line 159.
+
+[37]
+
+LaTeX Warning: Reference `tab:ml_training' on page 38 undefined on input line 1
+86.
+
+
+LaTeX Warning: Reference `fig:cnn_training_plot' on page 38 undefined on input 
+line 186.
+
+[38]
+
+LaTeX Warning: Citation 'park2017acoustic' on page 39 undefined on input line 1
 94.
 
-[37<./content/chapters/7_evaluation/figures//CNN_plot.png><./content/chapters/7
+[39<./content/chapters/7_evaluation/figures//CNN_plot.png><./content/chapters/7
 _evaluation/figures//CED_plot.png><./content/chapters/7_evaluation/figures//RCE
-D_plot.png>] [38<./content/chapters/7_evaluation/figures//UNet_plot.png><./cont
+D_plot.png>] [40<./content/chapters/7_evaluation/figures//UNet_plot.png><./cont
 ent/chapters/7_evaluation/figures//ConvTasNet_plot.png>]
 
-LaTeX Warning: Reference `tab:ml_denoise' on page 39 undefined on input line 24
+LaTeX Warning: Reference `tab:ml_denoise' on page 41 undefined on input line 24
 7.
 
 
-LaTeX Warning: Citation 'park2017acoustic' on page 39 undefined on input line 2
+LaTeX Warning: Citation 'park2017acoustic' on page 41 undefined on input line 2
 49.
 
-[39]
+[41]
 
-LaTeX Warning: Citation 'Luo2018ConvTasNetSI' on page 40 undefined on input lin
+LaTeX Warning: Citation 'Luo2018ConvTasNetSI' on page 42 undefined on input lin
 e 259.
 
 )
 
 LaTeX Warning: Empty bibliography on input line 55.
 
-(./content/appendices/appendix_a.tex [40]
+(./content/appendices/appendix_a.tex [42]
 Appendix A.
 
-LaTeX Warning: Reference `chp:deployment' on page 41 undefined on input line 6.
+LaTeX Warning: Reference `chp:deployment' on page 43 undefined on input line 6.
 
 
 
-LaTeX Warning: Reference `sec:variable_length_handling' on page 41 undefined on
+LaTeX Warning: Reference `sec:variable_length_handling' on page 43 undefined on
  input line 13.
 
-[41]) (./content/appendices/appendix_b.tex [42]
+[43]) (./content/appendices/appendix_b.tex [44]
 Appendix B.
-) [43
+) [45
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 ] (./build/main.aux)
@@ -535,7 +574,7 @@ Package biblatex Warning: Please (re)run Biber on the file:
  839 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 21 attribute, 111 glue_sp
 ec, 21 attribute_list, 1 write nodes
-   avail lists: 1:3,2:528,3:187,4:46,5:988,6:50,7:7527,8:64,9:465,10:21,11:662
+   avail lists: 1:3,2:528,3:187,4:49,5:987,6:51,7:7527,8:60,9:465,10:21,11:654
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 live/texmf-dist/fonts/truetype/typoland/lato/Lato-Italic.ttf></usr/share/texliv
 e/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/share/texlive/
@@ -547,7 +586,7 @@ ublic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb>
-Output written on main.pdf (51 pages, 3349453 bytes).
+Output written on main.pdf (53 pages, 4053296 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -568,7 +607,7 @@ Latexmk: applying rule 'biber build/main'...
 INFO - This is Biber 2.17
 INFO - Logfile is 'build/main.blg'
 INFO - Reading 'build/main.bcf'
-INFO - Found 18 citekeys in bib section 0
+INFO - Found 16 citekeys in bib section 0
 INFO - Processing section 0
 INFO - Looking for bibtex file 'references.bib' for section 0
 INFO - LaTeX decoding ...
@@ -581,7 +620,7 @@ INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
 INFO - Output to build/main.bbl
 WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 INFO - WARNINGS: 1
-Biber warning: [241] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [234] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: applying rule 'cusdep acn acr build/main'...
 makeglossaries version 4.49 (2021-11-01)
 Changed to 'build/'
@@ -727,8 +766,11 @@ y) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
 (/usr/share/texlive/texmf-dist/tex/latex/supertabular/supertabular.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty))
-(./content/glossary.tex) (./content/acronyms.tex) (./build/main.aux)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
+(./content/glossary.tex) (./content/acronyms.tex) (./build/main.aux
+
+LaTeX Warning: Label `fig:convtasnet' multiply defined.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -756,73 +798,94 @@ nary-english.trsl)
 ntent/figures/ict_logo.pdf>]) (./content/abstract.tex)
 (./content/acknowledgements.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
-[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof) [5] (./build/main.lot)
-[6] (./build/main.acr) (./build/main.gls)
+[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof) [5] [6]
+(./build/main.lot) [7] (./build/main.acr) (./build/main.gls)
 (./content/chapters/1_introduction/introduction.tex
 Chapter 1.
 [1]) (./content/chapters/2_background/background.tex [2]
 Chapter 2.
-[3<./content/chapters/2_background/figures//specsub.png>] [4] [5<./content/chap
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3] [4<./content/chapters/2_background/figures//specsub.png>] [5<./content/chap
 ters/2_background/figures//wiener_block.png>] [6<./content/chapters/2_backgroun
-d/figures//mmse-lsa.png>] [7] [8])
-(./content/chapters/3_literature/literature.tex [9]
+d/figures//mmse-lsa.png>] [7<./content/chapters/2_background/figures//autoencod
+er.png>] [8<./content/chapters/2_background/figures//weigths.png>] [9] [10])
+(./content/chapters/3_literature/literature.tex [11]
 Chapter 3.
-[10<./content/chapters/3_literature/figures//neuron_vs_ann.png>] [11<./content/
-chapters/3_literature/figures//autoencoder.png>])
-(./content/chapters/4_specification/specification.tex [12<./content/chapters/3_
-literature/figures//weigths.png>]
+[12]
+
+LaTeX Warning: Citation 'luo2019conv' on page 13 undefined on input line 43.
+
+[13<./content/chapters/3_literature/figures//CED_RCED.png>]
+
+LaTeX Warning: Citation 'luo2019conv' on page 14 undefined on input line 52.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 14 undefined on input line 52.
+
+) (./content/chapters/4_specification/specification.tex [14<./content/chapters/
+3_literature/figures//TwoSpeakSeperation.png>]
 Chapter 4.
-[13<./content/chapters/4_specification/figures//dataset_structure.png>])
-(./content/chapters/5_design/design.tex [14<./content/chapters/4_specification/
+[15<./content/chapters/4_specification/figures//dataset_structure.png>])
+(./content/chapters/5_design/design.tex [16<./content/chapters/4_specification/
 figures//sample_waveform_and_transcript.png>]
 Chapter 5.
-[15<./content/chapters/5_design/figures//max_padding.png>]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Reference `sec:pto_variable_length_sequences' on page 17 undefin
+ed on input line 20.
 
-[16] [17<./content/chapters/5_design/figures//cnn.png>] [18<./content/chapters/
-5_design/figures//ced.png>] [19<./content/chapters/5_design/figures//r-ced.png>
-] [20<./content/chapters/5_design/figures//unet.png>]
+[17<./content/chapters/5_design/figures//max_padding.png>]
 
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 107.
-
-
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 112.
-
-
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 112.
+LaTeX Warning: Reference `sec:machine_learning' on page 18 undefined on input l
+ine 27.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21]
+[18] [19<./content/chapters/5_design/figures//cnn.png>] [20<./content/chapters/
+5_design/figures//ced.png>] [21<./content/chapters/5_design/figures//r-ced.png>
+] [22<./content/chapters/5_design/figures//unet.png>]
 
-LaTeX Warning: Citation 'luo2019conv' on page 22 undefined on input line 125.
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 109.
 
-[22<./content/chapters/5_design/figures//conv-tasnet.png>])
-(./content/chapters/6_implementation/implementation.tex [23]
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 116.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 116.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[23]
+
+LaTeX Warning: Citation 'luo2019conv' on page 24 undefined on input line 131.
+
+[24<./content/chapters/5_design/figures//conv-tasnet.png>])
+(./content/chapters/6_implementation/implementation.tex [25]
 Chapter 6.
-[24] [25<./content/chapters/6_implementation/figures//static_pad.png>] [26<./co
-ntent/chapters/6_implementation/figures//dynamic_pad.png>] [27<./content/chapte
-rs/6_implementation/figures//pto_pad.png>] [28<./content/chapters/6_implementat
-ion/figures//oom_error.png>] [29<./content/chapters/6_implementation/figures//f
+[26] [27<./content/chapters/6_implementation/figures//static_pad.png>] [28<./co
+ntent/chapters/6_implementation/figures//dynamic_pad.png>] [29<./content/chapte
+rs/6_implementation/figures//pto_pad.png>] [30<./content/chapters/6_implementat
+ion/figures//oom_error.png>] [31<./content/chapters/6_implementation/figures//f
 p16_vs_fp32.png><./content/chapters/6_implementation/figures//scaled_loss.png>]
-) (./content/chapters/7_evaluation/evaluation.tex [30]
+) (./content/chapters/7_evaluation/evaluation.tex [32]
 Chapter 7.
-[31] [32<./content/chapters/7_evaluation/figures//dataset_config.png>] [33]
-[34] [35] [36] [37<./content/chapters/7_evaluation/figures//CNN_plot.png><./con
+[33] [34<./content/chapters/7_evaluation/figures//dataset_config.png>] [35]
+[36] [37] [38] [39<./content/chapters/7_evaluation/figures//CNN_plot.png><./con
 tent/chapters/7_evaluation/figures//CED_plot.png><./content/chapters/7_evaluati
-on/figures//RCED_plot.png>] [38<./content/chapters/7_evaluation/figures//UNet_p
+on/figures//RCED_plot.png>] [40<./content/chapters/7_evaluation/figures//UNet_p
 lot.png><./content/chapters/7_evaluation/figures//ConvTasNet_plot.png>]
-[39]) [40] [41] (./content/appendices/appendix_a.tex [42]
+[41]) [42] [43] (./content/appendices/appendix_a.tex [44]
 Appendix A.
 
-LaTeX Warning: Reference `chp:deployment' on page 43 undefined on input line 6.
+LaTeX Warning: Reference `chp:deployment' on page 45 undefined on input line 6.
 
 
-[43]) (./content/appendices/appendix_b.tex [44]
+[45]) (./content/appendices/appendix_b.tex [46]
 Appendix B.
-) [45
+) [47
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 ] (./build/main.aux)
@@ -830,7 +893,7 @@ makeindex -s main.ist -t main.alg -o main.acr main.acn
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
 
 Package biblatex Warning: Please rerun LaTeX.
@@ -840,8 +903,8 @@ Package biblatex Warning: Please rerun LaTeX.
  889 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 25 attribute, 113 glue_sp
 ec, 25 attribute_list, 1 write, 4 pdf_action nodes
-   avail lists: 1:3,2:808,3:356,4:54,5:977,6:114,7:7570,8:121,9:470,10:21,11:66
-2
+   avail lists: 1:3,2:844,3:377,4:54,5:971,6:114,7:7570,8:87,9:484,10:21,11:646
+
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 live/texmf-dist/fonts/truetype/typoland/lato/Lato-Italic.ttf></usr/share/texliv
 e/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/share/texlive/
@@ -853,17 +916,17 @@ ublic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb>
-Output written on main.pdf (52 pages, 3372334 bytes).
+Output written on main.pdf (55 pages, 4076347 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
 === TeX engine is 'LuaHBTeX'
-Biber warning: [241] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [234] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: applying rule 'biber build/main'...
 INFO - This is Biber 2.17
 INFO - Logfile is 'build/main.blg'
 INFO - Reading 'build/main.bcf'
-INFO - Found 18 citekeys in bib section 0
+INFO - Found 16 citekeys in bib section 0
 INFO - Processing section 0
 INFO - Looking for bibtex file 'references.bib' for section 0
 INFO - LaTeX decoding ...
@@ -876,7 +939,7 @@ INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
 INFO - Output to build/main.bbl
 WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 INFO - WARNINGS: 1
-Biber warning: [246] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [239] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: applying rule 'lualatex'...
 This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian) 
  restricted system commands enabled.
@@ -1010,8 +1073,11 @@ y) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
 (/usr/share/texlive/texmf-dist/tex/latex/supertabular/supertabular.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty))
-(./content/glossary.tex) (./content/acronyms.tex) (./build/main.aux)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
+(./content/glossary.tex) (./content/acronyms.tex) (./build/main.aux
+
+LaTeX Warning: Label `fig:convtasnet' multiply defined.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1039,86 +1105,110 @@ nary-english.trsl)
 ntent/figures/ict_logo.pdf>]) (./content/abstract.tex)
 (./content/acknowledgements.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
-[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof) [5] (./build/main.lot)
-[6] (./build/main.acr) (./build/main.gls)
+[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof) [5] [6]
+(./build/main.lot) [7] (./build/main.acr) (./build/main.gls)
 (./content/chapters/1_introduction/introduction.tex
 Chapter 1.
 [1]) (./content/chapters/2_background/background.tex [2]
 Chapter 2.
-[3<./content/chapters/2_background/figures//specsub.png>] [4] [5<./content/chap
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3] [4<./content/chapters/2_background/figures//specsub.png>] [5<./content/chap
 ters/2_background/figures//wiener_block.png>] [6<./content/chapters/2_backgroun
-d/figures//mmse-lsa.png>] [7] [8])
-(./content/chapters/3_literature/literature.tex [9]
+d/figures//mmse-lsa.png>] [7<./content/chapters/2_background/figures//autoencod
+er.png>] [8<./content/chapters/2_background/figures//weigths.png>] [9] [10])
+(./content/chapters/3_literature/literature.tex [11]
 Chapter 3.
-[10<./content/chapters/3_literature/figures//neuron_vs_ann.png>] [11<./content/
-chapters/3_literature/figures//autoencoder.png>])
-(./content/chapters/4_specification/specification.tex [12<./content/chapters/3_
-literature/figures//weigths.png>]
+[12]
+
+LaTeX Warning: Citation 'luo2019conv' on page 13 undefined on input line 43.
+
+[13<./content/chapters/3_literature/figures//CED_RCED.png>]
+
+LaTeX Warning: Citation 'luo2019conv' on page 14 undefined on input line 52.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 14 undefined on input line 52.
+
+) (./content/chapters/4_specification/specification.tex [14<./content/chapters/
+3_literature/figures//TwoSpeakSeperation.png>]
 Chapter 4.
-[13<./content/chapters/4_specification/figures//dataset_structure.png>])
-(./content/chapters/5_design/design.tex [14<./content/chapters/4_specification/
+[15<./content/chapters/4_specification/figures//dataset_structure.png>])
+(./content/chapters/5_design/design.tex [16<./content/chapters/4_specification/
 figures//sample_waveform_and_transcript.png>]
 Chapter 5.
-[15<./content/chapters/5_design/figures//max_padding.png>]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Reference `sec:pto_variable_length_sequences' on page 17 undefin
+ed on input line 20.
 
-[16] [17<./content/chapters/5_design/figures//cnn.png>] [18<./content/chapters/
-5_design/figures//ced.png>] [19<./content/chapters/5_design/figures//r-ced.png>
-] [20<./content/chapters/5_design/figures//unet.png>]
+[17<./content/chapters/5_design/figures//max_padding.png>]
 
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 107.
-
-
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 112.
-
-
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 112.
+LaTeX Warning: Reference `sec:machine_learning' on page 18 undefined on input l
+ine 27.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21]
+[18] [19<./content/chapters/5_design/figures//cnn.png>] [20<./content/chapters/
+5_design/figures//ced.png>] [21<./content/chapters/5_design/figures//r-ced.png>
+] [22<./content/chapters/5_design/figures//unet.png>]
 
-LaTeX Warning: Citation 'luo2019conv' on page 22 undefined on input line 125.
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 109.
 
-[22<./content/chapters/5_design/figures//conv-tasnet.png>])
-(./content/chapters/6_implementation/implementation.tex [23]
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 116.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 116.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[23]
+
+LaTeX Warning: Citation 'luo2019conv' on page 24 undefined on input line 131.
+
+[24<./content/chapters/5_design/figures//conv-tasnet.png>])
+(./content/chapters/6_implementation/implementation.tex [25]
 Chapter 6.
-[24] [25<./content/chapters/6_implementation/figures//static_pad.png>] [26<./co
-ntent/chapters/6_implementation/figures//dynamic_pad.png>] [27<./content/chapte
-rs/6_implementation/figures//pto_pad.png>] [28<./content/chapters/6_implementat
-ion/figures//oom_error.png>] [29<./content/chapters/6_implementation/figures//f
+[26] [27<./content/chapters/6_implementation/figures//static_pad.png>] [28<./co
+ntent/chapters/6_implementation/figures//dynamic_pad.png>] [29<./content/chapte
+rs/6_implementation/figures//pto_pad.png>] [30<./content/chapters/6_implementat
+ion/figures//oom_error.png>] [31<./content/chapters/6_implementation/figures//f
 p16_vs_fp32.png><./content/chapters/6_implementation/figures//scaled_loss.png>]
-) (./content/chapters/7_evaluation/evaluation.tex [30]
+) (./content/chapters/7_evaluation/evaluation.tex [32]
 Chapter 7.
-[31] [32<./content/chapters/7_evaluation/figures//dataset_config.png>] [33]
-[34] [35] [36] [37<./content/chapters/7_evaluation/figures//CNN_plot.png><./con
+[33] [34<./content/chapters/7_evaluation/figures//dataset_config.png>] [35]
+[36] [37] [38] [39<./content/chapters/7_evaluation/figures//CNN_plot.png><./con
 tent/chapters/7_evaluation/figures//CED_plot.png><./content/chapters/7_evaluati
-on/figures//RCED_plot.png>] [38<./content/chapters/7_evaluation/figures//UNet_p
+on/figures//RCED_plot.png>] [40<./content/chapters/7_evaluation/figures//UNet_p
 lot.png><./content/chapters/7_evaluation/figures//ConvTasNet_plot.png>]
-[39]) [40] [41] (./content/appendices/appendix_a.tex [42]
+[41]) [42] [43] (./content/appendices/appendix_a.tex [44]
 Appendix A.
 
-LaTeX Warning: Reference `chp:deployment' on page 43 undefined on input line 6.
+LaTeX Warning: Reference `chp:deployment' on page 45 undefined on input line 6.
 
 
-[43]) (./content/appendices/appendix_b.tex [44]
+[45]) (./content/appendices/appendix_b.tex [46]
 Appendix B.
-) [45
+) [47
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 ] (./build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 )
 (see the transcript file for additional information)
  889 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 25 attribute, 113 glue_sp
 ec, 25 attribute_list, 1 write, 4 pdf_action nodes
-   avail lists: 1:3,2:808,3:356,4:54,5:977,6:114,7:7570,8:121,9:470,10:21,11:66
-2
+   avail lists: 1:3,2:844,3:377,4:54,5:971,6:114,7:7570,8:87,9:484,10:21,11:646
+
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 live/texmf-dist/fonts/truetype/typoland/lato/Lato-Italic.ttf></usr/share/texliv
 e/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/share/texlive/
@@ -1130,12 +1220,12 @@ ublic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb>
-Output written on main.pdf (52 pages, 3372333 bytes).
+Output written on main.pdf (55 pages, 4076342 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
 === TeX engine is 'LuaHBTeX'
-Biber warning: [246] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [239] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: applying rule 'lualatex'...
 This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian) 
  restricted system commands enabled.
@@ -1269,8 +1359,11 @@ y) (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-list.sty
 (/usr/share/texlive/texmf-dist/tex/latex/supertabular/supertabular.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/glossaries/styles/glossary-tree.sty))
 (/usr/share/texlive/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty))
-(./content/glossary.tex) (./content/acronyms.tex) (./build/main.aux)
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
+(./content/glossary.tex) (./content/acronyms.tex) (./build/main.aux
+
+LaTeX Warning: Label `fig:convtasnet' multiply defined.
+
+) (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd)
 *geometry* driver: auto-detecting
 *geometry* detected driver: luatex
 (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
@@ -1298,86 +1391,110 @@ nary-english.trsl)
 ntent/figures/ict_logo.pdf>]) (./content/abstract.tex)
 (./content/acknowledgements.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
-[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof) [5] (./build/main.lot)
-[6] (./build/main.acr) (./build/main.gls)
+[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof) [5] [6]
+(./build/main.lot) [7] (./build/main.acr) (./build/main.gls)
 (./content/chapters/1_introduction/introduction.tex
 Chapter 1.
 [1]) (./content/chapters/2_background/background.tex [2]
 Chapter 2.
-[3<./content/chapters/2_background/figures//specsub.png>] [4] [5<./content/chap
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[3] [4<./content/chapters/2_background/figures//specsub.png>] [5<./content/chap
 ters/2_background/figures//wiener_block.png>] [6<./content/chapters/2_backgroun
-d/figures//mmse-lsa.png>] [7] [8])
-(./content/chapters/3_literature/literature.tex [9]
+d/figures//mmse-lsa.png>] [7<./content/chapters/2_background/figures//autoencod
+er.png>] [8<./content/chapters/2_background/figures//weigths.png>] [9] [10])
+(./content/chapters/3_literature/literature.tex [11]
 Chapter 3.
-[10<./content/chapters/3_literature/figures//neuron_vs_ann.png>] [11<./content/
-chapters/3_literature/figures//autoencoder.png>])
-(./content/chapters/4_specification/specification.tex [12<./content/chapters/3_
-literature/figures//weigths.png>]
+[12]
+
+LaTeX Warning: Citation 'luo2019conv' on page 13 undefined on input line 43.
+
+[13<./content/chapters/3_literature/figures//CED_RCED.png>]
+
+LaTeX Warning: Citation 'luo2019conv' on page 14 undefined on input line 52.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 14 undefined on input line 52.
+
+) (./content/chapters/4_specification/specification.tex [14<./content/chapters/
+3_literature/figures//TwoSpeakSeperation.png>]
 Chapter 4.
-[13<./content/chapters/4_specification/figures//dataset_structure.png>])
-(./content/chapters/5_design/design.tex [14<./content/chapters/4_specification/
+[15<./content/chapters/4_specification/figures//dataset_structure.png>])
+(./content/chapters/5_design/design.tex [16<./content/chapters/4_specification/
 figures//sample_waveform_and_transcript.png>]
 Chapter 5.
-[15<./content/chapters/5_design/figures//max_padding.png>]
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+LaTeX Warning: Reference `sec:pto_variable_length_sequences' on page 17 undefin
+ed on input line 20.
 
-[16] [17<./content/chapters/5_design/figures//cnn.png>] [18<./content/chapters/
-5_design/figures//ced.png>] [19<./content/chapters/5_design/figures//r-ced.png>
-] [20<./content/chapters/5_design/figures//unet.png>]
+[17<./content/chapters/5_design/figures//max_padding.png>]
 
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 107.
-
-
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 112.
-
-
-LaTeX Warning: Citation 'luo2019conv' on page 21 undefined on input line 112.
+LaTeX Warning: Reference `sec:machine_learning' on page 18 undefined on input l
+ine 27.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-[21]
+[18] [19<./content/chapters/5_design/figures//cnn.png>] [20<./content/chapters/
+5_design/figures//ced.png>] [21<./content/chapters/5_design/figures//r-ced.png>
+] [22<./content/chapters/5_design/figures//unet.png>]
 
-LaTeX Warning: Citation 'luo2019conv' on page 22 undefined on input line 125.
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 109.
 
-[22<./content/chapters/5_design/figures//conv-tasnet.png>])
-(./content/chapters/6_implementation/implementation.tex [23]
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 116.
+
+
+LaTeX Warning: Citation 'luo2019conv' on page 23 undefined on input line 116.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[23]
+
+LaTeX Warning: Citation 'luo2019conv' on page 24 undefined on input line 131.
+
+[24<./content/chapters/5_design/figures//conv-tasnet.png>])
+(./content/chapters/6_implementation/implementation.tex [25]
 Chapter 6.
-[24] [25<./content/chapters/6_implementation/figures//static_pad.png>] [26<./co
-ntent/chapters/6_implementation/figures//dynamic_pad.png>] [27<./content/chapte
-rs/6_implementation/figures//pto_pad.png>] [28<./content/chapters/6_implementat
-ion/figures//oom_error.png>] [29<./content/chapters/6_implementation/figures//f
+[26] [27<./content/chapters/6_implementation/figures//static_pad.png>] [28<./co
+ntent/chapters/6_implementation/figures//dynamic_pad.png>] [29<./content/chapte
+rs/6_implementation/figures//pto_pad.png>] [30<./content/chapters/6_implementat
+ion/figures//oom_error.png>] [31<./content/chapters/6_implementation/figures//f
 p16_vs_fp32.png><./content/chapters/6_implementation/figures//scaled_loss.png>]
-) (./content/chapters/7_evaluation/evaluation.tex [30]
+) (./content/chapters/7_evaluation/evaluation.tex [32]
 Chapter 7.
-[31] [32<./content/chapters/7_evaluation/figures//dataset_config.png>] [33]
-[34] [35] [36] [37<./content/chapters/7_evaluation/figures//CNN_plot.png><./con
+[33] [34<./content/chapters/7_evaluation/figures//dataset_config.png>] [35]
+[36] [37] [38] [39<./content/chapters/7_evaluation/figures//CNN_plot.png><./con
 tent/chapters/7_evaluation/figures//CED_plot.png><./content/chapters/7_evaluati
-on/figures//RCED_plot.png>] [38<./content/chapters/7_evaluation/figures//UNet_p
+on/figures//RCED_plot.png>] [40<./content/chapters/7_evaluation/figures//UNet_p
 lot.png><./content/chapters/7_evaluation/figures//ConvTasNet_plot.png>]
-[39]) [40] [41] (./content/appendices/appendix_a.tex [42]
+[41]) [42] [43] (./content/appendices/appendix_a.tex [44]
 Appendix A.
 
-LaTeX Warning: Reference `chp:deployment' on page 43 undefined on input line 6.
+LaTeX Warning: Reference `chp:deployment' on page 45 undefined on input line 6.
 
 
-[43]) (./content/appendices/appendix_b.tex [44]
+[45]) (./content/appendices/appendix_b.tex [46]
 Appendix B.
-) [45
+) [47
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 ] (./build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
+
+LaTeX Warning: There were multiply-defined labels.
+
 )
 (see the transcript file for additional information)
  889 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 25 attribute, 113 glue_sp
 ec, 25 attribute_list, 1 write, 4 pdf_action nodes
-   avail lists: 1:3,2:808,3:356,4:54,5:977,6:114,7:7570,8:121,9:470,10:21,11:66
-2
+   avail lists: 1:3,2:844,3:377,4:54,5:971,6:114,7:7570,8:87,9:484,10:21,11:646
+
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 live/texmf-dist/fonts/truetype/typoland/lato/Lato-Italic.ttf></usr/share/texliv
 e/texmf-dist/fonts/truetype/typoland/lato/Lato-Regular.ttf></usr/share/texlive/
@@ -1389,10 +1506,10 @@ ublic/amsfonts/cm/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/a
 msfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/
 cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y8.pfb>
-Output written on main.pdf (52 pages, 3372333 bytes).
+Output written on main.pdf (55 pages, 4076342 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
 === TeX engine is 'LuaHBTeX'
-Biber warning: [246] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [239] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: All targets (build/main.pdf) are up-to-date

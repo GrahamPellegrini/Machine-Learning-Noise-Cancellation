@@ -5,7 +5,7 @@
 \section{Variable Length Handling}
 \label{sec:variable_length_handling}
 
-For this project, only the clean and noisy pairs of audio files from the dataset are required — the transcript text files are ignored, as they are not relevant to the task. However, it is worth noting that such transcripts are highly valuable in other applications, such as training text-to-speech or speech recognition models. As highlighted in the dataset analysis in Section~\ref{sec:dataset_exploration}, the audio files vary in length. This poses a challenge for model training, as batch processing requires input tensors to have consistent dimensions.
+For this project, only the clean and noisy pairs of audio files from the dataset are required. The transcript text files are ignored, as they are not relevant to the task. However, it is worth noting that such transcripts are highly valuable in other applications, such as training text-to-speech or speech recognition models. As highlighted in the dataset analysis in Section~\ref{sec:dataset_exploration}, the audio files vary in length. This poses a challenge for model training, as batch processing requires input tensors to have consistent dimensions.
 
 To address this, several algorithms for handling variable-length audio inputs were explored. The most basic approach involves padding each audio file to match the length of the longest sample in the batch, typically by appending zeros to the end of shorter files. While this method is simple, it has significant drawbacks: excessive padding introduces unnecessary data that may act as noise during training, making it harder for the model to learn effectively. The greater the variation in input lengths, the more padding is required — which can negatively impact overall training performance.
 
@@ -17,7 +17,7 @@ To address this, several algorithms for handling variable-length audio inputs we
 
 As shown in Figure~\ref{fig:max_padding}, the most common audio length is padded so heavily that the padding exceeds the actual content. This is far from ideal. To mitigate this issue, three different padding strategies were used. Each method aims to reduce the impact of excessive padding on model performance.
 
-The first method is \textit{Static Bucketing}, which essentially groups audio files into predefined fixed-length buckets. Allowing the grouped files to require less unnecessary padding. The second method, \textit{Dynamic Bucketing}, builds on this by creating buckets dynamically based on the distribution of audio lengths, offering a more adaptive grouping approach. The third and final method PTO inspired by a research paper~\cite{yoon2020pto}, proposes a simple, distortion-free technique for handling variable-length sequences through a combination of padding, truncation, and output truncation.
+The first method is \textit{Static Bucketing}, which essentially groups audio files into predefined fixed-length buckets. Allowing the grouped files to require less unnecessary padding. The second method, \textit{Dynamic Bucketing}, builds on this by creating buckets dynamically based on the distribution of audio lengths, offering a more adaptive grouping approach. The third and final method introduced in Section~\ref{sec:pto_variable_length_sequences}. PTO enables dynamic padding within each batch and output truncation after inference, ensuring minimal distortion and preserving alignment with the original input lengths.
 
 All three methods were implemented for testing and evaluation. Their role in the system design is critical, as they help ensure that the model can learn effectively without being hindered by dimensional mismatches or excessive zero-padding. Further details on the implementation of these methods are provided in Chapter~\ref{chp:implementation}, and their impact on model performance is discussed in Chapter~\ref{chp:evaluation}.
 
@@ -49,7 +49,8 @@ While simple, this model plays a critical role in establishing a baseline perfor
 \subsection{Convolutional Encoder Decoder (CED)}
 \label{sec:ced}
 
-The Convolutional Encoder Decoder (CED) architecture implemented in this project is based on the model proposed by Park and Lee (2017) \cite{park2017acoustic}. It is specifically designed for the task of speech enhancement and operates directly on spectrogram data. The CED model follows a symmetric encoder-decoder structure without an explicit bottleneck, and is optimized for temporal feature extraction using frequency-preserving convolutional kernels. The real and imaginary components of the spectrogram are concatenated to form a two-channel input.
+The Convolutional Encoder Decoder (CED) architecture implemented in this project is based on the model introduced by Park and Lee~\cite{park2017acoustic} and reviewed in Section~\ref{sec:fcns}. The CED follows a symmetric encoder-decoder structure designed for spectrogram enhancement, optimized for temporal feature extraction using frequency-preserving convolutional kernels. In this implementation, the real and imaginary components of the spectrogram are concatenated to form a two-channel input.
+
 
 \begin{figure}[h]
     \centering
@@ -66,7 +67,7 @@ By removing the bottleneck and relying on deeper convolutional transformations, 
 \subsection{Redundant Convolutional Encoder Decoder (R-CED)}
 \label{sec:rced}
 
-The Redundant Convolutional Encoder Decoder (R-CED) architecture implemented is also directly adapted from \cite{park2017acoustic}. It is a fully convolutional architecture developed as a modification to the CED framework, specifically designed to eliminate the need for pooling and upsampling layers. This design prioritizes maintaining temporal and frequency resolution throughout the network, addressing the potential drawbacks of information loss associated with aggressive downsampling in traditional encoder-decoder structures.
+The Redundant Convolutional Encoder Decoder (R-CED) architecture implemented in this project builds upon the CED framework. Also introduced by Park and Lee~\cite{park2017acoustic} and discussed in Section~\ref{sec:fcns}. R-CED removes pooling and upsampling operations entirely, instead relying on redundant convolutional layers to maintain full temporal and frequency resolution throughout the network. In this implementation, the real and imaginary spectrogram components are again concatenated into a two-channel input, with the goal of preserving fine-grained spectro-temporal structures during enhancement.
 
 \begin{figure}[h]
     \centering
@@ -101,10 +102,13 @@ The decoder mirrors the encoder with five upsampling blocks, each using transpos
 
 This implementation of U-Net preserves the key architectural principles of the original model while tailoring it for speech enhancement. The use of instance normalization, PReLU activations, skip connections, and a deeper encoder-decoder path provides the network with strong representational power, allowing it to effectively recover clean speech from noisy spectrograms.
 
+
 \subsection{Conv-TasNet}
 \label{sec:convtasnet}
 
-Conv-TasNet is a convolutional neural network architecture proposed by Luo and Mesgarani in their 2019 paper, \textit{``Conv-TasNet: Surpassing Ideal Time--Frequency Masking for Speech Separation''}~\cite{luo2019conv}. The model introduces a key innovation by replacing traditional encoder–decoder hierarchies with a Temporal Convolutional Network (TCN), enabling efficient modeling of long-range temporal dependencies through stacked dilated convolutions and residual connections. Originally designed for time-domain speech separation, Conv-TasNet demonstrated superior performance over time–frequency masking methods.
+The Conv-TasNet model implemented in this project is based on the architecture proposed by Luo and Mesgarani~\cite{luo2019conv}, as discussed in Section~\ref{sec:convtasnet_lit_review}. Although the core structure is preserved, rigorous adaptations were required to align the model with the spectrogram-based framework used throughout this system.
+
+The primary adaptation concerns the input format. While the original Conv-TasNet operates directly on raw time-domain waveforms, here the model is modified to process complex-valued spectrogram inputs. The real and imaginary parts are concatenated to form a two-channel input, which is passed through a \(3 \times 3\) convolutional encoder. The encoder maps the input to a latent space of 128 channels, using dynamic padding to maintain spatial dimensions.
 
 \begin{figure}[h]
     \centering
@@ -112,11 +116,13 @@ Conv-TasNet is a convolutional neural network architecture proposed by Luo and M
     \caption{\label{fig:convtasnet}Conv-TasNet architecture overview \cite{luo2019conv}.}
 \end{figure}
 
-The core innovation of Conv-TasNet lies in the use of a Temporal Convolutional Network (TCN) for the separation module. Unlike recurrent models that process sequences sequentially, TCNs use dilated 1D (or in this case, adapted 2D) convolutions to achieve a large receptive field, enabling the model to learn long-range temporal patterns with fewer layers. Each TCN block consists of a depthwise separable convolution, followed by non-linear activation (PReLU), normalization (group norm), and a residual connection. Dilation factors are increased exponentially across layers (e.g., 1, 2, 4, 8), allowing the network to capture increasingly broader temporal contexts while maintaining computational efficiency. These blocks are stacked multiple times to increase network depth while maintaining efficient gradient flow and full-resolution output.
+The latent representation is processed by the Temporal Convolutional Network (TCN), which forms the core of the separation module. The TCN consists of two stacks, each containing four residual blocks. Each residual block applies a \(3 \times 3\) convolution, followed by group normalization with eight groups, a PReLU activation, and a second convolution projecting back to the input dimension. Skip connections are used within each block to facilitate stable training and allow the network to capture long-range temporal dependencies efficiently.
 
-To align with the spectrogram-based setup of this project, the original time-domain Conv-TasNet is adapted to operate on complex-valued spectrograms. The encoder uses a 2D convolution to project the two-channel input—representing the real and imaginary parts—into a high-dimensional latent space. This is passed through the TCN as described above, now modified to operate with 2D convolutions suitable for time–frequency inputs.
+One notable departure from the original Conv-TasNet design is the handling of output masking. While the original paper strongly emphasizes time-frequency masking, preliminary experiments in this project showed that implementing complex masking introduced significant architectural complexity and only resulted in marginal improvements in denoising performance. As a result, direct spectrogram enhancement without explicit masking was adopted to maintain simplicity.
 
-The decoder, also a 2D convolutional layer, projects the final feature map back to two channels corresponding to the denoised real and imaginary spectrogram components. Padding and cropping mechanisms are employed throughout the architecture to ensure that the output dimensions match the input, maintaining compatibility with ISTFT-based waveform reconstruction. This adaptation preserves the core benefits of Conv-TasNet, namely its temporal modeling power, while making it suitable for spectrogram-domain denoising tasks within the system’s processing pipeline.
+Following the separation network, a \(3 \times 3\) convolutional decoder projects the latent features back to two output channels corresponding to the denoised real and imaginary spectrogram components. As in the encoder, dynamic padding ensures consistent output dimensions. Minor discrepancies between input and output sizes, due to cumulative convolutional padding effects, are corrected by cropping to align the final output with the original input dimensions before applying the inverse STFT.
+
+This design adaptation preserves the core strength of Conv-TasNet, efficient temporal modeling through dilated convolutions, while enabling it to operate effectively on spectrogram-domain representations for speech denoising tasks.
 
 \vspace{2em}
 

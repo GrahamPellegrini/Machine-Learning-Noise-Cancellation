@@ -2,7 +2,8 @@
 \chapter{Background}
 \label{chp:background}
 
-In this chapter, background information on established classical noise reduction methods is provided. These methods align with the scope of the project in that they do not require any reference or clean signal to base their predictions on. The chapter explores the Spectral Subtraction, Wiener Filtering  and Minimum Mean-Square Error Log-Spectral Amplitude (MMSE-LSA) estimation methods. Additionally, a brief section outlining the progression of the project and relevant foundational knowledge is included.
+In this chapter, background information on established classical noise reduction methods is provided. These methods align with the scope of the project in that they do not require any reference or clean signal to base their predictions on. The chapter explores the Spectral Subtraction, Wiener Filtering, and Minimum Mean-Square Error Log-Spectral Amplitude (MMSE-LSA) estimation methods. The concept of autoencoders is presented, their importance comes from the fact that they are the basis for many machine learning models used in this project. Additionally, the chapter introduces the key evaluation metrics used to assess speech enhancement performance. Finally, a brief section outlines the progression of the project and relevant foundational knowledge.
+
 
 \section{Spectral Subtraction}
 \label{sec:spectral_subtraction}
@@ -66,6 +67,7 @@ Wiener filtering is a statistically optimal method that minimizes the mean squar
 
 Despite these limitations, Wiener filtering remains a foundational approach in speech enhancement and is frequently integrated into more advanced or hybrid denoising pipelines \cite{dubey2016evaluation, loizou2013speech}.
 
+
 \section{MMSE-LSA}
 \label{sec:mmse_lsa}
 
@@ -90,6 +92,32 @@ A block diagram of the MMSE-LSA estimation process is shown in Figure~\ref{fig:m
 The MMSE-LSA estimator incorporates a parametric model of the speech and noise distributions and uses recursive averaging to smooth SNR estimates across time frames. This results in a more adaptive and perceptually aligned gain function than traditional methods. Compared to spectral subtraction and Wiener filtering, MMSE-LSA offers improved suppression of non-stationary noise, better preservation of speech components, and reduced musical noise artifacts.
 
 Despite its original formulation in the 1980s, MMSE-LSA continues to be a highly relevant technique. Numerous enhancements and application-specific variants have been developed in the 2010s and 2020s, including integrations with wavelet transforms~\cite{wei2016mmse}, improved noise tracking, and hybrid neural-DSP pipelines. This enduring relevance highlights MMSE-LSA's foundational robustness and its suitability for modern speech enhancement systems.
+
+\section{Autoencoders}
+\label{sec:autoencoders}
+
+Machine learning (ML), a subset of artificial intelligence (AI), focuses on developing algorithms that enable systems to learn patterns from data and make decisions without being explicitly programmed. In the context of speech enhancement, ML techniques have enabled the development of specialised neural network architectures capable of recovering clean speech from noisy inputs. One widely used architecture is the \textit{autoencoder}, which learns to reconstruct its input through a compressed latent representation \cite{azarang2020review}.
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,keepaspectratio]{autoencoder.png}
+    \caption{\label{fig:autoencoder} Block diagram of an autoencoder architecture \cite{vachhani2017dae}.}
+\end{figure}
+
+An autoencoder consists of two main components: an encoder and a decoder. The encoder compresses the input signal \(x\) into a low-dimensional latent space using a series of convolutional, pooling, or fully connected layers. A central \textit{bottleneck} layer enforces this compression, encouraging the model to retain only the most salient features—such as speech structure—while discarding irrelevant noise.
+
+The decoder then reconstructs the signal \(y\) from the latent representation, typically using upsampling, transposed convolutions, or dense layers arranged in a mirrored structure. The objective is to recover the clean speech signal with minimal reconstruction error.
+
+Autoencoders are trained using paired datasets of noisy and clean speech. During training, the noisy input is passed through the network, and the output is compared against the clean reference. The model is optimised to minimise the difference—typically using a loss function such as Mean Squared Error (MSE) or Mean Absolute Error (MAE).
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth,keepaspectratio]{weigths.png}
+    \caption{\label{fig:weigths} Loss and weight update process in an autoencoder \cite{epoch2021}.}
+\end{figure}
+
+Training proceeds iteratively. A forward pass generates an output, and the loss function quantifies the error. This error is then propagated backward through the network via backpropagation to compute gradients, which are used to update the model’s weights using optimisers such as Stochastic Gradient Descent (SGD) or Adam. This process is repeated across many epochs until convergence.
+
 
 \section{Evaluation Metrics}
 \label{sec:evaluation_metrics}

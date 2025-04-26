@@ -2,57 +2,55 @@
 \chapter{Literature Review}
 \label{sec:literature_review}
 
-This chapter presents an overview of relevant machine learning methods used for speech enhancement, with particular emphasis on the autoencoder architecture. It begins by introducing the fundamental principles behind neural networks and their biological inspiration, followed by a detailed discussion of machine learning techniques applied to noise suppression. Recent architectural advancements and training strategies are covered, culminating in the evaluation metrics used throughout this project to benchmark both classical and machine learning approaches.
+\section{Distortion Free Variable Length Handling} 
+\label{sec:distortion_free_handling}
 
+A significant challenge addressed in Section~\ref{sec:variable_length_handling} is the handling of variable-length audio sequences within the dataset. To identify suitable strategies, a review of relevant research was conducted, with the method proposed by Yoon and Yu~\cite{yoon2020pto} emerging as particularly applicable.
 
-\section{Neural Networks}
-\label{sec:neural_networks}
+Their work focuses on minimizing the information distortion introduced when sequences of varying lengths are batched for training. They explain the shortcomings of traditional padding and truncation methods, as well as more advanced implementations such as \texttt{PackedSequence} in PyTorch. While these methods enable batch processing, they inevitably introduce either loss of important information (via truncation) or addition of irrelevant information (via padding).
 
-Machine learning models, particularly neural networks, have been widely adopted for noise cancellation. Neural networks, inspired by biological neurons in the human brain, are composed of layers of interconnected processing units known as \textit{neurons}. Each artificial neuron receives multiple inputs, performs a weighted summation, applies a bias, and passes the result through an activation function to produce its output.
+To address this, Yoon and Yu proposed the Padding-Truncation Output-Truncation (PTO) method, a distortion-free technique that preserves the original sequence structure. In PTO, sequences are padded within a batch to match the longest input, but after processing, outputs are truncated back to their respective original lengths. This ensures that embeddings are computed exclusively from genuine input frames, avoiding the effects of artificial padding.
 
-This structure draws direct inspiration from the way biological neurons function—where dendrites receive signals, the cell body processes them, and the axon transmits the signal to the next neuron. Figure~\ref{fig:neuron_vs_ann} illustrates this analogy.
+Experimental evaluation on the RSR2015 speaker verification dataset demonstrated that the PTO method consistently outperformed conventional approaches in terms of equal error rate (EER), achieving up to a 27\% relative improvement over baseline methods, while incurring only a modest computational overhead.
+
+Given its distortion-free nature and suitability for real-time speech enhancement, PTO was adopted in this project as one of the three primary methods for handling variable-length sequences. It is further discussed in Section~\ref{subsec:pto_dataset} and evaluated in Section~\ref{sec:dataset_performance}.
+
+\section{Fully Convolutional Neural Network Adaptations}
+\label{sec:fcns}
+
+When considering the model architectures for the speech enhancement system, extensive research was conducted into models specifically designed for denoising tasks. Beyond standard CNN and U-Net architectures already established in the field, the focus was placed on identifying designs that innovated.
+
+One particularly relevant work is the study by Park and Lee~\cite{park2017acoustic}, which proposed the use of fully convolutional neural networks for speech enhancement. Two architectures are displayed here, the CED and its improved variant, the R-CED, both specifically designed for the task of speech enhancement and operating directly on spectrogram data.
+
+The CED model follows a symmetric encoder-decoder structure without an explicit bottleneck and is optimized for temporal feature extraction using frequency-preserving convolutional kernels. The real and imaginary components of the spectrogram are concatenated to form a two-channel input. The network compresses input features along the encoder and reconstructs them along the decoder, using pooling and upsampling operations to manage feature dimensions.
+
+However, the paper notes a drawback of the CED architecture: aggressive compression and upsampling operations can lead to information loss, particularly in the context of speech signals where temporal resolution is critical. To address this, the authors proposed the R-CED model, which removes pooling and upsampling layers entirely, instead employing redundant convolutional layers to augment feature representations. This design maintains full resolution throughout the network, enabling more effective denoising without sacrificing temporal fidelity.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.75\textwidth]{neuron_vs_ann.png}
-    \caption{Biological neuron vs. Artificial neuron structure.\cite{ghosh2020perceptron}}
-    \label{fig:neuron_vs_ann}
+    \includegraphics[width=0.8\textwidth]{CED_RCED.png}
+    \caption{A Comparison of Denoising Performance and the
+    Model Size for different CNN Architectures \cite{park2017acoustic}.}
+    \label{fig:fcns_results}
 \end{figure}
 
-A typical neural network for noise cancellation consists of the following components:
-\begin{itemize}
-    \item \textbf{Input layer:} Receives the noisy speech signal (e.g., a time-domain waveform or its spectrogram).
-    \item \textbf{Hidden layers:} Perform nonlinear transformations to extract key features and patterns from the input. These layers may include convolutional, recurrent, or fully connected neurons depending on the network architecture.
-    \item \textbf{Output layer:} Produces the denoised speech signal by mapping the learned features back to the clean signal domain.
-\end{itemize}
+The results of the study demonstrated that R-CED consistently outperformed the conventional CED when evaluated with 10 convolutional layers and an equal parameter budget. Furthermore, performance improvements were observed by incorporating skip connections between encoder and decoder layers, which allow low-level feature information to be preserved and passed through the network. As shown in Figure~\ref{fig:fcns_results}, the addition of skip connections further enhanced the denoising capability of both the CED and R-CED architectures, with the R-CED (skip) configuration achieving the highest overall performance among the tested models.
 
-The network is trained using pairs of clean and noisy audio samples. It gradually learns to reduce the difference between its predicted output and the actual clean signal. Once trained, the model can take in new noisy speech and output a cleaner version. This learning-based approach allows neural networks to adapt to complex noise patterns, often performing better than traditional signal processing methods in real-world situations.
 
-\section{Machine Learning}
-\label{sec:machine_learning}
+\subsection{Conv-TasNet for End-to-End Speech Separation}
+\label{sec:convtasnet_lit_review}
 
-Machine learning (ML), a subset of artificial intelligence (AI), focuses on developing algorithms that enable systems to learn patterns from data and make decisions without being explicitly programmed. In speech enhancement, ML has enabled the design of specialised neural network architectures capable of recovering clean speech from noisy inputs. One widely used architecture is the \textit{autoencoder}, which learns to reconstruct its input via a compressed latent representation \cite{azarang2020review}.
+Conv-TasNet is a convolutional neural network architecture proposed by Luo and Mesgarani~\cite{luo2019conv}, representing a significant advancement in the field of speech enhancement. Unlike traditional approaches that operate in the time-frequency domain, Conv-TasNet processes raw audio waveforms directly using a Temporal Convolutional Network (TCN). The TCN replaces recurrent layers by employing stacked dilated convolutions and residual connections, enabling efficient modeling of long-range temporal dependencies with fewer layers.
 
-\begin{figure}[h]
+Each TCN block consists of a depthwise separable convolution, non-linear activation (PReLU), normalization (group normalization), and a residual connection. Dilation factors increase exponentially across layers (e.g., 1, 2, 4, 8), allowing the model to expand its receptive field efficiently while maintaining computational stability. By stacking multiple TCN blocks, Conv-TasNet captures broad temporal contexts without the sequential limitations of recurrent models.
+
+Conv-TasNet achieved state-of-the-art performance in speech separation tasks, surpassing conventional magnitude masking methods. The paper demonstrated the model's ability to separate multiple overlapping speakers from a single-channel recording under challenging conditions, highlighting the effectiveness of its end-to-end training approach in learning optimal source representations.
+
+\begin{figure}[H]
     \centering
-    \includegraphics[width=0.5\textwidth,keepaspectratio]{autoencoder.png}
-    \caption{\label{fig:autoencoder} Block diagram of an autoencoder architecture \cite{vachhani2017dae}.}
+    \includegraphics[width=0.8\textwidth]{TwoSpeakSeperation.png}
+    \caption{Source masks for a sample two-speaker mixture \cite{luo2019conv}.}
+    \label{fig:convtasnet}
 \end{figure}
 
-An autoencoder consists of two main components: an encoder and a decoder. The encoder compresses the input signal \(x\) into a low-dimensional latent space by passing it through convolutional, pooling, or fully connected layers. A central \textit{bottleneck} layer enforces this compression, encouraging the model to retain only the most salient features—such as speech structure—while discarding irrelevant noise.
-
-The decoder then reconstructs the signal \(y\) from the latent representation, typically using upsampling, transposed convolutions, or dense layers in a mirrored arrangement. The objective is to recover the clean speech with minimal reconstruction error.
-
-Autoencoders are trained using paired datasets of noisy and clean speech. During training, the noisy input is passed through the network, and the output is compared to the clean reference. The model is optimised to minimise the difference—typically using a loss function such as Mean Squared Error (MSE) or Mean Absolute Error (MAE).
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth,keepaspectratio]{weigths.png}
-    \caption{\label{fig:weigths} Loss and weight update process in an autoencoder \cite{epoch2021}.}
-\end{figure}
-
-Training proceeds iteratively. A forward pass generates an output, and the loss function quantifies the error. This error is then propagated backward through the network via backpropagation to compute gradients, which are used to update the model’s weights using optimisers like Stochastic Gradient Descent (SGD) or Adam. This cycle continues for many epochs until convergence.
-
-Recent advances have introduced more robust architectures. For example, Kim et al.~\cite{kim2024residual} proposed a residual-attention Gated Linear Unit (GLU) model for end-to-end (E2E) speech enhancement. Their model outperformed SOTA methods such as FAIR-Denoiser and CleanUNet across a wide SNR range (0–15 dB), showcasing the effectiveness of modern ML approaches.
-
-Evaluation metrics such as SNR, PESQ, STOI, and MSE—used in these studies—will also be used in this project to assess and compare both classical and ML-based denoising systems. These metrics are discussed in detail in Chapter~\ref{chp:evaluation}.
+In this project, the Conv-TasNet framework is adapted to operate on complex-valued spectrogram inputs for the task of speech denoising, while preserving the Temporal Convolutional Network (TCN) structure for modeling long-range dependencies.

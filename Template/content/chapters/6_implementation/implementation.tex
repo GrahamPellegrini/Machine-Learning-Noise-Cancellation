@@ -45,23 +45,28 @@ The \texttt{collate} method then pads or truncates each waveform to its bucket's
 
 Dynamic bucketing combines flexibility with performance, adapting to the dataset rather than imposing fixed constraints. It is particularly effective when the data contains a wide or uneven distribution of sequence lengths. When comparing dynamic to static bucketing, we observe that the dynamic method identifies two buckets around the 2-second mark that are heavily populated—clearly illustrating its ability to adapt to the underlying structure of the dataset more effectively than the fixed approach.
 
+
 \subsection{Padding-Truncation Output-Truncation (PTO)}
 \label{subsec:pto_dataset}
 
-The Padding-Truncation Output-Truncation (PTO) approach avoids both fixed-length and bucketing strategies. Instead, it applies padding on a per-batch basis, using the longest sample in the batch as a reference. This ensures minimal padding while maintaining alignment within the batch.
+The Padding-Truncation Output-Truncation (PTO) method, introduced by Yoon and Yu~\cite{yoon2020pto} and discussed in Section~\ref{sec:distortion_free_handling}, was implemented in this project following the original proposal.
 
-The core idea is drawn from the work of Zhao et al.~\cite{yoon2020pto}, which proposed an output-truncation mechanism for real-time audio processing. During training, each sample is padded to match the maximum length in the batch, and its original length is stored. After inference, the output is cropped back to the original length, ensuring alignment with the unpadded input.
+To facilitate the integration of PTO into the data pipeline, a custom \texttt{pto\_collate} function was developed. This function aligns all spectrograms along the frequency axis using bilinear interpolation, then pads the time axis so that all samples in a batch match the length of the longest sample. Additionally, the original (pre-padding) lengths of each input are recorded and returned alongside the padded tensors.
+
+During training, batches consist of spectrograms with uniform dimensions, while preserving the original input lengths for later use. After inference, model outputs are cropped back to their corresponding original lengths, ensuring that the final enhanced outputs remain distortion-free and aligned with the original input signals.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{pto_pad.png}
-    \caption{Padding effect using the PTO method}
+    \caption{Padding effect using the PTO method.}
     \label{fig:pto_pad}
 \end{figure}
 
-In this implementation, a custom \texttt{pto\_collate} function first aligns the frequency dimension using bilinear interpolation, then pads the time axis. The model is trained on uniformly shaped tensors, but retains the ability to reconstruct clean speech at its original length, mitigating the impact of zero-padding.
+The PTO method simulates real-time signal processing by operating on frame-aligned STFT inputs, making it highly suitable for deployment in low-latency scenarios. Unlike bucketing methods, it does not require predefined groups or clustering of sequence lengths, offering greater adaptability to varied datasets.
 
-The PTO method simulates real-time signal processing by training on frame-aligned STFT inputs, making it highly suitable for deployment in low-latency scenarios. Unlike bucketing methods, it does not require predefined groups or length clustering, making it the most dynamic and adaptive option in the dataset pipeline. However, it does come with its own computational overheads, as padding is still required. Furthermore, output truncation introduces an additional processing step. Although padding is mitigated at inference by truncating the output, the model is still trained on padded inputs—therefore, the cost of padding is not entirely eliminated.
+However, it introduces computational overhead, as padding is still necessary during training and output truncation adds an extra processing step at inference. This overhead was addressed by implementing additional handling within the training pipeline. Firstly, to correctly manage the extra PTO parameter containing the original (unpadded) lengths. Secondly, to perform output truncation as a post-processing step, cropping model outputs back to their original lengths after inference.
+
+It is also noted that, although padding is mitigated post-inference, the model remains exposed to padded inputs during training, meaning model weights are still updated based on padded data. 
 
 \subsection{Helper Functions}
 \label{subsec:helper_functions}
