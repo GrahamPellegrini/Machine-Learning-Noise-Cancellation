@@ -245,7 +245,8 @@ def single_denoise(device, model, model_pth, noisy_pth, output_pth, sr, nfft, ho
         # Normalize to avoid extreme values
         waveform = waveform / (torch.max(torch.abs(waveform)) + 1e-6)
 
-        den_waveform = classical(waveform, classical_method)
+        den_waveform = classical(waveform.unsqueeze(0), classical_method)
+        
         waveform = den_waveform.cpu()
     else:
         # === Model-based Single Denoise ===

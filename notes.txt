@@ -1,21 +1,42 @@
-Make sure english is not american 
+
+
 
 Change the appendix section of the project structure to the encapsulated single denoise now.
+
+Background          - Move Machine learning here.
+
+Literature Review   - No need for Nueral Networks explination possibly.
+                    - Needs to be inforamation sourced from a paper mainly that isnt common knowledge
+                    - So Desing and PTO dataset handeling  where paper refernces are directly made. Needs to be moved here and then shorter explination can be made in the Desing. 
+
+OOM Validation 
+                    - Metrics are mentioned to cause negligable change but with respect to LSD and PESQ there are signifacnt downgrades.    
+                    - Make clear that RCED is being used to conduct the training since it is not as deep of a architecture as Unet or ConvTasNet that mostly expirence the OOM error due to their increased complexity and depth.
+
+Evaluation
+                    - Check the major 18 x of ConvTasNet compared to the other models seems very large and need to make comments on it.
+                    - Compare models subjectively off of single test audios
+                    - Compare models to a pretrained model
+
+Consistenty:
+                    - British English not American
+                    - \texttt fit for coding names 
+                    - \textbf titles
+
+Fix the denoising of the classical single methods
 
 Conduct Hyperparmater tuning
 
 Deployment Code
 
-
 Possible needs for changes:
+    -1.1  However, during evaluation and benchmarking, pre-trained models
+    will be used for comparison to assess their effectiveness against the proposed
+    approach.
 
+    -1.1 The project is structured into three core phases: training, denoising,
+    and deployment....
 
--1.1  However, during evaluation and benchmarking, pre-trained models
-will be used for comparison to assess their effectiveness against the proposed
-approach.
+    -2.5 and assess their feasibility for real-time embedded deployment
 
--1.1 The project is structured into three core phases: training, denoising,
-and deployment....
-
--2.5 and assess their feasibility for real-time embedded deployment
-
+Questions to ask:

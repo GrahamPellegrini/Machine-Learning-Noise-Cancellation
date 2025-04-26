@@ -121,8 +121,15 @@ if __name__ == "__main__":
             model = RCED()
         elif model_name == "UNet":
             model = UNet()
-        elif model_name == "ConvTasNet":
-            model = ConvTasNet(enc_dim=128, feature_dim=48, kernel_size=(3, 3), num_layers=3, num_stacks=1)
+        elif model_name == "ConvTasNet":   
+            model = ConvTasNet(
+                enc_dim=128,
+                feature_dim=48,
+                kernel_size=(5, 5),
+                num_layers=3,
+                num_stacks=1
+            )
+
         else:
             raise ValueError(f"Invalid MODEL: {model_name}\n Choose from ['CNN', 'UNet', 'ConvTasNet']")
         
@@ -190,8 +197,14 @@ if __name__ == "__main__":
                 model = RCED()
             elif model_name == "UNet":
                 model = UNet()
-            elif model_name == "ConvTasNet":
-                model = ConvTasNet(enc_dim=128, feature_dim=48, kernel_size=(3, 3), num_layers=3, num_stacks=1)
+            elif model_name == "ConvTasNet":   
+                model = ConvTasNet(
+                    enc_dim=128,
+                    feature_dim=48,
+                    kernel_size=(5, 5),
+                    num_layers=3,
+                    num_stacks=1
+                )
             else:
                 raise ValueError(f"Invalid MODEL: {model_name}")
 

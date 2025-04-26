@@ -7,7 +7,7 @@ The configuration file for the project. This file contains all the parameters fo
 """
 
 # Application Mode
-MODE = "denoise"  # OPTIONS: "train" or "denoise"
+MODE = "train"  # OPTIONS: "train" or "denoise"
 
 # Dataset Parameters
 DATASET_DIR = "../ED-Noisy-Speech-Datashare"  # Path to the dataset
@@ -26,7 +26,7 @@ NUM_BUCKET = 5  # Number of dynamic buckets (dynamic only)
 
 
 # Model Parameters
-MODEL = "UNet"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
+MODEL = "ConvTasNet"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
 EPOCHS = 25  # Number of epochs to train the model
 LEARNING_RATE = 1e-3  # Learning rate for the model
 SCHEDULER = True  # Use a learning rate scheduler
@@ -34,11 +34,11 @@ MODEL_PTH = "Models/25/" + MODEL + "_" + PAD_METHOD + ".pth"  # Path to save the
 
 # Classical Denoising Parameters
 CLASSICAL = False  # Use classical methods for denoising
-CLASSICAL_METHOD = "spectral_sub"  # Options: 'spectral_sub','wiener', 'mmse_lsa'
+CLASSICAL_METHOD = "wiener"  # Options: 'spectral_sub','wiener', 'mmse_lsa'
 
 
 # Denoise Parameters
-SINGLE = False  # Denoise a single audio file
+SINGLE = True  # Denoise a single audio file
 METRICS_PTH = (
     "Output/txt/" + CLASSICAL_METHOD + "_metrics.txt"
     if CLASSICAL else

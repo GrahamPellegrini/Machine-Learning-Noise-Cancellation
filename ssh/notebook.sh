@@ -11,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/Hyper_ConvTasNet.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/Hyper_ConvTasNet.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/Notebook1.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/Notebook1.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=Hyper_ConvTasNet
+#SBATCH --job-name=Notebook1
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt
@@ -37,9 +37,8 @@ cd /opt/users/gpel0001/nnc-fyp/.Project
 
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:16
 
-
-# Run python script
-python3 main.py
+# Run notebook inplace 
+python3 -m jupyter nbconvert --to notebook --execute --inplace hyperparam.ipynb
 
 # Indicate that the job has finished
 echo "Job finished successfully"

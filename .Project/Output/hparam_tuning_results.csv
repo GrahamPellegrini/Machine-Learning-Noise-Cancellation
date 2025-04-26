@@ -1,0 +1,3 @@
+trial_name,enc_dim,feature_dim,kernel_size,num_layers,num_stacks,val_loss,time
+T2_BestBaseline,128,48,"(3, 3)",4,2,NA,31324.95146369934
+T6_LargerKernel,128,48,"(5, 5)",4,2,NA,32429.53096961975

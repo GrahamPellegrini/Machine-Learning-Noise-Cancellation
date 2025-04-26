@@ -3,6 +3,6 @@ Using GPU: NVIDIA GeForce RTX 3060
 Device set to: cuda
 Loaded cache file: cache/dynamic/testset_buckets.pkl
 --- Test Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
---- Model `UNet` loaded successfully ---
-✔ Metrics saved to Output/txt/UNet_dynamic_metrics.txt
+--- Model `CNN` loaded successfully ---
+✅ Denoised audio saved to: Output/wav/CNN_dynamic_p232_014.wav
 Job finished successfully
