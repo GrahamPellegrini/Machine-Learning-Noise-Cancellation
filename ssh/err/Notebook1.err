@@ -1,1 +1,128 @@
 [NbConvertApp] Converting notebook hyperparam.ipynb to notebook
+Traceback (most recent call last):
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/bin/jupyter-nbconvert", line 8, in <module>
+    sys.exit(main())
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/jupyter_core/application.py", line 283, in launch_instance
+    super().launch_instance(argv=argv, **kwargs)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/traitlets/config/application.py", line 1075, in launch_instance
+    app.start()
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/nbconvertapp.py", line 420, in start
+    self.convert_notebooks()
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/nbconvertapp.py", line 597, in convert_notebooks
+    self.convert_single_notebook(notebook_filename)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/nbconvertapp.py", line 563, in convert_single_notebook
+    output, resources = self.export_single_notebook(
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/nbconvertapp.py", line 487, in export_single_notebook
+    output, resources = self.exporter.from_filename(
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/exporters/exporter.py", line 201, in from_filename
+    return self.from_file(f, resources=resources, **kw)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/exporters/exporter.py", line 220, in from_file
+    return self.from_notebook_node(
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/exporters/notebook.py", line 36, in from_notebook_node
+    nb_copy, resources = super().from_notebook_node(nb, resources, **kw)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/exporters/exporter.py", line 154, in from_notebook_node
+    nb_copy, resources = self._preprocess(nb_copy, resources)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/exporters/exporter.py", line 353, in _preprocess
+    nbc, resc = preprocessor(nbc, resc)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/preprocessors/base.py", line 48, in __call__
+    return self.preprocess(nb, resources)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/preprocessors/execute.py", line 103, in preprocess
+    self.preprocess_cell(cell, resources, index)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbconvert/preprocessors/execute.py", line 124, in preprocess_cell
+    cell = self.execute_cell(cell, index, store_history=True)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/jupyter_core/utils/__init__.py", line 165, in wrapped
+    return loop.run_until_complete(inner)
+  File "/usr/lib/python3.10/asyncio/base_events.py", line 649, in run_until_complete
+    return future.result()
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbclient/client.py", line 1062, in async_execute_cell
+    await self._check_raise_for_error(cell, cell_index, exec_reply)
+  File "/opt/users/gpel0001/nnc-fyp/nnc-venv/lib/python3.10/site-packages/nbclient/client.py", line 918, in _check_raise_for_error
+    raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
+nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
+------------------
+# ============================
+# 🧪 6. Evaluate Denoising Performance
+# ============================
+from Utils.denoise import batch_denoise
+
+# Setup test loader using 28spk set (same val set)
+test_loader = val_loader  # reuse for consistency
+
+# Evaluate each saved model
+for trial in results_df["trial_name"]:
+    model_pth = f"Models/{trial}_ConvTasNet.pth"
+    metric_out = f"Output/txt/{trial}_metrics.txt"
+
+    print(f"\n🔍 Evaluating {trial} model...")
+
+    model = ConvTasNet()  # default constructor; weights loaded from file
+
+    batch_denoise(
+        device=device,
+        model=model,
+        model_pth=model_pth,
+        classical_method=None,
+        test_loader=test_loader,
+        sr=sr,
+        n_fft=n_fft,
+        hop_length=hop_length,
+        metric_pth=metric_out,
+        pto=False  # change to True if you're using PTO loader
+    )
+
+------------------
+
+----- stdout -----
+
+🔍 Evaluating T2_Adam_LR1e-3 model...
+------------------
+
+[0;31m---------------------------------------------------------------------------[0m
+[0;31mFileNotFoundError[0m                         Traceback (most recent call last)
+Cell [0;32mIn[6], line 18[0m
+[1;32m     14[0m [38;5;28mprint[39m([38;5;124mf[39m[38;5;124m"[39m[38;5;130;01m\n[39;00m[38;5;124m🔍 Evaluating [39m[38;5;132;01m{[39;00mtrial[38;5;132;01m}[39;00m[38;5;124m model...[39m[38;5;124m"[39m)
+[1;32m     16[0m model [38;5;241m=[39m ConvTasNet()  [38;5;66;03m# default constructor; weights loaded from file[39;00m
+[0;32m---> 18[0m [43mbatch_denoise[49m[43m([49m
+[1;32m     19[0m [43m    [49m[43mdevice[49m[38;5;241;43m=[39;49m[43mdevice[49m[43m,[49m
+[1;32m     20[0m [43m    [49m[43mmodel[49m[38;5;241;43m=[39;49m[43mmodel[49m[43m,[49m
+[1;32m     21[0m [43m    [49m[43mmodel_pth[49m[38;5;241;43m=[39;49m[43mmodel_pth[49m[43m,[49m
+[1;32m     22[0m [43m    [49m[43mclassical_method[49m[38;5;241;43m=[39;49m[38;5;28;43;01mNone[39;49;00m[43m,[49m
+[1;32m     23[0m [43m    [49m[43mtest_loader[49m[38;5;241;43m=[39;49m[43mtest_loader[49m[43m,[49m
+[1;32m     24[0m [43m    [49m[43msr[49m[38;5;241;43m=[39;49m[43msr[49m[43m,[49m
+[1;32m     25[0m [43m    [49m[43mn_fft[49m[38;5;241;43m=[39;49m[43mn_fft[49m[43m,[49m
+[1;32m     26[0m [43m    [49m[43mhop_length[49m[38;5;241;43m=[39;49m[43mhop_length[49m[43m,[49m
+[1;32m     27[0m [43m    [49m[43mmetric_pth[49m[38;5;241;43m=[39;49m[43mmetric_out[49m[43m,[49m
+[1;32m     28[0m [43m    [49m[43mpto[49m[38;5;241;43m=[39;49m[38;5;28;43;01mFalse[39;49;00m[43m  [49m[38;5;66;43;03m# change to True if you're using PTO loader[39;49;00m
+[1;32m     29[0m [43m[49m[43m)[49m
+
+File [0;32m~/nnc-fyp/.Project/Utils/denoise.py:189[0m, in [0;36mbatch_denoise[0;34m(device, model, model_pth, classical_method, test_loader, sr, n_fft, hop_length, metric_pth, pto)[0m
+[1;32m    185[0m         pesq_list[38;5;241m.[39mappend(pesq_s); stoi_list[38;5;241m.[39mappend(stoi_s)
+[1;32m    187[0m [38;5;66;03m# === Model-based Denoising ===[39;00m
+[1;32m    188[0m [38;5;28;01melse[39;00m:
+[0;32m--> 189[0m     model[38;5;241m.[39mload_state_dict([43mtorch[49m[38;5;241;43m.[39;49m[43mload[49m[43m([49m[43mmodel_pth[49m[43m,[49m[43m [49m[43mmap_location[49m[38;5;241;43m=[39;49m[43mdevice[49m[43m)[49m)
+[1;32m    190[0m     model[38;5;241m.[39mto(device)[38;5;241m.[39meval()
+[1;32m    191[0m     inverse_spec [38;5;241m=[39m T[38;5;241m.[39mInverseSpectrogram(n_fft[38;5;241m=[39mn_fft, hop_length[38;5;241m=[39mhop_length)[38;5;241m.[39mto(device)
+
+File [0;32m~/nnc-fyp/nnc-venv/lib/python3.10/site-packages/torch/serialization.py:1425[0m, in [0;36mload[0;34m(f, map_location, pickle_module, weights_only, mmap, **pickle_load_args)[0m
+[1;32m   1422[0m [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mencoding[39m[38;5;124m"[39m [38;5;129;01mnot[39;00m [38;5;129;01min[39;00m pickle_load_args[38;5;241m.[39mkeys():
+[1;32m   1423[0m     pickle_load_args[[38;5;124m"[39m[38;5;124mencoding[39m[38;5;124m"[39m] [38;5;241m=[39m [38;5;124m"[39m[38;5;124mutf-8[39m[38;5;124m"[39m
+[0;32m-> 1425[0m [38;5;28;01mwith[39;00m [43m_open_file_like[49m[43m([49m[43mf[49m[43m,[49m[43m [49m[38;5;124;43m"[39;49m[38;5;124;43mrb[39;49m[38;5;124;43m"[39;49m[43m)[49m [38;5;28;01mas[39;00m opened_file:
+[1;32m   1426[0m     [38;5;28;01mif[39;00m _is_zipfile(opened_file):
+[1;32m   1427[0m         [38;5;66;03m# The zipfile reader is going to advance the current file position.[39;00m
+[1;32m   1428[0m         [38;5;66;03m# If we want to actually tail call to torch.jit.load, we need to[39;00m
+[1;32m   1429[0m         [38;5;66;03m# reset back to the original position.[39;00m
+[1;32m   1430[0m         orig_position [38;5;241m=[39m opened_file[38;5;241m.[39mtell()
+
+File [0;32m~/nnc-fyp/nnc-venv/lib/python3.10/site-packages/torch/serialization.py:751[0m, in [0;36m_open_file_like[0;34m(name_or_buffer, mode)[0m
+[1;32m    749[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21m_open_file_like[39m(name_or_buffer, mode):
+[1;32m    750[0m     [38;5;28;01mif[39;00m _is_path(name_or_buffer):
+[0;32m--> 751[0m         [38;5;28;01mreturn[39;00m [43m_open_file[49m[43m([49m[43mname_or_buffer[49m[43m,[49m[43m [49m[43mmode[49m[43m)[49m
+[1;32m    752[0m     [38;5;28;01melse[39;00m:
+[1;32m    753[0m         [38;5;28;01mif[39;00m [38;5;124m"[39m[38;5;124mw[39m[38;5;124m"[39m [38;5;129;01min[39;00m mode:
+
+File [0;32m~/nnc-fyp/nnc-venv/lib/python3.10/site-packages/torch/serialization.py:732[0m, in [0;36m_open_file.__init__[0;34m(self, name, mode)[0m
+[1;32m    731[0m [38;5;28;01mdef[39;00m[38;5;250m [39m[38;5;21m__init__[39m([38;5;28mself[39m, name, mode):
+[0;32m--> 732[0m     [38;5;28msuper[39m()[38;5;241m.[39m[38;5;21m__init__[39m([38;5;28;43mopen[39;49m[43m([49m[43mname[49m[43m,[49m[43m [49m[43mmode[49m[43m)[49m)
+
+[0;31mFileNotFoundError[0m: [Errno 2] No such file or directory: 'Models/T2_Adam_LR1e-3_ConvTasNet.pth'
+

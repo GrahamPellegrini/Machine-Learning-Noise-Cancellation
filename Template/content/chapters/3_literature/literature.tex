@@ -9,7 +9,7 @@ A significant challenge addressed in Section~\ref{sec:variable_length_handling} 
 
 Their work focuses on minimizing the information distortion introduced when sequences of varying lengths are batched for training. They explain the shortcomings of traditional padding and truncation methods, as well as more advanced implementations such as \texttt{PackedSequence} in PyTorch. While these methods enable batch processing, they inevitably introduce either loss of important information (via truncation) or addition of irrelevant information (via padding).
 
-To address this, Yoon and Yu proposed the Padding-Truncation Output-Truncation (PTO) method, a distortion-free technique that preserves the original sequence structure. In PTO, sequences are padded within a batch to match the longest input, but after processing, outputs are truncated back to their respective original lengths. This ensures that embeddings are computed exclusively from genuine input frames, avoiding the effects of artificial padding.
+To address this, Yoon and Yu proposed the Padding-Truncation Output-Truncation (PTO) method, a distortion-free technique that preserves the original sequence structure. In PTO, sequences are padded within a batch to match the longest input, but after processing, outputs are truncated back to their respective original lengths.
 
 Experimental evaluation on the RSR2015 speaker verification dataset demonstrated that the PTO method consistently outperformed conventional approaches in terms of equal error rate (EER), achieving up to a 27\% relative improvement over baseline methods, while incurring only a modest computational overhead.
 
@@ -24,7 +24,7 @@ One particularly relevant work is the study by Park and Lee~\cite{park2017acoust
 
 The CED model follows a symmetric encoder-decoder structure without an explicit bottleneck and is optimized for temporal feature extraction using frequency-preserving convolutional kernels. The real and imaginary components of the spectrogram are concatenated to form a two-channel input. The network compresses input features along the encoder and reconstructs them along the decoder, using pooling and upsampling operations to manage feature dimensions.
 
-However, the paper notes a drawback of the CED architecture: aggressive compression and upsampling operations can lead to information loss, particularly in the context of speech signals where temporal resolution is critical. To address this, the authors proposed the R-CED model, which removes pooling and upsampling layers entirely, instead employing redundant convolutional layers to augment feature representations. This design maintains full resolution throughout the network, enabling more effective denoising without sacrificing temporal fidelity.
+However, the paper notes a drawback of the CED architecture. Aggressive compression and upsampling operations can lead to information loss, particularly in the context of speech signals where temporal resolution is critical. To address this, the authors proposed the R-CED model. It removes pooling and upsampling layers entirely, instead employing redundant convolutional layers to augment feature representations. This design maintains full resolution throughout the network, enabling more effective denoising without sacrificing temporal fidelity.
 
 \begin{figure}[H]
     \centering
@@ -37,7 +37,7 @@ However, the paper notes a drawback of the CED architecture: aggressive compress
 The results of the study demonstrated that R-CED consistently outperformed the conventional CED when evaluated with 10 convolutional layers and an equal parameter budget. Furthermore, performance improvements were observed by incorporating skip connections between encoder and decoder layers, which allow low-level feature information to be preserved and passed through the network. As shown in Figure~\ref{fig:fcns_results}, the addition of skip connections further enhanced the denoising capability of both the CED and R-CED architectures, with the R-CED (skip) configuration achieving the highest overall performance among the tested models.
 
 
-\subsection{Conv-TasNet for End-to-End Speech Separation}
+\section{Conv-TasNet for End-to-End Speech Separation}
 \label{sec:convtasnet_lit_review}
 
 Conv-TasNet is a convolutional neural network architecture proposed by Luo and Mesgarani~\cite{luo2019conv}, representing a significant advancement in the field of speech enhancement. Unlike traditional approaches that operate in the time-frequency domain, Conv-TasNet processes raw audio waveforms directly using a Temporal Convolutional Network (TCN). The TCN replaces recurrent layers by employing stacked dilated convolutions and residual connections, enabling efficient modeling of long-range temporal dependencies with fewer layers.

@@ -1,0 +1,31 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060
+Device set to: cuda
+Loaded cache file: cache/static/trainset_56spk_buckets.pkl
+Loaded cache file: cache/static/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 1.11 seconds
+--- Model `CED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.8602, Val Loss: 0.8497, Val SNR: 1.08 dB
+✔ Model saved to Models/CED_static.pth (Best Val Loss: 0.8497)
+Epoch [2/10] - Loss: 0.8434, Val Loss: 0.8457, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_static.pth (Best Val Loss: 0.8457)
+Epoch [3/10] - Loss: 0.8413, Val Loss: 0.8447, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_static.pth (Best Val Loss: 0.8447)
+Epoch [4/10] - Loss: 0.8402, Val Loss: 0.8434, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_static.pth (Best Val Loss: 0.8434)
+Epoch [5/10] - Loss: 0.8389, Val Loss: 0.8436, Val SNR: 1.09 dB
+Epoch [6/10] - Loss: 0.8382, Val Loss: 0.8440, Val SNR: 1.09 dB
+Epoch [7/10] - Loss: 0.8374, Val Loss: 0.8438, Val SNR: 1.09 dB
+Epoch [8/10] - Loss: 0.8369, Val Loss: 0.8428, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_static.pth (Best Val Loss: 0.8428)
+Epoch [9/10] - Loss: 0.8365, Val Loss: 0.8414, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_static.pth (Best Val Loss: 0.8414)
+Epoch [10/10] - Loss: 0.8360, Val Loss: 0.8408, Val SNR: 1.09 dB
+✔ Model saved to Models/CED_static.pth (Best Val Loss: 0.8408)
+--- Training Complete ---
+@ Total Training Time: 10205.37 seconds
+@ Total Training Time: 170.09 minutes
+@ Total Training Time: 2.83 hours
+Job finished successfully

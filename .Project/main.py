@@ -236,3 +236,5 @@ if __name__ == "__main__":
                 metric_pth,
                 pto=(pad_method == "pto")
             )
+    else:
+        raise ValueError(f"Invalid MODE: {config.MODE}\n Choose from ['train', 'denoise']")

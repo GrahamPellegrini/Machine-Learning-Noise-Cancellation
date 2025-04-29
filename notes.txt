@@ -3,20 +3,18 @@
 
 Change the appendix section of the project structure to the encapsulated single denoise now.
 
-Background          - Move Machine learning here.
-
-Literature Review   - No need for Nueral Networks explination possibly.
-                    - Needs to be inforamation sourced from a paper mainly that isnt common knowledge
-                    - So Desing and PTO dataset handeling  where paper refernces are directly made. Needs to be moved here and then shorter explination can be made in the Desing. 
-
-OOM Validation 
-                    - Metrics are mentioned to cause negligable change but with respect to LSD and PESQ there are signifacnt downgrades.    
-                    - Make clear that RCED is being used to conduct the training since it is not as deep of a architecture as Unet or ConvTasNet that mostly expirence the OOM error due to their increased complexity and depth.
+Move all introduction paraghraphs for chapters to Overiew section in intro
 
 Evaluation
                     - Check the major 18 x of ConvTasNet compared to the other models seems very large and need to make comments on it.
                     - Compare models subjectively off of single test audios
                     - Compare models to a pretrained model
+
+Conclusion
+                    - We need to conclude on the question of Classical vs ML
+                    - State that although we struggled to find significant imporvements in models and one that did perform well. The results blew through any optimistic results of Classical methods.
+                    - State ConvTasNet as our best performer good for deployment
+                    - Possibly mention deployment 
 
 Consistenty:
                     - British English not American

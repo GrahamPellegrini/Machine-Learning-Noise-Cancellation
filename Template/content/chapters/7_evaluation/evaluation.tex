@@ -7,7 +7,7 @@ This chapter presents a comprehensive evaluation of the implemented speech enhan
 \section{Dataset Performance}
 \label{sec:dataset_performance}
 
-This section examines the performance of the three dataset handling strategies: Static Bucketing, Dynamic Bucketing, and Padding-Truncation Output-Truncation (PTO). The goal is to assess how these strategies affect the overall efficiency of the training process, particularly in terms of dataset loading times, runtime overhead during training, and their influence on model performance. Each strategy was tested using the same model architecture, the Contextual Encoder-Decoder (CED), under two conditions:
+This section examines the performance of the three dataset handling strategies: Static Bucketing, Dynamic Bucketing, and Padding-Truncation Output-Truncation (PTO). The goal is to assess how these strategies affect the overall efficiency of the training process, particularly in terms of dataset loading times, runtime overhead during training, and their influence on model performance. Each strategy was tested using the same model architecture, the Contextual Encoder-Decoder (CED), chosen for its simplicity and effectiveness in the spectrogram domain. Under two conditions:
 
 \begin{itemize}
     \item \textbf{Cold Run (Uncached):} In this scenario, all dataset operations are executed from scratch. Static and Dynamic Bucketing compute bucket assignments (with Dynamic Bucketing also requiring K-Means clustering), while PTO calculates and stores the original waveform lengths. This setup simulates a first-time deployment or training on a fresh system.
@@ -74,7 +74,7 @@ While all three methods enable effective training, Dynamic Bucketing offers the 
 \section{OOM Validation}
 \label{sec:oom_validation}
 
-While Section~\ref{sec:oom_handling} outlined several techniques to mitigate Out-of-Memory (OOM) errors during training. It is important to demonstrate that these strategies do not compromise model learning. The goal of this section is to validate that memory-saving methods do not lead to information loss or degraded performance. To assess this, three training configurations were evaluated using the same RCED model architecture and the Dynamic Bucketing dataset strategy:
+While Section~\ref{sec:oom_handling} outlined several techniques to mitigate Out-of-Memory (OOM) errors during training. It is important to demonstrate that these strategies do not compromise model learning. The goal of this section is to validate that memory-saving methods do not lead to information loss or degraded performance. To assess this, the RCED model was used, since the UNet and ConvTasNet could not be trained without OOM-handling techniques. Training was conducted using the dynamic bucketing strategy and compared across three different configurations:
 
 \begin{enumerate}
     \item \textbf{Clean Training (Baseline):} A standard training loop without any OOM-handling logic, using a batch size of 4. This configuration serves as the control, with no memory management mechanisms.
@@ -84,7 +84,7 @@ While Section~\ref{sec:oom_handling} outlined several techniques to mitigate Out
     \item \textbf{OOM + Accumulation (Batch 2, Accum 2):} The batch size was reduced to 2, with gradient accumulation set to 2, simulating an effective batch size of 4. All OOM-handling techniques remained enabled. This configuration is designed to reduce memory usage while preserving gradient stability.
 \end{enumerate}
 
-Each configuration was trained for the same number of epochs, using identical learning rates, optimizers, and data augmentation (if any). Table~\ref{tab:oom_training} summarizes the training and validation performance.
+Each configuration was trained for the same number of epochs, using identical learning rates and optimizers. Table~\ref{tab:oom_training} summarizes the training and validation performance.
 
 \vspace{1em}
 \begin{table}[H]
@@ -102,9 +102,9 @@ OOM + Accumulation     & 0.8007 & 0.8077 & 1.11 dB & 3.02 h \\
 \end{tabular}
 \end{table}
 
-As shown in Table~\ref{tab:oom_training}, OOM-handling techniques do not significantly affect model performance. Although the training and validation losses are slightly higher than the baseline, the differences are minimal and are outweighed by the substantial reduction in training time. This speedup likely results from improved memory efficiency via FP16 computation, garbage collection, and reduced GPU memory overhead.
+The results in Table~\ref{tab:oom_training} demonstrate that OOM-handling techniques do not significantly impact model learning during training. Although training and validation losses are slightly higher for the OOM configurations compared to the baseline, the differences are minimal and are outweighed by the substantial reduction in training time. This speedup is likely attributed to improved memory efficiency through FP16 computation, garbage collection, and lower GPU memory pressure, making these techniques highly practical for resource-constrained training.
 
-Each model was also evaluated in the full denoising pipeline. Table~\ref{tab:oom_metrics} presents the performance metrics across key evaluation criteria.
+Each configuration was further evaluated in the full denoising pipeline. Table~\ref{tab:oom_metrics} presents the performance metrics across key evaluation criteria.
 
 \vspace{1em}
 \begin{table}[H]
@@ -122,21 +122,23 @@ OOM + Accumulation     & 0.9714 & 0.002085 & 1.2611 & 0.8044 & 0.9004 \\
 \end{tabular}
 \end{table}
 
-Once again, the results in Table~\ref{tab:oom_metrics} confirm that OOM-handling techniques do not degrade model output quality in any meaningful way. The baseline configuration achieves slightly better metrics, which may be attributed to the longer training duration and use of full-precision computation. However, the differences are negligible, and the gains in training efficiency justify the use of OOM-handling strategies in practice.
+While the training metrics showed minimal differences, the denoising evaluation reveals more noticeable degradations across OOM-handled configurations. Compared to the baseline, the OOM Handling and OOM + Accumulation configurations experience slight drops in PESQ and STOI, along with a more substantial increase in LSD. The higher LSD indicates that the spectral characteristics of the denoised output deviate more from the clean signal, suggesting a measurable decline in spectral fidelity and overall signal clarity.
+
+This discrepancy can be explained by the reduced numerical precision introduced by FP16 operations. While FP16 improves training speed and reduces memory usage, it also introduces minor rounding errors that can accumulate during training and slightly degrade output quality. Additionally, the use of gradient accumulation may introduce subtle variations in the optimization dynamics compared to pure full-precision training.
+
+Nevertheless, despite these differences, the denoising degradations remain modest relative to the practical advantages gained. Crucially, the use of OOM-handling techniques enables the training of deeper and more complex models that would otherwise be infeasible due to memory constraints. Models like UNet and Conv-TasNet validate this trade-off, as they achieve substantial performance improvements despite their higher memory demands. These improvements are explored in more detail in Section~\ref{sec:model_performance}.
 
 \section{Model Performance}
 \label{sec:model_performance}
 
-This section presents the most critical part of the evaluation and the central focus of the project: a comparative assessment of classical methods and five machine learning models for speech enhancement. Unlike earlier evaluations, which focused on dataset handling strategies and OOM mitigation techniques using fixed models to conduct the justification. The main scope of this project is to justify the use of machine learning models for speech enhancement, and to evaluate their performance against classical methods.
-
+This section presents the most critical part of the evaluation and the central focus of the project. A comparative assessment of classical methods and five machine learning models for speech enhancement. Unlike earlier evaluations, which focused on dataset handling strategies and OOM mitigation techniques using fixed models to conduct the justification. The main scope of this project is to justify the use of machine learning models for speech enhancement and to evaluate their performance against classical methods.
 
 The evaluation retains the previously established dynamic bucketing and OOM handling strategies but now focuses on how model design impacts training efficiency and denoising performance. The section begins with an analysis of classical denoising methods to establish a meaningful baseline for comparison.
 
 \subsection{Classical Methods}
 \label{sec:classical_methods}
 
-The classical methods evaluated include Spectral Subtraction (SS), Wiener Filtering (WF), and the Minimum Mean Square Error - Log Spectral Amplitude estimator (MMSE-LSA), all implemented in a single-channel setting. SS and WF 
-foundational methods in literature, whilst MMSE-LSA represents a more developed and perceptually motivated approach. Since these methods do not require training, the classical evaluation bypasses training and instead focuses solely on denoising performance using the same pipeline and evaluation metrics as the learning-based models.
+The classical methods evaluated include Spectral Subtraction (SS), Wiener Filtering (WF), and the Minimum Mean Square Error - Log Spectral Amplitude estimator (MMSE-LSA), all implemented in a single-channel setting. SS and WF are foundational methods in literature, whilst MMSE-LSA represents a more developed and perceptually motivated approach. Since these methods do not require training, the classical evaluation bypasses training and instead focuses solely on denoising performance using the same pipeline and evaluation metrics as the learning-based models.
 
 
 \vspace{1em}
@@ -158,12 +160,16 @@ MMSE-LSA    & -2.3929 & 0.005440 & 2.0671 & 0.8974 & 0.8274 & 01.51 m \\
 
 The results in Table~\ref{tab:classical_metrics} highlight key trade-offs between signal fidelity and perceptual quality. SS achieved the best SNR and MSE, suggesting strong numerical suppression of noise. However, it underperformed in perceptual metrics, likely due to spectral distortion and residual artifacts introduced by aggressive subtraction.
 
-In contrast, WF and MMSE-LSA lacked the same level of numerical suppression. The indicated negative SNR tells us that numerically the denoised signal is noisier than the original clean signal. This may stem from the fact that both methods are designed to enhance perceptual quality rather than numerical accuracy. Clearly shown by the PESQ and STOI scores, which are significantly higher than those of SS. These results support MMSE-LSA's design as the most effective classical method overall, attributed to its perceptually motivated approach. Notably, all classical methods completed denoising in under two minutes, indicating no significant differences in computational cost.
+In contrast, WF and MMSE-LSA produced negative SNR values indicating that the residual noise after denoising exceeds the remaining speech energy. This behavior is in a purley energy based metric sense but stems from the design of both methods, which prioritize perceptual quality over strict numerical fidelity. In a sense they tolerate or redistribute residual noise in less perceptually important regions of the speech signal. Resulting in improved PESQ and STOI scores despite poorer SNR outcomes. 
+
+Interestingly, although SNR deteriorates, the MSE values remain comparable to those of SS. This can be attributed to the logarithmic nature of SNR versus the linear nature of MSE. Small differences in error magnitude can result in disproportionately large shifts in SNR. Thus, while the total error remains moderate. Its energy distribution leads to poorer SNR without severely impacting overall error magnitude.
+
+These results align with MMSE-LSA's perceptually motivated design, confirming its effectiveness in preserving speech intelligibility and naturalness. Notably, all classical methods completed denoising in under two minutes, indicating no significant computational cost differences.
 
 \subsection{Training The ML Models}
 \label{sec:training_ml_models}
 
-With the classical methods evaluated, the focus now shifts to the machine learning models. These models were trained using the same dataset handling strategies and OOM mitigation techniques previously established. Each model followed a consistent training configuration: a batch size of 2, accumulation steps of 4, 25 training epochs, and a learning rate of $1 \times e^{-3}$. The table below summarizes the training performance for each model.
+With the classical methods evaluated, the focus now shifts to the machine learning models. Each model defined in the \ref{sec:ml_models} section was trained using the same dataset handling strategies and OOM mitigation techniques previously established. The models followed a consistent training configuration: a batch size of 2, accumulation steps of 4, 25 training epochs, and a learning rate of $1 \times e^{-3}$. The table below summarizes the training performance for each model.
 
 \vspace{1em}
 \begin{table}[H]
@@ -183,7 +189,9 @@ ConvTasNet  & 0.0764 & 0.0760 & 4.76 dB & 13.09 h \\
 \end{tabular}
 \end{table}
 
-The results in Table~\ref{tab:ml_training} reveal a steady trend. As the model complexity increases, training and validation losses generally decrease while validation SNR improves. This gradual improvement is particularly evident when moving from CNN to UNet. The CNN model was introduced as a simple baseline to validate the project’s training and evaluation pipeline. Despite its minimal architecture, it delivered solid performance and served as a reference point for more advanced models. The training plot in Figure~\ref{fig:cnn_training_plot} provides a quick visual overview of the model's learning progression. Although a small gap between training and validation loss is observed, which might suggest mild overfitting. The magnitude of this gap (0.007) is negligible, and the model retains good generalization performance, making it a reliable benchmark. A similar trend is observed across the remaining models, with no significant signs of overfitting.
+The training outcomes summarized in Table~\ref{tab:ml_training} clearly demonstrate a consistent yet incremental improvement across the machine learning models from CNN to UNet, followed by a significant leap in performance with ConvTasNet.  
+
+The CNN model was introduced as a simple baseline to validate the project’s training and evaluation pipeline. Despite its minimal architecture, it delivered solid performance and served as a reference point for more advanced models. The training plot in Figure~\ref{fig:cnn_training_plot} provides a quick visual overview of the model's learning progression. Although a small gap between training and validation loss is observed, which might suggest mild overfitting. The magnitude of this gap (0.007) is negligible, and the model retains good generalization performance, making it a reliable benchmark. A similar trend is observed across the remaining models, with no significant signs of overfitting.
 
 \begin{figure}[H]
     \centering
@@ -191,7 +199,7 @@ The results in Table~\ref{tab:ml_training} reveal a steady trend. As the model c
     \caption{\label{fig:cnn_training_plot} CNN training plot.}
 \end{figure}
 
-The CED and RCED models, adapted from \cite{park2017acoustic}, are encoder-decoder architectures designed specifically for speech enhancement in the spectrogram domain. CED follows a standard encoder-decoder structure, while RCED incorporates residual connections to improve information flow and mitigate vanishing gradient issues.
+The CED model expanded upon the CNN baseline with a fully connected encoder-decoder architecture, yielding modest improvements. Notably, CED demonstrated remarkable training stability, as illustrated in Figure~\ref{fig:ced_training_plot}. The absence of significant fluctuations in the loss curves underscores its effective learning and convergence behavior.
 
 \begin{figure}[H]
     \centering
@@ -199,13 +207,15 @@ The CED and RCED models, adapted from \cite{park2017acoustic}, are encoder-decod
     \caption{\label{fig:ced_training_plot} CED training plot.}
 \end{figure}
 
+The RCED model further improved upon the CED architecture by incorporating residual connections between layers. This enhancement aimed at facilitating better information flow and gradient propagation. The training plot in Figure~\ref{fig:rced_training_plot} still potrays a good learning curve, with slight increase in training time due to the added complexity of the architecture. The fact that RCED already shows improved training metrics over CED, indicated that we will likely see the same trend in the denoising evaluation. Overall confirming \cite{park2017acoustic}’s findings that residual connections can enhance performance in speech enhancement tasks.
+
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{RCED_plot.png}
     \caption{\label{fig:rced_training_plot} RCED training plot.}
 \end{figure}
 
-Confirming the paper’s statement, RCED outperformed CED slightly across training metrics, not with standing the increased training time due to its added complexity. The UNet model, a widely used deep learning architecture, required the longest training time, with once again marginal performance gains.
+The UNet was the longets model trained (14.32 h), with almost double the training time of RCED (7.32 h). This increase is naturally attributed from the increaded complexity of the architecture. There are no significant statements to be made about the training plot in Figure~\ref{fig:unet_training_plot}. However, it was expected to show a more pronounced improvement over RCED, given its more complex architecture and doubled training time. It only followed the trend of marginal improvements.
 
 \begin{figure}[H]
     \centering
@@ -213,7 +223,7 @@ Confirming the paper’s statement, RCED outperformed CED slightly across traini
     \caption{\label{fig:unet_training_plot} UNet training plot.}
 \end{figure}
 
-The most notable result came from ConvTasNet, which showed a significant leap in validation SNR from 1.12 dB (in UNet) to 4.76 dB. This dramatic improvement highlights the architecture’s effectiveness in capturing temporal and spectral signal structure. While loss values alone may not fully reflect denoising capability, ConvTasNet’s results suggest it is learning meaningful representations that translate to superior performance.
+The most notable result came from ConvTasNet, which showed a significant leap in validation SNR from 1.12 dB (in UNet) to 4.76 dB. The losses didn't illustrate the same drammatic improvement but still gave more substantial improvements. This distinction can also be seen in the training plot in Figure~\ref{fig:convtasnet_training_plot}, as the SNR plot shows signifcant spikes and dips. Indicating that the model is learning to capture complex temporal and spectral patterns in the data. Although evalutaion cannot be solely based on training metrics and require the proper denoising pipeline evlaution along with the metrics. This poses a hopeful outlook for the model's performance in the denoising evaluation and could overcome the limitations of the previous models to make signifcant improvements.
 
 \begin{figure}[H]
     \centering
@@ -243,17 +253,25 @@ ConvTasNet  & 17.9050 & 0.000063 & 2.3001 & 0.9001 & 0.6881 & 01.44 m \\
 \hline
 \end{tabular}
 \end{table}
+The results in Table~\ref{tab:ml_denoise} show the performance progression across models, reflecting implementation improvements made throughout the project. The baseline CNN model delivers reasonable perceptual quality out-of-the-box but underperforms significantly in terms of SNR. While its MSE remains comparable to that of the CED and RCED models, its SNR is nearly halved. Since SNR and MSE both mathematically represent the difference between clean and denoised signals, this discrepancy suggests that CNN likely retains higher-energy residual noise. Although the total error magnitude (MSE) may be similar, the CNN's denoised output likely introduces noise that disproportionately affects the signal's energy ratio, thus reducing the SNR. This underscores the importance of evaluating both energy-based and perceptual metrics together, as the CNN still maintains moderate PESQ and STOI scores despite its weaker SNR.
 
-The results in Table~\ref{tab:ml_denoise} show the performance progression across models, reflecting implementation improvements made during the project. The baseline CNN model delivers reasonable perceptual quality out of the box but underperforms in terms of SNR. While its MSE remains close to those of the CED and RCED models, its SNR is nearly halved. Since SNR and MSE are mathematically related in that both measure the difference between the clean and denoised signals. This discrepancy suggests that the CNN is likely retaining higher-energy residual noise. Although the total error magnitude (MSE) may be similar, the CNN's denoised output likely introduces noise that disproportionately affects the signal's energy ratio, thus reducing the SNR. This highlights the importance of evaluating both energy based and perceptual metrics in tandem, as the CNN still maintains moderate PESQ and STOI scores despite its weaker SNR performance.
+The CED and RCED models, both adapted from \cite{park2017acoustic}, were introduced to address limitations observed in the CNN baseline by incorporating fully connected encoder-decoder architectures. CED better suits the structured nature of spectrograms, capturing broader contextual information. Consequently, it achieves a clear improvement in SNR (\textbf{0.86 dB}) compared to CNN (\textbf{0.47 dB}), effectively resolving the earlier energy imbalance issue. RCED enhances this approach by adding residual connections between layers, which help preserve information flow and stabilize gradient propagation during training. This leads to further gains across all metrics, with RCED achieving higher PESQ (\textbf{1.28}) and STOI (\textbf{0.81}) scores than both CNN and CED, along with slight improvements in MSE and SNR.
 
-The CED and RCED models, both adapted from \cite{park2017acoustic}, were introduced to address limitations seen in the CNN baseline. By adopting an encoder-decoder architecture, CED is better suited to the structured nature of spectrograms and is able to capture broader contextual information. This results in a clear improvement in SNR (\textbf{0.86 dB}) compared to CNN (\textbf{0.47 dB}), effectively resolving the earlier energy imbalance issue. RCED builds on this by adding residual connections between layers, which help preserve information flow and stabilize gradient propagation during training. This modification leads to further gains across all metrics, with RCED achieving higher PESQ (\textbf{1.28}) and STOI (\textbf{0.81}) than both CNN and CED, while also slightly improving MSE and SNR.
+These outcomes align with the original findings in \cite{park2017acoustic}, where residual connections were shown to improve speech enhancement performance. Despite these gains, both CED and RCED architectures have structural limitations. Using a single bottleneck without feature merging across scales can lead to the loss of fine-grained spectral details during encoding and decoding. While RCED partially mitigates this through residual connections, it lacks the explicit skip connections found in UNet, which help reintegrate high-resolution features during decoding.
 
-These results are consistent with the original findings in the Park \textit{et al.} paper, where residual connections were shown to improve performance in speech enhancement tasks. Despite their improvements, both CED and RCED architectures have structural limitations. The use of a single bottleneck without feature merging across scales can lead to a loss of fine-grained spectral detail during encoding and decoding. While RCED mitigates this to some extent through residual connections, it still lacks the explicit skip connections found in UNet, which allow for high-resolution features to be reintroduced at each decoding stage. 
+The UNet model extends the encoder-decoder structure with these skip connections, enabling the recovery of fine-grained spectral details lost during downsampling and improving the model’s ability to capture both local and global context. UNet continues the incremental gains over previous models. However, as mentioned in Section \ref{sec:training_ml_models}, there is a suboptimal efficiency-performance tradeoff. This may stem from the project's implementation of the architecture or because the scope in which the architecture was applied does not align closely with its core design purpose. Furthermore, none of the models from CNN to UNet surpassed the perceptual quality performance of classical methods such as Wiener Filtering or MMSE-LSA. This raises questions regarding whether the added complexity and training overhead of these models are justified for real-world deployment.
 
-The UNet model extends the encoder-decoder structure by introducing those skip connections. Helping recover fine-grained spectral details lost during downsampling and improves the model’s ability to capture both local and global context. In terms of performance, UNet shows continued gains over its predecessors. It achieves the lowest MSE among the encoder-decoder models, along with a slight improvement in SNR (\textbf{0.98 dB}) and the highest PESQ score (\textbf{1.33}) before ConvTasNet. These results validate the effectiveness of UNet’s multi-scale feature integration. However, the improvement over RCED is modest, indicating diminishing returns as architectural complexity increases. Additionally, UNet requires the longest training time of all models evaluated. Suggesting that while effective, its efficiency-performance tradeoff may not be ideal for all deployment scenarios.
+However, the promising results portrayed by ConvTasNet in Section \ref{sec:training_ml_models} were strongly confirmed in the denoising evaluation. ConvTasNet achieved a remarkable results both for numerical and perceptual metrics. The SNR of \textbf{17.90 dB} is more than 18 times higher than the UNet's \textbf{0.98 dB}. Which may seem like an unrealistic leap at first, but is actually a result of the model's design. It perceptual results also improved significantly, with PESQ of \textbf{2.30}, STOI of \textbf{0.90}, and LSD of \textbf{0.69}. 
 
-While each machine learning model introduced architectural improvements and showed incremental gains across metrics, the overall progression remained modest. From CNN to UNet, improvements in PESQ, STOI, and SNR were consistently observed, but these came at the cost of increased model complexity and training time. Notably, none of these models achieved a clear breakthrough in performance over the best classical method MMSE-LSA, particularly in perceptual quality. This raises an important consideration: without a significant performance leap, the added training burden and architectural complexity of these models may not be fully justified for real-world deployment.
+- Add metrics of pre-trained models to show comparable and realistic results.
+- Discuss optimality of ConvTasNet coming from effective porting (possible unlike UNet) of the defined model architecture in time domain to our spectrogram domain.
+- State that we could have also possibly saturated the model through the magnitude masking.
 
-To address this gap, a model was needed that could scale the benefits of deep learning effectively. One that could translate increased complexity into substantial performance gains. ConvTasNet fulfilled this requirement. Although it incurred the second-highest training time among all models, it delivered a dramatic improvement across all evaluation metrics. Most notably, it achieved an SNR of \textbf{17.91 dB}, far exceeding the incremental gains observed in previous models, and outperformed all others in PESQ (\textbf{2.30}) and STOI (\textbf{0.90}).
+\vspace{2em}
 
-Although originally introduced as a time-domain separation network in \cite{Luo2018ConvTasNetSI}, ConvTasNet was adapted in this project to operate directly on spectrograms, using 2D convolutions over the real and imaginary components. This adjustment allows the model to remain compatible with the spectrogram-based pipeline used throughout the project, while still leveraging ConvTasNet’s core strength. Its stacked temporal convolutional blocks with dilation and residual connections. These features enable the model to capture long-range dependencies across time and frequency axes effectively. Given its exceptional results and practical inference time, ConvTasNet was ultimately selected for deployment in this project. 
+- Add a small note that the ConvTasNet model undergoe limited hyperparameter tuning given the constrained environment. But the more optimized paramteres where not significantly different from the initial testing ones and provide x more performance.
+
+
+\section{Subjective Evaluation}
+\label{sec:subjective_evaluation}
+

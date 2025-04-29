@@ -1,19 +1,8 @@
 Virtual environment found, activating
 Using GPU: NVIDIA GeForce RTX 3060
 Device set to: cuda
-Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
-Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
---- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
-@ Time ../ED-Noisy-Speech-Datashare Loading: 0.60 seconds
+Loaded cache file: cache/dynamic/testset_buckets.pkl
+--- Test Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
 --- Model `ConvTasNet` loaded successfully ---
-Training & Evaluating Model...
-Epoch [1/25] - Loss: 0.1476, Val Loss: 0.1120, Val SNR: 3.77 dB
-✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.1120)
-Epoch [2/25] - Loss: 0.1094, Val Loss: 0.1042, Val SNR: 3.96 dB
-✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.1042)
-Epoch [3/25] - Loss: 0.1032, Val Loss: 0.0988, Val SNR: 4.07 dB
-✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0988)
-Epoch [4/25] - Loss: 0.0999, Val Loss: 0.0957, Val SNR: 4.13 dB
-✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0957)
-Epoch [5/25] - Loss: 0.0965, Val Loss: 0.0936, Val SNR: 4.17 dB
-✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0936)
+✅ Denoised audio saved to: Output/wav/ConvTasNet_dynamic_p232_327.wav
+Job finished successfully

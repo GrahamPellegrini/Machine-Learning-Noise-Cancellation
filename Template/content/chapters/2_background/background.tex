@@ -10,7 +10,7 @@ In this chapter, background information on established classical noise reduction
 
 Spectral Subtraction is one of the most widely used techniques for single-channel speech enhancement. The core idea is to estimate the noise spectrum from a noisy speech signal and subtract it from the observed spectrum to obtain a cleaner signal \cite{loizou2013speech}. It assumes that noise remains relatively stationary over short time frames, while speech is a dynamic, non-stationary signal.
 
-For digital signal processing to occur, the analog speech signal \(x(t)\), which is continuous in time, must first be converted into a digital signal \(x[n]\), a discrete-time representation. This digitisation must satisfy the Nyquist criterion: the sampling rate should be at least twice the maximum frequency component present in the signal to ensure accurate reconstruction. However, sampling inherently introduces limitations. Quantisation noise, resulting from the finite precision of digital systems, and aliasing, caused by inadequate sampling rates, can degrade the signal. If the sampling rate is too low, high-frequency components may fold into lower frequencies, misrepresenting the signal content.
+For digital signal processing to occur, the analog speech signal \(x(t)\), which is continuous in time, must first be converted into a digital signal \(x[n]\), a discrete-time representation. This digitisation must satisfy the Nyquist criterion: the sampling rate should be at least twice the maximum frequency component present in the signal to ensure accurate reconstruction. However, sampling inherently introduces limitations. Quantisation noise, resulting from the finite precision of digital systems, and aliasing, caused by inadequate sampling rates, can degrade the signal. If the sampling rate is too low, high-frequency components may fold into lower frequencies, misrepresenting the signal content \cite{loizou2013speech}.
 
 \begin{figure}[h]
     \centering
@@ -33,7 +33,7 @@ where:
     \item \( D(\omega) \): Estimated noise spectrum.
 \end{itemize}
 
-Spectral subtraction is widely adopted due to its simplicity and low computational cost. It requires only a single input channel and is straightforward to implement. However, it comes with notable limitations. It assumes stationary noise—a condition often unmet in real environments—and may introduce musical noise, a type of distortion perceived as tonal artifacts. Additionally, excessive subtraction may distort speech, while insufficient subtraction can leave residual noise.
+Spectral subtraction is widely adopted due to its simplicity and low computational cost. It requires only a single input channel and is straightforward to implement. However, it comes with notable limitations. It assumes stationary noise, a condition often unmet in real environments. It may alos introduce musical noise, a type of distortion perceived as tonal artifacts. Excessive subtraction may distort speech, while insufficient subtraction can leave residual noise.
 
 Despite these challenges, spectral subtraction remains a valuable baseline for evaluating more advanced noise suppression techniques. Methods such as Wiener filtering and deep learning-based approaches have been developed to overcome these shortcomings through more adaptive or data-driven mechanisms \cite{loizou2013speech}.
 
@@ -49,7 +49,7 @@ The method can be applied in both the time domain and frequency domain, though t
     H(\omega) = \frac{P_S(\omega)}{P_S(\omega) + P_N(\omega)}
 \end{equation}
 
-This filter acts as a frequency-dependent gain function. Frequencies where the clean speech dominates (\(P_S \gg P_N\)) are preserved, while noise-dominant frequencies (\(P_N \gg P_S\)) are attenuated. The enhanced speech spectrum is obtained by multiplying the noisy spectrum \(Y(\omega)\) with the Wiener gain:
+This filter acts as a frequency dependent gain function. Frequencies where the clean speech dominates (\(P_S \gg P_N\)) are preserved, while noise dominant frequencies (\(P_N \gg P_S\)) are attenuated. The enhanced speech spectrum is obtained by multiplying the noisy spectrum \(Y(\omega)\) with the Wiener gain:
 
 \begin{equation}
     \hat{X}(\omega) = H(\omega)Y(\omega)
@@ -63,7 +63,7 @@ Following this, the enhanced time-domain signal is reconstructed using the Inver
     \caption{\label{fig:WienerBlock} Block diagram of the Wiener filtering process \cite{dubey2016evaluation}.}
 \end{figure}
 
-Wiener filtering is a statistically optimal method that minimizes the mean square error (MMSE) between the estimated and clean speech signals. It performs well when noise characteristics can be reliably estimated, such as during silent speech segments, and is effective at preserving the spectral shape of speech components. However, the method assumes stationary, zero-mean noise uncorrelated with the speech signal—assumptions that often fail in real-world, dynamic environments. This can lead to inaccurate power spectral density (PSD) estimates, resulting in performance degradation or over-smoothing that reduces intelligibility.
+Wiener filtering is a statistically optimal method that minimizes the mean square error (MMSE) between the estimated and clean speech signals. It performs well when noise characteristics can be reliably estimated, such as during silent speech segments, and is effective at preserving the spectral shape of speech components. However, the method assumes stationary, zero-mean noise uncorrelated with the speech signal. Assumptions that often fail in real-world, dynamic environments. This can lead to inaccurate power spectral density (PSD) estimates, resulting in performance degradation or over-smoothing that reduces intelligibility.
 
 Despite these limitations, Wiener filtering remains a foundational approach in speech enhancement and is frequently integrated into more advanced or hybrid denoising pipelines \cite{dubey2016evaluation, loizou2013speech}.
 
@@ -71,7 +71,7 @@ Despite these limitations, Wiener filtering remains a foundational approach in s
 \section{MMSE-LSA}
 \label{sec:mmse_lsa}
 
-The Minimum Mean-Square Error Log-Spectral Amplitude (MMSE-LSA) estimator is a statistically grounded single-channel speech enhancement technique first proposed by Ephraim and Malah in 1984~\cite{ephraim1984speech}. Unlike spectral subtraction and Wiener filtering, which operate on magnitude or power spectra, MMSE-LSA aims to minimise the mean-square error between the logarithm of the spectral amplitudes of the clean and enhanced speech signals. This log-domain formulation offers better alignment with human auditory perception, which is known to be approximately logarithmic in nature.
+The Minimum Mean-Square Error Log-Spectral Amplitude (MMSE-LSA) estimator is a statistically grounded single-channel speech enhancement technique first proposed by Ephraim and Malah in 1984~\cite{ephraim1984speech}. Unlike spectral subtraction and Wiener filtering, which operate on magnitude or power spectra. MMSE-LSA aims to minimise the mean-square error between the logarithm of the spectral amplitudes of the clean and enhanced speech signals. This log-domain formulation offers better alignment with human auditory perception, which is known to be approximately logarithmic in nature.
 
 The algorithm operates in the time/frequency domain, assuming additive noise and using the short-time Fourier transform (STFT) to decompose the noisy signal. It relies on estimates of the a priori and a posteriori signal-to-noise ratios (SNRs) to construct a gain function that enhances speech-dominant regions while suppressing noise. The enhanced spectral amplitude \( \hat{X}^{\text{LSA}}(\omega) \) is computed as:
 
@@ -104,11 +104,11 @@ Machine learning (ML), a subset of artificial intelligence (AI), focuses on deve
     \caption{\label{fig:autoencoder} Block diagram of an autoencoder architecture \cite{vachhani2017dae}.}
 \end{figure}
 
-An autoencoder consists of two main components: an encoder and a decoder. The encoder compresses the input signal \(x\) into a low-dimensional latent space using a series of convolutional, pooling, or fully connected layers. A central \textit{bottleneck} layer enforces this compression, encouraging the model to retain only the most salient features—such as speech structure—while discarding irrelevant noise.
+An autoencoder consists of two main components: an encoder and a decoder. The encoder compresses the input signal \(x\) into a low-dimensional latent space using a series of convolutional, pooling, or fully connected layers. A central \textit{bottleneck} layer enforces this compression, encouraging the model to retain only the most salient features (speech structure) while discarding irrelevant noise.
 
 The decoder then reconstructs the signal \(y\) from the latent representation, typically using upsampling, transposed convolutions, or dense layers arranged in a mirrored structure. The objective is to recover the clean speech signal with minimal reconstruction error.
 
-Autoencoders are trained using paired datasets of noisy and clean speech. During training, the noisy input is passed through the network, and the output is compared against the clean reference. The model is optimised to minimise the difference—typically using a loss function such as Mean Squared Error (MSE) or Mean Absolute Error (MAE).
+Autoencoders are trained using paired datasets of noisy and clean speech. During training, the noisy input is passed through the network, and the output is compared against the clean reference. The model is optimised to minimise the difference. Typically using a loss function such as Mean Squared Error (MSE) or Mean Absolute Error (MAE).
 
 \begin{figure}[h]
     \centering
@@ -186,7 +186,7 @@ Individually, these metrics suffer to provide complete meaningful evaluations of
 
 The initial objective of this project was to enhance speech signals corrupted by noise using traditional digital signal processing (DSP) techniques. The original scope involved implementing classical noise reduction methods, such as Spectral Subtraction and Wiener Filtering, with the intention of deploying them on an MSP432 microcontroller. These techniques were selected due to their low computational complexity and suitability for resource-constrained embedded systems.
 
-However, early protyping in Python revealed inherent limitations of classical DSP methods—particularly their poor performance in non-stationary noise and limited adaptability to diverse real-world conditions. While methods like Spectral Subtraction offer simplicity and efficiency, they often introduce musical noise artifacts and reduce intelligibility. Similarly, Wiener Filtering, though more rigorous, relies on assumptions about noise characteristics that may not hold in practice.
+However, early protyping in Python revealed inherent limitations of classical DSP methods. Particularly their poor performance in non-stationary noise and limited adaptability to diverse real-world conditions. While methods like Spectral Subtraction offer simplicity and efficiency, they often introduce musical noise artifacts and reduce intelligibility. Similarly, Wiener Filtering, though more rigorous, relies on assumptions about noise characteristics that may not hold in practice.
 
 
 At the same time, the growing success of data-driven approaches in speech enhancement offered a compelling alternative. Real-time systems such as \textit{Krisp}, \textit{NVIDIA RTX Voice}, and \textit{RNNoise} demonstrate how machine learning-based models can robustly suppress noise by learning complex nonlinear mappings from large-scale clean/noisy speech datasets. Recognizing these advantages, the project evolved from solely implementing classical methods to exploring the deployment of lightweight machine learning-based speech enhancement models on more capable embedded processors. This shift aligned the project with modern trends while maintaining a focus on real-time deployment. It also enabled analysis of trade-offs between classical and data-driven methods in terms of performance, memory, and computation.
