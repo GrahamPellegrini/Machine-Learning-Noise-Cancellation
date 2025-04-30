@@ -69,6 +69,12 @@ def classical(noisy_waveform, method):
     """
     if noisy_waveform.dim() != 3 or noisy_waveform.shape[1] != 1:
         raise ValueError(f"[!] Expected input shape (batch, 1, time), got {noisy_waveform.shape}")
+    
+    # Baseline method
+    if method == "baseline":
+        # Simply return the noisy inputs to get baseline metrics
+        return noisy_waveform.squeeze(1)
+
 
     device = noisy_waveform.device
     n_fft = 1024

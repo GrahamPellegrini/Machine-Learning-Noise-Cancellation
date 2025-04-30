@@ -11,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/static.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/static.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/UNet.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/UNet.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=static
+#SBATCH --job-name=UNet
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt

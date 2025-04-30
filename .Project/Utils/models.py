@@ -40,8 +40,6 @@ class CNN(nn.Module):
             nn.ReLU(),
             # Output (real+imag)
             nn.Conv2d(64, 2, kernel_size=3, stride=1, padding=1),
-            # Normalize output between -1 and 1
-            nn.Tanh()  
         )
 
     def forward(self, real, imag):
@@ -120,7 +118,6 @@ class CED(nn.Module):
 
         # Final Conv Layer (kernel=129 per paper)
         self.output_layer = nn.Conv2d(12, 2, kernel_size=(129, 1), padding=(64, 0))
-        self.activation = nn.Tanh()
 
     def forward(self, real, imag):
         orig_size = real.shape[2:]
@@ -128,7 +125,6 @@ class CED(nn.Module):
         x = self.encoder(x)
         x = self.decoder(x)
         x = self.output_layer(x)
-        x = self.activation(x)
         x = F.interpolate(x, size=orig_size, mode="bilinear", align_corners=False)
         out_real, out_imag = torch.chunk(x, 2, dim=1)
         return out_real, out_imag
@@ -154,7 +150,6 @@ class RCED(nn.Module):
 
         # Final conv layer (kernel=129) → Output
         layers.append(nn.Conv2d(in_channels, 2, kernel_size=(129, 1), padding=(64, 0)))
-        layers.append(nn.Tanh())
 
         self.network = nn.Sequential(*layers)
 
@@ -191,7 +186,6 @@ class UNet(nn.Module):
 
         # Output Layer (
         self.out_layer = nn.Conv2d(32, 2, kernel_size=3, stride=1, padding=1)
-        self.activation = nn.Tanh()
 
     def conv_block(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1):
         return nn.Sequential(
@@ -227,7 +221,6 @@ class UNet(nn.Module):
         d2 = self.dec2(torch.cat((d3, self._resize(e2, d3)), dim=1))
         d1 = self.dec1(torch.cat((d2, self._resize(e1, d2)), dim=1))
 
-        out = self.activation(self.out_layer(d1))
         out = F.interpolate(out, size=orig_size, mode="bilinear", align_corners=False)
         out_real, out_imag = torch.chunk(out, 2, dim=1)
         return out_real, out_imag

@@ -18,6 +18,7 @@ os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True,max_split_size
 
 import torch
 from torch.cuda.amp import autocast, GradScaler
+from torchmetrics.audio import SignalNoiseRatio
 import matplotlib.pyplot as plt
 import gc
 import time
@@ -32,6 +33,9 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
 
     # Move model to device
     model.to(device)
+
+    # Set the SNR metric function to GPU
+    snr_metric = SignalNoiseRatio().to(device)
 
     # Learning Rate Scheduler (Optional)
     if scheduler:
@@ -189,12 +193,14 @@ def train_eval(device, model, train_loader, val_loader, optimizer, criterion, ep
                 val_loss = criterion(val_truncated_real, val_clean_real) + criterion(val_truncated_imag, val_clean_imag)
                 total_val_loss += val_loss.item()
 
-                # Compute SNR for validation
-                snr_real = (val_clean_real.norm() / (val_truncated_real - val_clean_real).norm()).item()
-                snr_imag = (val_clean_imag.norm() / (val_truncated_imag - val_clean_imag).norm()).item()
+                # Compute SNR for validation (decibels)
+                snr_real = snr_metric(val_truncated_real, val_clean_real).item()
+                snr_imag = snr_metric(val_truncated_imag, val_clean_imag).item()
                 avg_snr = (snr_real + snr_imag) / 2
+
                 snr_sum += avg_snr
                 snr_count += 1
+
 
         # Compute average validation loss and SNR for the epoch
         avg_val_loss = total_val_loss / len(val_loader)
