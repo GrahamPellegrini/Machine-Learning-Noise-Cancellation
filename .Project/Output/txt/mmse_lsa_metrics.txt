@@ -1,10 +1,5 @@
-↑SNR: -2.3929
-↓MSE: 0.005440
-↓LSD: 0.827413
-↑PESQ: 2.0671
-↑STOI: 0.8974
-
-Job 45283 with name Denoise has COMPLETED with Exit Code 0 after a runtime of 00:01:51
-
-You have requested 8G of RAM and you used 34.76% of it, that is, 2.78G
-You have requested 4 CPUS and you used 50.90% of them
+↑SNR: -2.3409
+↓MSE: 0.005383
+↓LSD: 0.827090
+↑PESQ: 2.0748
+↑STOI: 0.8992

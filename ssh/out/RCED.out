@@ -7,3 +7,7 @@ Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
 @ Time ../ED-Noisy-Speech-Datashare Loading: 0.77 seconds
 --- Model `RCED` loaded successfully ---
 Training & Evaluating Model...
+Epoch [1/25] - Loss: 0.1578, Val Loss: 0.1458, Val SNR: 2.31 dB
+✔ Model saved to Models/25/RCED_dynamic.pth (Best Val Loss: 0.1458)
+Epoch [2/25] - Loss: 0.1363, Val Loss: 0.1420, Val SNR: 1.63 dB
+✔ Model saved to Models/25/RCED_dynamic.pth (Best Val Loss: 0.1420)

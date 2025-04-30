@@ -221,7 +221,7 @@ class UNet(nn.Module):
         d2 = self.dec2(torch.cat((d3, self._resize(e2, d3)), dim=1))
         d1 = self.dec1(torch.cat((d2, self._resize(e1, d2)), dim=1))
 
-        out = F.interpolate(out, size=orig_size, mode="bilinear", align_corners=False)
+        out = F.interpolate(d1, size=orig_size, mode="bilinear", align_corners=False)
         out_real, out_imag = torch.chunk(out, 2, dim=1)
         return out_real, out_imag
 

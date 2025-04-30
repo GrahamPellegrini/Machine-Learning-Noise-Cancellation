@@ -98,10 +98,14 @@ def classical(noisy_waveform, method):
             den_stft = torch.polar(den_mag, phase)
 
         elif method == "wiener":
-            noise_psd = torch.min(magnitude**2, dim=1, keepdim=True).values
-            signal_psd = torch.clamp(magnitude**2 - noise_psd, min=1e-6)
-            gain = signal_psd / (signal_psd + noise_psd)
+            # Estimate noise PSD from the first 6 frames
+            noise_psd = (magnitude[:, :6] ** 2).mean(dim=1, keepdim=True)  # shape: (freq, 1)
+            signal_psd = magnitude ** 2  # shape: (freq, time)
 
+            # Avoid division by zero
+            gain = signal_psd / (signal_psd + noise_psd + 1e-6)
+
+            # Smoothing over time (exponential moving average)
             alpha = 0.85
             smoothed_gain = gain.clone()
             for t in range(1, gain.shape[1]):
@@ -109,18 +113,18 @@ def classical(noisy_waveform, method):
 
             den_mag = smoothed_gain * magnitude
             den_stft = torch.polar(den_mag, phase)
-        
+
         elif method == "mmse_lsa":
             beta = 0.98  # smoothing for a priori SNR
-            alpha = 0.85 # smoothing for noise PSD
+            alpha = 0.85 # not used but reserved
 
-            # Estimate noise PSD from the first 6 frames (assumed silence)
+            # Estimate noise PSD from the first 6 frames
             noise_est = magnitude[:, :6].mean(dim=1, keepdim=True) ** 2
             noise_psd = noise_est.repeat(1, magnitude.shape[1])
 
             gamma = torch.clamp((magnitude**2) / (noise_psd + 1e-6), min=1e-6, max=1000)
             xi = torch.zeros_like(gamma)
-            gain = torch.ones_like(gamma)  # <- added to avoid UnboundLocalError
+            gain = torch.ones_like(gamma)
 
             xi[:, 0] = 1.0  # initial a priori SNR
 
@@ -128,11 +132,13 @@ def classical(noisy_waveform, method):
                 xi[:, t] = beta * (gain[:, t - 1] ** 2) * gamma[:, t - 1] + (1 - beta) * torch.clamp(gamma[:, t] - 1, min=0.0)
 
             nu = xi * gamma / (1 + xi)
-            # Use approximation for exponential integral
+            # Approximation for exponential integral
             exp_int = torch.exp(-nu) * torch.log1p(nu + 1e-6)
 
             gain = (xi / (1 + xi)) * torch.exp(0.5 * exp_int)
-            gain = torch.clamp(gain, min=1e-5, max=1.0)
+
+            # 🛠️ Add gain floor to preserve signal
+            gain = torch.clamp(gain, min=0.1, max=1.0)
 
             den_mag = gain * magnitude
             den_stft = torch.polar(den_mag, phase)

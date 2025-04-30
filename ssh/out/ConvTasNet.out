@@ -7,3 +7,5 @@ Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
 @ Time ../ED-Noisy-Speech-Datashare Loading: 0.76 seconds
 --- Model `ConvTasNet` loaded successfully ---
 Training & Evaluating Model...
+Epoch [1/25] - Loss: 0.1299, Val Loss: 0.1008, Val SNR: 4.62 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.1008)
