@@ -7,15 +7,15 @@ The configuration file for the project. This file contains all the parameters fo
 """
 
 # Application Mode
-MODE = "denoise"  # OPTIONS: "train" or "denoise"
+MODE = "train"  # OPTIONS: "train" or "denoise"
 
 # Dataset Parameters
 DATASET_DIR = "../ED-Noisy-Speech-Datashare"  # Path to the dataset
 SAMPLE_RATE = 48000  # Dataset sample rate
 N_FFT = 1024  # Number of FFT points
 HOP_LENGTH = 256  # Hop length for the STFT
-BATCH_SIZE = 2 # Batch size for the model
-ACCUMULATION_STEPS = 2 # Gradient accumulation steps
+BATCH_SIZE = 4 # Batch size for the model
+ACCUMULATION_STEPS = 1 # Gradient accumulation steps
 NUM_WORKERS = 4  # Number of workers for the DataLoader
 
 
@@ -26,19 +26,20 @@ NUM_BUCKET = 5  # Number of dynamic buckets (dynamic only)
 
 
 # Model Parameters
-MODEL = "UNet"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
-EPOCHS = 25  # Number of epochs to train the model
+MODEL = "CED"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
+EPOCHS = 10  # Number of epochs to train the model
 LEARNING_RATE = 1e-3  # Learning rate for the model
 SCHEDULER = True  # Use a learning rate scheduler
-MODEL_PTH = "Models/25/" + MODEL + "_" + PAD_METHOD + ".pth"  # Path to save the model
+MODEL_PTH = "Models/dataset/cached/" + PAD_METHOD + ".pth"  # Path to save the model
+# "Models/dataset/cached/" + MODEL + "_" + PAD_METHOD + ".pth" 
 
 # Classical Denoising Parameters
-CLASSICAL = True  # Use classical methods for denoising
+CLASSICAL = False  # Use classical methods for denoising
 CLASSICAL_METHOD = "mmse_lsa"  # Options: 'baseline', 'spectral_sub', 'wiener', 'mmse_lsa'
 
 
 # Denoise Parameters
-SINGLE = True  # Denoise a single audio file
+SINGLE = False  # Denoise a single audio file
 METRICS_PTH = (
     "Output/txt/" + CLASSICAL_METHOD + "_metrics.txt"
     if CLASSICAL else

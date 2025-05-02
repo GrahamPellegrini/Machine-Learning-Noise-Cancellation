@@ -4,8 +4,32 @@ Device set to: cuda
 Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
 Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
 --- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
-@ Time ../ED-Noisy-Speech-Datashare Loading: 0.76 seconds
+@ Time ../ED-Noisy-Speech-Datashare Loading: 0.17 seconds
 --- Model `ConvTasNet` loaded successfully ---
 Training & Evaluating Model...
-Epoch [1/25] - Loss: 0.1299, Val Loss: 0.1008, Val SNR: 4.62 dB
-✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.1008)
+Epoch [1/25] - Loss: 0.1702, Val Loss: 0.0825, Val SNR: 5.08 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0825)
+Epoch [2/25] - Loss: 0.0729, Val Loss: 0.0677, Val SNR: 6.63 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0677)
+Epoch [3/25] - Loss: 0.0643, Val Loss: 0.0633, Val SNR: 6.95 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0633)
+Epoch [4/25] - Loss: 0.0646, Val Loss: 0.0629, Val SNR: 6.56 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0629)
+Epoch [5/25] - Loss: 0.0610, Val Loss: 0.0604, Val SNR: 6.91 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0604)
+Epoch [6/25] - Loss: 0.0588, Val Loss: 0.0585, Val SNR: 5.88 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0585)
+Epoch [7/25] - Loss: 0.0563, Val Loss: 0.0576, Val SNR: 5.08 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0576)
+Epoch [8/25] - Loss: 0.0559, Val Loss: 0.0566, Val SNR: 6.80 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0566)
+Epoch [9/25] - Loss: 0.0543, Val Loss: 0.0554, Val SNR: 6.95 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0554)
+Epoch [10/25] - Loss: 0.0532, Val Loss: 0.0543, Val SNR: 5.84 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0543)
+Epoch [11/25] - Loss: 0.0493, Val Loss: 0.0519, Val SNR: 8.37 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0519)
+Epoch [12/25] - Loss: 0.0488, Val Loss: 0.0512, Val SNR: 8.74 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0512)
+Epoch [13/25] - Loss: 0.0477, Val Loss: 0.0503, Val SNR: 8.43 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0503)

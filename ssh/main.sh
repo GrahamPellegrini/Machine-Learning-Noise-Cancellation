@@ -11,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/UNet.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/UNet.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/dynamic.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/dynamic.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=UNet
+#SBATCH --job-name=dynamic
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt
@@ -34,6 +34,7 @@ fi
 
 # Cd into the directory where the script is located
 cd /opt/users/gpel0001/nnc-fyp/.Project
+
 
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:16
 

@@ -1,0 +1,36 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060 Ti
+Device set to: cuda
+Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
+Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 0.83 seconds
+--- Model `CED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.3249, Val Loss: 0.2431, Val SNR: 0.14 dB
+✔ Model saved to Models/dataset/cached/dynamic.pth (Best Val Loss: 0.2431)
+Epoch [2/10] - Loss: 0.2344, Val Loss: 0.2193, Val SNR: 0.24 dB
+✔ Model saved to Models/dataset/cached/dynamic.pth (Best Val Loss: 0.2193)
+Epoch [3/10] - Loss: 0.2116, Val Loss: 0.2060, Val SNR: 0.44 dB
+✔ Model saved to Models/dataset/cached/dynamic.pth (Best Val Loss: 0.2060)
+Epoch [4/10] - Loss: 0.1966, Val Loss: 0.1969, Val SNR: 0.52 dB
+✔ Model saved to Models/dataset/cached/dynamic.pth (Best Val Loss: 0.1969)
+Epoch [5/10] - Loss: 0.1899, Val Loss: 0.2007, Val SNR: 0.53 dB
+Epoch [6/10] - Loss: 0.1819, Val Loss: 0.1922, Val SNR: 0.60 dB
+✔ Model saved to Models/dataset/cached/dynamic.pth (Best Val Loss: 0.1922)
+Epoch [7/10] - Loss: 0.1775, Val Loss: 0.1912, Val SNR: 0.57 dB
+✔ Model saved to Models/dataset/cached/dynamic.pth (Best Val Loss: 0.1912)
+Epoch [8/10] - Loss: 0.1748, Val Loss: 0.2050, Val SNR: 0.25 dB
+Epoch [9/10] - Loss: 0.1726, Val Loss: 0.1914, Val SNR: 0.47 dB
+Epoch [10/10] - Loss: 0.1699, Val Loss: 0.1919, Val SNR: 0.46 dB
+--- Training Complete ---
+@ Total Training Time: 7676.21 seconds
+@ Total Training Time: 127.94 minutes
+@ Total Training Time: 2.13 hours
+Job finished successfully
+
+
+Job 45962 with name dynamic has COMPLETED with Exit Code 0 after a runtime of 02:08:17
+
+You have requested 8G of RAM and you used 69.87% of it, that is, 5.59G
+You have requested 4 CPUS and you used 59.08% of them

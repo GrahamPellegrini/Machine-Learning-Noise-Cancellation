@@ -1,0 +1,38 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060 Ti
+Device set to: cuda
+Loaded cache file: cache/static/trainset_56spk_buckets.pkl
+Loaded cache file: cache/static/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 0.83 seconds
+--- Model `CED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.3531, Val Loss: 0.2693, Val SNR: -0.07 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.2693)
+Epoch [2/10] - Loss: 0.2454, Val Loss: 0.2296, Val SNR: 0.15 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.2296)
+Epoch [3/10] - Loss: 0.2239, Val Loss: 0.2107, Val SNR: 0.24 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.2107)
+Epoch [4/10] - Loss: 0.2105, Val Loss: 0.2021, Val SNR: 0.31 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.2021)
+Epoch [5/10] - Loss: 0.2008, Val Loss: 0.1963, Val SNR: 0.31 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.1963)
+Epoch [6/10] - Loss: 0.1942, Val Loss: 0.1954, Val SNR: 0.35 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.1954)
+Epoch [7/10] - Loss: 0.1893, Val Loss: 0.1904, Val SNR: 0.37 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.1904)
+Epoch [8/10] - Loss: 0.1852, Val Loss: 0.1850, Val SNR: 0.41 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.1850)
+Epoch [9/10] - Loss: 0.1819, Val Loss: 0.1821, Val SNR: 0.46 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.1821)
+Epoch [10/10] - Loss: 0.1792, Val Loss: 0.1807, Val SNR: 0.49 dB
+✔ Model saved to Models/dataset/cached/static.pth (Best Val Loss: 0.1807)
+--- Training Complete ---
+@ Total Training Time: 8587.48 seconds
+@ Total Training Time: 143.12 minutes
+@ Total Training Time: 2.39 hours
+Job finished successfully
+Job 45961 with name static has COMPLETED with Exit Code 0 after a runtime of 02:23:28
+
+You have requested 8G of RAM and you used 70.51% of it, that is, 5.64G
+You have requested 4 CPUS and you used 57.36% of them

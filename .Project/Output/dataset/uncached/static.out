@@ -1,0 +1,39 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060 Ti
+Device set to: cuda
+Saved cache file: cache/static/trainset_56spk_buckets.pkl
+Saved cache file: cache/static/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 296.85 seconds
+--- Model `CED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.3414, Val Loss: 0.2501, Val SNR: -0.02 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.2501)
+Epoch [2/10] - Loss: 0.2485, Val Loss: 0.2383, Val SNR: 0.11 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.2383)
+Epoch [3/10] - Loss: 0.2265, Val Loss: 0.2098, Val SNR: 0.25 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.2098)
+Epoch [4/10] - Loss: 0.2145, Val Loss: 0.1997, Val SNR: 0.34 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.1997)
+Epoch [5/10] - Loss: 0.2053, Val Loss: 0.1936, Val SNR: 0.41 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.1936)
+Epoch [6/10] - Loss: 0.1978, Val Loss: 0.2026, Val SNR: 0.24 dB
+Epoch [7/10] - Loss: 0.1929, Val Loss: 0.1867, Val SNR: 0.47 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.1867)
+Epoch [8/10] - Loss: 0.1889, Val Loss: 0.1824, Val SNR: 0.50 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.1824)
+Epoch [9/10] - Loss: 0.1861, Val Loss: 0.1775, Val SNR: 0.59 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.1775)
+Epoch [10/10] - Loss: 0.1817, Val Loss: 0.1767, Val SNR: 0.58 dB
+✔ Model saved to Models/dataset/uncached/CED_static.pth (Best Val Loss: 0.1767)
+--- Training Complete ---
+@ Total Training Time: 8627.03 seconds
+@ Total Training Time: 143.78 minutes
+@ Total Training Time: 2.40 hours
+Job finished successfully
+
+Job 45952 with name static has COMPLETED with Exit Code 0 after a runtime of 02:28:57
+
+You have requested 8G of RAM and you used 59.93% of it, that is, 4.79G
+You have requested 4 CPUS and you used 56.13% of them
+

@@ -1,0 +1,35 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060 Ti
+Device set to: cuda
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 288.47 seconds
+--- Model `CED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.2746, Val Loss: 0.2124, Val SNR: -0.03 dB
+✔ Model saved to Models/dataset/uncached/CED_pto.pth (Best Val Loss: 0.2124)
+Epoch [2/10] - Loss: 0.1994, Val Loss: 0.1873, Val SNR: 0.15 dB
+✔ Model saved to Models/dataset/uncached/CED_pto.pth (Best Val Loss: 0.1873)
+Epoch [3/10] - Loss: 0.1793, Val Loss: 0.1706, Val SNR: 0.31 dB
+✔ Model saved to Models/dataset/uncached/CED_pto.pth (Best Val Loss: 0.1706)
+Epoch [4/10] - Loss: 0.1646, Val Loss: 0.1668, Val SNR: 0.34 dB
+✔ Model saved to Models/dataset/uncached/CED_pto.pth (Best Val Loss: 0.1668)
+Epoch [5/10] - Loss: 0.1584, Val Loss: 0.1578, Val SNR: 0.48 dB
+✔ Model saved to Models/dataset/uncached/CED_pto.pth (Best Val Loss: 0.1578)
+Epoch [6/10] - Loss: 0.1525, Val Loss: 0.1631, Val SNR: 0.28 dB
+Epoch [7/10] - Loss: 0.1512, Val Loss: 0.1971, Val SNR: 0.07 dB
+Epoch [8/10] - Loss: 0.1455, Val Loss: 0.1536, Val SNR: 0.57 dB
+✔ Model saved to Models/dataset/uncached/CED_pto.pth (Best Val Loss: 0.1536)
+Epoch [9/10] - Loss: 0.1395, Val Loss: 0.1491, Val SNR: 0.58 dB
+✔ Model saved to Models/dataset/uncached/CED_pto.pth (Best Val Loss: 0.1491)
+Epoch [10/10] - Loss: 0.1379, Val Loss: 0.1501, Val SNR: 0.55 dB
+--- Training Complete ---
+@ Time PTO Truncation: 68.62 seconds
+@ Total Training Time: 1746124895.73 seconds
+@ Total Training Time: 29102081.60 minutes
+@ Total Training Time: 485034.69 hours
+Job finished successfully
+
+Job 45953 with name pto has COMPLETED with Exit Code 0 after a runtime of 03:02:47
+
+You have requested 8G of RAM and you used 122.46% of it, that is, 9.80G
+You have requested 4 CPUS and you used 57.94% of them

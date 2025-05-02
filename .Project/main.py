@@ -9,7 +9,6 @@ from torch.utils.data import DataLoader
 
 import config
 from Utils.train import train_eval
-from Utils.optuna import objective
 from Utils.denoise import batch_denoise, single_denoise
 from Utils.models import CNN, CED, RCED, UNet, ConvTasNet
 from Utils.dataset import DynamicBuckets, StaticBuckets, PTODataset, pto_collate, BucketSampler, visualize_dataset_padding
@@ -122,14 +121,7 @@ if __name__ == "__main__":
         elif model_name == "UNet":
             model = UNet()
         elif model_name == "ConvTasNet":   
-            model = ConvTasNet(
-                enc_dim=128,
-                feature_dim=48,
-                kernel_size=(5, 5),
-                num_layers=3,
-                num_stacks=1
-            )
-
+            model = ConvTasNet()
         else:
             raise ValueError(f"Invalid MODEL: {model_name}\n Choose from ['CNN', 'UNet', 'ConvTasNet']")
         
@@ -198,13 +190,7 @@ if __name__ == "__main__":
             elif model_name == "UNet":
                 model = UNet()
             elif model_name == "ConvTasNet":   
-                model = ConvTasNet(
-                    enc_dim=128,
-                    feature_dim=48,
-                    kernel_size=(5, 5),
-                    num_layers=3,
-                    num_stacks=1
-                )
+                model = ConvTasNet()
             else:
                 raise ValueError(f"Invalid MODEL: {model_name}")
 

@@ -1,7 +1,0 @@
-Virtual environment found, activating
-Using GPU: NVIDIA GeForce RTX 3060 Ti
-Device set to: cuda
-Loaded cache file: cache/dynamic/testset_buckets.pkl
---- Test Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
-✅ Denoised audio saved to: Output/wav/mmse_lsa_p232_334.wav
-Job finished successfully

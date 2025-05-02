@@ -1,0 +1,49 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060
+Device set to: cuda
+Loaded cache file: cache/dynamic/trainset_56spk_buckets.pkl
+Loaded cache file: cache/dynamic/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 0.69 seconds
+--- Model `CNN` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/25] - Loss: 0.3988, Val Loss: 0.4162, Val SNR: -0.58 dB
+✔ Model saved to Models/25/CNN_dynamic.pth (Best Val Loss: 0.4162)
+Epoch [2/25] - Loss: 0.3572, Val Loss: 0.4150, Val SNR: -0.19 dB
+✔ Model saved to Models/25/CNN_dynamic.pth (Best Val Loss: 0.4150)
+Epoch [3/25] - Loss: 0.3453, Val Loss: 0.4091, Val SNR: -0.03 dB
+✔ Model saved to Models/25/CNN_dynamic.pth (Best Val Loss: 0.4091)
+Epoch [4/25] - Loss: 0.3369, Val Loss: 0.4146, Val SNR: 0.10 dB
+Epoch [5/25] - Loss: 0.3288, Val Loss: 0.4220, Val SNR: 0.21 dB
+Epoch [6/25] - Loss: 0.3234, Val Loss: 0.4344, Val SNR: 0.25 dB
+Epoch [7/25] - Loss: 0.3191, Val Loss: 0.4336, Val SNR: 0.29 dB
+Epoch [8/25] - Loss: 0.3159, Val Loss: 0.4326, Val SNR: 0.32 dB
+Epoch [9/25] - Loss: 0.3132, Val Loss: 0.4423, Val SNR: 0.33 dB
+Epoch [10/25] - Loss: 0.3100, Val Loss: 0.4428, Val SNR: 0.35 dB
+Epoch [11/25] - Loss: 0.3007, Val Loss: 0.4426, Val SNR: 0.34 dB
+Epoch [12/25] - Loss: 0.2988, Val Loss: 0.4439, Val SNR: 0.35 dB
+Epoch [13/25] - Loss: 0.2979, Val Loss: 0.4453, Val SNR: 0.35 dB
+Epoch [14/25] - Loss: 0.2965, Val Loss: 0.4458, Val SNR: 0.36 dB
+Epoch [15/25] - Loss: 0.2959, Val Loss: 0.4464, Val SNR: 0.36 dB
+Epoch [16/25] - Loss: 0.2947, Val Loss: 0.4479, Val SNR: 0.37 dB
+Epoch [17/25] - Loss: 0.2942, Val Loss: 0.4486, Val SNR: 0.37 dB
+Epoch [18/25] - Loss: 0.2932, Val Loss: 0.4503, Val SNR: 0.37 dB
+Epoch [19/25] - Loss: 0.2928, Val Loss: 0.4526, Val SNR: 0.38 dB
+Epoch [20/25] - Loss: 0.2919, Val Loss: 0.4538, Val SNR: 0.39 dB
+Epoch [21/25] - Loss: 0.2871, Val Loss: 0.4277, Val SNR: 0.43 dB
+Epoch [22/25] - Loss: 0.2864, Val Loss: 0.4281, Val SNR: 0.44 dB
+Epoch [23/25] - Loss: 0.2861, Val Loss: 0.4283, Val SNR: 0.44 dB
+Epoch [24/25] - Loss: 0.2857, Val Loss: 0.4293, Val SNR: 0.45 dB
+Epoch [25/25] - Loss: 0.2855, Val Loss: 0.4292, Val SNR: 0.45 dB
+--- Training Complete ---
+@ Total Training Time: 14425.33 seconds
+@ Total Training Time: 240.42 minutes
+@ Total Training Time: 4.01 hours
+Job finished successfully
+
+
+Job 45902 with name CNN has COMPLETED with Exit Code 0 after a runtime of 04:00:38
+
+You have requested 8G of RAM and you used 67.33% of it, that is, 5.39G
+You have requested 4 CPUS and you used 74.73% of them
+

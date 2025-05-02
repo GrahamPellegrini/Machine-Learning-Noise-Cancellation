@@ -1,0 +1,41 @@
+Virtual environment found, activating
+Using GPU: NVIDIA GeForce RTX 3060
+Device set to: cuda
+Dynamic bucket sizes: [104159 142038 192173 298145 466744]
+Saved cache file: cache/dynamic/trainset_56spk_buckets.pkl
+Dynamic bucket sizes: [ 96810 128649 169242 226863 380764]
+Saved cache file: cache/dynamic/trainset_28spk_buckets.pkl
+--- Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
+@ Time ../ED-Noisy-Speech-Datashare Loading: 581.57 seconds
+--- Model `CED` loaded successfully ---
+Training & Evaluating Model...
+Epoch [1/10] - Loss: 0.3356, Val Loss: 0.2468, Val SNR: 0.03 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.2468)
+Epoch [2/10] - Loss: 0.2413, Val Loss: 0.2258, Val SNR: 0.19 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.2258)
+Epoch [3/10] - Loss: 0.2196, Val Loss: 0.2093, Val SNR: 0.30 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.2093)
+Epoch [4/10] - Loss: 0.2069, Val Loss: 0.2001, Val SNR: 0.36 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.2001)
+Epoch [5/10] - Loss: 0.1979, Val Loss: 0.1977, Val SNR: 0.38 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.1977)
+Epoch [6/10] - Loss: 0.1926, Val Loss: 0.1909, Val SNR: 0.52 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.1909)
+Epoch [7/10] - Loss: 0.1872, Val Loss: 0.1908, Val SNR: 0.47 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.1908)
+Epoch [8/10] - Loss: 0.1828, Val Loss: 0.1854, Val SNR: 0.54 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.1854)
+Epoch [9/10] - Loss: 0.1798, Val Loss: 0.1807, Val SNR: 0.45 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.1807)
+Epoch [10/10] - Loss: 0.1782, Val Loss: 0.1787, Val SNR: 0.55 dB
+✔ Model saved to Models/dataset/uncached/CED_dynamic.pth (Best Val Loss: 0.1787)
+--- Training Complete ---
+@ Total Training Time: 9097.07 seconds
+@ Total Training Time: 151.62 minutes
+@ Total Training Time: 2.53 hours
+Job finished successfully
+
+Job 45951 with name dynamic has COMPLETED with Exit Code 0 after a runtime of 02:41:32
+
+You have requested 8G of RAM and you used 66.04% of it, that is, 5.28G
+You have requested 4 CPUS and you used 51.08% of them
