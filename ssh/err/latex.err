@@ -1,0 +1,219 @@
+Rc files read:
+  /etc/LatexMk
+  latexmkrc
+Latexmk: This is Latexmk, John Collins, 20 November 2021, version: 4.76.
+Latexmk: making output directory 'build'
+Rule 'lualatex': File changes, etc:
+   Changed files, or newly in use since previous run(s):
+      'main.tex'
+------------
+Run number 1 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -halt-on-error -synctex=1 -recorder -output-directory="build"  "main.tex"'
+------------
+Latexmk: Missing bbl file 'build/main.bbl' in following:
+ No file main.bbl.
+Latexmk: Missing input file 'main.acr' (or dependence on it) from following:
+  'No file main.acr.'
+Latexmk: Missing input file 'main.gls' (or dependence on it) from following:
+  'No file main.gls.'
+Latexmk: References changed.
+Latexmk: References changed.
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: List of undefined refs and citations:
+  Citation 'azarang2020review' on page 7 undefined on input line 99
+  Citation 'ccby4' on page 15 undefined on input line 10
+  Citation 'dubey2016evaluation' on page 3 undefined on input line 18
+  Citation 'dubey2016evaluation' on page 3 undefined on input line 21
+  Citation 'dubey2016evaluation' on page 4 undefined on input line 44
+  Citation 'dubey2016evaluation' on page 5 undefined on input line 63
+  Citation 'dubey2016evaluation' on page 5 undefined on input line 68
+  Citation 'edinburghdataset' on page 15 undefined on input line 10
+  Citation 'ephraim1984speech' on page 5 undefined on input line 74
+  Citation 'epoch2021' on page 8 undefined on input line 116
+  Citation 'itutp862' on page 9 undefined on input line 156
+  Citation 'loizou2013speech' on page 1 undefined on input line 7
+  Citation 'loizou2013speech' on page 3 undefined on input line 11
+  Citation 'loizou2013speech' on page 3 undefined on input line 13
+  Citation 'loizou2013speech' on page 4 undefined on input line 38
+  Citation 'loizou2013speech' on page 4 undefined on input line 44
+  Citation 'loizou2013speech' on page 5 undefined on input line 68
+  Citation 'luo2019conv' on page 13 undefined on input line 43
+  Citation 'luo2019conv' on page 14 undefined on input line 52
+  Citation 'luo2019conv' on page 23 undefined on input line 112
+  Citation 'luo2019conv' on page 23 undefined on input line 119
+  Citation 'luo2019conv' on page 24 undefined on input line 131
+  Citation 'mindspore_mixed_precision' on page 30 undefined on input line 104
+  Citation 'mindspore_mixed_precision' on page 30 undefined on input line 99
+  Citation 'park2017acoustic' on page 12 undefined on input line 23
+  Citation 'park2017acoustic' on page 13 undefined on input line 33
+  Citation 'park2017acoustic' on page 19 undefined on input line 53
+  Citation 'park2017acoustic' on page 20 undefined on input line 60
+  Citation 'park2017acoustic' on page 21 undefined on input line 72
+  Citation 'park2017acoustic' on page 21 undefined on input line 77
+  Citation 'park2017acoustic' on page 24 undefined on input line 131
+  Citation 'park2017acoustic' on page 40 undefined on input line 208
+  Citation 'park2017acoustic' on page 42 undefined on input line 256
+  Citation 'park2017acoustic' on page 42 undefined on input line 258
+  Citation 'ronneberger2015unet' on page 22 undefined on input line 91
+  Citation 'vachhani2017dae' on page 7 undefined on input line 104
+  Citation 'wei2016mmse' on page 7 undefined on input line 94
+  Citation 'yoon2020pto' on page 12 undefined on input line 8
+  Citation 'yoon2020pto' on page 28 undefined on input line 52
+  Reference `chp:deployment' on page 44 undefined on input line 6
+  Reference `chp:evaluation' on page 18 undefined on input line 22
+  Reference `chp:implementation' on page 18 undefined on input line 22
+  Reference `fig:ced_training_plot' on page 39 undefined on input line 200
+  Reference `fig:cnn_training_plot' on page 39 undefined on input line 192
+  Reference `fig:convtasnet_training_plot' on page 41 undefined on input line 224
+  Reference `fig:dataset_config' on page 33 undefined on input line 18
+  Reference `fig:dataset_structure' on page 15 undefined on input line 21
+  Reference `fig:fcns_results' on page 13 undefined on input line 37
+  Reference `fig:fp16_vs_fp32' on page 30 undefined on input line 99
+  Reference `fig:max_padding' on page 17 undefined on input line 18
+  Reference `fig:mmse_lsa_block' on page 6 undefined on input line 84
+  Reference `fig:oom_error' on page 30 undefined on input line 86
+  Reference `fig:rced_training_plot' on page 40 undefined on input line 208
+  Reference `fig:scaled_loss' on page 31 undefined on input line 108
+  Reference `fig:static_pad' on page 27 undefined on input line 28
+  Reference `fig:unet_training_plot' on page 40 undefined on input line 216
+  Reference `sec:autoencoders' on page 18 undefined on input line 27
+  Reference `sec:convtasnet_lit_review' on page 23 undefined on input line 112
+  Reference `sec:dataset_exploration' on page 17 undefined on input line 8
+  Reference `sec:dataset_performance' on page 12 undefined on input line 16
+  Reference `sec:distortion_free_handling' on page 17 undefined on input line 20
+  Reference `sec:distortion_free_handling' on page 28 undefined on input line 52
+  Reference `sec:fcns' on page 19 undefined on input line 53
+  Reference `sec:fcns' on page 21 undefined on input line 72
+  Reference `sec:ml_models' on page 38 undefined on input line 170
+  Reference `sec:model_performance' on page 18 undefined on input line 29
+  Reference `sec:model_performance' on page 37 undefined on input line 127
+  Reference `sec:oom_handling' on page 35 undefined on input line 75
+  Reference `sec:training_ml_models' on page 43 undefined on input line 260
+  Reference `sec:training_ml_models' on page 43 undefined on input line 262
+  Reference `sec:variable_length_handling' on page 12 undefined on input line 8
+  Reference `sec:variable_length_handling' on page 26 undefined on input line 8
+  Reference `sec:variable_length_handling' on page 44 undefined on input line 13
+  Reference `subsec:pto_dataset' on page 12 undefined on input line 16
+  Reference `tab:classical_metrics' on page 38 undefined on input line 159
+  Reference `tab:dataset_loading_times' on page 34 undefined on input line 26
+  Reference `tab:dataset_loading_times' on page 34 undefined on input line 44
+  Reference `tab:dataset_performance' on page 35 undefined on input line 48
+  Reference `tab:dataset_performance' on page 35 undefined on input line 66
+  Reference `tab:ml_denoise' on page 42 undefined on input line 254
+  Reference `tab:ml_training' on page 39 undefined on input line 190
+  Reference `tab:oom_metrics' on page 36 undefined on input line 105
+  Reference `tab:oom_training' on page 36 undefined on input line 103
+  Reference `tab:oom_training' on page 36 undefined on input line 85
+Rule 'cusdep glo gls build/main': The following rules & subrules became out-of-date:
+      'cusdep glo gls build/main'
+------------
+Run number 1 of rule 'cusdep glo gls build/main'
+------------
+Rule 'biber build/main': File changes, etc:
+   Changed files, or newly in use since previous run(s):
+      'build/main.bcf'
+------------
+Run number 1 of rule 'biber build/main'
+------------
+------------
+Running 'biber  "build/main.bcf"'
+------------
+Use of uninitialized value in quotemeta at /usr/share/perl5/Biber/Config.pm line 228.
+Use of uninitialized value $tool in concatenation (.) or string at /usr/share/perl5/Biber/Config.pm line 307.
+Latexmk: Found biber source file(s) [build/main.bcf references.bib]
+Rule 'cusdep acn acr build/main': The following rules & subrules became out-of-date:
+      'cusdep acn acr build/main'
+------------
+Run number 1 of rule 'cusdep acn acr build/main'
+------------
+Rule 'lualatex': File changes, etc:
+   Changed files, or newly in use since previous run(s):
+      'build/main.acr'
+      'build/main.aux'
+      'build/main.bbl'
+      'build/main.gls'
+      'build/main.out'
+------------
+Run number 2 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -halt-on-error -synctex=1 -recorder -output-directory="build"  "main.tex"'
+------------
+Latexmk: Found input bbl file 'build/main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: List of undefined refs and citations:
+  Citation 'luo2019conv' on page 13 undefined on input line 43
+  Citation 'luo2019conv' on page 14 undefined on input line 52
+  Citation 'luo2019conv' on page 23 undefined on input line 112
+  Citation 'luo2019conv' on page 23 undefined on input line 119
+  Citation 'luo2019conv' on page 24 undefined on input line 131
+  Label `fig:convtasnet' multiply defined
+  Reference `chp:deployment' on page 46 undefined on input line 6
+  Reference `sec:ml_models' on page 38 undefined on input line 170
+Latexmk: Found biber source file(s) [build/main.bcf references.bib]
+Rule 'biber build/main': File changes, etc:
+   Changed files, or newly in use since previous run(s):
+      'build/main.bcf'
+------------
+Run number 2 of rule 'biber build/main'
+------------
+------------
+Running 'biber  "build/main.bcf"'
+------------
+Use of uninitialized value in quotemeta at /usr/share/perl5/Biber/Config.pm line 228.
+Use of uninitialized value $tool in concatenation (.) or string at /usr/share/perl5/Biber/Config.pm line 307.
+Latexmk: Found biber source file(s) [build/main.bcf references.bib]
+Rule 'lualatex': File changes, etc:
+   Changed files, or newly in use since previous run(s):
+      'build/main.aux'
+      'build/main.bbl'
+      'build/main.lof'
+      'build/main.lot'
+      'build/main.run.xml'
+      'build/main.toc'
+------------
+Run number 3 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -halt-on-error -synctex=1 -recorder -output-directory="build"  "main.tex"'
+------------
+Latexmk: Found input bbl file 'build/main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: List of undefined refs and citations:
+  Citation 'luo2019conv' on page 13 undefined on input line 43
+  Citation 'luo2019conv' on page 14 undefined on input line 52
+  Citation 'luo2019conv' on page 23 undefined on input line 112
+  Citation 'luo2019conv' on page 23 undefined on input line 119
+  Citation 'luo2019conv' on page 24 undefined on input line 131
+  Label `fig:convtasnet' multiply defined
+  Reference `chp:deployment' on page 46 undefined on input line 6
+  Reference `sec:ml_models' on page 38 undefined on input line 170
+Latexmk: Found biber source file(s) [build/main.bcf references.bib]
+Rule 'lualatex': File changes, etc:
+   Changed files, or newly in use since previous run(s):
+      'build/main.aux'
+      'build/main.run.xml'
+------------
+Run number 4 of rule 'lualatex'
+------------
+------------
+Running 'lualatex  -halt-on-error -synctex=1 -recorder -output-directory="build"  "main.tex"'
+------------
+Latexmk: Found input bbl file 'build/main.bbl'
+Latexmk: Log file says output to 'main.pdf'
+Latexmk: List of undefined refs and citations:
+  Citation 'luo2019conv' on page 13 undefined on input line 43
+  Citation 'luo2019conv' on page 14 undefined on input line 52
+  Citation 'luo2019conv' on page 23 undefined on input line 112
+  Citation 'luo2019conv' on page 23 undefined on input line 119
+  Citation 'luo2019conv' on page 24 undefined on input line 131
+  Label `fig:convtasnet' multiply defined
+  Reference `chp:deployment' on page 46 undefined on input line 6
+  Reference `sec:ml_models' on page 38 undefined on input line 170
+Latexmk: Found biber source file(s) [build/main.bcf references.bib]
+Latexmk: Summary of warnings from last run of *latex:
+  Latex failed to resolve 3 reference(s)
+  Latex found 1 multiply defined reference(s)
+  Latex failed to resolve 7 citation(s)

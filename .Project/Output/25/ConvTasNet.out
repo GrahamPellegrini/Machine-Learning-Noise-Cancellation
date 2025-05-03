@@ -33,3 +33,30 @@ Epoch [12/25] - Loss: 0.0488, Val Loss: 0.0512, Val SNR: 8.74 dB
 ✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0512)
 Epoch [13/25] - Loss: 0.0477, Val Loss: 0.0503, Val SNR: 8.43 dB
 ✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0503)
+Epoch [14/25] - Loss: 0.0475, Val Loss: 0.0506, Val SNR: 8.87 dB
+Epoch [15/25] - Loss: 0.0472, Val Loss: 0.0505, Val SNR: 8.79 dB
+Epoch [16/25] - Loss: 0.0469, Val Loss: 0.0504, Val SNR: 9.07 dB
+Epoch [17/25] - Loss: 0.0466, Val Loss: 0.0504, Val SNR: 8.36 dB
+Epoch [18/25] - Loss: 0.0463, Val Loss: 0.0499, Val SNR: 8.73 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0499)
+Epoch [19/25] - Loss: 0.0460, Val Loss: 0.0500, Val SNR: 8.64 dB
+Epoch [20/25] - Loss: 0.0463, Val Loss: 0.0495, Val SNR: 8.89 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0495)
+Epoch [21/25] - Loss: 0.0448, Val Loss: 0.0480, Val SNR: 9.33 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0480)
+Epoch [22/25] - Loss: 0.0442, Val Loss: 0.0479, Val SNR: 9.18 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0479)
+Epoch [23/25] - Loss: 0.0440, Val Loss: 0.0479, Val SNR: 9.24 dB
+Epoch [24/25] - Loss: 0.0439, Val Loss: 0.0478, Val SNR: 9.26 dB
+✔ Model saved to Models/25/ConvTasNet_dynamic.pth (Best Val Loss: 0.0478)
+Epoch [25/25] - Loss: 0.0438, Val Loss: 0.0478, Val SNR: 9.23 dB
+--- Training Complete ---
+@ Total Training Time: 149101.64 seconds
+@ Total Training Time: 2485.03 minutes
+@ Total Training Time: 41.42 hours
+Job finished successfully
+
+Job 45950 with name ConvTasNet has COMPLETED with Exit Code 0 after a runtime of 1-17:25:13
+
+You have requested 8G of RAM and you used 67.72% of it, that is, 5.42G
+You have requested 4 CPUS and you used 28.84% of them

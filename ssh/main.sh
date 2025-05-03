@@ -11,10 +11,10 @@
 
 
 # job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/dynamic.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/dynamic.err
+#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/denoising.out
+#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/denoising.err
 #SBATCH --account=undergrad
-#SBATCH --job-name=dynamic
+#SBATCH --job-name=denoising
 
 # email user with progress
 #SBATCH --mail-user=graham.pellegrini.22@um.edu.mt

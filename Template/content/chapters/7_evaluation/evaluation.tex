@@ -34,20 +34,18 @@ Both uncached and cached runs were executed, and the relevant timing metrics wer
 \hline
 \textbf{Dataset} & \textbf{Uncached} & \textbf{Cached} & \textbf{Truncation Overhead} \\
 \hline
-Static Bucketing  & 298.05 s  & 0.81 s   & N/A    \\
-Dynamic Bucketing & 602.56 s& 0.58 s  & N/A    \\
-PTO               & 311.21 s & 0.58 s  & 58.56 s  \\
+Static Bucketing  & 296.85 s  & 0.83 s   & N/A    \\
+Dynamic Bucketing & 581.57 s& 0.83 s  & N/A    \\
+PTO               & 288.47 s & 0.79 s  & 68.62 s  \\
 \hline
 \end{tabular}
 \end{table}
 
-The results in Table~\ref{tab:dataset_loading_times} offer a clear overview of the dataset loading times and runtime overheads associated with each method. Static Bucketing yields the fastest initial loading time, as it involves only dataset loading and bucket assignment. Dynamic Bucketing incurs further overhead due to the computational cost of K-Means clustering. PTO, while slightly slower than Static Bucketing, remains efficient given that it must iterate through the dataset to compute the original waveform lengths.
+The results in Table~\ref{tab:dataset_loading_times} reveal key insights into the efficiency of each dataset handling strategy. In the uncached condition, both Static Bucketing and PTO exhibit similar loading times, as each only requires a single pass through the dataset. Either to assign buckets or compute original waveform lengths. Dynamic Bucketing, however, incurs nearly double the loading time due to the additional K-Means clustering step, which requires a second pass to calculate cluster centers for optimal bucket assignment. This overhead is particularly pronounced in the uncached scenario, where the dataset must be fully loaded and processed from scratch.
 
-The re-run loading times for all three methods are significantly reduced due to the use of cached data. All methods show comparable re-run times, with Static Bucketing being marginally slower.
+In contrast, the cached runs significantly reduce loading times across all methods. Once the dataset metadata has been computed and stored, subsequent runs simply reload the cached mappings or original lengths, avoiding repeated preprocessing. PTO achieves the fastest cached time, as retrieving a list of original lengths is marginally quicker than reloading bucket assignments or cluster centers. However, a key distinction of PTO is its requirement for per-epoch output truncation during training. While this truncation overhead is relatively minor compared to the total training duration (typically on the order of hours). It can accumulate significantly across large datasets or extended training schedules. This trade-off must be carefully considered when assessing PTO's suitability for time-sensitive or resource-constrained training environments.
 
-A key distinction lies in the \textit{epoch truncation overhead}. Only the PTO method incurs this overhead due to its need to truncate outputs during training and evaluation to match the original input lengths. This step is unnecessary for the other two methods. While this added runtime is relatively minor compared to the total training duration (typically on the order of hours), this overhead can scale significantly with larger datasets or more training epochs.
-
-To evaluate the impact of dataset handling strategies on model learning, all models were compared using their best training checkpoint. Since the difference between cached and uncached runs was negligible in terms of performance, only the cached results are reported in Table~\ref{tab:dataset_performance}.
+To evaluate the impact of dataset handling strategies on model learning, each method was tested using the best-performing checkpoint from its respective training run. Since the differences in performance between cached and uncached conditions were found to be trivial, the results reported in Table~\ref{tab:dataset_performance} reflect the mean values across runs, with corresponding margins of error. This provides a clearer picture of any underlying variation while confirming the consistency of results.
 
 \vspace{1em}
 \begin{table}[H]
@@ -58,18 +56,18 @@ To evaluate the impact of dataset handling strategies on model learning, all mod
 \hline
 \textbf{Dataset} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val SNR} \\
 \hline
-Static Bucketing  & 0.8367  & 0.8410  & 1.09 dB \\
-Dynamic Bucketing & 0.8262  & 0.8298  & 1.10 dB \\  
-PTO               & 0.6288  & 0.6633  & 1.10 dB \\
+Static Bucketing  & \(0.1805 \pm 0.0013\)  & \(0.1787 \pm 0.0020\)  & \(0.54 \pm 0.045\) dB \\
+Dynamic Bucketing & \(0.1779 \pm 0.0004\)  & \(0.1850 \pm 0.0063\)  & \(0.56 \pm 0.010\) dB \\
+PTO               & \(0.1414 \pm 0.0019\)  & \(0.1458 \pm 0.0033\)  & \(0.53 \pm 0.050\) dB \\
 \hline
 \end{tabular}
 \end{table}
 
-The results in Table~\ref{tab:dataset_performance} indicate that the model achieves comparable performance across all dataset handling methods. The consistent validation SNR values suggest correct implementation across all strategies and indicate that the model learned equivalent representations irrespective of the input formatting.
+The results in Table~\ref{tab:dataset_performance} show that while all three dataset handling strategies yield reasonable and consistent validation SNR values, there are notable differences in training and validation loss. In particular, the PTO method achieves lower training and validation loss compared to both Static and Dynamic Bucketing. This suggests that PTO facilitates more learning under the current loss formulation.
 
-Interestingly, the PTO method shows a slightly lower training and validation loss. This discrepancy is not reflected in the SNR metric and may be attributed to differences in how output sequences are truncated during training. Causing the average loss to be lower than the other two methods. However, this does not translate into improved denoising performance, as indicated by the similar SNR values.
+However, despite its lower loss, PTO does not yield a corresponding improvement in validation SNR. The SNR values across all methods remain within a narrow range, indicating that the perceptual or energy-based denoising quality is comparable. The improved loss values in PTO may be partly influenced by its output truncation mechanism. This evaluates only the central, non-padded regions of the spectrogram. Potentially leading to more favorable loss estimates even if the actual perceptual improvement is marginal.
 
-While all three methods enable effective training, Dynamic Bucketing offers the most balanced trade-off. It adapts well to the dataset’s variable-length distribution, minimizes unnecessary padding, and avoids the runtime overhead introduced by PTO. Therefore, Dynamic Bucketing is selected as the preferred method for the remainder of this project.
+Considering the trade-offs between implementation complexity, runtime overhead, and generality. Dynamic Bucketing remains the most balanced choice. It handles variable-length inputs with optimal bukceting and minimal padding. Avoids the per-epoch truncation overhead of PTO and maintains reliable performance across all metrics. As such, Dynamic Bucketing is selected as the preferred dataset handling strategy for all subsequent model evaluations in this project.
 
 \section{OOM Validation}
 \label{sec:oom_validation}
