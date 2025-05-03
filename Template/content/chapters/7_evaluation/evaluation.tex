@@ -93,14 +93,14 @@ Each configuration was trained for the same number of epochs, using identical le
 \hline
 \textbf{Train Config} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val SNR} & \textbf{Training Time} \\
 \hline
-Baseline               & 0.7985 & 0.8048 & 1.12 dB & 4.24 h \\
-OOM Handling           & 0.8026 & 0.8077 & 1.11 dB & 2.58 h \\
-OOM + Accumulation     & 0.8007 & 0.8077 & 1.11 dB & 3.02 h \\
+Baseline               & 0.1169 & 0.1185 & 3.20 dB & 4.44 h \\
+OOM Handling           & 0.1217 & 0.1255 & 2.74 dB & 3.08 h \\
+OOM + Accumulation     & 0.1184 & 0.1263 & 2.95 dB & 3.91 h \\
 \hline
 \end{tabular}
 \end{table}
 
-The results in Table~\ref{tab:oom_training} demonstrate that OOM-handling techniques do not significantly impact model learning during training. Although training and validation losses are slightly higher for the OOM configurations compared to the baseline, the differences are minimal and are outweighed by the substantial reduction in training time. This speedup is likely attributed to improved memory efficiency through FP16 computation, garbage collection, and lower GPU memory pressure, making these techniques highly practical for resource-constrained training.
+The results in Table~\ref{tab:oom_training} show that all three training configurations achieve comparable performance in terms of both loss and validation SNR. The baseline configuration, which does not use any OOM-handling mechanisms, achieves the best validation SNR of 3.20 dB. With the differences across configurations being within a 0.5 dB range. Suggesting that the inclusion of OOM-handling strategies does include some degradation of the models training performance. The OOM Handling configurations, use of FP16 and GC could be seen as a trade-off between memory efficiency and model performance. 
 
 Each configuration was further evaluated in the full denoising pipeline. Table~\ref{tab:oom_metrics} presents the performance metrics across key evaluation criteria.
 
@@ -113,18 +113,20 @@ Each configuration was further evaluated in the full denoising pipeline. Table~\
 \hline
 \textbf{Train Config} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} \\
 \hline
-Baseline               & 0.9751 & 0.002083 & 1.3867 & 0.8205 & 0.7857 \\
-OOM Handling           & 0.9648 & 0.002088 & 1.2244 & 0.8037 & 1.0361 \\
-OOM + Accumulation     & 0.9714 & 0.002085 & 1.2611 & 0.8044 & 0.9004 \\
+Baseline               &  14.2843 & 0.000120 & 2.1096 & 0.8730 & 0.702311 \\
+OOM Handling           & 14.7731 & 0.000114 & 2.1791 & 0.8783 & 0.691936 \\
+OOM + Accumulation     & 14.8076 & 0.000117 & 2.1008 & 0.8748 & 0.692152 \\
 \hline
 \end{tabular}
 \end{table}
 
-While the training metrics showed minimal differences, the denoising evaluation reveals more noticeable degradations across OOM-handled configurations. Compared to the baseline, the OOM Handling and OOM + Accumulation configurations experience slight drops in PESQ and STOI, along with a more substantial increase in LSD. The higher LSD indicates that the spectral characteristics of the denoised output deviate more from the clean signal, suggesting a measurable decline in spectral fidelity and overall signal clarity.
+The results in Table~\ref{tab:oom_metrics} reveal that, contrary to initial expectations, the OOM-handling configurations not only maintain performance but slightly outperform the baseline in several key denoising metrics. Both the \textbf{OOM Handling} and \textbf{OOM + Accumulation} setups show improvements in SNR, PESQ, and LSD, suggesting enhanced perceptual quality and spectral fidelity.
 
-This discrepancy can be explained by the reduced numerical precision introduced by FP16 operations. While FP16 improves training speed and reduces memory usage, it also introduces minor rounding errors that can accumulate during training and slightly degrade output quality. Additionally, the use of gradient accumulation may introduce subtle variations in the optimization dynamics compared to pure full-precision training.
+Specifically, \textbf{OOM + Accumulation} achieves the highest SNR at 14.81 dB, marginally outperforming both the baseline and the non-accumulated OOM variant. Additionally, the lowest LSD values are observed in the OOM-handled models, indicating that their outputs more closely preserve the spectral characteristics of the clean reference signals. These findings suggest that the use of FP16 precision and memory-aware strategies does not harm. Potentially even improving the model's ability to generalize. 
 
-Nevertheless, despite these differences, the denoising degradations remain modest relative to the practical advantages gained. Crucially, the use of OOM-handling techniques enables the training of deeper and more complex models that would otherwise be infeasible due to memory constraints. Models like UNet and Conv-TasNet validate this trade-off, as they achieve substantial performance improvements despite their higher memory demands. These improvements are explored in more detail in Section~\ref{sec:model_performance}.
+The marginal gains in PESQ and STOI further support this conclusion. Although the differences are subtle, they point to a stable perceptual consistency across configurations. It is also possible that reduced numerical precision in FP16 introduces a form of implicit regularization, slightly mitigating overfitting and improving generalization performance.
+
+In summary, while the training metrics in Table~\ref{tab:oom_training} showed modest differences across configurations. The downstream denoising evaluation shows no degradation and in some cases minor improvements. These findings fully justify the use of OOM-handling techniques throughout this project. Even if future configurations exhibited performance regressions due to OOM mitigation. Their use would remain essential for enabling the training of memory-intensive models such as \textit{UNet} and \textit{Conv-TasNet}, ensuring a fair architectural comparison across all model types evaluated in this work.
 
 \section{Model Performance}
 \label{sec:model_performance}
