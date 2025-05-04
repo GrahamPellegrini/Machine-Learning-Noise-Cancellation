@@ -7,15 +7,6 @@ CHANGES MADE:
     
 - Mention that the training pipeline and denoising pipeline use a unified SNR calcualtion.
 
-Wiener Filter Fix Summary
-- Original implementation used torch.min() across time to estimate noise PSD, which underestimated the noise and caused unstable or overly strong filtering. I replaced this with a more robust method: taking the mean of the first 6 STFT frames (assumed noise-only) to estimate the noise PSD. Also added a small epsilon to prevent divide-by-zero. Retained exponential smoothing (α = 0.85) on the gain. Result: SNR improved, MSE and PESQ got better, and filtering became more stable and realistic.
-
-Fixing MMSE-LSA Performance Issues
--The initial MMSE-LSA implementation exhibited heavily negative SNR values and visibly over-suppressed waveforms, despite high STOI and PESQ scores. This indicated that while the speech was intelligible, much of the signal energy was being lost, leading to poor numerical quality. To address this, we revised the gain computation by introducing a lower bound (gain floor) of 0.1 to prevent total attenuation of low-energy regions. Additionally, we removed unused parameters (like α), clarified the role of β in smoothing the a priori SNR, and retained a simple yet effective exponential integral approximation. These adjustments significantly reduced over-suppression, restoring signal power and improving SNR without degrading perceptual metrics.
-
-Nature and Trade-offs of MMSE-LSA
--MMSE-LSA is designed to minimize log-spectral distortion by estimating an optimal gain function that suppresses noise while preserving speech. However, in practice, its strong suppression can sometimes eliminate important speech details, especially in low-SNR scenarios, which leads to a trade-off: high PESQ/STOI (perceptual quality and intelligibility) versus low SNR (numerical fidelity). This highlights MMSE-LSA’s inherent bias toward perceptual improvement rather than strict signal preservation. As such, careful gain floor tuning and noise estimation become essential when applying MMSE-LSA to real-world speech enhancement tasks.
-
 
 Change the appendix section of the project structure to the encapsulated single denoise now.
 

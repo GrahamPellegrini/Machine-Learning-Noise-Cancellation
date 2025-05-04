@@ -2,7 +2,9 @@
 \chapter{Evaluation}
 \label{chp:evaluation}
 
-This chapter presents a comprehensive evaluation of the implemented speech enhancement system, assessing both classical and deep learning approaches across several dimensions. The evaluation is divided into three key parts. First, the impact of dataset handling strategies is examined, comparing how the different dataset methods affect training efficiency and performance. Second, the effectiveness of Out-of-Memory (OOM) mitigation techniques is validated to ensure that memory-saving strategies do not degrade model quality. Finally, the core focus of this chapter is a comparative analysis of model architectures, benchmarking five machine learning models against three classical denoising methods. Each section includes detailed quantitative assessments using respective metrics. Results are presented using clear, tabulated formats for ease of interpretation and cross-comparison.
+This chapter presents a comprehensive evaluation of the implemented speech enhancement system, assessing both classical and deep learning approaches across several dimensions. The evaluation is divided into three key parts. First, the impact of dataset handling strategies is examined, comparing how the different dataset methods affect training efficiency and performance. Second, the effectiveness of Out-of-Memory (OOM) mitigation techniques is validated to ensure that memory-saving strategies do not degrade model quality. Finally, the core focus of this chapter is a comparative analysis of model architectures, benchmarking five machine learning models against three classical denoising methods.
+
+Each section includes detailed quantitative assessments using respective metrics. The metrics within the first three sections are conducted in batch. That is the model is trained on the whole training set, the validation on the whole validation set, and the denoising on the whole test set. So any metrics are averaged across the whole dataset. Results are presented using clear, tabulated formats for ease of interpretation and cross-comparison.
 
 \section{Dataset Performance}
 \label{sec:dataset_performance}
@@ -75,7 +77,7 @@ Considering the trade-offs between implementation complexity, runtime overhead, 
 While Section~\ref{sec:oom_handling} outlined several techniques to mitigate Out-of-Memory (OOM) errors during training. It is important to demonstrate that these strategies do not compromise model learning. The goal of this section is to validate that memory-saving methods do not lead to information loss or degraded performance. To assess this, the RCED model was used, since the UNet and ConvTasNet could not be trained without OOM-handling techniques. Training was conducted using the dynamic bucketing strategy and compared across three different configurations:
 
 \begin{enumerate}
-    \item \textbf{Clean Training (Baseline):} A standard training loop without any OOM-handling logic, using a batch size of 4. This configuration serves as the control, with no memory management mechanisms.
+    \item \textbf{Clean Training (Control):} A standard training loop without any OOM-handling logic, using a batch size of 4. This configuration serves as the control, with no memory management mechanisms.
     
     \item \textbf{OOM Handling (Batch 4, Accum 1):} OOM-handling techniques were enabled while maintaining a batch size of 4. These included fixed-point precision (FP16) and garbage collection (GC), allowing for a more memory-efficient training process.
     
@@ -93,14 +95,14 @@ Each configuration was trained for the same number of epochs, using identical le
 \hline
 \textbf{Train Config} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val SNR} & \textbf{Training Time} \\
 \hline
-Baseline               & 0.1169 & 0.1185 & 3.20 dB & 4.44 h \\
+Control                & 0.1169 & 0.1185 & 3.20 dB & 4.44 h \\
 OOM Handling           & 0.1217 & 0.1255 & 2.74 dB & 3.08 h \\
 OOM + Accumulation     & 0.1184 & 0.1263 & 2.95 dB & 3.91 h \\
 \hline
 \end{tabular}
 \end{table}
 
-The results in Table~\ref{tab:oom_training} show that all three training configurations achieve comparable performance in terms of both loss and validation SNR. The baseline configuration, which does not use any OOM-handling mechanisms, achieves the best validation SNR of 3.20 dB. With the differences across configurations being within a 0.5 dB range. Suggesting that the inclusion of OOM-handling strategies does include some degradation of the models training performance. The OOM Handling configurations, use of FP16 and GC could be seen as a trade-off between memory efficiency and model performance. 
+The results in Table~\ref{tab:oom_training} show that all three training configurations achieve comparable performance in terms of both loss and validation SNR. The control configuration, which does not use any OOM-handling mechanisms, achieves the best validation SNR of 3.20 dB. With the differences across configurations being within a 0.5 dB range. Suggesting that the inclusion of OOM-handling strategies does include some degradation of the models training performance. The OOM Handling configurations, use of FP16 and GC could be seen as a trade-off between memory efficiency and model performance. 
 
 Each configuration was further evaluated in the full denoising pipeline. Table~\ref{tab:oom_metrics} presents the performance metrics across key evaluation criteria.
 
@@ -113,16 +115,16 @@ Each configuration was further evaluated in the full denoising pipeline. Table~\
 \hline
 \textbf{Train Config} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} \\
 \hline
-Baseline               &  14.2843 & 0.000120 & 2.1096 & 0.8730 & 0.702311 \\
+Control              &  14.2843 & 0.000120 & 2.1096 & 0.8730 & 0.702311 \\
 OOM Handling           & 14.7731 & 0.000114 & 2.1791 & 0.8783 & 0.691936 \\
 OOM + Accumulation     & 14.8076 & 0.000117 & 2.1008 & 0.8748 & 0.692152 \\
 \hline
 \end{tabular}
 \end{table}
 
-The results in Table~\ref{tab:oom_metrics} reveal that, contrary to initial expectations, the OOM-handling configurations not only maintain performance but slightly outperform the baseline in several key denoising metrics. Both the \textbf{OOM Handling} and \textbf{OOM + Accumulation} setups show improvements in SNR, PESQ, and LSD, suggesting enhanced perceptual quality and spectral fidelity.
+The results in Table~\ref{tab:oom_metrics} reveal that, contrary to initial expectations, the OOM-handling configurations not only maintain performance but slightly outperform the control in several key denoising metrics. Both the \textbf{OOM Handling} and \textbf{OOM + Accumulation} setups show improvements in SNR, PESQ, and LSD, suggesting enhanced perceptual quality and spectral fidelity.
 
-Specifically, \textbf{OOM + Accumulation} achieves the highest SNR at 14.81 dB, marginally outperforming both the baseline and the non-accumulated OOM variant. Additionally, the lowest LSD values are observed in the OOM-handled models, indicating that their outputs more closely preserve the spectral characteristics of the clean reference signals. These findings suggest that the use of FP16 precision and memory-aware strategies does not harm. Potentially even improving the model's ability to generalize. 
+Specifically, \textbf{OOM + Accumulation} achieves the highest SNR at 14.81 dB, marginally outperforming both the control and the non-accumulated OOM variant. Additionally, the lowest LSD values are observed in the OOM-handled models, indicating that their outputs more closely preserve the spectral characteristics of the clean reference signals. These findings suggest that the use of FP16 precision and memory-aware strategies does not harm. Potentially even improving the model's ability to generalize. 
 
 The marginal gains in PESQ and STOI further support this conclusion. Although the differences are subtle, they point to a stable perceptual consistency across configurations. It is also possible that reduced numerical precision in FP16 introduces a form of implicit regularization, slightly mitigating overfitting and improving generalization performance.
 
@@ -133,13 +135,12 @@ In summary, while the training metrics in Table~\ref{tab:oom_training} showed mo
 
 This section presents the most critical part of the evaluation and the central focus of the project. A comparative assessment of classical methods and five machine learning models for speech enhancement. Unlike earlier evaluations, which focused on dataset handling strategies and OOM mitigation techniques using fixed models to conduct the justification. The main scope of this project is to justify the use of machine learning models for speech enhancement and to evaluate their performance against classical methods.
 
-The evaluation retains the previously established dynamic bucketing and OOM handling strategies but now focuses on how model design impacts training efficiency and denoising performance. The section begins with an analysis of classical denoising methods to establish a meaningful baseline for comparison.
+The evaluation retains the previously established dynamic bucketing and OOM-handling strategies to ensure consistency. To provide a meaningful frame of reference, a baseline set of metrics is also established in Section~\ref{sec:classical_methods}. This baseline follows the same evaluation pipeline as the classical methods but uses the raw noisy inputs directly compared against the clean reference signals. These values define a lower bound for performance and serve as a clear reference point for assessing the effectiveness of each denoising method.
 
 \subsection{Classical Methods}
 \label{sec:classical_methods}
 
-The classical methods evaluated include Spectral Subtraction (SS), Wiener Filtering (WF), and the Minimum Mean Square Error - Log Spectral Amplitude estimator (MMSE-LSA), all implemented in a single-channel setting. SS and WF are foundational methods in literature, whilst MMSE-LSA represents a more developed and perceptually motivated approach. Since these methods do not require training, the classical evaluation bypasses training and instead focuses solely on denoising performance using the same pipeline and evaluation metrics as the learning-based models.
-
+The classical methods evaluated include Spectral Subtraction (SS), Wiener Filtering (WF), and the Minimum Mean Square Error - Log Spectral Amplitude estimator (MMSE-LSA).These are all implemented in a single-channel setting. SS and WF are foundational methods in literature, whilst MMSE-LSA represents a more developed and perceptually motivated approach. Since these methods do not require training, the classical evaluation focuses solely on denoising performance using the same pipeline and evaluation metrics as the learning-based models.
 
 \vspace{1em}
 \begin{table}[H]
@@ -150,21 +151,23 @@ The classical methods evaluated include Spectral Subtraction (SS), Wiener Filter
 \hline
 \textbf{Method} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} & \textbf{Denoise Time} \\
 \hline
-SS          & 1.5406 & 0.002210 & 1.4574 & 0.8538 & 0.7747 & 01.17 m \\
-WF          & -3.3796 & 0.006702 & 1.8721 & 0.8968 & 0.9278 & 01.33 m \\
-MMSE-LSA    & -2.3929 & 0.005440 & 2.0671 & 0.8974 & 0.8274 & 01.51 m \\
+Baseline     & -2.2774 & 0.005152 & 1.8451 & 0.8928 & 0.904223 & 0.56m \\
+SS          & 3.0861 & 0.001525 & 1.4535 & 0.8457 & 0.767089 & 1.01 m \\
+WF          & 0.4647 & 0.002875 & 2.0639 & 0.8889 & 0.753452 & 1.21 m \\
+MMSE-LSA    & -0.8619 & 0.003726 & 2.0238 & 0.8943 & 0.797070 & 1.39 m \\
 \hline
 \end{tabular}
 \end{table}
 
+The results in Table~\ref{tab:classical_metrics} highlight the differing trade-offs established by each classical denoising method. Importantly, the inclusion of baseline metrics provides a critical point of reference for evaluating both classical and learning-based models. Without it, the negative SNR value for MMSE-LSA would misleadingly suggest a failure in denoising—when in fact, it still reduces noise energy effectively.
 
-The results in Table~\ref{tab:classical_metrics} highlight key trade-offs between signal fidelity and perceptual quality. SS achieved the best SNR and MSE, suggesting strong numerical suppression of noise. However, it underperformed in perceptual metrics, likely due to spectral distortion and residual artifacts introduced by aggressive subtraction.
+SS achieves the best improvement in SNR and MSE, reflecting strong numerical suppression of noise. However, this comes at the cost of perceptual quality, as evidenced by its relatively low PESQ and STOI scores. This is likely due to spectral over-subtraction and residual artifacts, which degrade perceived audio quality.
 
-In contrast, WF and MMSE-LSA produced negative SNR values indicating that the residual noise after denoising exceeds the remaining speech energy. This behavior is in a purley energy based metric sense but stems from the design of both methods, which prioritize perceptual quality over strict numerical fidelity. In a sense they tolerate or redistribute residual noise in less perceptually important regions of the speech signal. Resulting in improved PESQ and STOI scores despite poorer SNR outcomes. 
+In contrast, WF and MMSE-LSA adopt more perceptually driven strategies. WF achieves the best PESQ (2.0639) and the lowest LSD (0.753), indicating better preservation of spectral fidelity. Its performance benefited from an adjustment in noise estimation. Where the noise PSD was computed using the mean of the first six STFT frames rather than the minimum—resulting in more stable and effective filtering. MMSE-LSA records the highest STOI (0.8943), suggesting superior intelligibility of speech content. While iterative tuning helped stabilize its behavior, MMSE-LSA inherently prioritizes log-spectral distortion minimization. As a result, it achieves clear perceptual improvements but offers less numerical gain in SNR compared to SS or WF. This trade-off is consistent with its design focus on perceptual quality over raw energy preservation.
 
-Interestingly, although SNR deteriorates, the MSE values remain comparable to those of SS. This can be attributed to the logarithmic nature of SNR versus the linear nature of MSE. Small differences in error magnitude can result in disproportionately large shifts in SNR. Thus, while the total error remains moderate. Its energy distribution leads to poorer SNR without severely impacting overall error magnitude.
+The negative SNR values for both the baseline and MMSE-LSA arise primarily from averaging across test files with highly variable and often low input SNRs. In such cases, even minor reconstruction errors can dominate energy calculations, pulling the average SNR below zero—despite the clear perceptual improvements reflected in PESQ and STOI.
 
-These results align with MMSE-LSA's perceptually motivated design, confirming its effectiveness in preserving speech intelligibility and naturalness. Notably, all classical methods completed denoising in under two minutes, indicating no significant computational cost differences.
+All classical methods complete denoising in under two minutes, confirming their practicality for batch processing and their suitability for real-time deployment when computational efficiency is essential.
 
 \subsection{Training The ML Models}
 \label{sec:training_ml_models}

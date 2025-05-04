@@ -26,13 +26,11 @@ NUM_BUCKET = 5  # Number of dynamic buckets (dynamic only)
 
 
 # Model Parameters
-MODEL = "RCED"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
+MODEL = "ConvTasNet"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
 EPOCHS = 10  # Number of epochs to train the model
 LEARNING_RATE = 1e-3  # Learning rate for the model
 SCHEDULER = True  # Use a learning rate scheduler
-MODEL_PTH = "Models/oom/RCED_OOM_ACCUM.pth"
-
-#"Models/25/" + MODEL + "_" + PAD_METHOD + ".pth" 
+MODEL_PTH = "Models/25/" + MODEL + "_" + PAD_METHOD + ".pth" 
 
 # Classical Denoising Parameters
 CLASSICAL = False  # Use classical methods for denoising
@@ -46,13 +44,13 @@ METRICS_PTH = (
 )
 
 # Single File Denoising
-SINGLE = False  # Denoise a single audio file
+SINGLE = True  # Denoise a single audio file
 SPEAKER_ID = "p232_334"  # Speaker ID for the audio file
 NOISY_PTH = DATASET_DIR + "/noisy_testset_wav/" +  SPEAKER_ID + ".wav"  # Path to the noisy audio file
 CLEAN_PTH = DATASET_DIR + "/clean_testset_wav/" + SPEAKER_ID + ".wav"  # Path to the clean audio file
 OUTPUT_PTH = (
     "Output/wav/" + CLASSICAL_METHOD + "_" + SPEAKER_ID + ".wav"
     if CLASSICAL else
-    "Output/wav/" + MODEL + "_" + PAD_METHOD + "_" + SPEAKER_ID + ".wav"
+    "Output/wav/" + MODEL_PTH.split("/")[-1].split(".")[0] + "_" + SPEAKER_ID + ".wav"
 )
 
