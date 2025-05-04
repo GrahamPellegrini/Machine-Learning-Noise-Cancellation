@@ -26,7 +26,7 @@ NUM_BUCKET = 5  # Number of dynamic buckets (dynamic only)
 
 
 # Model Parameters
-MODEL = "ConvTasNet"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
+MODEL = "CNN"  # OPTIONS: "CNN", "CED", "RCED", "UNet", "ConvTasNet"
 EPOCHS = 10  # Number of epochs to train the model
 LEARNING_RATE = 1e-3  # Learning rate for the model
 SCHEDULER = True  # Use a learning rate scheduler
@@ -44,7 +44,7 @@ METRICS_PTH = (
 )
 
 # Single File Denoising
-SINGLE = True  # Denoise a single audio file
+SINGLE = False  # Denoise a single audio file
 SPEAKER_ID = "p232_334"  # Speaker ID for the audio file
 NOISY_PTH = DATASET_DIR + "/noisy_testset_wav/" +  SPEAKER_ID + ".wav"  # Path to the noisy audio file
 CLEAN_PTH = DATASET_DIR + "/clean_testset_wav/" + SPEAKER_ID + ".wav"  # Path to the clean audio file

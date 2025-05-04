@@ -36,9 +36,9 @@ Both uncached and cached runs were executed, and the relevant timing metrics wer
 \hline
 \textbf{Dataset} & \textbf{Uncached} & \textbf{Cached} & \textbf{Truncation Overhead} \\
 \hline
-Static Bucketing  & 296.85 s  & 0.83 s   & N/A    \\
-Dynamic Bucketing & 581.57 s& 0.83 s  & N/A    \\
-PTO               & 288.47 s & 0.79 s  & 68.62 s  \\
+Static Bucketing  & 296.85s  & 0.83s   & N/A    \\
+Dynamic Bucketing & 581.57s& 0.83s  & N/A    \\
+PTO               & 288.47s & 0.79s  & 68.62s  \\
 \hline
 \end{tabular}
 \end{table}
@@ -151,7 +151,7 @@ The classical methods evaluated include Spectral Subtraction (SS), Wiener Filter
 \hline
 \textbf{Method} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} & \textbf{Denoise Time} \\
 \hline
-Baseline     & -2.2774 & 0.005152 & 1.8451 & 0.8928 & 0.904223 & 0.56m \\
+Baseline     & -2.2774 & 0.005152 & 1.8451 & 0.8928 & 0.904223 & 56s \\
 SS          & 3.0861 & 0.001525 & 1.4535 & 0.8457 & 0.767089 & 1.01 m \\
 WF          & 0.4647 & 0.002875 & 2.0639 & 0.8889 & 0.753452 & 1.21 m \\
 MMSE-LSA    & -0.8619 & 0.003726 & 2.0238 & 0.8943 & 0.797070 & 1.39 m \\
@@ -183,16 +183,16 @@ With the classical methods evaluated, the focus now shifts to the machine learni
 \hline
 \textbf{Model} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val SNR} & \textbf{Training Time} \\
 \hline
-CNN         & 0.8813 & 0.8883 & 1.06 dB & 3.22 h \\
-CED         & 0.8302 & 0.8334 & 1.10 dB & 5.27 h \\
-RCED        & 0.8001 & 0.8071 & 1.11 dB & 7.32 h \\
-UNet        & 0.7941 & 0.8003 & 1.12 dB & 14.32 h \\
-ConvTasNet  & 0.0764 & 0.0760 & 4.76 dB & 13.09 h \\
+CNN         & 0.2855 & 0.4292 & 0.45 dB & 4.01 h \\
+CED         & 0.1599 & 0.1675 & 0.88 dB & 6.32 h \\
+RCED        & 0.1136 & 0.1239 & 2.69 dB & 7.43 h \\
+UNet        & 0.0477 & 0.0649 & 6.35 dB & 17.44 h \\
+ConvTasNet  & 0.0438 & 0.0478 & 9.23 dB & 1d 1.25h \\
 \hline
 \end{tabular}
 \end{table}
 
-The training outcomes summarized in Table~\ref{tab:ml_training} clearly demonstrate a consistent yet incremental improvement across the machine learning models from CNN to UNet, followed by a significant leap in performance with ConvTasNet.  
+The training outcomes summarized in Table~\ref{tab:ml_training} clearly demonstrate a consistently increamenting trend in performance as the models progress in complexity. 
 
 The CNN model was introduced as a simple baseline to validate the project’s training and evaluation pipeline. Despite its minimal architecture, it delivered solid performance and served as a reference point for more advanced models. The training plot in Figure~\ref{fig:cnn_training_plot} provides a quick visual overview of the model's learning progression. Although a small gap between training and validation loss is observed, which might suggest mild overfitting. The magnitude of this gap (0.007) is negligible, and the model retains good generalization performance, making it a reliable benchmark. A similar trend is observed across the remaining models, with no significant signs of overfitting.
 
@@ -248,11 +248,11 @@ Following the training phase, each machine learning model was evaluated using th
 \hline
 \textbf{Model} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} & \textbf{Denoise Time} \\
 \hline
-CNN         & 0.4715  & 0.002340 & 1.1906 & 0.7351 & 0.9639 & 01.28 m \\
-CED         & 0.8615  & 0.002138 & 1.1626 & 0.7847 & 0.9210 & 01.24 m \\
-RCED        & 0.9655  & 0.002088 & 1.2825 & 0.8115 & 0.9031 & 01.29 m \\
-UNet        & 0.9844  & 0.002079 & 1.3273 & 0.7983 & 0.9206 & 01.38 m \\
-ConvTasNet  & 17.9050 & 0.000063 & 2.3001 & 0.9001 & 0.6881 & 01.44 m \\
+CNN         & 4.6432  & 0.001344 & 1.7410 & 0.8073 & 0.795551 & 1.11 m \\
+CED         & 13.1850  & 0.000161 & 1.6780 & 0.8386 & 0.765542 & 1.05 m \\
+RCED        & 14.5285  & 0.000117 & 2.0542 & 0.8677 & 0.647985 & 1.14 m \\
+UNet        & 16.9872  & 0.000069 & 2.1384 & 0.8940 & 0.707572 & 1.27 m \\
+ConvTasNet  & 18.0607 & 0.000063 & 2.4329 & 0.9112 & 0.674051 & 2.19 m \\
 \hline
 \end{tabular}
 \end{table}
