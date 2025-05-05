@@ -172,7 +172,7 @@ All classical methods complete denoising in under two minutes, confirming their 
 \subsection{Training The ML Models}
 \label{sec:training_ml_models}
 
-With the classical methods evaluated, the focus now shifts to the machine learning models. Each model defined in the \ref{sec:ml_models} section was trained using the same dataset handling strategies and OOM mitigation techniques previously established. The models followed a consistent training configuration: a batch size of 2, accumulation steps of 4, 25 training epochs, and a learning rate of $1 \times e^{-3}$. The table below summarizes the training performance for each model.
+With the classical methods evaluated, the focus now shifts to the machine learning models. Each model defined in the \ref{sec:model_architecture} section was trained using the same dataset handling strategies and OOM mitigation techniques previously established. The models followed a consistent training configuration: a batch size of 2, accumulation steps of 4, 25 training epochs, and a learning rate of $1 \times e^{-3}$. The table below summarizes the training performance for each model.
 
 \vspace{1em}
 \begin{table}[H]
@@ -194,7 +194,7 @@ ConvTasNet  & 0.0438 & 0.0478 & 9.23 dB & 1d 1.25h \\
 
 The training outcomes summarized in Table~\ref{tab:ml_training} clearly demonstrate a consistently increamenting trend in performance as the models progress in complexity. 
 
-The CNN model was introduced as a simple baseline to validate the project’s training and evaluation pipeline. Despite its minimal architecture, it delivered solid performance and served as a reference point for more advanced models. The training plot in Figure~\ref{fig:cnn_training_plot} provides a quick visual overview of the model's learning progression. Although a small gap between training and validation loss is observed, which might suggest mild overfitting. The magnitude of this gap (0.007) is negligible, and the model retains good generalization performance, making it a reliable benchmark. A similar trend is observed across the remaining models, with no significant signs of overfitting.
+The CNN model was introduced as a simple foundation to validate the project’s training and evaluation pipeline. It demonstrated reasonable training metrics, though not directly comparable to the classical methods, which do not involve a learning phase. The training plot in Figure~\ref{fig:cnn_training_plot} shows a moderate gap between training (0.2855) and validation (0.4292) loss, around a 50\% increase indicating moderate overfitting. Additionally, the validation loss increases during the early epochs, likely due to the model initially overfitting to noise patterns in the training data before learning more generalizable features. Despite this, the validation SNR continues to improve steadily, suggesting that the model gradually captures meaningful structure in the data.
 
 \begin{figure}[H]
     \centering
@@ -202,7 +202,7 @@ The CNN model was introduced as a simple baseline to validate the project’s tr
     \caption{\label{fig:cnn_training_plot} CNN training plot.}
 \end{figure}
 
-The CED model expanded upon the CNN baseline with a fully connected encoder-decoder architecture, yielding modest improvements. Notably, CED demonstrated remarkable training stability, as illustrated in Figure~\ref{fig:ced_training_plot}. The absence of significant fluctuations in the loss curves underscores its effective learning and convergence behavior.
+The CED model expands upon the CNN baseline by adopting a fully connected encoder-decoder architecture. It delivers significant performance gains for only a modest increase in model complexity and training time. As shown in Figure~\ref{fig:ced_training_plot}, both the training and validation loss curves converge smoothly and remain closely aligned throughout training, indicating stable learning and minimal overfitting.
 
 \begin{figure}[H]
     \centering
@@ -210,7 +210,9 @@ The CED model expanded upon the CNN baseline with a fully connected encoder-deco
     \caption{\label{fig:ced_training_plot} CED training plot.}
 \end{figure}
 
-The RCED model further improved upon the CED architecture by incorporating residual connections between layers. This enhancement aimed at facilitating better information flow and gradient propagation. The training plot in Figure~\ref{fig:rced_training_plot} still potrays a good learning curve, with slight increase in training time due to the added complexity of the architecture. The fact that RCED already shows improved training metrics over CED, indicated that we will likely see the same trend in the denoising evaluation. Overall confirming \cite{park2017acoustic}’s findings that residual connections can enhance performance in speech enhancement tasks.
+The RCED model extends the CED architecture by incorporating residual connections to improve information flow and gradient propagation. As shown in Table~\ref{tab:ml_training}, RCED outperforms CED across all training metrics, with validation SNR increasing from 0.88 dB to 2.69 dB and only a minor increase in training time.
+
+The training plot in Figure~\ref{fig:rced_training_plot} shows stable convergence in loss curves, though the validation SNR exhibits more fluctuation compared to CED. These oscillations likely stem from the model’s increased sensitivity due to its added complexity with residual connections. Nevertheless, the upward SNR trend confirms that RCED generalizes effectively and benefits from residual learning. Supporting the findings of \cite{park2017acoustic}.
 
 \begin{figure}[H]
     \centering
@@ -218,7 +220,9 @@ The RCED model further improved upon the CED architecture by incorporating resid
     \caption{\label{fig:rced_training_plot} RCED training plot.}
 \end{figure}
 
-The UNet was the longets model trained (14.32 h), with almost double the training time of RCED (7.32 h). This increase is naturally attributed from the increaded complexity of the architecture. There are no significant statements to be made about the training plot in Figure~\ref{fig:unet_training_plot}. However, it was expected to show a more pronounced improvement over RCED, given its more complex architecture and doubled training time. It only followed the trend of marginal improvements.
+The UNet model achieved the best training and validation loss so far, with values of \textbf{0.0477} and \textbf{0.0649} respectively, and more than doubled the validation SNR to \textbf{6.35 dB} compared to RCED. This reflects the strength of its skip-connected encoder-decoder architecture, which helps preserve fine-grained spectral details during reconstruction.
+
+However, this performance comes at a significant cost—UNet required \textbf{17.44 hours} to train, over twice the duration of RCED. As shown in Figure~\ref{fig:unet_training_plot}, the model converges smoothly, and the validation SNR shows a consistent upward trend with fewer fluctuations than RCED. It is worth noting that all recorded training times are situational and can vary with configuration and system load. A full justification of these time-performance trade-offs is provided in Section~\ref{sec:denoising_ml_models}.
 
 \begin{figure}[H]
     \centering
@@ -226,13 +230,17 @@ The UNet was the longets model trained (14.32 h), with almost double the trainin
     \caption{\label{fig:unet_training_plot} UNet training plot.}
 \end{figure}
 
-The most notable result came from ConvTasNet, which showed a significant leap in validation SNR from 1.12 dB (in UNet) to 4.76 dB. The losses didn't illustrate the same drammatic improvement but still gave more substantial improvements. This distinction can also be seen in the training plot in Figure~\ref{fig:convtasnet_training_plot}, as the SNR plot shows signifcant spikes and dips. Indicating that the model is learning to capture complex temporal and spectral patterns in the data. Although evalutaion cannot be solely based on training metrics and require the proper denoising pipeline evlaution along with the metrics. This poses a hopeful outlook for the model's performance in the denoising evaluation and could overcome the limitations of the previous models to make signifcant improvements.
+The ConvTasNet model yielded the most notable training results. It achieved the lowest loss values—\textbf{0.0438} (train) and \textbf{0.0478} (validation)—and the highest validation SNR of \textbf{9.23 dB}, a substantial improvement over UNet’s 6.35 dB. As shown in Figure~\ref{fig:convtasnet_training_plot}, the model demonstrates strong convergence, with the validation SNR stabilizing at a high level after initially fluctuating. This behavior reflects ConvTasNet’s ability to model complex temporal dependencies more effectively than the previous architectures.
+
+However, this performance came at a computational cost. ConvTasNet required over \textbf{25 hours} to train—marking the longest training time in this project. This trend of increasing training duration aligns with the growing complexity and capacity of the models. As architectures become more expressive, it becomes harder to extract further improvements in SNR, necessitating longer optimization cycles to refine smaller, higher-level features.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{ConvTasNet_plot.png}
     \caption{\label{fig:convtasnet_training_plot} ConvTasNet training plot.}
 \end{figure}
+
+In summary, the training phase across all models showed a clear upward trend in learning capacity and output quality. Each architectural refinement—from CNN to ConvTasNet—yielded measurable improvements in loss and SNR, though at the expense of increased training time and complexity. This trade-off sets the stage for a comprehensive evaluation in the next section, where these models are benchmarked on real denoising performance.
 
 \subsection{Denoising The ML Models}
 \label{sec:denoising_ml_models}
