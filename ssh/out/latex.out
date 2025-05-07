@@ -522,114 +522,131 @@ line 162.
 [38]
 
 LaTeX Warning: Reference `sec:model_architecture' on page 39 undefined on input
- line 175.
+ line 178.
 
 [39]
 
 LaTeX Warning: Reference `tab:ml_training' on page 40 undefined on input line 1
-95.
+98.
 
 
 LaTeX Warning: Reference `fig:cnn_training_plot' on page 40 undefined on input 
-line 197.
+line 200.
 
 
 LaTeX Warning: Reference `fig:ced_training_plot' on page 40 undefined on input 
-line 205.
+line 208.
 
 [40<./content/chapters/7_evaluation/figures//CNN_plot.png>]
 
 LaTeX Warning: Reference `tab:ml_training' on page 41 undefined on input line 2
-13.
+16.
 
 
 LaTeX Warning: Reference `fig:rced_training_plot' on page 41 undefined on input
- line 215.
+ line 218.
 
 
 LaTeX Warning: Citation 'park2017acoustic' on page 41 undefined on input line 2
-15.
+18.
 
 
 LaTeX Warning: Reference `fig:unet_training_plot' on page 41 undefined on input
- line 225.
+ line 228.
 
 
 LaTeX Warning: Reference `sec:denoising_ml_models' on page 41 undefined on inpu
-t line 225.
+t line 228.
 
 [41<./content/chapters/7_evaluation/figures//CED_plot.png><./content/chapters/7
 _evaluation/figures//RCED_plot.png>]
 
 LaTeX Warning: Reference `fig:convtasnet_training_plot' on page 42 undefined on
- input line 233.
+ input line 236.
 
 [42<./content/chapters/7_evaluation/figures//UNet_plot.png><./content/chapters/
 7_evaluation/figures//ConvTasNet_plot.png>]
 
-LaTeX Warning: Reference `tab:ml_denoise' on page 43 undefined on input line 26
-7.
+LaTeX Warning: Reference `tab:ml_denoise' on page 43 undefined on input line 25
+1.
 
 
 LaTeX Warning: Citation 'park2017acoustic' on page 43 undefined on input line 2
-69.
+75.
 
 [43]
 
-LaTeX Warning: Citation 'park2017acoustic' on page 44 undefined on input line 2
-71.
-
-
-LaTeX Warning: Reference `sec:training_ml_models' on page 44 undefined on input
- line 273.
-
-
-LaTeX Warning: Reference `sec:training_ml_models' on page 44 undefined on input
- line 275.
+LaTeX Warning: Reference `tab:ml_denoise' on page 44 undefined on input line 27
+7.
 
 )
 
 LaTeX Warning: Empty bibliography on input line 55.
 
-(./content/appendices/appendix_a.tex [44] [45]
+(./content/appendices/appendix_a.tex [44]
 Appendix A.
 
-LaTeX Warning: Reference `chp:deployment' on page 46 undefined on input line 8.
+LaTeX Warning: Reference `chp:deployment' on page 45 undefined on input line 8.
 
 
 
-LaTeX Warning: Reference `sec:variable_length_handling' on page 46 undefined on
+LaTeX Warning: Reference `sec:variable_length_handling' on page 45 undefined on
  input line 15.
 
-[46]) (./content/appendices/appendix_b.tex [47]
+[45]) (./content/appendices/appendix_b.tex [46]
 Appendix B.
 
-LaTeX Warning: Reference `fig:suppressed_waveform' on page 48 undefined on inpu
+LaTeX Warning: Reference `fig:suppressed_waveform' on page 47 undefined on inpu
 t line 12.
 
 
-LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 48 undefined on i
+LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 47 undefined on i
 nput line 12.
 
-[48<./content/appendices/figures/suppresed_waveform.png>]
+[47<./content/appendices/figures/suppresed_waveform.png>]
 
-LaTeX Warning: Reference `fig:restored_waveform' on page 49 undefined on input 
+LaTeX Warning: Reference `fig:restored_waveform' on page 48 undefined on input 
 line 27.
 
 
-LaTeX Warning: Reference `fig:restored_spectrogram' on page 49 undefined on inp
+LaTeX Warning: Reference `fig:restored_spectrogram' on page 48 undefined on inp
 ut line 27.
 
-[49<./content/appendices/figures/suppresed_spectrogram.png>] [50<./content/appe
+[48<./content/appendices/figures/suppresed_spectrogram.png>] [49<./content/appe
 ndices/figures/fixed_waveform.png>]
 
-LaTeX Warning: Reference `chp:evaluation' on page 51 undefined on input line 41
+LaTeX Warning: Reference `chp:evaluation' on page 50 undefined on input line 41
 .
 
-) [51
+) (./content/appendices/appendix_c.tex [50<./content/appendices/figures/fixed_s
+pectrogram.png>]
+Appendix C.
+
+LaTeX Warning: Reference `tab:ml_denoise' on page 51 undefined on input line 15
+.
+
+
+LaTeX Warning: Citation 'hu2007subjective' on page 51 undefined on input line 1
+9.
+
+[51]
+
+LaTeX Warning: Reference `tab:pretrained_eval' on page 52 undefined on input li
+ne 44.
+
+
+LaTeX Warning: Citation 'hu2007subjective' on page 52 undefined on input line 5
+0.
+
+[52]
+
+LaTeX Warning: Reference `fig:pretrained_metrics' on page 53 undefined on input
+ line 64.
+
+) [53
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
-<./content/appendices/figures/fixed_spectrogram.png>] (./build/main.aux)
+<./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -651,7 +668,7 @@ Package biblatex Warning: Please (re)run Biber on the file:
  839 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 21 attribute, 111 glue_sp
 ec, 21 attribute_list, 1 write nodes
-   avail lists: 1:3,2:450,3:187,4:49,5:949,6:49,7:6849,8:60,9:410,10:20,11:631
+   avail lists: 1:3,2:556,3:187,4:49,5:891,6:49,7:6816,8:60,9:507,10:21,11:631
 </usr/share/texmf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texm
 f/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/texlive/texmf-dist/
 fonts/truetype/typoland/lato/Lato-Italic.ttf></usr/share/texlive/texmf-dist/fon
@@ -663,7 +680,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (59 pages, 5703288 bytes).
+Output written on main.pdf (61 pages, 5756048 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -684,20 +701,20 @@ Latexmk: applying rule 'biber build/main'...
 INFO - This is Biber 2.17
 INFO - Logfile is 'build/main.blg'
 INFO - Reading 'build/main.bcf'
-INFO - Found 15 citekeys in bib section 0
+INFO - Found 16 citekeys in bib section 0
 INFO - Processing section 0
 INFO - Looking for bibtex file 'references.bib' for section 0
 INFO - LaTeX decoding ...
 INFO - Found BibTeX data source 'references.bib'
-INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
 INFO - No sort tailoring available for locale 'en-US'
 INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
 INFO - Output to build/main.bbl
 WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 INFO - WARNINGS: 1
-Biber warning: [230] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [233] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: applying rule 'cusdep acn acr build/main'...
 makeglossaries version 4.49 (2021-11-01)
 Changed to 'build/'
@@ -940,31 +957,38 @@ p16_vs_fp32.png><./content/chapters/6_implementation/figures//scaled_loss.png>]
 Chapter 7.
 [33] [34<./content/chapters/7_evaluation/figures//dataset_config.png>] [35]
 [36] [37] [38] [39] [40<./content/chapters/7_evaluation/figures//CNN_plot.png>]
+
+LaTeX Warning: Reference `sec:denoising_ml_models' on page 41 undefined on inpu
+t line 228.
+
 [41<./content/chapters/7_evaluation/figures//CED_plot.png><./content/chapters/7
 _evaluation/figures//RCED_plot.png>] [42<./content/chapters/7_evaluation/figure
 s//UNet_plot.png><./content/chapters/7_evaluation/figures//ConvTasNet_plot.png>
-] [43]) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
+] [43]) [44] [45] (./content/appendices/appendix_a.tex [46]
 Appendix A.
 
-LaTeX Warning: Reference `chp:deployment' on page 48 undefined on input line 8.
+LaTeX Warning: Reference `chp:deployment' on page 47 undefined on input line 8.
 
 
-[48]) (./content/appendices/appendix_b.tex [49]
+[47]) (./content/appendices/appendix_b.tex [48]
 Appendix B.
 
-LaTeX Warning: Reference `fig:suppressed_waveform' on page 50 undefined on inpu
+LaTeX Warning: Reference `fig:suppressed_waveform' on page 49 undefined on inpu
 t line 12.
 
 
-LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 50 undefined on i
+LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 49 undefined on i
 nput line 12.
 
-[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
-waveform.png>]) [53
+[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
+igures/fixed_spectrogram.png>]
+Appendix C.
+[53] [54]) [55
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
-<./content/appendices/figures/fixed_spectrogram.png>] (./build/main.aux)
+<./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -979,8 +1003,12 @@ Package biblatex Warning: Please rerun LaTeX.
  929 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 29 attribute, 113 glue_sp
 ec, 29 attribute_list, 1 write, 8 pdf_action nodes
-   avail lists: 1:3,2:903,3:377,4:54,5:954,6:117,7:6920,8:87,9:526,10:20,11:618
+   avail lists: 1:3,2:960,3:377,4:54,5:908,6:125,7:6849,8:87,9:554,10:21,11:618
 
+
+warning  (pdf backend): unreferenced destination with name 'table.caption.41'
+
+warning  (pdf backend): unreferenced destination with name 'figure.caption.42'
 
 warning  (pdf backend): unreferenced destination with name 'figure.caption.37'
 </usr/share/texmf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texm
@@ -994,17 +1022,17 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (61 pages, 5727630 bytes).
+Output written on main.pdf (63 pages, 5781324 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
 === TeX engine is 'LuaHBTeX'
-Biber warning: [230] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [233] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: applying rule 'biber build/main'...
 INFO - This is Biber 2.17
 INFO - Logfile is 'build/main.blg'
 INFO - Reading 'build/main.bcf'
-INFO - Found 15 citekeys in bib section 0
+INFO - Found 16 citekeys in bib section 0
 INFO - Processing section 0
 INFO - Looking for bibtex file 'references.bib' for section 0
 INFO - LaTeX decoding ...
@@ -1017,7 +1045,7 @@ INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
 INFO - Output to build/main.bbl
 WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 INFO - WARNINGS: 1
-Biber warning: [234] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [241] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: applying rule 'lualatex'...
 This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian) 
  restricted system commands enabled.
@@ -1248,31 +1276,38 @@ p16_vs_fp32.png><./content/chapters/6_implementation/figures//scaled_loss.png>]
 Chapter 7.
 [33] [34<./content/chapters/7_evaluation/figures//dataset_config.png>] [35]
 [36] [37] [38] [39] [40<./content/chapters/7_evaluation/figures//CNN_plot.png>]
+
+LaTeX Warning: Reference `sec:denoising_ml_models' on page 41 undefined on inpu
+t line 228.
+
 [41<./content/chapters/7_evaluation/figures//CED_plot.png><./content/chapters/7
 _evaluation/figures//RCED_plot.png>] [42<./content/chapters/7_evaluation/figure
 s//UNet_plot.png><./content/chapters/7_evaluation/figures//ConvTasNet_plot.png>
-] [43]) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
+] [43]) [44] [45] (./content/appendices/appendix_a.tex [46]
 Appendix A.
 
-LaTeX Warning: Reference `chp:deployment' on page 48 undefined on input line 8.
+LaTeX Warning: Reference `chp:deployment' on page 47 undefined on input line 8.
 
 
-[48]) (./content/appendices/appendix_b.tex [49]
+[47]) (./content/appendices/appendix_b.tex [48]
 Appendix B.
 
-LaTeX Warning: Reference `fig:suppressed_waveform' on page 50 undefined on inpu
+LaTeX Warning: Reference `fig:suppressed_waveform' on page 49 undefined on inpu
 t line 12.
 
 
-LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 50 undefined on i
+LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 49 undefined on i
 nput line 12.
 
-[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
-waveform.png>]) [53
+[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
+igures/fixed_spectrogram.png>]
+Appendix C.
+[53] [54]) [55
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
-<./content/appendices/figures/fixed_spectrogram.png>] (./build/main.aux)
+<./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1284,7 +1319,7 @@ LaTeX Warning: There were multiply-defined labels.
  929 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 29 attribute, 113 glue_sp
 ec, 29 attribute_list, 1 write, 8 pdf_action nodes
-   avail lists: 1:3,2:903,3:377,4:54,5:954,6:117,7:6920,8:87,9:526,10:20,11:618
+   avail lists: 1:3,2:960,3:377,4:54,5:908,6:125,7:6849,8:87,9:554,10:21,11:618
 
 </usr/share/texmf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texm
 f/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/texlive/texmf-dist/
@@ -1297,12 +1332,12 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (61 pages, 5727601 bytes).
+Output written on main.pdf (63 pages, 5781285 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
 === TeX engine is 'LuaHBTeX'
-Biber warning: [234] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [241] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: applying rule 'lualatex'...
 This is LuaHBTeX, Version 1.14.0 (TeX Live 2022/dev/Debian) 
  restricted system commands enabled.
@@ -1533,31 +1568,38 @@ p16_vs_fp32.png><./content/chapters/6_implementation/figures//scaled_loss.png>]
 Chapter 7.
 [33] [34<./content/chapters/7_evaluation/figures//dataset_config.png>] [35]
 [36] [37] [38] [39] [40<./content/chapters/7_evaluation/figures//CNN_plot.png>]
+
+LaTeX Warning: Reference `sec:denoising_ml_models' on page 41 undefined on inpu
+t line 228.
+
 [41<./content/chapters/7_evaluation/figures//CED_plot.png><./content/chapters/7
 _evaluation/figures//RCED_plot.png>] [42<./content/chapters/7_evaluation/figure
 s//UNet_plot.png><./content/chapters/7_evaluation/figures//ConvTasNet_plot.png>
-] [43]) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
+] [43]) [44] [45] (./content/appendices/appendix_a.tex [46]
 Appendix A.
 
-LaTeX Warning: Reference `chp:deployment' on page 48 undefined on input line 8.
+LaTeX Warning: Reference `chp:deployment' on page 47 undefined on input line 8.
 
 
-[48]) (./content/appendices/appendix_b.tex [49]
+[47]) (./content/appendices/appendix_b.tex [48]
 Appendix B.
 
-LaTeX Warning: Reference `fig:suppressed_waveform' on page 50 undefined on inpu
+LaTeX Warning: Reference `fig:suppressed_waveform' on page 49 undefined on inpu
 t line 12.
 
 
-LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 50 undefined on i
+LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 49 undefined on i
 nput line 12.
 
-[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
-waveform.png>]) [53
+[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
+igures/fixed_spectrogram.png>]
+Appendix C.
+[53] [54]) [55
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
-<./content/appendices/figures/fixed_spectrogram.png>] (./build/main.aux)
+<./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
 
 LaTeX Warning: There were undefined references.
 
@@ -1569,7 +1611,7 @@ LaTeX Warning: There were multiply-defined labels.
  929 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 29 attribute, 113 glue_sp
 ec, 29 attribute_list, 1 write, 8 pdf_action nodes
-   avail lists: 1:3,2:903,3:377,4:54,5:954,6:117,7:6920,8:87,9:526,10:20,11:618
+   avail lists: 1:3,2:960,3:377,4:54,5:908,6:125,7:6849,8:87,9:554,10:21,11:618
 
 </usr/share/texmf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texm
 f/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/texlive/texmf-dist/
@@ -1582,10 +1624,10 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (61 pages, 5727601 bytes).
+Output written on main.pdf (63 pages, 5781285 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
 === TeX engine is 'LuaHBTeX'
-Biber warning: [234] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
+Biber warning: [241] Biber.pm:130> WARN - I didn't find a database entry for 'luo2019conv' (section 0)
 Latexmk: All targets (build/main.pdf) are up-to-date

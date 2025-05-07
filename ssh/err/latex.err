@@ -32,6 +32,8 @@ Latexmk: List of undefined refs and citations:
   Citation 'edinburghdataset' on page 15 undefined on input line 10
   Citation 'ephraim1984speech' on page 5 undefined on input line 74
   Citation 'epoch2021' on page 8 undefined on input line 116
+  Citation 'hu2007subjective' on page 51 undefined on input line 19
+  Citation 'hu2007subjective' on page 52 undefined on input line 50
   Citation 'itutp862' on page 9 undefined on input line 156
   Citation 'loizou2013speech' on page 1 undefined on input line 7
   Citation 'loizou2013speech' on page 3 undefined on input line 11
@@ -53,21 +55,20 @@ Latexmk: List of undefined refs and citations:
   Citation 'park2017acoustic' on page 21 undefined on input line 72
   Citation 'park2017acoustic' on page 21 undefined on input line 77
   Citation 'park2017acoustic' on page 24 undefined on input line 131
-  Citation 'park2017acoustic' on page 41 undefined on input line 215
-  Citation 'park2017acoustic' on page 43 undefined on input line 269
-  Citation 'park2017acoustic' on page 44 undefined on input line 271
+  Citation 'park2017acoustic' on page 41 undefined on input line 218
+  Citation 'park2017acoustic' on page 43 undefined on input line 275
   Citation 'ronneberger2015unet' on page 22 undefined on input line 91
   Citation 'vachhani2017dae' on page 7 undefined on input line 104
   Citation 'wei2016mmse' on page 7 undefined on input line 94
   Citation 'yoon2020pto' on page 12 undefined on input line 8
   Citation 'yoon2020pto' on page 28 undefined on input line 52
-  Reference `chp:deployment' on page 46 undefined on input line 8
+  Reference `chp:deployment' on page 45 undefined on input line 8
   Reference `chp:evaluation' on page 18 undefined on input line 22
-  Reference `chp:evaluation' on page 51 undefined on input line 41
+  Reference `chp:evaluation' on page 50 undefined on input line 41
   Reference `chp:implementation' on page 18 undefined on input line 22
-  Reference `fig:ced_training_plot' on page 40 undefined on input line 205
-  Reference `fig:cnn_training_plot' on page 40 undefined on input line 197
-  Reference `fig:convtasnet_training_plot' on page 42 undefined on input line 233
+  Reference `fig:ced_training_plot' on page 40 undefined on input line 208
+  Reference `fig:cnn_training_plot' on page 40 undefined on input line 200
+  Reference `fig:convtasnet_training_plot' on page 42 undefined on input line 236
   Reference `fig:dataset_config' on page 33 undefined on input line 20
   Reference `fig:dataset_structure' on page 15 undefined on input line 21
   Reference `fig:fcns_results' on page 13 undefined on input line 37
@@ -75,46 +76,48 @@ Latexmk: List of undefined refs and citations:
   Reference `fig:max_padding' on page 17 undefined on input line 18
   Reference `fig:mmse_lsa_block' on page 6 undefined on input line 84
   Reference `fig:oom_error' on page 30 undefined on input line 86
-  Reference `fig:rced_training_plot' on page 41 undefined on input line 215
-  Reference `fig:restored_spectrogram' on page 49 undefined on input line 27
-  Reference `fig:restored_waveform' on page 49 undefined on input line 27
+  Reference `fig:pretrained_metrics' on page 53 undefined on input line 64
+  Reference `fig:rced_training_plot' on page 41 undefined on input line 218
+  Reference `fig:restored_spectrogram' on page 48 undefined on input line 27
+  Reference `fig:restored_waveform' on page 48 undefined on input line 27
   Reference `fig:scaled_loss' on page 31 undefined on input line 108
   Reference `fig:static_pad' on page 27 undefined on input line 28
-  Reference `fig:suppressed_spectrogram' on page 48 undefined on input line 12
-  Reference `fig:suppressed_waveform' on page 48 undefined on input line 12
-  Reference `fig:unet_training_plot' on page 41 undefined on input line 225
+  Reference `fig:suppressed_spectrogram' on page 47 undefined on input line 12
+  Reference `fig:suppressed_waveform' on page 47 undefined on input line 12
+  Reference `fig:unet_training_plot' on page 41 undefined on input line 228
   Reference `sec:autoencoders' on page 18 undefined on input line 27
   Reference `sec:classical_methods' on page 38 undefined on input line 138
   Reference `sec:convtasnet_lit_review' on page 23 undefined on input line 112
   Reference `sec:dataset_exploration' on page 17 undefined on input line 8
   Reference `sec:dataset_performance' on page 12 undefined on input line 16
-  Reference `sec:denoising_ml_models' on page 41 undefined on input line 225
+  Reference `sec:denoising_ml_models' on page 41 undefined on input line 228
   Reference `sec:distortion_free_handling' on page 17 undefined on input line 20
   Reference `sec:distortion_free_handling' on page 28 undefined on input line 52
   Reference `sec:fcns' on page 19 undefined on input line 53
   Reference `sec:fcns' on page 21 undefined on input line 72
-  Reference `sec:model_architecture' on page 39 undefined on input line 175
+  Reference `sec:model_architecture' on page 39 undefined on input line 178
   Reference `sec:oom_handling' on page 36 undefined on input line 77
   Reference `sec:tanh_removal' on page 18 undefined on input line 29
-  Reference `sec:training_ml_models' on page 44 undefined on input line 273
-  Reference `sec:training_ml_models' on page 44 undefined on input line 275
   Reference `sec:variable_length_handling' on page 12 undefined on input line 8
   Reference `sec:variable_length_handling' on page 26 undefined on input line 8
-  Reference `sec:variable_length_handling' on page 46 undefined on input line 15
+  Reference `sec:variable_length_handling' on page 45 undefined on input line 15
   Reference `subsec:pto_dataset' on page 12 undefined on input line 16
   Reference `tab:classical_metrics' on page 38 undefined on input line 162
   Reference `tab:dataset_loading_times' on page 34 undefined on input line 28
   Reference `tab:dataset_loading_times' on page 34 undefined on input line 46
   Reference `tab:dataset_performance' on page 35 undefined on input line 50
   Reference `tab:dataset_performance' on page 35 undefined on input line 68
-  Reference `tab:ml_denoise' on page 43 undefined on input line 267
-  Reference `tab:ml_training' on page 40 undefined on input line 195
-  Reference `tab:ml_training' on page 41 undefined on input line 213
+  Reference `tab:ml_denoise' on page 43 undefined on input line 251
+  Reference `tab:ml_denoise' on page 44 undefined on input line 277
+  Reference `tab:ml_denoise' on page 51 undefined on input line 15
+  Reference `tab:ml_training' on page 40 undefined on input line 198
+  Reference `tab:ml_training' on page 41 undefined on input line 216
   Reference `tab:oom_metrics' on page 37 undefined on input line 107
   Reference `tab:oom_metrics' on page 37 undefined on input line 125
   Reference `tab:oom_training' on page 36 undefined on input line 105
   Reference `tab:oom_training' on page 36 undefined on input line 87
   Reference `tab:oom_training' on page 37 undefined on input line 131
+  Reference `tab:pretrained_eval' on page 52 undefined on input line 44
 Rule 'cusdep glo gls build/main': The following rules & subrules became out-of-date:
       'cusdep glo gls build/main'
 ------------
@@ -159,9 +162,10 @@ Latexmk: List of undefined refs and citations:
   Citation 'luo2019conv' on page 23 undefined on input line 119
   Citation 'luo2019conv' on page 24 undefined on input line 131
   Label `fig:convtasnet' multiply defined
-  Reference `chp:deployment' on page 48 undefined on input line 8
-  Reference `fig:suppressed_spectrogram' on page 50 undefined on input line 12
-  Reference `fig:suppressed_waveform' on page 50 undefined on input line 12
+  Reference `chp:deployment' on page 47 undefined on input line 8
+  Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 12
+  Reference `fig:suppressed_waveform' on page 49 undefined on input line 12
+  Reference `sec:denoising_ml_models' on page 41 undefined on input line 228
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Rule 'biber build/main': File changes, etc:
    Changed files, or newly in use since previous run(s):
@@ -198,9 +202,10 @@ Latexmk: List of undefined refs and citations:
   Citation 'luo2019conv' on page 23 undefined on input line 119
   Citation 'luo2019conv' on page 24 undefined on input line 131
   Label `fig:convtasnet' multiply defined
-  Reference `chp:deployment' on page 48 undefined on input line 8
-  Reference `fig:suppressed_spectrogram' on page 50 undefined on input line 12
-  Reference `fig:suppressed_waveform' on page 50 undefined on input line 12
+  Reference `chp:deployment' on page 47 undefined on input line 8
+  Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 12
+  Reference `fig:suppressed_waveform' on page 49 undefined on input line 12
+  Reference `sec:denoising_ml_models' on page 41 undefined on input line 228
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Rule 'lualatex': File changes, etc:
    Changed files, or newly in use since previous run(s):
@@ -221,11 +226,12 @@ Latexmk: List of undefined refs and citations:
   Citation 'luo2019conv' on page 23 undefined on input line 119
   Citation 'luo2019conv' on page 24 undefined on input line 131
   Label `fig:convtasnet' multiply defined
-  Reference `chp:deployment' on page 48 undefined on input line 8
-  Reference `fig:suppressed_spectrogram' on page 50 undefined on input line 12
-  Reference `fig:suppressed_waveform' on page 50 undefined on input line 12
+  Reference `chp:deployment' on page 47 undefined on input line 8
+  Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 12
+  Reference `fig:suppressed_waveform' on page 49 undefined on input line 12
+  Reference `sec:denoising_ml_models' on page 41 undefined on input line 228
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 4 reference(s)
+  Latex failed to resolve 5 reference(s)
   Latex found 1 multiply defined reference(s)
   Latex failed to resolve 7 citation(s)

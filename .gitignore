@@ -1,6 +1,7 @@
 nnc-venv/
 ED-Noisy-Speech-Datashare/
 .Project/Models/UNet_dynamic.pth
+DeepFilterNet/
 
 tests/
 .Project/Models/

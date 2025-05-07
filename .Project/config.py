@@ -44,13 +44,19 @@ METRICS_PTH = (
 )
 
 # Single File Denoising
-SINGLE = False  # Denoise a single audio file
+SINGLE = True  # Denoise a single audio file
 SPEAKER_ID = "p232_334"  # Speaker ID for the audio file
 NOISY_PTH = DATASET_DIR + "/noisy_testset_wav/" +  SPEAKER_ID + ".wav"  # Path to the noisy audio file
+#"/opt/users/gpel0001/nnc-fyp/ED-Noisy-Speech-Datashare/foreign/sp07_restaurant_sn5.wav"
+
 CLEAN_PTH = DATASET_DIR + "/clean_testset_wav/" + SPEAKER_ID + ".wav"  # Path to the clean audio file
+#"/opt/users/gpel0001/nnc-fyp/ED-Noisy-Speech-Datashare/foreign/sp07.wav"
+
+
 OUTPUT_PTH = (
     "Output/wav/" + CLASSICAL_METHOD + "_" + SPEAKER_ID + ".wav"
     if CLASSICAL else
     "Output/wav/" + MODEL_PTH.split("/")[-1].split(".")[0] + "_" + SPEAKER_ID + ".wav"
+    #"Output/wav/" + MODEL_PTH.split("/")[-1].split(".")[0] + "_" +CLEAN_PTH.split("/")[-1].split(".")[0] + ".wav"
 )
 
