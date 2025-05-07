@@ -90,7 +90,7 @@ Latexmk: List of undefined refs and citations:
   Reference `sec:convtasnet_lit_review' on page 23 undefined on input line 112
   Reference `sec:dataset_exploration' on page 17 undefined on input line 8
   Reference `sec:dataset_performance' on page 12 undefined on input line 16
-  Reference `sec:denoising_ml_models' on page 41 undefined on input line 228
+  Reference `sec:denoising_metrics' on page 41 undefined on input line 228
   Reference `sec:distortion_free_handling' on page 17 undefined on input line 20
   Reference `sec:distortion_free_handling' on page 28 undefined on input line 52
   Reference `sec:fcns' on page 19 undefined on input line 53
@@ -165,7 +165,6 @@ Latexmk: List of undefined refs and citations:
   Reference `chp:deployment' on page 47 undefined on input line 8
   Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 12
   Reference `fig:suppressed_waveform' on page 49 undefined on input line 12
-  Reference `sec:denoising_ml_models' on page 41 undefined on input line 228
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Rule 'biber build/main': File changes, etc:
    Changed files, or newly in use since previous run(s):
@@ -205,7 +204,6 @@ Latexmk: List of undefined refs and citations:
   Reference `chp:deployment' on page 47 undefined on input line 8
   Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 12
   Reference `fig:suppressed_waveform' on page 49 undefined on input line 12
-  Reference `sec:denoising_ml_models' on page 41 undefined on input line 228
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Rule 'lualatex': File changes, etc:
    Changed files, or newly in use since previous run(s):
@@ -229,9 +227,8 @@ Latexmk: List of undefined refs and citations:
   Reference `chp:deployment' on page 47 undefined on input line 8
   Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 12
   Reference `fig:suppressed_waveform' on page 49 undefined on input line 12
-  Reference `sec:denoising_ml_models' on page 41 undefined on input line 228
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 5 reference(s)
+  Latex failed to resolve 4 reference(s)
   Latex found 1 multiply defined reference(s)
   Latex failed to resolve 7 citation(s)

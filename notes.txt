@@ -1,23 +1,8 @@
-CHANGES MADE:
-- Removed Improper Tanh() Activation from CNN, CED, RCED, UNet
-    Models previously ended with nn.Tanh(), which clamps real/imag spectrogram outputs to [-1, 1]. Suppressing output and creating poor waveform reconstructions. With Low SNR/PESQ/STOI metrics that where clear anomolies.
-
-    This was first visualized when individual denoised audios where plotted for time-domain waveforms and spectrograms. Where the supressed and unnatural flattened enegery was seen.
-
-    
 - Mention that the training pipeline and denoising pipeline use a unified SNR calcualtion.
-
 
 Change the appendix section of the project structure to the encapsulated single denoise now.
 
-Move all introduction paraghraphs for chapters to Overiew section in intro
-
-Evaluation
-                    - Check the major 18 x of ConvTasNet compared to the other models seems very large and need to make comments on it.
-                    - Compare models subjectively off of single test audios
-                    - Compare models to a pretrained model
-                    - Oringal metrics of nosiy to clean. (especially for SNR) 
-                    - Mention that the metrics taken are of whole bacth of the noisy test set and are averges.
+Make introduction paraghraphs for all chapters 
 
 Conclusion
                     - We need to conclude on the question of Classical vs ML
@@ -29,10 +14,6 @@ Consistenty:
                     - British English not American
                     - \texttt fit for coding names 
                     - \textbf titles
-
-Fix the denoising of the classical single methods
-
-Conduct Hyperparmater tuning
 
 Deployment Code
 
@@ -47,3 +28,7 @@ Possible needs for changes:
     -2.5 and assess their feasibility for real-time embedded deployment
 
 Questions to ask:
+
+Should we move the OOM Validation and Dataset evaltions to the appendix
+
+How does the Acronoms work in the latex template
