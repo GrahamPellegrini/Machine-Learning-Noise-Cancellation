@@ -1,9 +1,6 @@
 \graphicspath{{content/appendices/figures}}
-\chapter{Appendix B}
-\label{appendix:appendix_b}
-
-\section{Suppression Effects from Improper \texttt{Tanh} Activation}
-\label{sec:tanh_removal}
+\chapter{Suppression Effects from Improper \texttt{Tanh} Activation}
+\label{appendix:tanh_removal}
 
 Before final evaluations could be conducted, a critical implementation flaw affecting early model performance was identified. Initially all machine learning models, except ConvTasNet, included a \texttt{Tanh} activation function at the output layer. This was based on the assumption that constraining the real and imaginary spectrogram outputs to the range \([-1, 1]\) would improve numerical stability during the inverse STFT reconstruction.
 

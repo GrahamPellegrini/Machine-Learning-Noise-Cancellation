@@ -19,13 +19,13 @@ Machine learning approaches, on the other hand, have emerged as powerful alterna
 
 The primary goal of the project is to explore both classical and machine learning based approaches to noise cancellation, evaluating their effectiveness and feasibility in real-world applications. The project will not only examine established noise reduction techniques but also develop a machine learning based model, comparing its performance against classical methods.
 
-The approach involves designing and implementing a noise cancellation system that operates under the assumption of a single-speaker scenario in a noisy background environment, where the system must remove both stationary and non-stationary noise without access to a clean reference signal. Unlike established pre-trained models that required extensive datasets and resources, the model developed in this project will not be pre-trained. Allowing for a demonstration of the ease of developing and training in practical settings. However, during evaluation and benchmarking, pre-trained models will be used for comparison to assess their effectiveness against the proposed approach.
+The approach involves designing and implementing a noise cancellation system that operates under the assumption of a single-speaker scenario in a noisy background environment, where the system must remove both stationary and non-stationary noise without access to a clean reference signal. Unlike established pre-trained models that required extensive datasets and resources, the model developed in this project will not be pre-trained. Allowing for a demonstration of the ease of developing and training in practical settings. Pre-trained models will be as part of the evaluation process, but the focus will be on the model developed in this project.
 
-The project will be implemented in Python using a modular and reproducible structure, ensuring that the framework can be extended or modified for further improvements. The project is structured into three core phases: training, denoising, and deployment
+The project will be implemented in Python using a modular and reproducible structure, ensuring that the framework can be extended or modified for further improvements. The project is structured into two core phases training and denoising:
+
 \begin{itemize}
     \item Training phase: The most computationally intensive stage, where a sourced dataset of clean and noisy speech samples will be formatted and fed into the model to learn respective mapping.
     \item Denoising phase: Involves loading the trained model and applying it to a noisy speech signal to generate a cleaned output. Here evalution metrics will also be producable to assess the performance of one methodology against another.
-    \item Deployment phase: The final phase involves simulating a real-world application scenario. After training ad justification through performance evaluation, the model will be embedded into a real-time application. This will essentially be a remake of the denoising phase, but with the model integrated into a board that will take real time input sequence from a microphone and save the denoised output. The label for real-time will be indicated through evaluated inference time calculated during the denoising phase.
 \end{itemize}
 
 
