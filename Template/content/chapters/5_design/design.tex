@@ -2,12 +2,12 @@
 \chapter{Design}
 \label{chp:design}
 
-This chapter outlines the core design components that form the foundation of the speech enhancement system. It begins by addressing the challenge of handling variable-length audio inputs, a key consideration for batch-based model training. The latter and more substantial section focuses on the design of the machine learning architectures used in this project. Detailing each model's structure and the reasoning behind their implementation for speech enhancement.
+This chapter outlines the core design components that form the foundation of the speech enhancement system. It begins by addressing the challenge of handling variable length audio inputs, essential for batch-based model training. The latter and more substantial section focuses on the design of the machine learning architectures used in this project. Detailing each model's structure and the reasoning behind their implementation for speech enhancement.
 
 \section{Variable Length Handling}
 \label{sec:variable_length_handling}
 
-For this project, only the clean and noisy pairs of audio files from the dataset are required. The transcript text files are ignored, as they are not relevant to the task. However, it is worth noting that such transcripts are highly valuable in other applications, such as training text-to-speech or speech recognition models. As highlighted in the dataset analysis in Section~\ref{sec:dataset_exploration}, the audio files vary in length. This poses a challenge for model training, as batch processing requires input tensors to have consistent dimensions.
+For this project, only the clean and noisy pairs of audio files from the dataset are required. The transcript text files are ignored, as they are not relevant to the task. However, such transcripts are valuable in tasks like speech recognition or text-to-speech. As highlighted in the dataset analysis in Section~\ref{sec:dataset_exploration}, the audio files vary in length. This poses a challenge for model training, as batch processing requires input tensors to have consistent dimensions.
 
 To address this, several algorithms for handling variable-length audio inputs were explored. The most basic approach involves padding each audio file to match the length of the longest sample in the batch, typically by appending zeros to the end of shorter files. While this method is simple, it has significant drawbacks. Excessive padding introduces unnecessary data that may act as noise during training, making it harder for the model to learn effectively. The greater the variation in input lengths, the more padding is required. Which can negatively impact overall training performance.
 
@@ -17,7 +17,7 @@ To address this, several algorithms for handling variable-length audio inputs we
     \caption{\label{fig:max_padding}Illustration of maximum-length padding.}
 \end{figure}
 
-As shown in Figure~\ref{fig:max_padding}, the most common audio length is padded so heavily that the padding exceeds the actual content. This is far from ideal. To mitigate this issue, three different padding strategies were used. Each method aims to reduce the impact of excessive padding on model performance.
+As shown in Figure~\ref{fig:max_padding}, the most common audio length is padded so heavily that the padding exceeds the actual content. This is far from ideal. To mitigate this issue, three different padding strategies were used, each aiming to reduce excessive padding.
 
 The first method is \textit{Static Bucketing}, which essentially groups audio files into predefined fixed-length buckets. Allowing the grouped files to require less unnecessary padding. The second method, \textit{Dynamic Bucketing}, builds on this by creating buckets dynamically based on the distribution of audio lengths, offering a more adaptive grouping approach. The third and final method introduced in Section~\ref{sec:distortion_free_handling}. PTO is a more sophisticated approach that combines padding and truncating to ensure that the minimum distortion is introduced to the data.
 
@@ -26,9 +26,9 @@ All three methods were implemented for testing and evaluation. Their role in the
 \section{Model Architecture}
 \label{sec:model_architecture}
 
-The model architecture forms the core of the system design, determining how the input is processed, how latent features are transformed, and how the output is reconstructed. The modular project structure facilitates the exploration of a range of neural network models, starting with a simple baseline and progressing to more advanced designs. The main concept of autoencoders for speech enhancement models has already been introduced in Section \ref{sec:autoencoders}. All models operate on spectrogram representations of audio, where the real and imaginary components are concatenated to form a two-channel input. Each network outputs a similarly formatted spectrogram.
+The model architecture is central to system design, defining how inputs are processed, features transformed, and outputs reconstructed. The project’s modular structure supports exploring various neural networks, starting from a simple baseline and extending to more advanced models. As introduced in Section ~\ref{sec:autoencoders}, all models follow the autoencoder paradigm and operate on spectrograms, with real and imaginary components concatenated into a two-channel input and producing a similar two-channel output.
 
-Initially, all models included a \texttt{Tanh} activation function at the output layer to constrain values within the range \([-1, 1]\), assuming this would promote numerical stability during the inverse STFT reconstruction. However, during evaluation, it was observed that this constraint suppressed amplitude dynamics and negatively impacted denoising performance across all models. As a result, the \texttt{Tanh} activation was removed from the design of all model outputs. This decision is discussed further in the \ref{sec:tanh_removal}, where the comparative results highlight the improvements achieved by this change.
+Initially, a \texttt{Tanh} activation was used at the output layer to constrain values within $[-1, 1]$, aiming for numerical stability during inverse STFT. However, evaluations showed this suppressed amplitude dynamics and degraded denoising performance. The \texttt{Tanh} was therefore removed from all model outputs—an improvement detailed in appendix ~\ref{appendix:tanh_removal}.
 
 \subsection{Convolutional Neural Network (CNN)}
 \label{sec:cnn}
@@ -47,7 +47,7 @@ The output of the encoder is passed to a bottleneck layer, which further transfo
 
 The decoder reconstructs the spectrogram from the transformed features using a three-stage transposed convolutional block. It includes two transposed convolutional layers that upsample the spatial dimensions, reversing the compression performed by the encoder. Each is followed by a ReLU activation. A final standard \(3 \times 3\) convolutional layer reduces the channel count from 64 to 2, corresponding to the real and imaginary parts of the output spectrogram. To ensure output consistency, bilinear interpolation is applied to match the original input resolution prior to splitting the output into its two channels.
 
-While simple, this model plays a critical role in establishing a baseline performance level. It ensures that the overall system functions correctly while providing a reference point for evaluating the impact of architectural modifications. The CNN model is straightforward to implement and interpret, making it a suitable starting point for benchmarking and guiding the development of more sophisticated architectures introduced in subsequent sections.
+While simple, this model plays a critical role in establishing a baseline performance level. It validates system functionality and serves as a reference for later architectures. The CNN model is straightforward to implement and interpret, making it a suitable starting point for benchmarking and guiding the development of more sophisticated architectures introduced in subsequent sections.
 
 \subsection{Convolutional Encoder Decoder (CED)}
 \label{sec:ced}
@@ -62,7 +62,7 @@ The encoder is composed of five convolutional blocks. Each block consists of a c
     \caption{\label{fig:ced}Convolutional Encoder Decoder (CED) Network \cite{park2017acoustic}.}
 \end{figure}
 
-Unlike the CNN baseline, which includes a dedicated bottleneck to perform feature transformation before decoding, the CED model omits this step entirely. This is because the encoder and decoder in CED are fully connected through the intermediate representation, with no abrupt separation or compression point. As a result, the feature flow between encoding and decoding stages is continuous, allowing for a more gradual and integrated transformation of features across the network. This design is particularly beneficial for temporal structures like speech, where abrupt compression may degrade important patterns.
+Unlike the CNN baseline, which uses a dedicated bottleneck for feature transformation, the CED model omits this step. Its encoder and decoder are fully connected through a continuous intermediate representation, avoiding abrupt compression. This enables smoother feature transitions across the network. Beneficial for speech signals where such disruptions can degrade temporal patterns.
 
 The decoder mirrors the encoder in structure, using four stages of upsampling followed by convolution, batch normalization, and ReLU activation. Each upsampling layer doubles the temporal dimension using a scale factor of \((2, 1)\), restoring the resolution reduced in the encoder. The decoder reverses the channel progression, reducing from 32 back down to 12. A final convolutional layer with a large vertical kernel of \(129 \times 1\) is used to project the output to two channels, corresponding to the real and imaginary parts of the denoised spectrogram. A bilinear interpolation step is applied at the end to ensure the output matches the original input resolution.
 
@@ -81,11 +81,11 @@ The Redundant Convolutional Encoder Decoder (R-CED) architecture implemented in 
 
 The network is composed of nine sequential convolutional layers. The first eight layers use tall vertical kernels ranging from \(13 \times 1\) to \(7 \times 1\), symmetrically arranged around the network's midpoint. Each layer is followed by a ReLU activation and batch normalization. The number of channels increases from 2 to 32 in the first half and then mirrors back to 12 in the second half, following the filter progression: 12, 16, 20, 24, 32, 24, 20, 16, 12. This symmetric arrangement enables the model to gradually build and refine feature representations without disrupting the resolution of the input signal.
 
-Unlike typical encoder-decoder models, the R-CED maintains a constant spatial resolution throughout the network. There are no pooling or upsampling layers. Instead, representational depth is increased by stacking more convolutional layers. This redundancy increases the model’s expressive capacity while preserving time-frequency alignment. A crucial property for speech enhancement tasks.
+Unlike typical encoder-decoder models, the R-CED maintains a constant spatial resolution throughout the network. Instead of pooling or upsampling layers, representational depth is increased by stacking more convolutional layers. This redundancy increases the model’s expressive capacity while preserving time frequency alignment, crucial for speech enhancement.
 
 The final convolutional layer uses a \(129 \times 1\) kernel, consistent with the original paper, to project the output down to two channels representing the denoised real and imaginary components. Bilinear interpolation is applied at the end to match the input resolution before output splitting.
 
-By eliminating dimensionality-altering operations and relying on a deeper sequence of convolutional blocks, the R-CED model is able to maintain high-resolution feature representations across all layers. This architecture is especially useful in applications where preserving the fine structure of spectrograms is essential. In this project, R-CED is evaluated as a resolution-preserving alternative to encoder-decoder architectures, providing a balance between simplicity and performance.
+By eliminating dimensionality altering operations and relying on a deeper sequence of convolutional blocks, the R-CED model is able to maintain high resolution feature representations across all layers. This architecture is especially useful in applications where preserving the fine structure of spectrograms is essential. In this project, R-CED is evaluated as a resolution preserving alternative to encoder-decoder architectures.
 
 \subsection{U-Net}
 \label{sec:unet}
@@ -102,9 +102,7 @@ The encoder consists of five convolutional blocks, each followed by instance nor
 
 At the center of the network is a bottleneck block that maintains the 1024-channel depth while applying an additional convolution, instance normalization, and PReLU activation. Unlike traditional bottlenecks that compress the latent representation, this layer serves as a non-linear transformation hub that enhances the feature space before decoding.
 
-The decoder mirrors the encoder in structure, consisting of five transposed convolutional blocks that progressively upsample the feature maps and reduce channel depth. At each stage, features from the corresponding encoder block are concatenated with the upsampled decoder output via skip connections. Since downsampling in the encoder affects spatial resolution, bilinear interpolation is used to resize encoder features before concatenation to ensure dimensional alignment.
-
-The decoder proceeds through five stages of channel reduction: \(1024 \rightarrow 512 \rightarrow 256 \rightarrow 128 \rightarrow 64 \rightarrow 32\), followed by a final \(3 \times 3\) convolutional layer projecting to 2 output channels corresponding to the real and imaginary parts of the denoised spectrogram. A final bilinear interpolation step ensures that the output resolution matches the original input dimensions.
+The decoder mirrors the encoder with five transposed convolutional blocks that upsample feature maps and reduce channel depth through the sequence \(1024 \rightarrow 512 \rightarrow 256 \rightarrow 128 \rightarrow 64 \rightarrow 32\). At each stage, features from the corresponding encoder block are concatenated with the upsampled output via skip connections. Since downsampling alters spatial resolution, bilinear interpolation is applied to align encoder features before concatenation and again after the final \(3 \times 3\) convolution, which projects the output to 2 channels corresponding to the real and imaginary components of the denoised spectrogram.
 
 This U-Net implementation preserves the architectural strengths of the original model while tailoring its structure for speech enhancement. The use of skip connections, instance normalization, and a deep encoder-decoder hierarchy enhances the model’s ability to recover spectro-temporal structure, making it a powerful architecture for complex denoising tasks.
 
@@ -113,7 +111,7 @@ This U-Net implementation preserves the architectural strengths of the original 
 
 The Conv-TasNet model implemented in this project is based on the architecture proposed by Luo and Mesgarani~\cite{luo2019conv}, as discussed in Section~\ref{sec:convtasnet_lit_review}. Although the core structure is preserved, several adaptations were made to align the model with the spectrogram-based input framework used throughout this system.
 
-The original Conv-TasNet operates directly on time-domain audio signals. In contrast, this implementation modifies the input format to handle complex-valued spectrograms. The real and imaginary components are concatenated along the channel dimension, forming a two-channel input that is passed through a \(3 \times 3\) convolutional encoder. The encoder expands the input to a latent space with 128 channels using dynamic padding to preserve the original time-frequency resolution.
+The original Conv-TasNet operates directly on time-domain audio signals. In contrast, this implementation modifies the input format to handle complex-valued spectrograms. The real and imaginary components are concatenated along the channel dimension, forming a two-channel input that is passed through a \(3 \times 3\) convolutional encoder. The encoder projects the input to 128 channels using dynamic padding to preserve resolution.
 
 \begin{figure}[h]
     \centering
@@ -123,13 +121,13 @@ The original Conv-TasNet operates directly on time-domain audio signals. In cont
 
 The encoded features are passed to a Temporal Convolutional Network (TCN), which serves as the core separation module. The TCN is composed of two stacks, each containing four residual blocks, for a total of eight layers. Each residual block consists of a dilated convolution with exponentially increasing dilation factors (e.g., 1, 2, 4, 8), followed by group normalization (with eight groups), a PReLU activation, and a second projection convolution. A residual connection is used to stabilize training and preserve input information. The dilation strategy allows the TCN to model long-range temporal dependencies efficiently while maintaining a fixed receptive field size.
 
-Unlike the original Conv-TasNet, which applies explicit time-domain masking for source separation, this implementation omits masking altogether. Instead, the TCN directly outputs an enhanced latent representation, which is then decoded into denoised real and imaginary spectrogram components via a final \(3 \times 3\) convolutional layer. This choice simplifies the architecture and reduces overhead, as preliminary testing showed only marginal performance gains from complex masking.
+Unlike the original Conv-TasNet, which applies explicit time-domain masking for source separation, this implementation omits masking altogether. Instead, the TCN directly outputs an enhanced latent representation, which is then decoded into denoised real and imaginary spectrogram components via a final \(3 \times 3\) convolutional layer. This simplifies the architecture, as masking yielded marginal gains.
 
 The output of the decoder is aligned with the original input size by cropping along both frequency and time axes to correct for minor size mismatches introduced by convolutional operations. This ensures a consistent dimensionality before inverse STFT reconstruction.
 
 By preserving the temporal modeling strength of the original TCN structure and adapting it to operate in the complex spectrogram domain, this implementation of Conv-TasNet offers a powerful yet flexible architecture for speech denoising. It combines deep receptive fields, efficient convolutional modeling, and skip connections within residual blocks to robustly recover clean speech across variable-length inputs.
 
 \vspace{2em}
-This project explores a range of neural network architectures for speech enhancement, beginning with a simple CNN-based autoencoder as a baseline. It then progresses to fully convolutional models such as the Convolutional Encoder Decoder (CED) and its redundant variant, R-CED, both derived from the work of Park and Lee~\cite{park2017acoustic}. The U-Net architecture further improves performance through the use of skip connections and a deeper encoder-decoder structure. Finally, Conv-TasNet~\cite{luo2019conv}, originally developed for speech separation in the time domain, is adapted for spectrogram-based denoising by leveraging its powerful Temporal Convolutional Network (TCN). Together, these models offer a diverse and comparative landscape of deep learning approaches, highlighting architectural trade-offs and establishing strong baselines for benchmarking against classical signal processing techniques.
 
+This project explores several neural network architectures for speech enhancement, starting with a simple CNN-based autoencoder. It then advances to fully convolutional models like CED and R-CED\~\cite{park2017acoustic}, followed by U-Net with skip connections and deeper encoding. Finally, Conv-TasNet ~\cite{luo2019conv}, originally designed for time-domain speech separation, is adapted for spectrogram-based denoising using its Temporal Convolutional Network (TCN). These models provide a diverse and comparative framework, highlighting trade-offs in design and establishing strong baselines against classical signal processing techniques.
 
