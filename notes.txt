@@ -1,34 +1,16 @@
-- Mention that the training pipeline and denoising pipeline use a unified SNR calcualtion.
+- Abstarct
 
-Change the appendix section of the project structure to the encapsulated single denoise now.
+-Acknowledgement
 
-Make introduction paraghraphs for all chapters 
+- Finish Subjective evaluation
 
-Conclusion
-                    - We need to conclude on the question of Classical vs ML
-                    - State that although we struggled to find significant imporvements in models and one that did perform well. The results blew through any optimistic results of Classical methods.
-                    - State ConvTasNet as our best performer good for deployment
-                    - Possibly mention deployment 
+- Conclusion revision
 
-Consistenty:
-                    - British English not American
-                    - \texttt fit for coding names 
-                    - \textbf titles
+- Add refernce to use of ChatGPT in implementastion 
+
+
 
 Deployment Code
 
-Possible needs for changes:
-    -1.1  However, during evaluation and benchmarking, pre-trained models
-    will be used for comparison to assess their effectiveness against the proposed
-    approach.
-
-    -1.1 The project is structured into three core phases: training, denoising,
-    and deployment....
-
-    -2.5 and assess their feasibility for real-time embedded deployment
 
 Questions to ask:
-
-Should we move the OOM Validation and Dataset evaltions to the appendix
-
-How does the Acronoms work in the latex template

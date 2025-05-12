@@ -32,9 +32,9 @@ All audio files are in \texttt{.wav} format and sampled at 48~kHz. Clip lengths 
 \section{System Requirements}
 \label{sec:system_requirements}
 
-Given the computational demands of training neural networks, this project was developed and executed remotely on the University of Malta’s Interfacing Lab servers, accessed via SSH. These machines are equipped with NVIDIA GeForce RTX 3060 GPUs, which are suitable for deep learning workloads. However, GPU memory limitations required careful control of training parameters, including batch size, model depth, and the number of epochs.
+Given the computational demands of training neural networks, this project was developed and executed remotely on the University of Malta’s Interfacing Lab servers, accessed via \gls{ssh}. These machines are equipped with NVIDIA GeForce RTX 3060 GPUs, which are suitable for deep learning workloads. However, GPU memory limitations required careful control of training parameters, including batch size, model depth, and the number of epochs.
 
-The development environment was based on Visual Studio Code (VSCode), with assistance from GitHub Copilot for improved coding efficiency. Early experiments and module testing were conducted in Jupyter notebooks, which were later consolidated into a single modular Python application. This modular structure allows for separation of data preprocessing, model training, evaluation, and inference, improving maintainability and extensibility.
+The development environment was based on \gls{vscode}, with assistance from GitHub Copilot for improved coding efficiency. Early experiments and module testing were conducted in Jupyter notebooks, which were later consolidated into a single modular Python application. This modular structure allows for separation of data preprocessing, model training, evaluation, and inference, improving maintainability and extensibility.
 
 The final output of the system is a trained model checkpoint, which can be used for inference on new audio data. The model is compatible with industry-standard frameworks such as TensorFlow and PyTorch and is designed to be portable across machines. This enables future deployment on embedded boards or other constrained platforms for real-time speech enhancement.
 

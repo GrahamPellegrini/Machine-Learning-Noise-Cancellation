@@ -2,12 +2,11 @@
 \chapter{Suppression Effects from Improper \texttt{Tanh} Activation}
 \label{appendix:tanh_removal}
 
-Before final evaluations could be conducted, a critical implementation flaw affecting early model performance was identified. Initially all machine learning models, except ConvTasNet, included a \texttt{Tanh} activation function at the output layer. This was based on the assumption that constraining the real and imaginary spectrogram outputs to the range \([-1, 1]\) would improve numerical stability during the inverse STFT reconstruction.
+Before final evaluations could be conducted, a critical implementation flaw affecting early model performance was identified. Initially all \gls{ml} models, except \gls{convtasnet}, included a \texttt{Tanh} activation function at the output layer. This was based on the assumption that constraining the real and imaginary spectrogram outputs to the range \([-1, 1]\) would improve numerical stability during \gls{istft} reconstruction.
 
-However, during early testing and visualization, this constraint was found to significantly suppress amplitude dynamics. The outputs became unnaturally flattened, leading to degraded waveform clarity and poor denoising metrics—particularly SNR, PESQ, and STOI—even when models appeared to converge during training.
+However, during early testing and visualization, this constraint was found to significantly suppress amplitude dynamics. The outputs became unnaturally flattened, leading to degraded waveform clarity and poor denoising metrics. \gls{snr}, \gls{pesq}, and \gls{stoi} scores in particular, even when models appeared to converge during training.
 
-This effect is clearly illustrated in Figures~\ref{fig:suppressed_waveform} and~\ref{fig:suppressed_spectrogram}, which show the outputs of the CNN, CED, and RCED models when \texttt{Tanh} was applied. The waveforms show reduced energy, and the spectrograms lack contrast and high-frequency content.
-
+This effect is illustrated clearly in Figures~\ref{fig:suppressed_waveform} and~\ref{fig:suppressed_spectrogram}, models when trained with \texttt{Tanh} applied. The waveforms exhibit a flattened energy profile, and the spectrograms lack contrast and high-frequency content.
 
 \begin{figure}[H]
     \centering
@@ -21,7 +20,7 @@ This effect is clearly illustrated in Figures~\ref{fig:suppressed_waveform} and~
     \caption{\label{fig:suppresed_spectrogram} Spectrograms with \texttt{Tanh} activation exhibit reduced contrast and dynamic range.}
 \end{figure}
 
-Once \texttt{Tanh} was removed, models were retrained. The resulting outputs showed restored amplitude range and natural structure—both in waveform shape and spectrogram clarity. These improvements are shown in Figures~\ref{fig:restored_waveform} and~\ref{fig:restored_spectrogram}.
+After removing \texttt{Tanh}, the models were retrained. The resulting outputs restored amplitude range and natural structure, both in waveform shape and spectrogram clarity. These improvements are shown in Figures~\ref{fig:restored_waveform} and~\ref{fig:restored_spectrogram}.
 
 \begin{figure}[H]
     \centering
@@ -32,7 +31,7 @@ Once \texttt{Tanh} was removed, models were retrained. The resulting outputs sho
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{fixed_spectrogram.png}
-    \caption{\label{fig:restored_spectrogram} Log-magnitude spectrograms showing restored dynamic range and clarity.}
+    \caption{\label{fig:restored_spectrogram} Log-magnitude spectrograms showing a restored dynamic range and greater clarity.}
 \end{figure}
 
-All final models presented in Chapter~\ref{chp:evaluation} were retrained without the \texttt{Tanh} activation. This correction proved critical to achieving meaningful denoising results and validates the importance of properly scaled output layers in spectrogram-based models.
+All final models, presented in Chapter~\ref{chp:evaluation} were retrained without the \texttt{Tanh} activation. This correction proved critical to achieving meaningful denoising results and validates the importance of properly scaled output layers in spectrogram-based models.
