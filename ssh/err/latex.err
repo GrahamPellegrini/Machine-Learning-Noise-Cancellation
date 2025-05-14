@@ -28,26 +28,32 @@ Latexmk: List of undefined refs and citations:
   Citation 'Luo2018ConvTasNetSI' on page 22 undefined on input line 118
   Citation 'Luo2018ConvTasNetSI' on page 23 undefined on input line 131
   Citation 'ccby4' on page 14 undefined on input line 10
+  Citation 'chatgpt2025' on page 31 undefined on input line 127
+  Citation 'defossez2019demucs' on page 53 undefined on input line 46
   Citation 'dubey2016evaluation' on page 3 undefined on input line 17
   Citation 'dubey2016evaluation' on page 3 undefined on input line 20
   Citation 'dubey2016evaluation' on page 4 undefined on input line 36
   Citation 'dubey2016evaluation' on page 5 undefined on input line 55
   Citation 'dubey2016evaluation' on page 5 undefined on input line 60
+  Citation 'edinburghdataset' on page 1 undefined on input line 6
   Citation 'edinburghdataset' on page 14 undefined on input line 10
   Citation 'edinburghdataset' on page 45 undefined on input line 6
   Citation 'ephraim1984speech' on page 5 undefined on input line 66
+  Citation 'github_copilot' on page 31 undefined on input line 127
   Citation 'hu2007subjective' on page 53 undefined on input line 48
   Citation 'hu2007subjective' on page 54 undefined on input line 79
   Citation 'itutp862' on page 7 undefined on input line 121
   Citation 'krisp2025' on page 9 undefined on input line 156
   Citation 'kubichek1993lsd' on page 8 undefined on input line 135
   Citation 'larcher2014text' on page 10 undefined on input line 16
+  Citation 'li2022voicefixer' on page 53 undefined on input line 46
   Citation 'loizou2013speech' on page 1 undefined on input line 7
   Citation 'loizou2013speech' on page 3 undefined on input line 10
   Citation 'loizou2013speech' on page 3 undefined on input line 12
   Citation 'loizou2013speech' on page 4 undefined on input line 30
   Citation 'loizou2013speech' on page 4 undefined on input line 36
   Citation 'loizou2013speech' on page 5 undefined on input line 60
+  Citation 'meyer2022deepfilternet' on page 53 undefined on input line 46
   Citation 'mindspore_mixed_precision' on page 29 undefined on input line 103
   Citation 'mindspore_mixed_precision' on page 29 undefined on input line 98
   Citation 'nvidia2020' on page 9 undefined on input line 156
@@ -67,6 +73,7 @@ Latexmk: List of undefined refs and citations:
   Citation 'wu2023scaleformer' on page 44 undefined on input line 6
   Citation 'yoon2020pto' on page 10 undefined on input line 10
   Citation 'yoon2020pto' on page 27 undefined on input line 53
+  Reference `appendix:project_structure' on page 25 undefined on input line 5
   Reference `appendix:tanh_removal' on page 17 undefined on input line 31
   Reference `chp:background' on page 2 undefined on input line 33
   Reference `chp:conclusion' on page 2 undefined on input line 47
@@ -104,22 +111,21 @@ Latexmk: List of undefined refs and citations:
   Reference `fig:sample_waveform_and_transcript' on page 14 undefined on input line 21
   Reference `fig:scaled_loss' on page 30 undefined on input line 107
   Reference `fig:static_pad' on page 26 undefined on input line 30
-  Reference `fig:suppressed_spectrogram' on page 48 undefined on input line 9
-  Reference `fig:suppressed_waveform' on page 48 undefined on input line 9
+  Reference `fig:suppresed_spectrogram' on page 48 undefined on input line 9
+  Reference `fig:suppresed_waveform' on page 48 undefined on input line 9
   Reference `fig:unet' on page 21 undefined on input line 92
   Reference `fig:unet_training_plot' on page 40 undefined on input line 226
-  Reference `sec:autoencoders' on page 17 undefined on input line 29
   Reference `sec:classical_methods' on page 37 undefined on input line 138
   Reference `sec:convtasnet_lit_review' on page 22 undefined on input line 111
   Reference `sec:dataset_exploration' on page 16 undefined on input line 10
   Reference `sec:dataset_performance' on page 10 undefined on input line 18
   Reference `sec:datasets' on page 46 undefined on input line 11
   Reference `sec:denoising_metrics' on page 40 undefined on input line 226
+  Reference `sec:denoising_metrics' on page 52 undefined on input line 37
   Reference `sec:distortion_free_handling' on page 17 undefined on input line 22
   Reference `sec:distortion_free_handling' on page 27 undefined on input line 53
   Reference `sec:fcns' on page 18 undefined on input line 55
   Reference `sec:fcns' on page 20 undefined on input line 74
-  Reference `sec:ml_denoise' on page 52 undefined on input line 37
   Reference `sec:model_architecture' on page 38 undefined on input line 178
   Reference `sec:model_architecture' on page 46 undefined on input line 13
   Reference `sec:oom_handling' on page 35 undefined on input line 77
@@ -186,10 +192,6 @@ Latexmk: References changed.
 Latexmk: Log file says output to 'main.pdf'
 Latexmk: List of undefined refs and citations:
   Label `fig:convtasnet' multiply defined
-  Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 9
-  Reference `fig:suppressed_waveform' on page 49 undefined on input line 9
-  Reference `sec:autoencoders' on page 17 undefined on input line 29
-  Reference `sec:ml_denoise' on page 53 undefined on input line 37
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Rule 'biber build/main': File changes, etc:
    Changed files, or newly in use since previous run(s):
@@ -229,10 +231,6 @@ Latexmk: Found input bbl file 'build/main.bbl'
 Latexmk: Log file says output to 'main.pdf'
 Latexmk: List of undefined refs and citations:
   Label `fig:convtasnet' multiply defined
-  Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 9
-  Reference `fig:suppressed_waveform' on page 49 undefined on input line 9
-  Reference `sec:autoencoders' on page 17 undefined on input line 29
-  Reference `sec:ml_denoise' on page 53 undefined on input line 37
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Rule 'lualatex': File changes, etc:
    Changed files, or newly in use since previous run(s):
@@ -248,11 +246,6 @@ Latexmk: Found input bbl file 'build/main.bbl'
 Latexmk: Log file says output to 'main.pdf'
 Latexmk: List of undefined refs and citations:
   Label `fig:convtasnet' multiply defined
-  Reference `fig:suppressed_spectrogram' on page 49 undefined on input line 9
-  Reference `fig:suppressed_waveform' on page 49 undefined on input line 9
-  Reference `sec:autoencoders' on page 17 undefined on input line 29
-  Reference `sec:ml_denoise' on page 53 undefined on input line 37
 Latexmk: Found biber source file(s) [build/main.bcf references.bib]
 Latexmk: Summary of warnings from last run of *latex:
-  Latex failed to resolve 4 reference(s)
   Latex found 1 multiply defined reference(s)

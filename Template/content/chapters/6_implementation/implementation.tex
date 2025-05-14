@@ -2,7 +2,7 @@
 \chapter{Implementation}
 \label{chp:implementation}
 
-This chapter presents the key implementation details that enable the speech enhancement system to function effectively under practical constraints. It describes the core components developed from scratch. Focus is drawn to the variable-length handling in the custom dataset classes, as well as the \gls{oom} handling strategies implemented to ensure robust and efficient training of deep models.
+This chapter presents the key implementation details that enable the speech enhancement system to function effectively under practical constraints. It describes the core components developed from scratch. Focus is drawn to the variable-length handling in the custom dataset classes, as well as the \gls{oom} handling strategies implemented to ensure robust and efficient training of deep models. More detail of the project structure is provided in Appendix~\ref{appendix:project_structure}.
 
 \section{Datasets}
 \label{sec:datasets}
@@ -100,7 +100,7 @@ To address these limitations, several memory management strategies were implemen
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{fp16_vs_fp32.png}
-        \caption{Comparison of memory allocation structure between FP16 and FP32 formats \cite{mindspore_mixed_precision}.}
+        \caption{Memory structure comparison between FP16 and FP32 formats \cite{mindspore_mixed_precision}.}
         \label{fig:fp16_vs_fp32}
     \end{figure}
 
@@ -123,3 +123,5 @@ To address these limitations, several memory management strategies were implemen
 \end{itemize}
 
 These combined methods provided the foundation for training deep models across all dataset variants with minimal interruptions. Even with GPU constraints, these optimizations enabled stable, high-performance training and evaluation of multiple architectures, supporting both experimentation and reproducibility in a limited computing environment.
+
+\footnote{The use of OpenAI's ChatGPT~\cite{chatgpt2025} and GitHub Copilot~\cite{github_copilot} was instrumental in supporting code implementation and debugging. These large language models also assisted with understanding unfamiliar Python libraries. Their integration enabled a faster development cycle and allowed greater focus on the theoretical aspects of the project.}

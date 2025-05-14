@@ -150,8 +150,12 @@ No file main.bbl.
 nary-english.trsl)
 (/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty)
 (./content/title.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}<./co
-ntent/figures/ict_logo.pdf>]) (./content/abstract.tex)
-(./content/acknowledgements.tex
+ntent/figures/ict_logo.pdf>]) (./content/abstract.tex
+
+LaTeX Warning: Citation 'edinburghdataset' on page 1 undefined on input line 6.
+
+
+) (./content/acknowledgements.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
 [1]) [2] [3] [4] [5]
 No file main.acr.
@@ -385,10 +389,6 @@ LaTeX Warning: Reference `chp:evaluation' on page 17 undefined on input line 24
 .
 
 
-LaTeX Warning: Reference `sec:autoencoders' on page 17 undefined on input line 
-29.
-
-
 LaTeX Warning: Reference `appendix:tanh_removal' on page 17 undefined on input 
 line 31.
 
@@ -478,6 +478,10 @@ e 131.
 (./content/chapters/6_implementation/implementation.tex [24]
 Chapter 6.
 
+LaTeX Warning: Reference `appendix:project_structure' on page 25 undefined on i
+nput line 5.
+
+
 LaTeX Warning: Reference `sec:variable_length_handling' on page 25 undefined on
  input line 10.
 
@@ -529,8 +533,15 @@ LaTeX Warning: Reference `fig:scaled_loss' on page 30 undefined on input line 1
 07.
 
 [30<./content/chapters/6_implementation/figures//fp16_vs_fp32.png><./content/ch
-apters/6_implementation/figures//scaled_loss.png>])
-(./content/chapters/7_evaluation/evaluation.tex [31]
+apters/6_implementation/figures//scaled_loss.png>]
+
+LaTeX Warning: Citation 'chatgpt2025' on page 31 undefined on input line 127.
+
+
+LaTeX Warning: Citation 'github_copilot' on page 31 undefined on input line 127
+.
+
+) (./content/chapters/7_evaluation/evaluation.tex [31]
 Chapter 7.
 
 LaTeX Warning: Reference `fig:dataset_config' on page 32 undefined on input lin
@@ -699,12 +710,12 @@ e 15.
 [46]) (./content/appendices/appendix_b.tex [47]
 Appendix B.
 
-LaTeX Warning: Reference `fig:suppressed_waveform' on page 48 undefined on inpu
-t line 9.
+LaTeX Warning: Reference `fig:suppresed_waveform' on page 48 undefined on input
+ line 9.
 
 
-LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 48 undefined on i
-nput line 9.
+LaTeX Warning: Reference `fig:suppresed_spectrogram' on page 48 undefined on in
+put line 9.
 
 [48<./content/appendices/figures/suppresed_waveform.png>]
 
@@ -725,20 +736,29 @@ LaTeX Warning: Reference `chp:evaluation' on page 51 undefined on input line 37
 pectrogram.png>]
 Appendix C.
 
-Overfull \hbox (96.54602pt too wide) in paragraph at lines 18--33
- [][] 
-
 LaTeX Warning: Reference `tab:subjective_scores' on page 52 undefined on input 
 line 35.
 
 
-LaTeX Warning: Reference `sec:ml_denoise' on page 52 undefined on input line 37
-.
+LaTeX Warning: Reference `sec:denoising_metrics' on page 52 undefined on input 
+line 37.
 
 [52]
 
 LaTeX Warning: Reference `tab:ml_denoise' on page 53 undefined on input line 44
 .
+
+
+LaTeX Warning: Citation 'defossez2019demucs' on page 53 undefined on input line
+ 46.
+
+
+LaTeX Warning: Citation 'li2022voicefixer' on page 53 undefined on input line 4
+6.
+
+
+LaTeX Warning: Citation 'meyer2022deepfilternet' on page 53 undefined on input 
+line 46.
 
 
 LaTeX Warning: Citation 'hu2007subjective' on page 53 undefined on input line 4
@@ -780,10 +800,10 @@ Package biblatex Warning: Please (re)run Biber on the file:
 
 )
 (see the transcript file for additional information)
- 905 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 27 attribute, 111 glue_sp
-ec, 27 attribute_list, 1 write, 7 pdf_action nodes
-   avail lists: 1:3,2:638,3:255,4:65,5:879,6:68,7:6970,8:68,9:507,10:21,11:664
+ 920 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 29 attribute, 111 glue_sp
+ec, 29 attribute_list, 1 write, 7 pdf_action nodes
+   avail lists: 1:3,2:638,3:255,4:67,5:902,6:70,7:7033,8:68,9:508,10:21,11:673
 
 warning  (pdf backend): unreferenced destination with name 'glo:anc'
 
@@ -881,7 +901,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (63 pages, 5629220 bytes).
+Output written on main.pdf (63 pages, 5630807 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -904,13 +924,13 @@ Latexmk: applying rule 'biber build/main'...
 INFO - This is Biber 2.17
 INFO - Logfile is 'build/main.blg'
 INFO - Reading 'build/main.bcf'
-INFO - Found 21 citekeys in bib section 0
+INFO - Found 26 citekeys in bib section 0
 INFO - Processing section 0
 INFO - Looking for bibtex file 'references.bib' for section 0
 INFO - LaTeX decoding ...
 INFO - Found BibTeX data source 'references.bib'
-INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
 INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
 INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
 INFO - No sort tailoring available for locale 'en-US'
 INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
@@ -923,8 +943,8 @@ added glossary type 'acronym' (alg,acr,acn)
 makeindex  -s "main.ist" -t "main.alg" -o "main.acr" "main.acn"
 This is makeindex, version 2.15 [TeX Live 2022/dev] (kpathsea + Thai support).
 Scanning style file ./main.ist.............................done (29 attributes redefined, 0 ignored).
-Scanning input file main.acn....done (424 entries accepted, 0 rejected).
-Sorting entries......done (4032 comparisons).
+Scanning input file main.acn....done (438 entries accepted, 0 rejected).
+Sorting entries......done (4231 comparisons).
 Generating output file main.acr....done (182 lines written, 0 warnings).
 Output written in main.acr.
 Transcript written in main.alg.
@@ -1087,12 +1107,9 @@ nary-english.trsl)
 ntent/figures/ict_logo.pdf>]) (./content/abstract.tex)
 (./content/acknowledgements.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
-[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof
-Overfull \hbox (5.83496pt too wide) in paragraph at lines 27--27
- [][] \TU/Lato(0)/m/n/12 Fig-ure [][]Con-fig-u-ra-tion of the [][]Con-vo-lu-tio
-nal Encoder-Decoder (CED)[] model used 
-[5]) [6] (./build/main.lot) [7] (./build/main.acr [8]) [9] (./build/main.gls)
-[10] (./content/chapters/1_introduction/introduction.tex
+[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof [5]) [6]
+(./build/main.lot) [7] (./build/main.acr [8]) [9] (./build/main.gls) [10]
+(./content/chapters/1_introduction/introduction.tex
 Chapter 1.
 [1]) (./content/chapters/2_background/background.tex [2]
 Chapter 2.
@@ -1109,14 +1126,10 @@ Chapter 4.
 (./content/chapters/5_design/design.tex [15<./content/chapters/4_specification/
 figures//sample_waveform_and_transcript.png>]
 Chapter 5.
-[16<./content/chapters/5_design/figures//max_padding.png>]
-
-LaTeX Warning: Reference `sec:autoencoders' on page 17 undefined on input line 
-29.
-
-[17] [18<./content/chapters/5_design/figures//cnn.png>] [19<./content/chapters/
-5_design/figures//ced.png>] [20<./content/chapters/5_design/figures//r-ced.png>
-] [21<./content/chapters/5_design/figures//unet.png>]
+[16<./content/chapters/5_design/figures//max_padding.png>] [17] [18<./content/c
+hapters/5_design/figures//cnn.png>] [19<./content/chapters/5_design/figures//ce
+d.png>] [20<./content/chapters/5_design/figures//r-ced.png>] [21<./content/chap
+ters/5_design/figures//unet.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1144,31 +1157,16 @@ Overfull \hbox (23.9841pt too wide) in paragraph at lines 256--268
 Chapter 8.
 ) (./content/chapters/9_conclusion/conclusion.tex [43]
 Chapter 9.
-) [44] [45] (./content/appendices/appendix_a.tex [46]
+) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
 Appendix A.
-[47]) (./content/appendices/appendix_b.tex [48]
+[48]) (./content/appendices/appendix_b.tex [49]
 Appendix B.
-
-LaTeX Warning: Reference `fig:suppressed_waveform' on page 49 undefined on inpu
-t line 9.
-
-
-LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 49 undefined on i
-nput line 9.
-
-[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
-waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
+[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [53<./content/appendices/f
 igures/fixed_spectrogram.png>]
 Appendix C.
-
-Overfull \hbox (96.54602pt too wide) in paragraph at lines 18--33
- [][] 
-
-LaTeX Warning: Reference `sec:ml_denoise' on page 53 undefined on input line 37
-.
-
-[53] [54] [55]) [56
+[54] [55] [56]) [57
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 <./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
@@ -1188,10 +1186,10 @@ Package biblatex Warning: Please rerun LaTeX.
 
 )
 (see the transcript file for additional information)
- 1015 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 37 attribute, 113 glue_sp
-ec, 37 attribute_list, 1 write, 17 pdf_action nodes
-   avail lists: 1:3,2:906,3:393,4:115,5:900,6:124,7:7052,8:95,9:526,10:21,11:63
+ 1020 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
+ec, 38 attribute_list, 1 write, 16 pdf_action nodes
+   avail lists: 1:3,2:920,3:425,4:117,5:902,6:129,7:7055,8:95,9:526,10:21,11:63
 4
 
 warning  (pdf backend): unreferenced destination with name 'table.caption.41'
@@ -1240,7 +1238,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (67 pages, 5660055 bytes).
+Output written on main.pdf (68 pages, 5663644 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -1249,13 +1247,13 @@ Latexmk: applying rule 'biber build/main'...
 INFO - This is Biber 2.17
 INFO - Logfile is 'build/main.blg'
 INFO - Reading 'build/main.bcf'
-INFO - Found 21 citekeys in bib section 0
+INFO - Found 26 citekeys in bib section 0
 INFO - Processing section 0
 INFO - Looking for bibtex file 'references.bib' for section 0
 INFO - LaTeX decoding ...
 INFO - Found BibTeX data source 'references.bib'
-INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
 INFO - No sort tailoring available for locale 'en-US'
 INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
@@ -1268,8 +1266,8 @@ added glossary type 'acronym' (alg,acr,acn)
 makeindex  -s "main.ist" -t "main.alg" -o "main.acr" "main.acn"
 This is makeindex, version 2.15 [TeX Live 2022/dev] (kpathsea + Thai support).
 Scanning style file ./main.ist.............................done (29 attributes redefined, 0 ignored).
-Scanning input file main.acn....done (430 entries accepted, 0 rejected).
-Sorting entries......done (4144 comparisons).
+Scanning input file main.acn....done (446 entries accepted, 0 rejected).
+Sorting entries......done (4463 comparisons).
 Generating output file main.acr....done (193 lines written, 0 warnings).
 Output written in main.acr.
 Transcript written in main.alg.
@@ -1432,12 +1430,9 @@ nary-english.trsl)
 ntent/figures/ict_logo.pdf>]) (./content/abstract.tex)
 (./content/acknowledgements.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
-[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof
-Overfull \hbox (5.83496pt too wide) in paragraph at lines 27--27
- [][] \TU/Lato(0)/m/n/12 Fig-ure [][]Con-fig-u-ra-tion of the [][]Con-vo-lu-tio
-nal Encoder-Decoder (CED)[] model used 
-[5]) [6] (./build/main.lot) [7] (./build/main.acr [8]) [9] (./build/main.gls)
-[10] (./content/chapters/1_introduction/introduction.tex
+[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof [5]) [6]
+(./build/main.lot) [7] (./build/main.acr [8]) [9] (./build/main.gls) [10]
+(./content/chapters/1_introduction/introduction.tex
 Chapter 1.
 [1]) (./content/chapters/2_background/background.tex [2]
 Chapter 2.
@@ -1454,14 +1449,10 @@ Chapter 4.
 (./content/chapters/5_design/design.tex [15<./content/chapters/4_specification/
 figures//sample_waveform_and_transcript.png>]
 Chapter 5.
-[16<./content/chapters/5_design/figures//max_padding.png>]
-
-LaTeX Warning: Reference `sec:autoencoders' on page 17 undefined on input line 
-29.
-
-[17] [18<./content/chapters/5_design/figures//cnn.png>] [19<./content/chapters/
-5_design/figures//ced.png>] [20<./content/chapters/5_design/figures//r-ced.png>
-] [21<./content/chapters/5_design/figures//unet.png>]
+[16<./content/chapters/5_design/figures//max_padding.png>] [17] [18<./content/c
+hapters/5_design/figures//cnn.png>] [19<./content/chapters/5_design/figures//ce
+d.png>] [20<./content/chapters/5_design/figures//r-ced.png>] [21<./content/chap
+ters/5_design/figures//unet.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1489,46 +1480,28 @@ Overfull \hbox (23.9841pt too wide) in paragraph at lines 256--268
 Chapter 8.
 ) (./content/chapters/9_conclusion/conclusion.tex [43]
 Chapter 9.
-) [44] [45] (./content/appendices/appendix_a.tex [46]
+) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
 Appendix A.
-[47]) (./content/appendices/appendix_b.tex [48]
+[48]) (./content/appendices/appendix_b.tex [49]
 Appendix B.
-
-LaTeX Warning: Reference `fig:suppressed_waveform' on page 49 undefined on inpu
-t line 9.
-
-
-LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 49 undefined on i
-nput line 9.
-
-[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
-waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
+[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [53<./content/appendices/f
 igures/fixed_spectrogram.png>]
 Appendix C.
-
-Overfull \hbox (96.54602pt too wide) in paragraph at lines 18--33
- [][] 
-
-LaTeX Warning: Reference `sec:ml_denoise' on page 53 undefined on input line 37
-.
-
-[53] [54] [55]) [56
+[54] [55] [56]) [57
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 <./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
-
-LaTeX Warning: There were undefined references.
-
 
 LaTeX Warning: There were multiply-defined labels.
 
 )
 (see the transcript file for additional information)
- 1015 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 37 attribute, 113 glue_sp
-ec, 37 attribute_list, 1 write, 17 pdf_action nodes
-   avail lists: 1:3,2:906,3:393,4:115,5:900,6:124,7:7052,8:95,9:526,10:21,11:63
+ 1020 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
+ec, 38 attribute_list, 1 write, 16 pdf_action nodes
+   avail lists: 1:3,2:920,3:425,4:117,5:902,6:129,7:7055,8:95,9:526,10:21,11:63
 4
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 mf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texlive/texmf-dist/
@@ -1541,7 +1514,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (67 pages, 5659648 bytes).
+Output written on main.pdf (68 pages, 5663294 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -1704,12 +1677,9 @@ nary-english.trsl)
 ntent/figures/ict_logo.pdf>]) (./content/abstract.tex)
 (./content/acknowledgements.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
-[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof
-Overfull \hbox (5.83496pt too wide) in paragraph at lines 27--27
- [][] \TU/Lato(0)/m/n/12 Fig-ure [][]Con-fig-u-ra-tion of the [][]Con-vo-lu-tio
-nal Encoder-Decoder (CED)[] model used 
-[5]) [6] (./build/main.lot) [7] (./build/main.acr [8]) [9] (./build/main.gls)
-[10] (./content/chapters/1_introduction/introduction.tex
+[1]) [2] (./build/main.toc [3]) [4] (./build/main.lof [5]) [6]
+(./build/main.lot) [7] (./build/main.acr [8]) [9] (./build/main.gls) [10]
+(./content/chapters/1_introduction/introduction.tex
 Chapter 1.
 [1]) (./content/chapters/2_background/background.tex [2]
 Chapter 2.
@@ -1726,14 +1696,10 @@ Chapter 4.
 (./content/chapters/5_design/design.tex [15<./content/chapters/4_specification/
 figures//sample_waveform_and_transcript.png>]
 Chapter 5.
-[16<./content/chapters/5_design/figures//max_padding.png>]
-
-LaTeX Warning: Reference `sec:autoencoders' on page 17 undefined on input line 
-29.
-
-[17] [18<./content/chapters/5_design/figures//cnn.png>] [19<./content/chapters/
-5_design/figures//ced.png>] [20<./content/chapters/5_design/figures//r-ced.png>
-] [21<./content/chapters/5_design/figures//unet.png>]
+[16<./content/chapters/5_design/figures//max_padding.png>] [17] [18<./content/c
+hapters/5_design/figures//cnn.png>] [19<./content/chapters/5_design/figures//ce
+d.png>] [20<./content/chapters/5_design/figures//r-ced.png>] [21<./content/chap
+ters/5_design/figures//unet.png>]
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1761,46 +1727,28 @@ Overfull \hbox (23.9841pt too wide) in paragraph at lines 256--268
 Chapter 8.
 ) (./content/chapters/9_conclusion/conclusion.tex [43]
 Chapter 9.
-) [44] [45] (./content/appendices/appendix_a.tex [46]
+) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
 Appendix A.
-[47]) (./content/appendices/appendix_b.tex [48]
+[48]) (./content/appendices/appendix_b.tex [49]
 Appendix B.
-
-LaTeX Warning: Reference `fig:suppressed_waveform' on page 49 undefined on inpu
-t line 9.
-
-
-LaTeX Warning: Reference `fig:suppressed_spectrogram' on page 49 undefined on i
-nput line 9.
-
-[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
-waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
+[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [53<./content/appendices/f
 igures/fixed_spectrogram.png>]
 Appendix C.
-
-Overfull \hbox (96.54602pt too wide) in paragraph at lines 18--33
- [][] 
-
-LaTeX Warning: Reference `sec:ml_denoise' on page 53 undefined on input line 37
-.
-
-[53] [54] [55]) [56
+[54] [55] [56]) [57
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 <./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
-
-LaTeX Warning: There were undefined references.
-
 
 LaTeX Warning: There were multiply-defined labels.
 
 )
 (see the transcript file for additional information)
- 1015 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 2 glue, 4 kern, 1 glyph, 37 attribute, 113 glue_sp
-ec, 37 attribute_list, 1 write, 17 pdf_action nodes
-   avail lists: 1:3,2:906,3:393,4:115,5:900,6:124,7:7052,8:95,9:526,10:21,11:63
+ 1020 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
+ec, 38 attribute_list, 1 write, 16 pdf_action nodes
+   avail lists: 1:3,2:920,3:425,4:117,5:902,6:129,7:7055,8:95,9:526,10:21,11:63
 4
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 mf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texlive/texmf-dist/
@@ -1813,7 +1761,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (67 pages, 5659648 bytes).
+Output written on main.pdf (68 pages, 5663294 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'

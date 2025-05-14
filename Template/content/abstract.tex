@@ -1,34 +1,10 @@
 \chapter*{Abstract}
 \addcontentsline{toc}{chapter}{Abstract}
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Mauris sed ipsum risus.
-Nulla aliquet quis quam sed eleifend.
-Donec rutrum, dolor id vulputate pharetra, nulla tortor laoreet nisl,
-pellentesque dapibus velit dolor suscipit purus.
-Phasellus vitae eleifend sem.
-Integer ultricies ex in neque pellentesque, vitae facilisis orci aliquam.
-In pellentesque mollis turpis, eu tristique lacus eleifend nec.
-Vestibulum orci neque, rhoncus vitae convallis eu, suscipit quis dui.
-Nulla libero elit, porta sit amet sagittis vel, placerat sit amet tortor.
-Aliquam hendrerit dolor sit amet sollicitudin ornare.
-Aliquam placerat sodales est, in vestibulum nisl efficitur in.
-Nulla venenatis aliquam sem, at volutpat nisl pellentesque eleifend.
-Praesent vitae euismod nulla, eget vehicula turpis.
-Duis quis tellus vitae nisi tempus tincidunt.
+This project investigates the use of machine learning (ML) techniques for speech enhancement, aiming to justify their superiority over classical methods in the context of real-time denoising. A modular and extensible pipeline was developed to support variable-length audio inputs, real-time inference, and unified evaluation metrics. Classical methods including Spectral Subtraction, Wiener Filtering, and MMSE-LSA were implemented to establish diverse baseline approaches that ML models must surpass.
 
-Nam quis aliquet nisi, non pharetra ligula.
-Phasellus pulvinar mattis neque, nec interdum justo condimentum hendrerit.
-Mauris fermentum venenatis faucibus.
-Pellentesque egestas eleifend libero, quis placerat ante fermentum et.
-Suspendisse accumsan gravida rhoncus.
-Vestibulum auctor sodales vehicula.
-Pellentesque a urna et elit placerat laoreet a quis turpis.
-Morbi ut sem at nunc posuere malesuada vel nec libero.
-Nam et urna suscipit, bibendum diam sed, aliquet leo.
-Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-Ut pretium mauris et nulla malesuada, mattis tristique lectus molestie.
-Aenean accumsan iaculis quam, eget varius libero placerat eu.
-Fusce mauris justo, vulputate a sollicitudin a, malesuada at est.
-Sed ac augue elit.
-Maecenas massa lorem, tincidunt vitae neque et, maximus dictum tellus.
+Five ML models were developed and trained from scratch using the Edinburgh DataShare dataset \cite{edinburghdataset}: a Convolutional Neural Network (CNN), Convolutional Encoder-Decoder (CED), Residual Convolutional Encoder-Decoder (R-CED), UNet, and Conv-TasNet. A key contribution of this work is the design and evaluation of variable-length dataset handling strategies—static bucketing, dynamic bucketing, and a distortion-free padding-truncation-output-truncation (PTO) method. These strategies enabled variable-length audio to be processed as fixed-size tensors while mitigating the negative effects of excessive padding and truncation during training.
+
+To support training under hardware constraints, several Out-Of-Memory mitigation techniques were introduced, including mixed-precision training, gradient accumulation, and manual memory management. These allowed deeper models to be trained without compromising performance. Each model was evaluated using objective and perceptual metrics, including SNR, MSE, PESQ, STOI, and LSD. Conv-TasNet emerged as the top performer, surpassing the best classical method Wiener Filtering by significant margins across all metrics. For example, it achieved an SNR of 18.06 dB and a PESQ of 2.43 compared to 0.46 dB and 2.06, respectively.
+
+This work demonstrates the practical feasibility and performance advantages of training speech enhancement models from scratch using a well-engineered ML pipeline. The final system supports real-time inference, offers superior perceptual and numerical quality, and lays the foundation for future developments in scalable and adaptive speech enhancement.

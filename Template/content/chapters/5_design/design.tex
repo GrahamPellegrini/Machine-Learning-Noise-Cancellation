@@ -26,9 +26,9 @@ All three methods were implemented for testing and evaluation. Their role in the
 \section{Model Architecture}
 \label{sec:model_architecture}
 
-The model architecture is central to system design, defining how inputs are processed, features transformed, and outputs reconstructed. The project’s modular structure supports exploring various neural networks, starting from a simple baseline and extending to more advanced models. As introduced in Section~\ref{sec:autoencoders}, all models follow the autoencoder paradigm and operate on spectrograms, with real and imaginary components concatenated into a two-channel input and producing a similar two-channel output.
+The model architecture is central to system design, defining how inputs are processed, features transformed, and outputs reconstructed. The project’s modular structure supports exploring various neural networks, starting from a simple baseline and extending to more advanced models. All models follow the autoencoder paradigm and operate on spectrograms, with real and imaginary components concatenated into a two-channel input and producing a similar two-channel output.
 
-Initially, a \texttt{Tanh} activation was used at the output layer to constrain values within $[-1, 1]$, aiming for numerical stability during inverse \gls{stft}. However, evaluations showed this suppressed amplitude dynamics and degraded denoising performance. The \texttt{Tanh} was therefore removed from all model outputs—an improvement detailed in Appendix~\ref{appendix:tanh_removal}.
+Initially, a \texttt{Tanh} activation was used at the output layer to constrain values within $[-1, 1]$, aiming for numerical stability during inverse \gls{stft}. However, evaluations showed this suppressed amplitude dynamics and degraded denoising performance. The \texttt{Tanh} was therefore removed from all model outputs, an correction detailed in Appendix~\ref{appendix:tanh_removal}.
 
 \subsection{Convolutional Neural Network}
 \label{sec:cnn}
@@ -40,7 +40,7 @@ The first entry point in the forward pass of the model is the encoder. The encod
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{cnn.png}
-    \caption{\label{fig:cnn}Basic CNN architecture.}
+    \caption{\label{fig:cnn}Convolutional Neural Network architecture.}
 \end{figure}
 
 The output of the encoder is passed to a bottleneck layer, which further transforms the feature space without altering its spatial resolution. In this implementation, the bottleneck consists of a single \(3 \times 3\) convolutional layer that increases the number of channels from 128 to 256, followed by a \gls{relu} activation. This design deepens the network and allows for more complex feature extraction. Since the bottleneck is not part of the downsampling or upsampling path, it also encourages the decoder to learn a more challenging mapping from latent space back to the input resolution.
@@ -59,7 +59,7 @@ The encoder is composed of five convolutional blocks. Each block consists of a c
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{ced.png}
-    \caption{\label{fig:ced}CED Network \cite{park2017acoustic}.}
+    \caption{\label{fig:ced} Convolutional Encoder Decoder architecture \cite{park2017acoustic}.}
 \end{figure}
 
 Unlike the \gls{cnn} baseline, which uses a dedicated bottleneck for feature transformation, the \gls{ced} model omits this step. Its encoder and decoder are seen to be fully connected in Figure~\ref{fig:ced}. They are connected through a continuous intermediate representation, avoiding abrupt compression. This enables smoother feature transitions across the network. Beneficial for speech signals where such disruptions can degrade temporal patterns.
@@ -76,7 +76,7 @@ The \gls{rced} architecture implemented in this project builds upon the \gls{ced
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{r-ced.png}
-    \caption{\label{fig:rced}RCED architecture \cite{park2017acoustic}.}
+    \caption{\label{fig:rced} Redundant Convolutional Encoder Decoder architecture \cite{park2017acoustic}.}
 \end{figure}
 
 The network is composed of nine sequential convolutional layers. The first eight layers use tall vertical kernels ranging from \(13 \times 1\) to \(7 \times 1\), symmetrically arranged around the network's midpoint. Each layer is followed by a \gls{relu} activation and batch normalisation. The number of channels increases from 2 to 32 in the first half and then mirrors back to 12 in the second half, following the filter progression: 12, 16, 20, 24, 32, 24, 20, 16, 12. This symmetric arrangement enables the model to gradually build and refine feature representations without disrupting the resolution of the input signal.
@@ -96,7 +96,7 @@ The encoder consists of five convolutional blocks, each followed by instance nor
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{unet.png}
-    \caption{\label{fig:unet}UNet Architecture.}
+    \caption{\label{fig:unet}U-Net architecture.}
 \end{figure}
 
 At the centre of the network is a bottleneck block that maintains the 1024-channel depth while applying an additional convolution, instance normalisation, and \gls{prelu} activation. Unlike traditional bottlenecks that compress the latent representation, this layer serves as a non-linear transformation hub that enhances the feature space before decoding.
@@ -115,7 +115,7 @@ The original \gls{convtasnet} operates directly on time-domain audio signals. In
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{conv-tasnet.png}
-    \caption{\label{fig:convtasnet}Conv-TasNet architecture overview \cite{Luo2018ConvTasNetSI}.}
+    \caption{\label{fig:convtasnet} Conv-TasNet architecture \cite{Luo2018ConvTasNetSI}.}
 \end{figure}
 
 The encoded features are passed to a \gls{tcn}, which serves as the core separation module. The \gls{tcn} is composed of two stacks, each containing four residual blocks, for a total of eight layers. Each residual block consists of a dilated convolution with exponentially increasing dilation factors (e.g., 1, 2, 4, 8), followed by group normalisation (with eight groups), a \gls{prelu} activation, and a second projection convolution. A residual connection is used to stabilize training and preserve input information. The dilation strategy allows the \gls{tcn} to model long-range temporal dependencies efficiently while maintaining a fixed receptive field size.
