@@ -2,7 +2,7 @@
 \chapter{Implementation}
 \label{chp:implementation}
 
-This chapter presents the key implementation details that enable the speech enhancement system to function effectively under practical constraints. It describes the core components developed from scratch. Focus is drawn to the variable-length handling in the custom dataset classes. As well as the \gls{oom} handling strategies that were implemented to ensure robust and efficient training of deep models. 
+This chapter presents the key implementation details that enable the speech enhancement system to function effectively under practical constraints. It describes the core components developed from scratch. Focus is drawn to the variable-length handling in the custom dataset classes, as well as the \gls{oom} handling strategies implemented to ensure robust and efficient training of deep models.
 
 \section{Datasets}
 \label{sec:datasets}
@@ -43,32 +43,29 @@ During initialization, the method measures the length of each clean file and app
     \label{fig:dynamic_pad}
 \end{figure}
 
-The \texttt{collate} method then pads or truncates each waveform to its bucket's target size. Compared to static bucketing, dynamic bucketing leads to tighter groupings, minimizing the average amount of padding per batch. This results in better memory utilization and more efficient training.
+The \texttt{collate} method pads or truncates each waveform to its assigned bucket size. Compared to static bucketing, dynamic bucketing yields tighter groupings and reduces average padding, improving memory efficiency and training speed.
 
-Dynamic bucketing combines flexibility with performance, adapting to the dataset rather than imposing fixed constraints. It is particularly effective when the data contains a wide or uneven distribution of sequence lengths. When comparing dynamic to static bucketing, we observe that the dynamic method identifies two buckets around the 2 second mark that are heavily populated. Clearly illustrating its ability to adapt to the underlying structure of the dataset more effectively than the fixed approach.
-
+Dynamic bucketing strikes a balance between flexibility and performance by adapting bucket boundaries to the true distribution of audio lengths, rather than enforcing fixed thresholds. This is especially useful for datasets with wide or uneven length distributions. As shown in Figure~\ref{fig:dynamic_pad}, the clustering process produces two buckets near the 2-second mark, which may initially appear redundant. However, this reflects how K-Means minimises intra-cluster variance without enforcing minimum spacing between centroids. Given that a large portion of samples falls within this range, assigning multiple centroids reduces within-bucket variance and improves batch uniformity. Although this consumes an extra bucket, it distributes the most common samples more evenly and helps reduce padding overhead. Thus, the presence of similar-length buckets highlights the method’s ability to adapt to dense regions in the dataset, enhancing memory efficiency and training performance.
 
 \subsection{Padding-Truncation Output-Truncation}
 \label{subsec:pto_dataset}
 
 The \gls{pto} method, introduced by Yoon and Yu~\cite{yoon2020pto} and discussed in Section~\ref{sec:distortion_free_handling}, was implemented in this project following the original proposal.
 
-To facilitate the integration of \gls{pto} into the data pipeline, a custom \texttt{pto\_collate} function was developed. This function aligns all spectrograms along the frequency axis using bilinear interpolation, then pads the time axis so that all samples in a batch match the length of the longest sample. Additionally, the original (pre-padding) lengths of each input are recorded and returned alongside the padded tensors.
+To facilitate the integration of \gls{pto} into the data pipeline, a custom \texttt{pto\_collate} function was developed. This function aligns all spectrograms along the frequency axis using bilinear interpolation, then pads the time axis so that all samples in a batch match the length of the longest sample. The padding behaviour and distribution resulting from this method is illustrated in Figure~\ref{fig:pto_pad}. Additionally, the original (pre-padding) lengths of each input are recorded and returned alongside the padded tensors.
 
 During training, batches consist of spectrograms with uniform dimensions, while preserving the original input lengths for later use. After inference, model outputs are cropped back to their corresponding original lengths, ensuring that the final enhanced outputs remain distortion-free and aligned with the original input signals.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.9\textwidth]{pto_pad.png}
-    \caption{Padding effect using the \gls{pto} method.}
+    \caption{Padding effect using the PTO method.}
     \label{fig:pto_pad}
 \end{figure}
 
 The \gls{pto} method simulates real-time signal processing by operating on frame-aligned \gls{stft} inputs, making it highly suitable for deployment in low-latency scenarios. Unlike bucketing methods, it does not require predefined groups or clustering of sequence lengths, offering greater adaptability to varied datasets.
 
-However, it introduces computational overhead, as padding is still necessary during training and output truncation adds an extra processing step at inference. This overhead was addressed by implementing additional handling within the training pipeline. Firstly, to correctly manage the extra \gls{pto} parameter containing the original (unpadded) lengths. Secondly, to perform output truncation as a post-processing step, cropping model outputs back to their original lengths after inference.
-
-It is also noted that, although padding is mitigated post-inference, the model remains exposed to padded inputs during training, meaning model weights are still updated based on padded data. 
+While \gls{pto} avoids distortion at inference by cropping outputs to their original lengths, it still introduces computational overhead. Padding is required during training, and an extra post-processing step is needed to truncate outputs. This was addressed by extending the training pipeline to track original (unpadded) lengths and apply output cropping accordingly. However, since the model is still exposed to padded inputs during training, its weights are updated based on padded data.
 
 \subsection{Helper Functions}
 \label{subsec:helper_functions}
@@ -90,7 +87,7 @@ A few support functions are implemented to ensure that batching and visualizatio
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{oom_error.png}
-    \caption{\label{fig:oom_error} PyTorch CUDA out-of-memory error message.}
+    \caption{\label{fig:oom_error} PyTorch CUDA OOM error message.}
 \end{figure}
 
 To address these limitations, several memory management strategies were implemented to stabilize training and enable deeper models to run within the available GPU resources. These methods also allowed the system to simulate larger batch sizes and achieve better convergence. The following techniques were used to mitigate \gls{oom} errors:
@@ -98,24 +95,23 @@ To address these limitations, several memory management strategies were implemen
 \begin{itemize}
     \item \textbf{Expandable CUDA Segments:} Before initiating training, the environment variable \texttt{PYTORCH\_CUDA\_ALLOC\_CONF=expandable\_segments:True} is set. This enables PyTorch’s new memory allocator with segment expansion, which helps alleviate fragmentation issues and allows the allocator to resize memory segments dynamically. This is the first suggestion from the PyTorch documentation for \gls{oom} errors.
 
-    \item \textbf{Mixed Precision Training:} Automatic mixed precision (AMP) was used via PyTorch’s \texttt{autocast()} and \texttt{GradScaler}. This allows intermediate tensors to be stored in \gls{fp16} format, reducing memory usage and increasing throughput, while maintaining model weights and gradient computations in \gls{fp32} for stability. Figure~\ref{fig:fp16_vs_fp32} illustrates the reduced bit-width and structure of \gls{fp16} compared to \gls{fp32}, highlighting the potential for nearly half the memory usage in forward and backward passes~\cite{mindspore_mixed_precision}. This approach significantly extends the trainable capacity of a model under constrained GPU environments.
+    \item \textbf{Mixed Precision Training:} Automatic mixed precision (AMP) was used via \texttt{autocast()} and \texttt{GradScaler}. It stored intermediate tensors in \gls{fp16} while keeping model weights and gradients in \gls{fp32}. This reduces memory usage and increases throughput. Figure~\ref{fig:fp16_vs_fp32} illustrates the difference in structure and memory footprint~\cite{mindspore_mixed_precision}, extending the trainable capacity of a model under constrained GPU environments.
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.9\textwidth]{fp16_vs_fp32.png}
-        \caption{Comparison of memory allocation structure between \gls{fp16} and \gls{fp32} formats \cite{mindspore_mixed_precision}.}
+        \caption{Comparison of memory allocation structure between FP16 and FP32 formats \cite{mindspore_mixed_precision}.}
         \label{fig:fp16_vs_fp32}
     \end{figure}
 
-    \item \textbf{Gradient Accumulation:} Due to memory limitations that constrained the feasible batch size, gradient accumulation was employed to simulate a larger effective batch size. By accumulating gradients over multiple mini-batches and updating the model weights only every \texttt{accumulation\_steps} iterations, the training process preserves the learning dynamics of a larger batch size without exceeding memory constraints. However, directly plotting the scaled loss can result in misleading visualizations, such as those shown in Figure~\ref{fig:scaled_loss}. Where the logged values may appear artificially small or flat. To mitigate this, the raw (unscaled) loss is computed and stored separately before scaling. This ensures that both training and validation loss curves accurately reflect model performance trends, even when gradients are accumulated across steps.
+    \item \textbf{Gradient Accumulation:} Due to memory limitations restricting the feasible batch size, gradient accumulation was used to simulate a larger effective batch size. This involves accumulating gradients over several mini-batches and only updating model weights every \texttt{accumulation\_steps} iterations. However, if the loss values are logged after being scaled (i.e., divided by the accumulation steps), they may appear artificially low or flat. This issue is demonstrated in Figure~\ref{fig:scaled_loss}, where both training and validation loss curves show minimal variation across epochs. To avoid such misleading plots, the raw (unscaled) loss values are also recorded prior to scaling. This ensures that the loss curves accurately reflect true performance trends, even when gradient accumulation is in use.
 
     \begin{figure}[H]
         \centering
         \includegraphics[width=0.6\textwidth]{scaled_loss.png}
-        \caption{Plot Result When Scaling Losses}
+        \caption{Loss curves appearing flat due to logging after gradient scaling.}
         \label{fig:scaled_loss}
     \end{figure}
-
 
     \item \textbf{Manual Memory Management:} To ensure memory is cleared between epochs and reduce fragmentation, memory cleanup routines are explicitly called at the start of every epoch: \texttt{gc.collect()}, \texttt{torch.cuda.empty\_cache()}, and \texttt{torch.cuda.reset\_peak\_memory\_stats()}. This manual intervention is particularly beneficial in a shared GPU setting, where residual allocations from other users or previous epochs may linger.
 

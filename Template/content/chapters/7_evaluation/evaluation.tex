@@ -14,7 +14,7 @@ This section examines the performance of the three dataset handling strategies: 
 \begin{itemize}
     \item \textbf{Cold Run (Uncached):} In this scenario, all dataset operations are executed from scratch. Static and Dynamic Bucketing compute bucket assignments (with Dynamic Bucketing also requiring K-Means clustering), while \gls{pto} calculates and stores the original waveform lengths. This setup simulates a first-time deployment or training on a fresh system.
     
-    \item \textbf{Warm Run (Cached):} This run utilises cached data generated during the cold run, significantly reducing load and pre-processing time. For Static and Dynamic Bucketing, bucket mappings and K-Means centresare reloaded. For \gls{pto}, the previously computed original sequence lengths are retrieved.
+    \item \textbf{Warm Run (Cached):} This run utilises cached data generated during the cold run, significantly reducing load and pre-processing time. For Static and Dynamic Bucketing, bucket mappings and K-Means centres are reloaded. For \gls{pto}, the previously computed original sequence lengths are retrieved.
 \end{itemize}
 
 The configuration used for all \gls{ced} runs is shown in Figure~\ref{fig:dataset_config}, with the only varying parameter being the \texttt{PAD\_METHOD}.
@@ -43,7 +43,7 @@ Dynamic Bucketing & 581.57s& 0.83s  & N/A    \\
 \end{tabular}
 \end{table}
 
-The results in Table~\ref{tab:dataset_loading_times} reveal key insights into the efficiency of each dataset handling strategy. In the uncached condition, both Static Bucketing and \gls{pto} exhibit similar loading times, as each only requires a single pass through the dataset. Either to assign buckets or compute original waveform lengths. Dynamic Bucketing, however, incurs nearly double the loading time due to the additional K-Means clustering step, which requires a second pass to calculate cluster centres for optimal bucket assignment. This overhead is particularly pronounced in the uncached scenario, where the dataset must be fully loaded and processed from scratch.
+The results in Table~\ref{tab:dataset_loading_times} reveal key insights into the efficiency of each dataset handling strategy. In the uncached condition, both Static Bucketing and \gls{pto} exhibit similar loading times, as each only requires a single pass through the dataset. Either to assign buckets or compute original waveform lengths. Dynamic Bucketing, however, incurs nearly double the loading time due to the additional K-Means clustering step, which requires a second pass to calculate cluster centres for optimal bucket assignment. This overhead is only pronounced in the uncached scenario, where the dataset must be fully loaded and processed from scratch.
 
 In contrast, the cached runs significantly reduce loading times across all methods. Once the dataset metadata has been computed and stored, subsequent runs simply reload the cached mappings or original lengths, avoiding repeated preprocessing. \gls{pto} achieves the fastest cached time, as retrieving a list of original lengths is marginally quicker than reloading bucket assignments or cluster centres. However, a key distinction of \gls{pto} is its requirement for per-epoch output truncation during training. While this truncation overhead is relatively minor compared to the total training duration (typically on the order of hours). It can accumulate significantly across large datasets or extended training schedules. This trade-off must be carefully considered when assessing \gls{pto}'s suitability for time-sensitive or resource-constrained training environments.
 
@@ -74,7 +74,7 @@ Considering the trade-offs between implementation complexity, runtime overhead, 
 \section{OOM Validation}
 \label{sec:oom_validation}
 
-While Section~\ref{sec:oom_handling} outlined several techniques to mitigate \gls{oom} errors during training. It is important to demonstrate that these strategies do not compromise model learning. The goal of this section is to validate that memory-saving methods do not lead to information loss or degraded performance. To assess this, the \gls{rced} model was used, since the \gls{unet} and \gls{convtasnet} could not be trained without \gls{oom} handling techniques. Training was conducted using the dynamic bucketing strategy and compared across three different configurations:
+While Section~\ref{sec:oom_handling} outlined several techniques to mitigate \gls{oom} errors during training, it is important to demonstrate that these strategies do not compromise model learning. The goal of this section is to validate that memory-saving methods do not lead to information loss or degraded performance. To assess this, the \gls{rced} model was used, since the \gls{unet} and \gls{convtasnet} could not be trained without \gls{oom} handling techniques. Training was conducted using the dynamic bucketing strategy and compared across three different configurations:
 
 \begin{enumerate}
     \item \textbf{Clean Training (Control):} A standard training loop without any \gls{oom} handling logic, using a batch size of 4. This configuration serves as the control, with no memory management mechanisms.
@@ -133,7 +133,7 @@ In summary, while the training metrics in Table~\ref{tab:oom_training} showed mo
 \section{Model Performance}
 \label{sec:model_performance}
 
-This section presents the most critical part of the evaluation and the central focus of the project. A comparative assessment of classical methods and five \gls{ml} models for speech enhancement. Unlike earlier evaluations, which focused on dataset handling strategies and \gls{oom} mitigation techniques using fixed models to conduct the justification. The main scope of this project is to justify the use of \gls{ml} models for speech enhancement and to evaluate their performance against classical methods.
+This section presents the most critical part of the evaluation and the central focus of the project. A comparative assessment of classical methods and five \gls{ml} models for speech enhancement. Unlike earlier evaluations, which focused on dataset handling strategies and \gls{oom} mitigation techniques using fixed models to conduct the justification. The main aim of this project is to justify the use of \gls{ml} models for speech enhancement and to evaluate their performance against classical methods.
 
 The evaluation retains the previously established dynamic bucketing and \gls{oom} handling strategies to ensure consistency. To provide a meaningful frame of reference, a baseline set of metrics is also established in Section~\ref{sec:classical_methods}. This baseline follows the same evaluation pipeline as the classical methods but uses the raw noisy inputs directly compared against the clean reference signals. These values define a lower bound for performance and serve as a clear reference point for assessing the effectiveness of each denoising method.
 
@@ -149,12 +149,12 @@ The classical methods evaluated include \gls{ss}, \gls{wf}, and the \gls{mmse-ls
 \label{tab:classical_metrics}
 \begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
-\textbf{Method} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} & \textbf{Denoise Time} \\
+\textbf{Method} & \textbf{↑SNR (db)} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD (db)} & \textbf{Denoise Time (s)} \\
 \hline
-Baseline     & -2.2774 & 0.005152 & 1.8451 & 0.8928 & 0.904223 & 56s \\
-\gls{ss}          & 3.0861 & 0.001525 & 1.4535 & 0.8457 & 0.767089 & 1.01 m \\
-\gls{wf}          & 0.4647 & 0.002875 & 2.0639 & 0.8889 & 0.753452 & 1.21 m \\
-\gls{mmse-lsa}    & -0.8619 & 0.003726 & 2.0238 & 0.8943 & 0.797070 & 1.39 m \\
+Baseline     & -2.2774 & 0.005152 & 1.8451 & 0.8928 & 0.904223 & 56 \\
+\gls{ss}          & 3.0861 & 0.001525 & 1.4535 & 0.8457 & 0.767089 & 61 \\
+\gls{wf}          & 0.4647 & 0.002875 & 2.0639 & 0.8889 & 0.753452 & 73 \\
+\gls{mmse-lsa}    & -0.8619 & 0.003726 & 2.0238 & 0.8943 & 0.797070 & 83 \\
 \hline
 \end{tabular}
 \end{table}
@@ -167,7 +167,7 @@ In contrast, \gls{wf} and \gls{mmse-lsa} adopt more perceptually driven strategi
 
 The negative \gls{snr} values for both the baseline and \gls{mmse-lsa} arise primarily from averaging across test files with highly variable and often low input SNRs. In such cases, even minor reconstruction errors can dominate energy calculations, pulling the average \gls{snr} below zero—despite the clear perceptual improvements reflected in \gls{pesq} and \gls{stoi}.
 
-All classical methods complete denoising in under two minutes, confirming their practicality for batch processing and their suitability for real-time deployment when computational efficiency is essential.
+All classical methods complete denoising in under 90 seconds, confirming their practicality for batch processing and their suitability for real-time deployment when computational efficiency is essential.
 
 \subsection{Machine Learning Models}
 \label{sec:ml_models}
@@ -175,7 +175,7 @@ All classical methods complete denoising in under two minutes, confirming their 
 \subsubsection{Training Metrics}
 \label{sec:training_metrics}
 
-With the classical methods evaluated, the focus now shifts to the \gls{ml} models. Each model defined in the \ref{sec:model_architecture} section was trained using the same dataset handling strategies and \gls{oom} mitigation techniques previously established. The models followed a consistent training configuration: a batch size of 2, accumulation steps of 4, 25 training epochs, and a learning rate of $1 \times e^{-3}$. The table below summarizes the training performance for each model.
+With the classical methods evaluated, the focus now shifts to the \gls{ml} models. Each model defined in the Section~\ref{sec:model_architecture} was trained using the same dataset handling strategies and \gls{oom} mitigation techniques previously established. The models followed a consistent training configuration: a batch size of 2, accumulation steps of 4, 25 training epochs, and a learning rate of $1 \times e^{-3}$. The table below summarizes the training performance for each model.
 
 \vspace{1em}
 \begin{table}[H]
@@ -184,20 +184,18 @@ With the classical methods evaluated, the focus now shifts to the \gls{ml} model
 \label{tab:ml_training}
 \begin{tabular}{|l|c|c|c|c|}
 \hline
-\textbf{Model} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val \gls{snr}} & \textbf{Training Time} \\
+\textbf{Model} & \textbf{Train Loss} & \textbf{Val Loss} & \textbf{Val \gls{snr}(db)} & \textbf{Training Time (h)} \\
 \hline
-\gls{cnn}         & 0.2855 & 0.4292 & 0.45 dB & 4.01 h \\
-\gls{ced}         & 0.1599 & 0.1675 & 0.88 dB & 6.32 h \\
-\gls{rced}        & 0.1136 & 0.1239 & 2.69 dB & 7.43 h \\
-\gls{rced}        & 0.0477 & 0.0649 & 6.35 dB & 17.44 h \\
-\gls{convtasnet}  & 0.0438 & 0.0478 & 9.23 dB & 1d 1.25h \\
+\gls{cnn}         & 0.2855 & 0.4292 & 0.45 & 4.01 \\
+\gls{ced}         & 0.1599 & 0.1675 & 0.88 & 6.32 \\
+\gls{rced}        & 0.1136 & 0.1239 & 2.69 & 7.43 \\
+\gls{unet}        & 0.0477 & 0.0649 & 6.35 & 17.44 \\
+\gls{convtasnet}  & 0.0438 & 0.0478 & 9.23 & 25.25 \\
 \hline
 \end{tabular}
 \end{table}
 
-The training outcomes summarized in Table~\ref{tab:ml_training} clearly demonstrate a consistently increamenting trend in performance as the models progress in complexity. 
-
-The \gls{cnn} model was introduced as a simple foundation to validate the project’s training and evaluation pipeline. It demonstrated reasonable training metrics, though not directly comparable to the classical methods, which do not involve a learning phase. The training plot in Figure~\ref{fig:cnn_training_plot} shows a moderate gap between training (0.2855) and validation (0.4292) loss, around a 50\% increase indicating moderate overfitting. Additionally, the validation loss increases during the early epochs, likely due to the model initially overfitting to noise patterns in the training data before learning more generalizable features. Despite this, the validation \gls{snr} continues to improve steadily, suggesting that the model gradually captures meaningful structure in the data.
+The training outcomes summarised in Table 7.6 clearly demonstrate a consistently increasing trend in performance as the models become more complex. The \gls{cnn} model was introduced as a simple foundation to validate the project’s training and evaluation pipeline. It demonstrated reasonable training metrics, though not directly comparable to the classical methods, which do not involve a learning phase. The training plot in Figure~\ref{fig:cnn_training_plot} shows a moderate gap between training (0.2855) and validation (0.4292) loss, around a 50\% increase indicating moderate overfitting. Additionally, the validation loss increases during the early epochs, likely due to the model initially overfitting to noise patterns in the training data before learning more generalizable features. Despite this, the validation \gls{snr} continues to improve steadily, suggesting that the model gradually captures meaningful structure in the data.
 
 \begin{figure}[H]
     \centering
@@ -213,9 +211,9 @@ The \gls{ced} model expands upon the \gls{cnn} baseline by adopting a fully conn
     \caption{\label{fig:ced_training_plot} \gls{ced} training plot.}
 \end{figure}
 
-The \gls{rced} model extends the \gls{ced} architecture by incorporating residual connections to improve information flow and gradient propagation. As shown in Table~\ref{tab:ml_training}, \gls{rced} outperforms \gls{ced} across all training metrics, with validation \gls{snr} increasing from 0.88 dB to 2.69 dB and only a minor increase in training time.
+The \gls{rced} model extends the \gls{ced} architecture by incorporating residual connections to improve information flow and gradient propagation. As shown in Table~\ref{tab:ml_training}, \gls{rced} outperforms \gls{ced} across all training metrics, with validation \gls{snr} increasing from 0.88 dB to 2.69 dB with a minor increase in training time.
 
-The training plot in Figure~\ref{fig:rced_training_plot} shows stable convergence in loss curves, though the validation \gls{snr} exhibits more fluctuation compared to \gls{ced}. These oscillations likely stem from the model’s increased sensitivity due to its added complexity with residual connections. Nevertheless, the upward \gls{snr} trend confirms that \gls{rced} generalizes effectively and benefits from residual learning. Supporting the findings of \cite{park2017acoustic}.
+The training plot in Figure~\ref{fig:rced_training_plot} shows stable convergence in loss curves, though the validation \gls{snr} exhibits more fluctuation compared to \gls{ced}. These oscillations likely stem from the model’s increased sensitivity due to its added complexity with residual connections. Nevertheless, the upward \gls{snr} trend confirms that \gls{rced} generalizes effectively and benefits from residual learning, supporting the findings of \cite{park2017acoustic}.
 
 \begin{figure}[H]
     \centering
@@ -223,14 +221,14 @@ The training plot in Figure~\ref{fig:rced_training_plot} shows stable convergenc
     \caption{\label{fig:rced_training_plot} \gls{rced} training plot.}
 \end{figure}
 
-The \gls{rced} model achieved the best training and validation loss so far, with loss values of 0.0477 and 0.0649 respectively, and more than doubled the validation \gls{snr} to 6.35 dB compared to \gls{rced}. This reflects the strength of its skip connected encoder-decoder architecture, which helps preserve fine grained spectral details during reconstruction.
+The \gls{unet} model achieved the best training and validation loss so far, with loss values of 0.0477 and 0.0649 respectively, and more than doubled the validation \gls{snr} to 6.35 dB compared to \gls{unet}. This reflects the strength of its skip connected encoder-decoder architecture, which helps preserve fine grained spectral details during reconstruction.
 
-However, this performance comes at a significant cost. \gls{rced} required 17.44 hours to train, over twice the duration of \gls{rced}. As shown in Figure~\ref{fig:unet_training_plot}, the model converges smoothly, and the validation \gls{snr} shows a consistent upward trend with fewer fluctuations than \gls{rced}. It is worth noting that all recorded training times are situational and can vary with configuration and system load. A full justification of these time performance trade offs is provided in Section~\ref{sec:denoising_metrics}.
+However, this performance comes at a significant cost. \gls{unet} required 17.44 hours to train, over twice the duration of \gls{rced}. As shown in Figure~\ref{fig:unet_training_plot}, the model converges smoothly with no significant sign of overfitting. The validation \gls{snr} shows a consistent upward trend with fewer fluctuations than \gls{rced}. It is worth noting that all recorded training times are situational and can vary with configuration and system load. A full justification of these time performance trade offs is provided in Section~\ref{sec:denoising_metrics}.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{UNet_plot.png}
-    \caption{\label{fig:unet_training_plot} \gls{rced} training plot.}
+    \caption{\label{fig:unet_training_plot} \gls{unet} training plot.}
 \end{figure}
 
 The \gls{convtasnet} model yielded the most notable training results. It achieved the lowest loss values 0.0438 (train) and 0.0478 (validation). The highest validation \gls{snr} of 9.23 dB, a substantial improvement over \gls{unet}’s 6.35 dB. As shown in Figure~\ref{fig:convtasnet_training_plot}, the model demonstrates strong convergence, with the validation \gls{snr} stabilizing at a high level after initially fluctuating. This behaviour reflects \gls{convtasnet}’s ability to model complex temporal dependencies more effectively than the previous architectures.
@@ -257,14 +255,14 @@ Following the training phase, each \gls{ml} model was evaluated using the same d
 \label{tab:ml_denoise}
 \begin{tabular}{|l|c|c|c|c|c|c|}
 \hline
-\textbf{Model} & \textbf{↑SNR} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD} & \textbf{Denoise Time} \\
+\textbf{Model} & \textbf{↑SNR (db)} & \textbf{↓MSE} & \textbf{↑PESQ} & \textbf{↑STOI} & \textbf{↓LSD (db)} & \textbf{Denoise Time (s)} \\
 \hline
-Baseline     & -2.2774 & 0.005152 & 1.8451 & 0.8928 & 0.904223 & 56s \\
-\gls{cnn}         & 4.6432  & 0.001344 & 1.7410 & 0.8073 & 0.795551 & 1.11 m \\
-\gls{ced}         & 13.1850  & 0.000161 & 1.6780 & 0.8386 & 0.765542 & 1.05 m \\
-\gls{rced}        & 14.5285  & 0.000117 & 2.0542 & 0.8677 & 0.647985 & 1.14 m \\
-\gls{rced}        & 16.9872  & 0.000069 & 2.1384 & 0.8940 & 0.707572 & 1.27 m \\
-\gls{convtasnet}  & 18.0607 & 0.000063 & 2.4329 & 0.9112 & 0.674051 & 2.19 m \\
+Baseline     & -2.2774 & 0.005152 & 1.8451 & 0.8928 & 0.904223 & 56 \\
+\gls{cnn}         & 4.6432  & 0.001344 & 1.7410 & 0.8073 & 0.795551 & 71 \\
+\gls{ced}         & 13.1850  & 0.000161 & 1.6780 & 0.8386 & 0.765542 & 65 \\
+\gls{rced}        & 14.5285  & 0.000117 & 2.0542 & 0.8677 & 0.647985 & 74 \\
+\gls{unet}        & 16.9872  & 0.000069 & 2.1384 & 0.8940 & 0.707572 & 87 \\
+\gls{convtasnet}  & 18.0607 & 0.000063 & 2.4329 & 0.9112 & 0.674051 & 139 \\
 \hline
 \end{tabular}
 \end{table}
@@ -273,9 +271,9 @@ The \gls{cnn} model, although introduced as a simple foundation, already outperf
 
 The introduction of the fully connected encoder-decoder architecture in \gls{ced} presents a trade off between numerical and perceptual metrics. \gls{ced} achieves slightly lower \gls{pesq} (1.68) and \gls{stoi} (0.84) scores than \gls{cnn}, indicating a perceptual quality drop, despite the design's intended purpose of improving it. However, the milestone in \gls{snr} (13.19 dB) and \gls{mse} (0.000161) are substantial enough to outweigh this perceptual dip. This substantial improvement likely came from the fixed overfitting experienced in the \gls{cnn}. Now that a large portion of the noise energy is successfully suppressed, the models that follow must focus on enhancing perceptual quality to surpass the classical methods comprehensively.
 
-Here, the results from \cite{park2017acoustic} are confirmed are once again confirmed with the \gls{rced} model. It delivers comprehensive improvements across all metrics, most notably in perceptual quality. Achieving a \gls{pesq} of 2.05 and a \gls{stoi} of 0.87, values nearly on par with those of \gls{wf} and \gls{mmse-lsa}. These gains justify the use of \gls{rced} over \gls{ced}, as the added residual connections lead to meaningful enhancements in both intelligibility and naturalness.
+This confirms the findings of Park and Lee~\cite{park2017acoustic}, where the \gls{rced} model delivers comprehensive improvements across all metrics, most notably in perceptual quality. Achieving a \gls{pesq} of 2.05 and a \gls{stoi} of 0.87, values nearly on par with those of \gls{wf} and \gls{mmse-lsa}. These gains justify the use of \gls{rced} over \gls{ced}, as the added residual connections lead to meaningful enhancements in both intelligibility and naturalness. The \gls{rced} also achieved the lowest \gls{lsd} of 0.65, indicating that the log of its denoised spectrogram is the closest to the clean reference.
 
-The \gls{rced} model and introduction of skip connections is known to come at significant computational cost. However, the results in Table~\ref{tab:ml_denoise} show that this complexity is justified by the model's performance. \gls{rced} achieves a significant \gls{snr} of 16.99 dB, a \gls{pesq} of 2.14, and a \gls{stoi} of 0.89. This is the first model to pass all classical methods in all metrics. It’s important to note that the closer we get to the clean signal, the harder it is to improve the results.
+The \gls{unet} model and introduction of skip connections is known to come at significant computational cost. However, the results in Table~\ref{tab:ml_denoise} show that this complexity is justified by the model's performance. \gls{unet} achieves a significant \gls{snr} of 16.99 dB, a \gls{pesq} of 2.14, and a \gls{stoi} of 0.89. This is the first model to pass all classical methods in all metrics. It’s important to note that the closer we get to the clean signal, the harder it is to improve the results.
 
-Finally, we have the \gls{convtasnet} model. The most complex of all the models and computationally expensive. \gls{convtasnet} achieves remarkable results across all metrics, with an \gls{snr} of 18.06 dB, a \gls{pesq} of 2.43, and a \gls{stoi} of 0.91. These metrics are surely suitable for deployment standards in a small scale scenario. The LSE of 0.67 shows how we have moved closer to the clean signal whilst maintaining a good spectral representation. Overall, our model evalution ends with \gls{convtasnet} achieving the best performance across all metrics compared to both all the classical methods and the other \gls{ml} models.
+Finally, we have the \gls{convtasnet} model. The most complex of all the models and computationally expensive. \gls{convtasnet} achieves remarkable results across all metrics, with an \gls{snr} of 18.06 dB, a \gls{pesq} of 2.43, and a \gls{stoi} of 0.91. These metrics are suitable for small-scale deployment scenarios. The LSE of 0.67 shows how we have moved closer to the clean signal whilst maintaining a good spectral representation. Overall, our model evalution ends with \gls{convtasnet} achieving the best performance across all metrics compared to both all the classical methods and the other \gls{ml} models. Although the denoising time of 139 seconds may seem long compared to other methods, it remains well within the acceptable range for real-time applications, as the entire test set is processed in a single batch.
 

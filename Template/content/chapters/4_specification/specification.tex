@@ -18,7 +18,7 @@ A key aspect of defining the system specifications is understanding the dataset 
     \label{fig:dataset_structure}
 \end{figure}
 
-As shown in Figure~\ref{fig:dataset_structure}, the dataset is organized into three main subsets: a test set, a 28-speaker training set, and a 56-speaker training set. Each subset includes folders for transcripts, clean speech, and noisy speech. Files are aligned by index across these folders, ensuring parallelism between clean and noisy samples. However, the file numbering is not continuous, with gaps in the sequence.
+As shown in Figure~\ref{fig:dataset_structure}, the dataset is organized into three main subsets: a test set, a 28-speaker training set, and a 56-speaker training set. Each subset includes folders for transcripts, clean speech, and noisy speech shown in Figure~\ref{fig:sample_waveform_and_transcript}. Files are aligned by index across these folders, ensuring parallelism between clean and noisy samples. However, the file numbering is not continuous, with gaps in the sequence.
 
 \begin{figure}[H]
     \centering
@@ -29,8 +29,8 @@ As shown in Figure~\ref{fig:dataset_structure}, the dataset is organized into th
 
 All audio files are in \texttt{.wav} format and sampled at 48~kHz. Clip lengths vary, which significantly impacts how data is batched and fed into the model. The dataset contains no corrupted files, and the total download size was approximately 15~GB.
 
-\section{System Requirements}
-\label{sec:system_requirements}
+\section{System Specification}
+\label{sec:system_specification}
 
 Given the computational demands of training neural networks, this project was developed and executed remotely on the University of Malta’s Interfacing Lab servers, accessed via \gls{ssh}. These machines are equipped with NVIDIA GeForce RTX 3060 GPUs, which are suitable for deep learning workloads. However, GPU memory limitations required careful control of training parameters, including batch size, model depth, and the number of epochs.
 

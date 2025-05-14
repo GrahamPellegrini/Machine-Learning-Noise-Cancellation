@@ -4,5 +4,5 @@ Device set to: cuda
 Loaded cache file: cache/dynamic/testset_buckets.pkl
 --- Test Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
 --- Model `ConvTasNet` loaded successfully ---
-✅ Denoised audio saved to: Output/wav/ConvTasNet_dynamic_sp07.wav
+✔ Metrics saved to Output/txt/ConvTasNet_dynamic_metrics.txt
 Job finished successfully

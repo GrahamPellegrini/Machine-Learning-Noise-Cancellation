@@ -1,6 +1,6 @@
 \graphicspath{{content/chapters/3_literature/figures/}}
 \chapter{Literature Review}
-\label{sec:literature_review}
+\label{chp:literature_review}
 
 This chapter reviews the key literature that directly informed the design and implementation of the project. While many aspects of the system drew on established methods and architectures, the following discussion focuses on the most influential and relevant papers. Three core areas are covered: handling variable-length sequences in datasets, the application of \gls{fcn}s for speech enhancement, and the Conv-TasNet architecture for end-to-end speech separation.
 
@@ -13,7 +13,7 @@ Their work focuses on minimizing the information distortion introduced when sequ
 
 To address this, Yoon and Yu proposed the \gls{pto} method, a distortion-free technique that preserves the original sequence structure. In \gls{pto}, sequences are padded within a batch to match the longest input, but after processing, outputs are truncated back to their respective original lengths.
 
-Experimental evaluation on the RSR2015 speaker verification dataset demonstrated that the \gls{pto} method consistently outperformed conventional approaches in terms of \gls{eer}, achieving up to a 27\% relative improvement over baseline methods, while incurring only a modest computational overhead.
+Experimental evaluation on the RSR2015 speaker verification dataset (introduced in \cite{larcher2014text}) demonstrated that the \gls{pto} method consistently outperformed conventional approaches in terms of \gls{eer}, achieving up to a 27\% relative improvement over baseline methods, while incurring only a modest computational overhead.
 
 Given its distortion-free nature and suitability for real-time speech enhancement, \gls{pto} was adopted in this project as one of the three primary methods for handling variable-length sequences. It is further discussed in Section~\ref{subsec:pto_dataset} and evaluated in Section~\ref{sec:dataset_performance}.
 
@@ -42,16 +42,16 @@ The results of the study demonstrated that \gls{rced} consistently outperformed 
 \section{Conv-TasNet for End-to-End Speech Separation}
 \label{sec:convtasnet_lit_review}
 
-\gls{convtasnet} is a convolutional neural network architecture proposed by Luo and Mesgarani~\cite{luo2019conv}, representing a significant advancement in the field of speech enhancement. Unlike traditional approaches that operate in the time-frequency domain, \gls{convtasnet} processes raw audio waveforms directly using a \gls{tcn}. The \gls{tcn} replaces recurrent layers by employing stacked dilated convolutions and residual connections, enabling efficient modelling of long-range temporal dependencies with fewer layers.
+\gls{convtasnet} is a convolutional neural network architecture proposed by Luo and Mesgarani~\cite{Luo2018ConvTasNetSI}, representing a significant advancement in the field of speech enhancement. Unlike traditional approaches that operate in the time-frequency domain, \gls{convtasnet} processes raw audio waveforms directly using a \gls{tcn}. The \gls{tcn} replaces recurrent layers by employing stacked dilated convolutions and residual connections, enabling efficient modelling of long-range temporal dependencies with fewer layers.
 
 Each \gls{tcn} block consists of a depthwise separable convolution, non-linear activation \gls{prelu}, normalisation (group normalisation), and a residual connection. Dilation factors increase exponentially across layers (e.g., 1, 2, 4, 8), allowing the model to expand its receptive field efficiently while maintaining computational stability. By stacking multiple \gls{tcn} blocks, \gls{convtasnet} captures broad temporal contexts without the sequential limitations of recurrent models.
 
-\gls{convtasnet} achieved state-of-the-art performance in speech separation tasks, surpassing conventional magnitude masking methods. The paper demonstrated the model's ability to separate multiple overlapping speakers from a single-channel recording under challenging conditions, highlighting the effectiveness of its end-to-end training approach in learning optimal source representations.
+\gls{convtasnet} achieved state-of-the-art performance in speech separation tasks, surpassing conventional magnitude masking methods. The paper demonstrated the model's ability to separate multiple overlapping speakers from a single-channel recording under challenging conditions. This block processes demonstrated in Figure~\ref{fig:convtasnet}, highlighting the effectiveness of its end-to-end training approach in learning optimal source representations.
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\textwidth]{TwoSpeakSeperation.png}
-    \caption{Source masks for a sample two-speaker mixture \cite{luo2019conv}.}
+    \caption{Source masks for a sample two-speaker mixture \cite{Luo2018ConvTasNetSI}.}
     \label{fig:convtasnet}
 \end{figure}
 

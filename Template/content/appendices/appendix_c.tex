@@ -5,6 +5,38 @@
 \section{Subjective Evaluation}
 \label{sec:subjective_evaluation}
 
+While objective metrics such as \gls{snr}, \gls{pesq}, and \gls{stoi} provide robust measures of speech intelligibility and distortion, they do not always reflect human perceptual preferences. In speech enhancement, subjective impressions often reveal differences in perceived quality that are not captured by numerical scores alone.
+
+To complement the objective evaluation, a limited subjective listening test was conducted using high-quality headphones to ensure consistent and accurate acoustic presentation. One listener rated each denoised output across four perceptual criteria: \textit{Speaker Volume}, \textit{Speech Clarity}, \textit{Noise Suppression}, and \textit{Distortion / Artefacts}. Each dimension was scored on a 0--5 scale, where 0 indicates poor quality and 5 indicates excellent performance.
+
+Although this evaluation was limited lacking the formality of a multi-listener study and being subject to individual bias. It still offers valuable insight into perceptual strengths and weaknesses of each method.
+
+\begin{table}[H]
+\centering
+\caption{Subjective evaluation of denoised outputs}
+\label{tab:subjective_scores}
+\begin{tabular}{|l|c|c|c|c|}
+\hline
+\textbf{Method} & \textbf{Speaker Volume} & \textbf{Speech Clarity} & \textbf{Noise Suppression} & \textbf{Distortion / Artefacts} \\
+\hline
+Noisy Input (Baseline) & 4 & 3 & 0 & 1 \\
+\gls{ss}               & 4.5 & 2.5 & 2 & 4 \\
+\gls{wf}               & 5 & 3 & 0.5 & 0 \\
+\gls{mmse-lsa}         & 5 & 3 & 1 & 2 \\
+\gls{cnn}              & 1 & 2.5 & 3.5 & 3.5 \\
+\gls{ced}              & 2 & 3.5 & 3.5 & 3 \\
+\gls{rced}             & 3 & 3 & 4.5 & 1.5 \\
+\gls{unet}             & 3.5 & 4.5 & 4.5 & 2 \\
+\gls{convtasnet}       & 3.5 & 4.5 & 4.5 & 2 \\
+\hline
+\end{tabular}
+\end{table}
+
+Table~\ref{tab:subjective_scores} highlights several key trends. Classical methods such as \gls{wf} and \gls{mmse-lsa} amplified the overall speaker volume more than the baseline input while maintaining a reasonable level of speech clarity. However, they struggled with noise suppression, leading to a higher perceived noise level. On the other hand, \gls{ml} methods tended to under-amplify the speaker volume, with \gls{cnn} and \gls{ced} performing particularly poorly in this regard, often producing outputs that sounded quieter or overly attenuated.
+
+Despite this, the deep learning models offered a more balanced trade-off between noise suppression and clarity. \gls{rced} marked a notable improvement over its simpler counterparts, effectively suppressing noise with fewer perceptible artefacts. The best perceptual performance was achieved by \gls{unet} and \gls{convtasnet}, which consistently delivered enhanced speech with high clarity and strong noise reduction while maintaining relatively low levels of distortion. These results align with the objective metrics and finding in Section \ref{sec:ml_denoise}.
+
+Overall, while classical methods preserved naturalness and loudness, their limited noise suppression undermined intelligibility. In contrast, \gls{ml} models, though slightly quieter, produced cleaner and clearer speech, suggesting a favourable perceptual outcome for real-world applications where background noise is prominent.
 
 \section{Comparison with Pre-trained Models}
 \label{sec:pretrained_comparison}

@@ -44,7 +44,7 @@ METRICS_PTH = (
 )
 
 # Single File Denoising
-SINGLE = True  # Denoise a single audio file
+SINGLE = False  # Denoise a single audio file
 SPEAKER_ID = "p232_334"  # Speaker ID for the audio file
 NOISY_PTH = DATASET_DIR + "/noisy_testset_wav/" +  SPEAKER_ID + ".wav"  # Path to the noisy audio file
 #"/opt/users/gpel0001/nnc-fyp/ED-Noisy-Speech-Datashare/foreign/sp07_restaurant_sn5.wav"

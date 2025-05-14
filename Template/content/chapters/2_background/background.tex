@@ -2,7 +2,7 @@
 \chapter{Background}
 \label{chp:background}
 
-In this chapter, background information on established classical noise reduction methods is provided. It explores Spectral Subtraction, Wiener Filtering, and MMSE-LSA estimation, which does not require reference signals.The basis of \gls{ml} models, autoencoders, is introduced. Additionally, the chapter introduces the key evaluation metrics used to assess speech enhancement performance. Finally, a brief section outlines the progression of the project and relevant foundational knowledge.
+In this chapter, background information on established classical noise reduction methods is provided. It explores Spectral Subtraction, Wiener Filtering, and MMSE-LSA estimation, which does not require reference signals. The basis of \gls{ml} models, autoencoders, is introduced. Additionally, the chapter introduces the key evaluation metrics used to assess speech enhancement performance. Finally, a brief section outlines the progression of the project and relevant foundational knowledge.
 
 \section{Spectral Subtraction}
 \label{sec:spectral_subtraction}
@@ -14,7 +14,7 @@ The analog speech signal \(x(t)\) must be digitised into \gls{x}, a discrete-tim
 \begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth,keepaspectratio]{specsub.png}
-    \caption{\label{fig:SSBlock} Block diagram of the \gls{ss} method \cite{dubey2016evaluation}.}
+    \caption{\label{fig:SSBlock} Block diagram of the Spectral Subtraction method \cite{dubey2016evaluation}.}
 \end{figure}
 
 Before applying \gls{ss}, the signal is pre-processed into a suitable format using the \gls{stft}. The \gls{stft} segments the time-domain signal into overlapping frames using a windowing function and then converts each segment into the frequency domain. Windowing reduces spectral leakage and preserves continuity in the frequency domain. The magnitude spectrum of the noisy signal is obtained by taking the absolute value of the \gls{stft} \cite{dubey2016evaluation}. The noise spectrum is estimated by averaging the spectral magnitudes of non-speech segments over time. Once this estimate is obtained, it is subtracted from the noisy spectrum to yield an estimate of the clean speech. The final step applies the \gls{istft} to reconstruct the enhanced signal in the time domain by summing the overlapping frames.
@@ -22,7 +22,7 @@ Before applying \gls{ss}, the signal is pre-processed into a suitable format usi
 This process can be mathematically described as:
 
 \begin{equation}
-    |\gls{Xomega}| = |\gls{Yomega}| - |\gls{Domega}|
+    \gls{Xomega} = \gls{Yomega} - \gls{Domega}
 \end{equation}
 
 \gls{ss} is widely adopted due to its simplicity and low computational cost. It requires only a single input channel and is straightforward to implement. However, it assumes stationary noise, a condition often unmet in practice. It may also introduce musical noise, a type of distortion perceived as tonal artifacts. Excessive subtraction may distort speech, while insufficient subtraction can leave residual noise.
@@ -44,7 +44,7 @@ Though usable in time or frequency domains, the frequency version is preferred f
 This filter acts as a frequency-dependent gain function. Frequencies where the clean speech dominates (\(P_S \gg P_N\)) are preserved, while noise dominant frequencies (\(P_N \gg P_S\)) are attenuated. The enhanced speech spectrum is obtained by multiplying the noisy spectrum \(Y(\omega)\) with the Wiener gain:
 
 \begin{equation}
-    \gls{xhat} = \gls{Homega}Y(\omega)
+    \gls{xhatomega} = \gls{Homega}Y(\omega)
 \end{equation}
 
 The enhanced signal is then reconstructed using the \gls{istft}.
@@ -52,7 +52,7 @@ The enhanced signal is then reconstructed using the \gls{istft}.
 \begin{figure}[h]
     \centering
     \includegraphics[width=0.95\textwidth,keepaspectratio]{wiener_block.png}
-    \caption{\label{fig:WienerBlock} Block diagram of the \gls{wf} process \cite{dubey2016evaluation}.}
+    \caption{\label{fig:WienerBlock} Block diagram of the Weiner Filtering process \cite{dubey2016evaluation}.}
 \end{figure}
 
 \gls{wf} is a statistically optimal method that minimizes the mean square error (MMSE) between the estimated and clean speech signals. It performs well when noise characteristics can be reliably estimated, such as during silent speech segments, and is effective at preserving the spectral shape of speech components. However, the method assumes stationary, zero-mean noise uncorrelated with the speech signal. These assumptions often fail in real-world, dynamic environments. This can lead to inaccurate power spectral density (PSD) estimates, resulting in performance degradation or over-smoothing that reduces intelligibility.
@@ -68,9 +68,8 @@ The \gls{mmse-lsa} estimator is a statistically grounded single-channel speech e
 The algorithm operates in the time/frequency domain, assuming additive noise and using the \gls{stft} to decompose the noisy signal. It relies on estimates of the a priori and a posteriori signal-to-noise ratios (SNRs) to construct a gain function that enhances speech-dominant regions while suppressing noise. The enhanced spectral amplitude \( \hat{X}^{\text{LSA}}(\omega) \) is computed as:
 
 \begin{equation}
-    \hat{X}^{\text{LSA}}(\omega) = \exp \left( \mathrm{E} \left[ \log \left| {\gls{Xomega}} \right| \,\big|\, {\gls{Yomega}} \right] \right)
+    \hat{X}^{\text{LSA}}(\omega) =\exp (\mathrm{E} \log(\gls{Xomega} \gls{Yomega}))
 \end{equation}
-
 where \gls{Yomega} is the noisy observation and the expectation is taken over the distribution of the clean signal conditioned on the observed noisy spectrum.
 
 A block diagram of the \gls{mmse-lsa} estimation process is shown in Figure~\ref{fig:mmse_lsa_block}. It begins with an \gls{stft} of the input signal, followed by separation into magnitude and phase. The magnitude spectrum is used to estimate the noise power spectral density (PSD), from which the a priori and a posteriori SNRs are derived. These estimates are then passed into the \gls{mmse-lsa} gain function, which produces a gain mask applied to the magnitude spectrum. The enhanced signal is reconstructed by combining the modified magnitude with the original phase, followed by the inverse \gls{stft}.
@@ -78,36 +77,12 @@ A block diagram of the \gls{mmse-lsa} estimation process is shown in Figure~\ref
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{mmse-lsa.png}
-    \caption{\label{fig:mmse_lsa_block} Block diagram of the \gls{mmse-lsa} method}
+    \caption{\label{fig:mmse_lsa_block} Block diagram of the MMSE-LSA method}
 \end{figure}
 
 The \gls{mmse-lsa} estimator incorporates a parametric model of the speech and noise distributions and uses recursive averaging to smooth \gls{snr} estimates across time frames. This results in a more adaptive and perceptually aligned gain function than traditional methods. This log-domain formulation better aligns with human auditory perception.
 
-Despite its original formulation in the 1980s, \gls{mmse-lsa} continues to be a highly relevant technique. Numerous enhancements and application-specific variants have been developed in the 2010s and 2020s, including integrations with wavelet transforms~\cite{wei2016mmse}, improved noise tracking, and hybrid neural-\gls{dsp} pipelines. This enduring relevance highlights \gls{mmse-lsa}'s foundational robustness and its suitability for modern speech enhancement systems.
-
-\section{Autoencoders}
-\label{sec:autoencoders}
-
-\gls{ml}, a subset of \gls{ai}, focuses on developing algorithms that enable systems to learn patterns from data and make decisions without being explicitly programmed. In the context of speech enhancement, ML techniques have enabled the development of specialised neural network architectures capable of recovering clean speech from noisy inputs. One widely used architecture is the \textit{autoencoder}, which learns to reconstruct its input through a compressed latent representation \cite{azarang2020review}.
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth,keepaspectratio]{autoencoder.png}
-    \caption{\label{fig:autoencoder} Block diagram of an autoencoder architecture \cite{vachhani2017dae}.}
-\end{figure}
-
-An autoencoder consists of two main components: an encoder and a decoder. The encoder compresses the input signal \(x\) into a low-dimensional latent space using a series of convolutional, pooling, or fully connected layers. A central \textit{bottleneck} layer enforces this compression, encouraging the model to retain only the most salient features (speech structure) while discarding irrelevant noise.
-
-The decoder reconstructs the signal \(y\) using upsampling or mirrored layers. The objective is to recover the clean speech signal with minimal reconstruction error. Autoencoders are trained using paired datasets of noisy and clean speech. During training, the noisy input is passed through the network, and the output is compared against the clean reference. The model is optimised to minimise the difference, typically using a loss function such as \gls{mse} or Mean Absolute Error (MAE).
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth,keepaspectratio]{weights.png}
-    \caption{\label{fig:weigths} Loss and weight update process in an autoencoder \cite{epoch2021}.}
-\end{figure}
-
-Training proceeds iteratively. A forward pass generates an output, and the loss function quantifies the error. This error is then propagated backward through the network via backpropagation to compute gradients, which are used to update the model’s weights using optimisers such as Stochastic Gradient Descent (SGD) or Adam. This process is repeated across many epochs until convergence.
-
+Despite its original formulation in the 1980s, \gls{mmse-lsa} continues to be a highly relevant technique. Numerous enhancements and application-specific variants have been developed in the 2010s and 2020s, including integrations with wavelet transforms~\cite{wei2016mmse} and hybrid neural-\gls{dsp} pipelines for hearing aids~\cite{sugahara2024hybrid}. This enduring relevance highlights \gls{mmse-lsa}'s foundational robustness and its suitability for modern speech enhancement systems.
 
 \section{Evaluation Metrics}
 \label{sec:evaluation_metrics}
@@ -150,14 +125,14 @@ The \gls{pesq} is an objective metric designed to estimate the perceptual qualit
 \subsection{Short-Time Objective Intelligibility}
 \label{subsec:stoi}
 
-The \gls{stoi} metric is designed to assess the intelligibility of speech, especially in noisy or distorted conditions. It works by comparing the short-time spectral envelopes of clean and enhanced speech segments.
+The \gls{stoi} metric is designed to assess the intelligibility of speech, especially in noisy or distorted conditions. Proposed by Taal et al.~\cite{taal2011stoi}, it works by comparing the short-time spectral envelopes of clean and enhanced speech segments.
 
 The \gls{stoi} score lies between 0 and 1, where higher values indicate better intelligibility. Scores above 0.5 typically suggest acceptable levels of speech understanding. \gls{stoi} is particularly useful when intelligibility, rather than perceptual quality alone, is of primary concern.
 
 \subsection{Log Spectral Distance}
 \label{subsec:lsd}
 
-The \gls{lsd} metric quantifies the spectral distortion introduced by a denoising algorithm. It measures the average distance between the logarithmic power spectra of the clean and enhanced signals across time and frequency.
+The \gls{lsd} metric quantifies the spectral distortion introduced by a denoising algorithm. It measures the average distance between the logarithmic power spectra of the clean and enhanced signals across time and frequency. This metric has been widely used in speech enhancement tasks, as seen in works such as~\cite{kubichek1993lsd}.
 
 \gls{lsd} is defined as:
 
@@ -178,6 +153,6 @@ The initial objective of this project was to enhance speech signals corrupted by
 
 However, early prototyping in Python revealed inherent limitations of classical \gls{dsp} methods. Particularly problematic were their poor performance in non-stationary noise and limited adaptability to diverse real-world conditions. While methods like \gls{ss} offer simplicity and efficiency, they often introduce musical noise artifacts and reduce intelligibility. Similarly, \gls{wf}, though more rigorous, relies on assumptions about noise characteristics that may not hold in practice.
 
-Meanwhile, data-driven approaches emerged as a compelling alternative. Real-time systems such as \textit{Krisp}, \textit{NVIDIA RTX Voice}, and \textit{RNNoise} demonstrate how \gls{ml}-based models can robustly suppress noise by learning complex nonlinear mappings from large-scale clean/noisy speech datasets. Recognising these advantages, the project evolved from solely implementing classical methods to exploring the deployment of lightweight \gls{ml}-based speech enhancement models on more capable embedded hardware platforms. This shift aligned the project with modern trends while maintaining a focus on real-time deployment. It also enabled analysis of trade-offs between classical and data-driven methods in terms of performance, memory, and computation.
+Meanwhile, data-driven approaches emerged as a compelling alternative. Real-time systems such as \textit{Krisp} \cite{krisp2025}, \textit{NVIDIA RTX Voice} \cite{nvidia2020}, and \textit{RNNoise} \cite{valin2018} demonstrate how \gls{ml}-based models can robustly suppress noise by learning complex nonlinear mappings from large-scale clean/noisy speech datasets. Recognising these advantages, the project evolved from solely implementing classical methods to exploring the deployment of lightweight \gls{ml}-based speech enhancement models on more capable embedded hardware platforms. This shift aligned the project with modern trends while maintaining a focus on real-time deployment. It also enabled analysis of trade-offs between classical and data-driven methods in terms of performance, memory, and computation.
 
 The revised project goal became benchmarking \gls{ml}-based noise suppression against classical \gls{dsp} methods using objective metrics. The project title was thus updated from \textit{DSP Based Noise Cancellation System} to \textit{Machine Learning Noise Cancellation System} to reflect this shift in focus.
