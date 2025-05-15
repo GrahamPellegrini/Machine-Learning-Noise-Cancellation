@@ -28,7 +28,7 @@ All three methods were implemented for testing and evaluation. Their role in the
 
 The model architecture is central to system design, defining how inputs are processed, features transformed, and outputs reconstructed. The project’s modular structure supports exploring various neural networks, starting from a simple baseline and extending to more advanced models. All models follow the autoencoder paradigm and operate on spectrograms, with real and imaginary components concatenated into a two-channel input and producing a similar two-channel output.
 
-Initially, a \texttt{Tanh} activation was used at the output layer to constrain values within $[-1, 1]$, aiming for numerical stability during inverse \gls{stft}. However, evaluations showed this suppressed amplitude dynamics and degraded denoising performance. The \texttt{Tanh} was therefore removed from all model outputs, an correction detailed in Appendix~\ref{appendix:tanh_removal}.
+Initially, a \texttt{Tanh} activation was used at the output layer to constrain values within $[-1, 1]$, aiming for numerical stability during inverse \gls{stft}. However, evaluations showed this suppressed amplitude dynamics and degraded denoising performance. The \texttt{Tanh} was therefore removed from all model outputs, a detailed correction in Appendix~\ref{appendix:tanh_removal}.
 
 \subsection{Convolutional Neural Network}
 \label{sec:cnn}
@@ -128,5 +128,5 @@ By preserving the temporal modelling strength of the original \gls{tcn} structur
 
 \vspace{2em}
 
-This project explores several neural network architectures for speech enhancement, starting with a simple \gls{cnn}-based autoencoder. It then advances to \gls{fcn} models like \gls{ced} and \gls{rced}\~\cite{park2017acoustic}, followed by \gls{unet} with skip connections and deeper encoding. Finally, \gls{convtasnet} ~\cite{Luo2018ConvTasNetSI}, originally designed for time-domain speech separation, is adapted for spectrogram-based denoising using its \gls{tcn}. These models provide a diverse framework, highlighting trade-offs in design and establishing strong baselines against classical techniques.
+This project explores several neural network architectures for speech enhancement, starting with a simple \gls{cnn}-based autoencoder. It then advances to \gls{fcn} models like \gls{ced} and \gls{rced}~\cite{park2017acoustic}, followed by \gls{unet} with skip connections and deeper encoding. Finally, \gls{convtasnet} ~\cite{Luo2018ConvTasNetSI}, originally designed for time-domain speech separation, is adapted for spectrogram-based denoising using its \gls{tcn}. These models provide a diverse framework, highlighting trade-offs in design and establishing strong baselines against classical techniques.
 

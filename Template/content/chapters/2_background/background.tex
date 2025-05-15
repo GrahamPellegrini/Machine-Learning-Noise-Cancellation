@@ -2,7 +2,7 @@
 \chapter{Background}
 \label{chp:background}
 
-In this chapter, background information on established classical noise reduction methods is provided. It explores Spectral Subtraction, Wiener Filtering, and MMSE-LSA estimation, which does not require reference signals. The basis of \gls{ml} models, autoencoders, is introduced. Additionally, the chapter introduces the key evaluation metrics used to assess speech enhancement performance. Finally, a brief section outlines the progression of the project and relevant foundational knowledge.
+In this chapter, background information on established classical noise reduction methods is provided. It explores Spectral Subtraction, Wiener Filtering, and MMSE-LSA estimation, which does not require reference signals.  The chapter introduces the key evaluation metrics used to assess speech enhancement performance. Additionally, a brief section outlines the progression of the project and relevant foundational knowledge.
 
 \section{Spectral Subtraction}
 \label{sec:spectral_subtraction}
@@ -72,7 +72,7 @@ The algorithm operates in the time/frequency domain, assuming additive noise and
 \end{equation}
 where \gls{Yomega} is the noisy observation and the expectation is taken over the distribution of the clean signal conditioned on the observed noisy spectrum.
 
-A block diagram of the \gls{mmse-lsa} estimation process is shown in Figure~\ref{fig:mmse_lsa_block}. It begins with an \gls{stft} of the input signal, followed by separation into magnitude and phase. The magnitude spectrum is used to estimate the noise power spectral density (PSD), from which the a priori and a posteriori SNRs are derived. These estimates are then passed into the \gls{mmse-lsa} gain function, which produces a gain mask applied to the magnitude spectrum. The enhanced signal is reconstructed by combining the modified magnitude with the original phase, followed by the inverse \gls{stft}.
+A block diagram of the \gls{mmse-lsa} estimation process is made and shown in Figure~\ref{fig:mmse_lsa_block}. It begins with an \gls{stft} of the input signal, followed by separation into magnitude and phase. The magnitude spectrum is used to estimate the noise power spectral density (PSD), from which the a priori and a posteriori SNRs are derived. These estimates are then passed into the \gls{mmse-lsa} gain function, which produces a gain mask applied to the magnitude spectrum. The enhanced signal is reconstructed by combining the modified magnitude with the original phase, followed by the inverse \gls{stft}.
 
 \begin{figure}[H]
     \centering

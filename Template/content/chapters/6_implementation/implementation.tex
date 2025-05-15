@@ -14,7 +14,7 @@ Each class implements three essential methods that are all similarly structured 
 \subsection{Static Bucketing}
 \label{subsec:static_dataset}
 
-The first dataset implementation explored to address the variable-length issue and limitations of fixed-length padding is the static bucketing method. This approach uses a predefined set of bucket sizes, each corresponding to a fixed number of audio samples. In this project, sizes were derived by multiplying the sampling rate (48~kHz) by target durations (e.g., 1s, 2s, 3s), resulting in discrete, fixed-length buckets.
+The first dataset implementation explored to address the variable-length issue and limitations of fixed-length padding is the static bucketing method. This approach uses a predefined set of bucket sizes, each corresponding to a fixed number of audio samples. In this project, sizes were derived by multiplying the sampling rate (48~kHz) by target durations (e.g. 1s, 2s, 3s), resulting in discrete, fixed-length buckets.
 
 Each audio file is assigned to the first bucket that can fully contain it. For example, an audio clip of 2.5 seconds is assigned to the 3s bucket, since the 2s bucket is insufficient, and the 3s bucket is the next available option.
 
@@ -43,9 +43,9 @@ During initialization, the method measures the length of each clean file and app
     \label{fig:dynamic_pad}
 \end{figure}
 
-The \texttt{collate} method pads or truncates each waveform to its assigned bucket size. Compared to static bucketing, dynamic bucketing yields tighter groupings and reduces average padding, improving memory efficiency and training speed.
+The \texttt{collate} method pads or truncates each waveform to its assigned bucket size. Compared to static bucketing, dynamic bucketing yields tighter groupings and reduces average padding.
 
-Dynamic bucketing strikes a balance between flexibility and performance by adapting bucket boundaries to the true distribution of audio lengths, rather than enforcing fixed thresholds. This is especially useful for datasets with wide or uneven length distributions. As shown in Figure~\ref{fig:dynamic_pad}, the clustering process produces two buckets near the 2-second mark, which may initially appear redundant. However, this reflects how K-Means minimises intra-cluster variance without enforcing minimum spacing between centroids. Given that a large portion of samples falls within this range, assigning multiple centroids reduces within-bucket variance and improves batch uniformity. Although this consumes an extra bucket, it distributes the most common samples more evenly and helps reduce padding overhead. Thus, the presence of similar-length buckets highlights the method’s ability to adapt to dense regions in the dataset, enhancing memory efficiency and training performance.
+Dynamic bucketing strikes a balance between flexibility and performance by adapting bucket boundaries to the true distribution of audio lengths, rather than enforcing fixed thresholds. This is especially useful for datasets with wide or uneven length distributions. As shown in Figure~\ref{fig:dynamic_pad}, the clustering process produces two buckets near the 2-second mark, which may initially appear redundant. However, this reflects how K-Means minimises intra-cluster variance without enforcing minimum spacing between centroids. Given that a large portion of samples falls within this range, assigning multiple centroids reduces within-bucket variance and improves batch uniformity. Although this consumes an extra bucket, it distributes the most common samples more evenly and helps reduce padding overhead. Thus, the presence of similar-length buckets highlights the method’s ability to adapt to dense regions in the dataset.
 
 \subsection{Padding-Truncation Output-Truncation}
 \label{subsec:pto_dataset}

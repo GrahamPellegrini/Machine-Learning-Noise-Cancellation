@@ -150,12 +150,8 @@ No file main.bbl.
 nary-english.trsl)
 (/usr/share/texlive/texmf-dist/tex/latex/caption/ltcaption.sty)
 (./content/title.tex [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}<./co
-ntent/figures/ict_logo.pdf>]) (./content/abstract.tex
-
-LaTeX Warning: Citation 'edinburghdataset' on page 1 undefined on input line 6.
-
-
-) (./content/acknowledgements.tex
+ntent/figures/ict_logo.pdf>]) (./content/abstract.tex)
+(./content/acknowledgements.tex
 warning  (pdf backend): ignoring duplicate destination with the name 'page.i'
 [1]) [2] [3] [4] [5]
 No file main.acr.
@@ -471,6 +467,10 @@ LaTeX Warning: `h' float specifier changed to `ht'.
 
 [22<./content/chapters/5_design/figures//unet.png>]
 
+LaTeX Warning: Citation 'park2017acoustic' on page 23 undefined on input line 1
+31.
+
+
 LaTeX Warning: Citation 'Luo2018ConvTasNetSI' on page 23 undefined on input lin
 e 131.
 
@@ -565,11 +565,11 @@ t line 50.
 LaTeX Warning: Reference `tab:dataset_performance' on page 34 undefined on inpu
 t line 68.
 
-[34]
 
-LaTeX Warning: Reference `sec:oom_handling' on page 35 undefined on input line 
+LaTeX Warning: Reference `sec:oom_handling' on page 34 undefined on input line 
 77.
 
+[34]
 
 LaTeX Warning: Reference `tab:oom_training' on page 35 undefined on input line 
 87.
@@ -578,11 +578,11 @@ LaTeX Warning: Reference `tab:oom_training' on page 35 undefined on input line
 LaTeX Warning: Reference `tab:oom_training' on page 35 undefined on input line 
 105.
 
-[35]
 
-LaTeX Warning: Reference `tab:oom_metrics' on page 36 undefined on input line 1
+LaTeX Warning: Reference `tab:oom_metrics' on page 35 undefined on input line 1
 07.
 
+[35]
 
 LaTeX Warning: Reference `tab:oom_metrics' on page 36 undefined on input line 1
 25.
@@ -662,6 +662,14 @@ LaTeX Warning: Citation 'park2017acoustic' on page 43 undefined on input line 2
 LaTeX Warning: Reference `tab:ml_denoise' on page 43 undefined on input line 27
 6.
 
+
+LaTeX Warning: Reference `fig:fcns_results' on page 43 undefined on input line 
+276.
+
+
+LaTeX Warning: Citation 'park2017acoustic' on page 43 undefined on input line 2
+76.
+
 ) (./content/chapters/8_future_work/future_work.tex [43]
 Chapter 8.
 
@@ -707,78 +715,78 @@ LaTeX Warning: Reference `sec:oom_handling' on page 46 undefined on input line
 LaTeX Warning: Reference `sec:oom_validation' on page 46 undefined on input lin
 e 15.
 
-[46]) (./content/appendices/appendix_b.tex [47]
+) (./content/appendices/appendix_b.tex [46]
 Appendix B.
 
-LaTeX Warning: Reference `fig:suppresed_waveform' on page 48 undefined on input
+LaTeX Warning: Reference `fig:suppresed_waveform' on page 47 undefined on input
  line 9.
 
 
-LaTeX Warning: Reference `fig:suppresed_spectrogram' on page 48 undefined on in
+LaTeX Warning: Reference `fig:suppresed_spectrogram' on page 47 undefined on in
 put line 9.
 
-[48<./content/appendices/figures/suppresed_waveform.png>]
+[47<./content/appendices/figures/suppresed_waveform.png>]
 
-LaTeX Warning: Reference `fig:restored_waveform' on page 49 undefined on input 
+LaTeX Warning: Reference `fig:restored_waveform' on page 48 undefined on input 
 line 23.
 
 
-LaTeX Warning: Reference `fig:restored_spectrogram' on page 49 undefined on inp
+LaTeX Warning: Reference `fig:restored_spectrogram' on page 48 undefined on inp
 ut line 23.
 
-[49<./content/appendices/figures/suppresed_spectrogram.png>] [50<./content/appe
+[48<./content/appendices/figures/suppresed_spectrogram.png>] [49<./content/appe
 ndices/figures/fixed_waveform.png>]
 
-LaTeX Warning: Reference `chp:evaluation' on page 51 undefined on input line 37
+LaTeX Warning: Reference `chp:evaluation' on page 50 undefined on input line 37
 .
 
-) (./content/appendices/appendix_c.tex [51<./content/appendices/figures/fixed_s
+) (./content/appendices/appendix_c.tex [50<./content/appendices/figures/fixed_s
 pectrogram.png>]
 Appendix C.
 
-LaTeX Warning: Reference `tab:subjective_scores' on page 52 undefined on input 
+LaTeX Warning: Reference `tab:subjective_scores' on page 51 undefined on input 
 line 35.
 
 
-LaTeX Warning: Reference `sec:denoising_metrics' on page 52 undefined on input 
+LaTeX Warning: Reference `sec:denoising_metrics' on page 51 undefined on input 
 line 37.
 
-[52]
+[51]
 
-LaTeX Warning: Reference `tab:ml_denoise' on page 53 undefined on input line 44
+LaTeX Warning: Reference `tab:ml_denoise' on page 52 undefined on input line 44
 .
 
 
-LaTeX Warning: Citation 'defossez2019demucs' on page 53 undefined on input line
+LaTeX Warning: Citation 'defossez2019demucs' on page 52 undefined on input line
  46.
 
 
-LaTeX Warning: Citation 'li2022voicefixer' on page 53 undefined on input line 4
+LaTeX Warning: Citation 'li2022voicefixer' on page 52 undefined on input line 4
 6.
 
 
-LaTeX Warning: Citation 'meyer2022deepfilternet' on page 53 undefined on input 
+LaTeX Warning: Citation 'meyer2022deepfilternet' on page 52 undefined on input 
 line 46.
 
 
-LaTeX Warning: Citation 'hu2007subjective' on page 53 undefined on input line 4
+LaTeX Warning: Citation 'hu2007subjective' on page 52 undefined on input line 4
 8.
 
-[53]
+[52]
 
-LaTeX Warning: Reference `tab:pretrained_eval' on page 54 undefined on input li
+LaTeX Warning: Reference `tab:pretrained_eval' on page 53 undefined on input li
 ne 73.
 
 
-LaTeX Warning: Citation 'hu2007subjective' on page 54 undefined on input line 7
+LaTeX Warning: Citation 'hu2007subjective' on page 53 undefined on input line 7
 9.
 
-[54]
+[53]
 
-LaTeX Warning: Reference `fig:pretrained_metrics' on page 55 undefined on input
+LaTeX Warning: Reference `fig:pretrained_metrics' on page 54 undefined on input
  line 93.
 
-) [55
+) [54
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 <./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
@@ -803,7 +811,7 @@ Package biblatex Warning: Please (re)run Biber on the file:
  920 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 29 attribute, 111 glue_sp
 ec, 29 attribute_list, 1 write, 7 pdf_action nodes
-   avail lists: 1:3,2:638,3:255,4:67,5:902,6:70,7:7033,8:68,9:508,10:21,11:673
+   avail lists: 1:3,2:638,3:256,4:67,5:947,6:70,7:7033,8:68,9:508,10:20,11:673
 
 warning  (pdf backend): unreferenced destination with name 'glo:anc'
 
@@ -901,7 +909,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (63 pages, 5630807 bytes).
+Output written on main.pdf (62 pages, 5630497 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -929,8 +937,8 @@ INFO - Processing section 0
 INFO - Looking for bibtex file 'references.bib' for section 0
 INFO - LaTeX decoding ...
 INFO - Found BibTeX data source 'references.bib'
-INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
 INFO - No sort tailoring available for locale 'en-US'
 INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
@@ -943,9 +951,9 @@ added glossary type 'acronym' (alg,acr,acn)
 makeindex  -s "main.ist" -t "main.alg" -o "main.acr" "main.acn"
 This is makeindex, version 2.15 [TeX Live 2022/dev] (kpathsea + Thai support).
 Scanning style file ./main.ist.............................done (29 attributes redefined, 0 ignored).
-Scanning input file main.acn....done (438 entries accepted, 0 rejected).
-Sorting entries......done (4231 comparisons).
-Generating output file main.acr....done (182 lines written, 0 warnings).
+Scanning input file main.acn....done (440 entries accepted, 0 rejected).
+Sorting entries......done (4238 comparisons).
+Generating output file main.acr....done (177 lines written, 0 warnings).
 Output written in main.acr.
 Transcript written in main.alg.
 1 glossary ignored.
@@ -1159,14 +1167,14 @@ Chapter 8.
 Chapter 9.
 ) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
 Appendix A.
-[48]) (./content/appendices/appendix_b.tex [49]
+) (./content/appendices/appendix_b.tex [48]
 Appendix B.
-[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
-waveform.png>]) (./content/appendices/appendix_c.tex [53<./content/appendices/f
+[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
 igures/fixed_spectrogram.png>]
 Appendix C.
-[54] [55] [56]) [57
+[53] [54] [55]) [56
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 <./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
@@ -1189,7 +1197,7 @@ Package biblatex Warning: Please rerun LaTeX.
  1020 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
 ec, 38 attribute_list, 1 write, 16 pdf_action nodes
-   avail lists: 1:3,2:920,3:425,4:117,5:902,6:129,7:7055,8:95,9:526,10:21,11:63
+   avail lists: 1:3,2:907,3:401,4:117,5:947,6:129,7:7055,8:95,9:526,10:20,11:63
 4
 
 warning  (pdf backend): unreferenced destination with name 'table.caption.41'
@@ -1238,7 +1246,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (68 pages, 5663644 bytes).
+Output written on main.pdf (67 pages, 5663444 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -1266,9 +1274,9 @@ added glossary type 'acronym' (alg,acr,acn)
 makeindex  -s "main.ist" -t "main.alg" -o "main.acr" "main.acn"
 This is makeindex, version 2.15 [TeX Live 2022/dev] (kpathsea + Thai support).
 Scanning style file ./main.ist.............................done (29 attributes redefined, 0 ignored).
-Scanning input file main.acn....done (446 entries accepted, 0 rejected).
-Sorting entries......done (4463 comparisons).
-Generating output file main.acr....done (193 lines written, 0 warnings).
+Scanning input file main.acn....done (448 entries accepted, 0 rejected).
+Sorting entries.......done (4520 comparisons).
+Generating output file main.acr....done (189 lines written, 0 warnings).
 Output written in main.acr.
 Transcript written in main.alg.
 1 glossary ignored.
@@ -1482,14 +1490,14 @@ Chapter 8.
 Chapter 9.
 ) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
 Appendix A.
-[48]) (./content/appendices/appendix_b.tex [49]
+) (./content/appendices/appendix_b.tex [48]
 Appendix B.
-[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
-waveform.png>]) (./content/appendices/appendix_c.tex [53<./content/appendices/f
+[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
 igures/fixed_spectrogram.png>]
 Appendix C.
-[54] [55] [56]) [57
+[53] [54] [55]) [56
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 <./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
@@ -1501,7 +1509,7 @@ LaTeX Warning: There were multiply-defined labels.
  1020 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
 ec, 38 attribute_list, 1 write, 16 pdf_action nodes
-   avail lists: 1:3,2:920,3:425,4:117,5:902,6:129,7:7055,8:95,9:526,10:21,11:63
+   avail lists: 1:3,2:907,3:401,4:117,5:947,6:129,7:7055,8:95,9:526,10:20,11:63
 4
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 mf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texlive/texmf-dist/
@@ -1514,7 +1522,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (68 pages, 5663294 bytes).
+Output written on main.pdf (67 pages, 5663209 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -1729,14 +1737,14 @@ Chapter 8.
 Chapter 9.
 ) [44] [45] [46] (./content/appendices/appendix_a.tex [47]
 Appendix A.
-[48]) (./content/appendices/appendix_b.tex [49]
+) (./content/appendices/appendix_b.tex [48]
 Appendix B.
-[50<./content/appendices/figures/suppresed_waveform.png>] [51<./content/appendi
-ces/figures/suppresed_spectrogram.png>] [52<./content/appendices/figures/fixed_
-waveform.png>]) (./content/appendices/appendix_c.tex [53<./content/appendices/f
+[49<./content/appendices/figures/suppresed_waveform.png>] [50<./content/appendi
+ces/figures/suppresed_spectrogram.png>] [51<./content/appendices/figures/fixed_
+waveform.png>]) (./content/appendices/appendix_c.tex [52<./content/appendices/f
 igures/fixed_spectrogram.png>]
 Appendix C.
-[54] [55] [56]) [57
+[53] [54] [55]) [56
 makeindex -s main.ist -t main.glg -o main.gls main.glo
 makeindex -s main.ist -t main.alg -o main.acr main.acn
 <./content/appendices/figures/pre_trained_metrics.png>] (./build/main.aux)
@@ -1748,7 +1756,7 @@ LaTeX Warning: There were multiply-defined labels.
  1020 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
 ec, 38 attribute_list, 1 write, 16 pdf_action nodes
-   avail lists: 1:3,2:920,3:425,4:117,5:902,6:129,7:7055,8:95,9:526,10:21,11:63
+   avail lists: 1:3,2:907,3:401,4:117,5:947,6:129,7:7055,8:95,9:526,10:20,11:63
 4
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 mf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texlive/texmf-dist/
@@ -1761,7 +1769,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (68 pages, 5663294 bytes).
+Output written on main.pdf (67 pages, 5663209 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'

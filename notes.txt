@@ -1,14 +1,3 @@
-- Abstarct
-
--Acknowledgement
-
-- Finish Subjective evaluation
-
-- Conclusion revision
-
-- Add refernce to use of ChatGPT in implementastion 
-
-
 
 Deployment Code
 
