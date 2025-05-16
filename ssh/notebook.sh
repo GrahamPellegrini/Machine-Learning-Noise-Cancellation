@@ -38,7 +38,7 @@ cd /opt/users/gpel0001/nnc-fyp/.Project
 export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True,max_split_size_mb:16
 
 # Run notebook inplace 
-python3 -m jupyter nbconvert --to notebook --execute --inplace hyperparam.ipynb
+python3 -m jupyter nbconvert --to notebook --execute --inplace wav_viz_bad.ipynb
 
 # Indicate that the job has finished
 echo "Job finished successfully"
