@@ -20,7 +20,7 @@ This effect is illustrated clearly in Figures~\ref{fig:suppresed_waveform} and~\
     \caption{\label{fig:suppresed_spectrogram} Spectrograms with \texttt{Tanh} activation exhibit reduced contrast and dynamic range.}
 \end{figure}
 
-After removing \texttt{Tanh}, the models were retrained. The resulting outputs restored amplitude range and natural structure, both in waveform shape and spectrogram clarity. These improvements are shown in Figures~\ref{fig:restored_waveform} and~\ref{fig:restored_spectrogram}.
+Initially, the output layer consisted of a \texttt{Tanh} activation function, followed by a bilinear interpolation step to match the output size to the input, and finally a separation of the real and imaginary components. After removing the \texttt{Tanh} activation, the output layer was simplified to include only bilinear interpolation followed by real–imaginary separation. This adjustment restored the amplitude range and natural structure in both waveform shape and spectrogram clarity, as clearly illustrated in Figures~\ref{fig:restored_waveform} and~\ref{fig:restored_spectrogram}.
 
 \begin{figure}[H]
     \centering

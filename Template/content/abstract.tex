@@ -3,7 +3,7 @@
 
 This project explores the application of machine learning (ML) techniques for speech enhancement, aiming to justify their superiority over classical methods in real-time denoising scenarios. A modular and extensible pipeline was developed to support variable-length audio, real-time inference, and consistent evaluation. Classical approaches such as Spectral Subtraction, Wiener Filtering, and MMSE-LSA were implemented to establish diverse baseline methods for comparison.
 
-Five ML models were trained from scratch using the Edinburgh DataShare dataset: CNN, CED, R-CED, UNet, and Conv-TasNet. A key contribution was the design and evaluation of dataset handling strategies, including static bucketing, dynamic bucketing, and a distortion-free padding-truncation-output-truncation (PTO) method. These approaches enabled efficient batch training while minimising the impact of excessive padding.
+Five ML models were trained from scratch using the Edinburgh DataShare dataset: CNN, CED, R-CED, UNet, and Conv-TasNet. A key contribution was the implementation and evaluation of existing dataset handling strategies, including static bucketing, dynamic bucketing, and the padding-truncation-output-truncation (PTO) method. These approaches enabled efficient batch training while reducing the impact of excessive padding.
 
 To address GPU constraints, techniques such as mixed-precision training, gradient accumulation, and memory profiling were employed to support the training of deeper models. Each model was evaluated using SNR, MSE, PESQ, STOI, and LSD metrics. Conv-TasNet achieved the highest performance, with an SNR of 18.06 dB and a PESQ of 2.43, significantly surpassing the best classical method, Wiener Filtering, which reached 0.46 dB and 2.06 respectively.
 

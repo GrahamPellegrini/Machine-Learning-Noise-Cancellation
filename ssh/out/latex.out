@@ -265,7 +265,8 @@ LaTeX Warning: Citation 'sugahara2024hybrid' on page 6 undefined on input line
 
 [6<./content/chapters/2_background/figures//mmse-lsa.png>]
 
-LaTeX Warning: Citation 'itutp862' on page 7 undefined on input line 121.
+LaTeX Warning: Citation 'rix2001perceptual' on page 7 undefined on input line 1
+21.
 
 
 LaTeX Warning: Citation 'taal2011stoi' on page 7 undefined on input line 128.
@@ -811,7 +812,7 @@ Package biblatex Warning: Please (re)run Biber on the file:
  920 words of node memory still in use:
    6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 29 attribute, 111 glue_sp
 ec, 29 attribute_list, 1 write, 7 pdf_action nodes
-   avail lists: 1:3,2:638,3:256,4:67,5:947,6:70,7:7033,8:68,9:508,10:20,11:673
+   avail lists: 1:3,2:638,3:255,4:67,5:947,6:71,7:7033,8:68,9:508,10:20,11:673
 
 warning  (pdf backend): unreferenced destination with name 'glo:anc'
 
@@ -909,7 +910,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (62 pages, 5630497 bytes).
+Output written on main.pdf (62 pages, 5630790 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -937,8 +938,8 @@ INFO - Processing section 0
 INFO - Looking for bibtex file 'references.bib' for section 0
 INFO - LaTeX decoding ...
 INFO - Found BibTeX data source 'references.bib'
-INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
 INFO - Sorting list 'none/global//global/global' of type 'entry' with template 'none' and locale 'en-US'
 INFO - No sort tailoring available for locale 'en-US'
 INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
@@ -1194,11 +1195,11 @@ Package biblatex Warning: Please rerun LaTeX.
 
 )
 (see the transcript file for additional information)
- 1020 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
-ec, 38 attribute_list, 1 write, 16 pdf_action nodes
-   avail lists: 1:3,2:907,3:401,4:117,5:947,6:129,7:7055,8:95,9:526,10:20,11:63
-4
+ 1030 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 39 attribute, 113 glue_sp
+ec, 39 attribute_list, 1 write, 17 pdf_action nodes
+   avail lists: 1:3,2:906,3:504,4:117,5:947,6:128,7:7042,8:101,9:526,10:20,11:6
+34
 
 warning  (pdf backend): unreferenced destination with name 'table.caption.41'
 
@@ -1246,7 +1247,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (67 pages, 5663444 bytes).
+Output written on main.pdf (67 pages, 5664105 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -1506,11 +1507,11 @@ LaTeX Warning: There were multiply-defined labels.
 
 )
 (see the transcript file for additional information)
- 1020 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
-ec, 38 attribute_list, 1 write, 16 pdf_action nodes
-   avail lists: 1:3,2:907,3:401,4:117,5:947,6:129,7:7055,8:95,9:526,10:20,11:63
-4
+ 1030 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 39 attribute, 113 glue_sp
+ec, 39 attribute_list, 1 write, 17 pdf_action nodes
+   avail lists: 1:3,2:906,3:504,4:117,5:947,6:128,7:7042,8:101,9:526,10:20,11:6
+34
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 mf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texlive/texmf-dist/
 fonts/truetype/typoland/lato/Lato-Italic.ttf></usr/share/texlive/texmf-dist/fon
@@ -1522,7 +1523,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (67 pages, 5663209 bytes).
+Output written on main.pdf (67 pages, 5663870 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'
@@ -1753,11 +1754,11 @@ LaTeX Warning: There were multiply-defined labels.
 
 )
 (see the transcript file for additional information)
- 1020 words of node memory still in use:
-   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 38 attribute, 113 glue_sp
-ec, 38 attribute_list, 1 write, 16 pdf_action nodes
-   avail lists: 1:3,2:907,3:401,4:117,5:947,6:129,7:7055,8:95,9:526,10:20,11:63
-4
+ 1030 words of node memory still in use:
+   6 hlist, 2 vlist, 2 rule, 3 glue, 4 kern, 1 glyph, 39 attribute, 113 glue_sp
+ec, 39 attribute_list, 1 write, 17 pdf_action nodes
+   avail lists: 1:3,2:906,3:504,4:117,5:947,6:128,7:7042,8:101,9:526,10:20,11:6
+34
 </usr/share/texmf/fonts/opentype/public/lm/lmmono12-regular.otf></usr/share/tex
 mf/fonts/opentype/public/lm/lmmonolt10-bold.otf></usr/share/texlive/texmf-dist/
 fonts/truetype/typoland/lato/Lato-Italic.ttf></usr/share/texlive/texmf-dist/fon
@@ -1769,7 +1770,7 @@ fonts/cm/cmmi8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/c
 m/cmr12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.
 pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></
 usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb>
-Output written on main.pdf (67 pages, 5663209 bytes).
+Output written on main.pdf (67 pages, 5663870 bytes).
 SyncTeX written on main.synctex.gz.
 Transcript written on main.log.
 Latexmk: Examining 'build/main.log'

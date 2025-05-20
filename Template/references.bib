@@ -1,10 +1,12 @@
 @book{loizou2013speech,
   author    = {Philipos C. Loizou},
   title     = {Speech Enhancement: Theory and Practice},
+  year      = {2007},
+  edition   = {1st},
   publisher = {CRC Press},
-  year      = {2013},
-  edition   = {2nd},
-  isbn      = {9781466504219}
+  address   = {Boca Raton, FL},
+  isbn      = {9780429133732},
+  doi       = {10.1201/9781420015836}
 }
 
 @mastersthesis{dubey2016evaluation,
@@ -12,20 +14,19 @@
   author    = {Dubey, Mahika},
   year      = {2016},
   school    = {University of Illinois at Urbana-Champaign},
-  note      = {Advisor: Paris Smaragdis},
   url       = {http://hdl.handle.net/2142/90373}
 }
 
-@article{ephraim1984speech,
-  title={Speech enhancement using a minimum-mean square error short-time spectral amplitude estimator},
+@ARTICLE{ephraim1984speech,
   author={Ephraim, Y. and Malah, D.},
-  journal={IEEE Transactions on Acoustics, Speech, and Signal Processing},
+  journal={IEEE Transactions on Acoustics, Speech, and Signal Processing}, 
+  title={Speech enhancement using a minimum-mean square error short-time spectral amplitude estimator}, 
+  year={1984},
   volume={32},
   number={6},
-  pages={1109--1121},
-  year={1984},
-  publisher={IEEE}
-}
+  pages={1109-1121},
+  keywords={Speech enhancement;Amplitude estimation;Phase estimation;Noise reduction;Colored noise;Wiener filter;Filtering algorithms;Gaussian noise;Random variables;Independent component analysis},
+  doi={10.1109/TASSP.1984.1164453}}
 
 
 @INPROCEEDINGS{wei2016mmse,
@@ -51,16 +52,19 @@
   doi={10.1109/ICASSP48485.2024.10447335}
 }
 
-@misc{itutp862,
-  title        = {{Perceptual Evaluation of Speech Quality (PESQ): An objective method for end-to-end speech quality assessment of narrow-band telephone networks and speech codecs}},
-  author       = {{ITU-T Recommendation P.862}},
-  year         = {2001},
-  institution  = {International Telecommunication Union},
-  howpublished = {\url{https://www.itu.int/rec/T-REC-P.862}},
-  note         = {Accessed: 2025-04-19}
+@INPROCEEDINGS{ rix2001perceptual,
+  author={Rix, A.W. and Beerends, J.G. and Hollier, M.P. and Hekstra, A.P.},
+  booktitle={2001 IEEE International Conference on Acoustics, Speech, and Signal Processing. Proceedings (Cat. No.01CH37221)}, 
+  title={Perceptual evaluation of speech quality (PESQ)-a new method for speech quality assessment of telephone networks and codecs}, 
+  year={2001},
+  volume={2},
+  number={},
+  pages={749-752 vol.2},
+  keywords={Speech analysis;Quality assessment;Distortion measurement;Nonlinear distortion;Nonlinear filters;Telephony;Signal processing;Delay effects;Speech codecs;Degradation},
+  doi={10.1109/ICASSP.2001.941023}
 }
 
-@inproceedings{taal2011stoi,
+@article{taal2011stoi,
   author    = {Cees H. Taal and Richard C. Hendriks and Richard Heusdens and Jesper Jensen},
   title     = {An Algorithm for Intelligibility Prediction of Time–Frequency Weighted Noisy Speech},
   booktitle = {IEEE Transactions on Audio, Speech, and Language Processing},
@@ -82,10 +86,11 @@
 
 @misc{krisp2025,
   author       = {Krisp Technologies Inc.},
-  title        = {Krisp: World's \#1 Noise Cancelling App and AI Meeting Assistant},
-  howpublished = {\url{https://krisp.ai/}},
-  year         = {2025}
+  title        = {Krisp: Noise Cancellation and AI Meeting Assistant},
+  year         = {2025},
+  howpublished = {\url{https://krisp.ai/}}
 }
+
 
 @misc{nvidia2020,
   author       = {NVIDIA Corporation},
@@ -102,13 +107,15 @@
 }
 
 @article{larcher2014text,
-  title={Text-dependent speaker verification: Classifiers, databases and RSR2015},
-  author={Larcher, Anthony and Lee, Kong Aik and Ma, Bin and Li, Haizhou},
-  journal={Speech Communication},
-  volume={60},
-  pages={56--77},
-  year={2014},
-  publisher={Elsevier}
+title = {Text-dependent speaker verification: Classifiers, databases and RSR2015},
+journal = {Speech Communication},
+volume = {60},
+pages = {56-77},
+year = {2014},
+issn = {0167-6393},
+doi = {https://doi.org/10.1016/j.specom.2014.03.001},
+url = {https://www.sciencedirect.com/science/article/pii/S0167639314000156},
+author = {Anthony Larcher and Kong Aik Lee and Bin Ma and Haizhou Li}
 }
 
 @article{azarang2020review,
@@ -125,36 +132,43 @@
 }
 
 @inproceedings{vachhani2017dae,
-  author    = {Vachhani, Bhavik and Bhat, Chitralekha and Das, Biswajit},
   title     = {Deep Autoencoder Based Speech Features for Improved Dysarthric Speech Recognition},
-  booktitle = {Interspeech 2017},
+  author    = {Bhavik Vachhani and Chitralekha Bhat and Biswajit Das and Sunil Kumar Kopparapu},
   year      = {2017},
-  doi       = {10.21437/Interspeech.2017-1318}
+  booktitle = {Interspeech 2017},
+  pages     = {1854--1858},
+  doi       = {10.21437/Interspeech.2017-1318},
+  issn      = {2958-1796}
 }
 
 @misc{epoch2021,
   title={What’s the Backward-Forward FLOP Ratio for Neural Networks?},
   author={Marius Hobbhahn and Jaime Sevilla},
   year={2021},
-  url={https://epoch.ai/blog/backward-forward-FLOP-ratio},
-  note={Accessed: 2025-03-30}
+  url={https://epoch.ai/blog/backward-forward-FLOP-ratio}
 }
 
 @article{kim2024residual,
-  author  = {Seon Kim},
-  title   = {End‐to‐end speech‐denoising deep neural network based on residual‐attention gated linear units},
-  journal = {Electronics Letters},
-  volume  = {60},
-  year    = {2024},
-  doi     = {10.1049/ell2.70020}
+author = {Kim, Seon Man},
+title = {End-to-end speech-denoising deep neural network based on residual-attention gated linear units},
+journal = {Electronics Letters},
+volume = {60},
+number = {20},
+pages = {e70020},
+keywords = {speech enhancement, speech intelligibility, speech processing},
+doi = {https://doi.org/10.1049/ell2.70020},
+url = {https://ietresearch.onlinelibrary.wiley.com/doi/abs/10.1049/ell2.70020},
+eprint = {https://ietresearch.onlinelibrary.wiley.com/doi/pdf/10.1049/ell2.70020},
+year = {2024}
 }
+
 
 @misc{edinburghdataset,
   author       = {Valentini-Botinhao, Cassia},
   title        = {Noisy Speech Database for Training Speech Enhancement Algorithms and TTS Models},
   year         = {2017},
-  howpublished = {\url{https://datashare.ed.ac.uk/handle/10283/2791}},
-  note         = {Accessed: 2025-03-23}
+  doi          = {https://doi.org/10.7488/ds/2117},
+  howpublished = {\url{https://datashare.ed.ac.uk/handle/10283/2791}}
 }
 
 @misc{ccby4,
@@ -162,7 +176,6 @@
   title        = {Attribution 4.0 International (CC BY 4.0)},
   year         = {2013},
   howpublished = {\url{https://creativecommons.org/licenses/by/4.0/legalcode}},
-  note         = {Accessed: 2025-03-23}
 }
 
 @article{yoon2020pto,
@@ -183,21 +196,23 @@
   title        = {Mixed Precision Training — MindSpore Documentation},
   year         = {2024},
   url          = {https://www.mindspore.cn/tutorials/en/r2.3.0rc2/advanced/mixed_precision.html},
-  note         = {Accessed: 2025-03-28}
 }
 
 @misc{chatgpt2025,
   author       = {OpenAI},
   title        = {ChatGPT Plus},
-  note         = {\url{https://chat.openai.com}},
+  year         = {2025},
+  howpublished = {\url{https://chat.openai.com}},
+  note         = {Accessed: May 2025}
 }
+
 
 @misc{github_copilot,
   author       = {GitHub},
   title        = {GitHub Copilot},
-  note         = {\url{https://github.com/features/copilot}},
+  howpublished = {\url{https://github.com/features/copilot}},
+  note         = {Accessed: May 2025}
 }
-
 
 @article{pesq_metric,
   author    = {A. W. Rix and J. G. Beerends and M. P. Hollier and A. P. Hekstra},
@@ -208,15 +223,15 @@
   doi       = {10.1109/ICASSP.2001.941023}
 }
 
-
-@inproceedings{park2017acoustic,
-  title={A Fully Convolutional Neural Network for Speech Enhancement},
-  author={Park, Se Rim and Lee, Jin Won},
-  booktitle={Proceedings of the Annual Conference of the International Speech Communication Association (INTERSPEECH)},
-  pages={1993--1997},
-  year={2017},
-  organization={ISCA},
-  doi={10.21437/Interspeech.2017-1465}
+@misc{park2017acoustic,
+      title={A Fully Convolutional Neural Network for Speech Enhancement}, 
+      author={Se Rim Park and Jinwon Lee},
+      year={2016},
+      eprint={1609.07132},
+      archivePrefix={arXiv},
+      primaryClass={cs.LG},
+      url={https://arxiv.org/abs/1609.07132},
+      doi={10.21437/Interspeech.2017-1465} 
 }
 
 @misc{ronneberger2015unet,
@@ -226,19 +241,21 @@
       eprint={1505.04597},
       archivePrefix={arXiv},
       primaryClass={cs.CV},
-      url={https://arxiv.org/abs/1505.04597}, 
+      url={https://arxiv.org/abs/1505.04597},
+      doi = {https://doi.org/10.48550/arXiv.1505.04597} 
 }
 
-@article{Luo2018ConvTasNetSI,
-  title={Conv-TasNet: Surpassing Ideal Time–Frequency Magnitude Masking for Speech Separation},
-  author={Yi Luo and Nima Mesgarani},
-  journal={IEEE/ACM Transactions on Audio, Speech, and Language Processing},
-  year={2018},
+@ARTICLE{Luo2018ConvTasNetSI,
+  author={Luo, Yi and Mesgarani, Nima},
+  journal={IEEE/ACM Transactions on Audio, Speech, and Language Processing}, 
+  title={Conv-TasNet: Surpassing Ideal Time–Frequency Magnitude Masking for Speech Separation}, 
+  year={2019},
   volume={27},
+  number={8},
   pages={1256-1266},
-  url={https://api.semanticscholar.org/CorpusID:52310361}
+  doi={10.1109/TASLP.2019.2915167}
 }
-
+ 
 @article{hu2007subjective,
   title={Subjective evaluation and comparison of speech enhancement algorithms},
   author={Hu, Yuantao and Loizou, Philipos C},
@@ -259,32 +276,38 @@
   volume={},
   number={},
   pages={2448-2453},
-  keywords={Measurement;Convolution;Neural networks;Transforms;Information processing;Speech enhancement;Transformers},
-  doi={10.1109/APSIPAASC58517.2023.10317310}}
-
-@inproceedings{defossez2019demucs,
-  title     = {Music Source Separation in the Waveform Domain},
-  author    = {Défossez, Alexandre and Usunier, Nicolas and Bottou, Léon and Bach, Francis},
-  booktitle = {Proceedings of the International Society for Music Information Retrieval Conference (ISMIR)},
-  year      = {2019},
-  pages     = {754--760}
+  doi={10.1109/APSIPAASC58517.2023.10317310}
 }
+
+@misc{defossez2019demucs,
+      title={Music Source Separation in the Waveform Domain}, 
+      author={Alexandre Défossez and Nicolas Usunier and Léon Bottou and Francis Bach},
+      year={2021},
+      eprint={1911.13254},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD},
+      url={https://arxiv.org/abs/1911.13254}, 
+      doi = {https://doi.org/10.48550/arXiv.1911.13254}
+}
+
 
 @article{li2022voicefixer,
-  title   = {VoiceFixer: Toward General Speech Restoration with Neural Vocoder},
-  author  = {Li, Xinhao and Liu, Qingju and Liu, Ziliang and Wang, Wenju and Wang, Lei Xie},
-  journal = {IEEE Signal Processing Letters},
-  volume  = {29},
-  pages   = {1030--1034},
-  year    = {2022},
-  doi     = {10.1109/LSP.2022.3173732}
+      title={VoiceFixer: Toward General Speech Restoration with Neural Vocoder}, 
+      author={Haohe Liu and Qiuqiang Kong and Qiao Tian and Yan Zhao and DeLiang Wang and Chuanzeng Huang and Yuxuan Wang},
+      year={2021},
+      eprint={2109.13731},
+      archivePrefix={arXiv},
+      primaryClass={cs.SD},
+      url={https://arxiv.org/abs/2109.13731},
+      doi = {https://doi.org/10.48550/arXiv.2109.13731}
 }
 
-@inproceedings{meyer2022deepfilternet,
-  title     = {DeepFilterNet: Towards Real-Time Speech Enhancement on Embedded Devices for Full-Band Audio},
-  author    = {Meyer, Jan and Appeltans, David and Jalalvand, Azarakhsh and Van den Bogaert, Tim},
-  booktitle = {Proc. Interspeech},
-  pages     = {2673--2677},
-  year      = {2022},
-  doi       = {10.21437/Interspeech.2022-10711}
+@misc{meyer2022deepfilternet,
+      title={DeepFilterNet2: Towards Real-Time Speech Enhancement on Embedded Devices for Full-Band Audio}, 
+      author={Hendrik Schröter and Alberto N. Escalante-B. and Tobias Rosenkranz and Andreas Maier},
+      year={2022},
+      eprint={2205.05474},
+      archivePrefix={arXiv},
+      primaryClass={eess.AS},
+      url={https://arxiv.org/abs/2205.05474}, 
 }

@@ -41,7 +41,6 @@ Latexmk: List of undefined refs and citations:
   Citation 'github_copilot' on page 31 undefined on input line 127
   Citation 'hu2007subjective' on page 52 undefined on input line 48
   Citation 'hu2007subjective' on page 53 undefined on input line 79
-  Citation 'itutp862' on page 7 undefined on input line 121
   Citation 'krisp2025' on page 9 undefined on input line 156
   Citation 'kubichek1993lsd' on page 8 undefined on input line 135
   Citation 'larcher2014text' on page 10 undefined on input line 16
@@ -66,6 +65,7 @@ Latexmk: List of undefined refs and citations:
   Citation 'park2017acoustic' on page 40 undefined on input line 216
   Citation 'park2017acoustic' on page 43 undefined on input line 274
   Citation 'park2017acoustic' on page 43 undefined on input line 276
+  Citation 'rix2001perceptual' on page 7 undefined on input line 121
   Citation 'ronneberger2015unet' on page 21 undefined on input line 92
   Citation 'sugahara2024hybrid' on page 6 undefined on input line 85
   Citation 'taal2011stoi' on page 7 undefined on input line 128
