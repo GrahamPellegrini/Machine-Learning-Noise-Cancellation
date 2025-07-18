@@ -32,31 +32,40 @@ Classical denoising baselines such as **Spectral Subtraction**, **Wiener Filteri
 
 Key contributions include:
 - A reusable Python pipeline with full model configuration via `config.py`
-- Exploration of dataset handling strategies (Static/Dynamic Bucketing, PTO)
-- Memory optimization using FP16 precision and gradient accumulation for large models
+- Evaluation of three dataset handling strategies (Static Bucketing, Dynamic Bucketing, PTO)
+- Memory optimization using FP16 precision, garbage collection, and gradient accumulation
+- Comparative study of ML vs. classical denoising methods
 
-> 🏆 **Conv-TasNet** outperformed all methods across objective and perceptual metrics.
+> 📌 While ML models clearly outperformed classical methods numerically, **perceptual scores such as PESQ remained modest**, highlighting a potential frontier for future improvement.
 
 ---
 
-## 🧠 Model Architectures Tested
+## 🧠 Model & Method Performance
 
-| Model       | ↑SNR (dB) | ↓MSE     | ↑PESQ | ↑STOI | ↓LSD (dB) | Time (s) |
-|-------------|-----------|----------|--------|--------|-----------|----------|
-| Baseline    |  2.28     | 0.005152 | 1.8451 | 0.8928 | 0.9042    | 56       |
-| CNN         |  4.64     | 0.001344 | 1.7410 | 0.8073 | 0.7956    | 71       |
-| CED         | 13.19     | 0.000161 | 1.6780 | 0.8386 | 0.7655    | 65       |
-| R-CED       | 14.53     | 0.000117 | 2.0542 | 0.8677 | 0.6480    | 74       |
-| UNet        | 16.99     | 0.000069 | 2.1384 | 0.8940 | 0.7076    | 87       |
-| Conv-TasNet | 18.06     | 0.000063 | 2.4329 | 0.9112 | 0.6741    | 139      |
+<table>
+<thead>
+<tr><th>Method</th><th>&uarr;SNR (dB)</th><th>&darr;MSE</th><th>&uarr;PESQ</th><th>&uarr;STOI</th><th>&darr;LSD (dB)</th><th>Time (s)</th></tr>
+</thead>
+<tbody>
+<tr style="background-color:#f9f9f9"><td>Baseline</td><td>-2.28</td><td>0.005152</td><td>1.8451</td><td>0.8928</td><td>0.9042</td><td>56</td></tr>
+<tr style="background-color:#eef7ff"><td>SS</td><td>3.09</td><td>0.001525</td><td>1.4535</td><td>0.8457</td><td>0.7671</td><td>61</td></tr>
+<tr style="background-color:#eef7ff"><td>WF</td><td>0.46</td><td>0.002875</td><td>2.0639</td><td>0.8889</td><td>0.7535</td><td>73</td></tr>
+<tr style="background-color:#eef7ff"><td>MMSE-LSA</td><td>-0.86</td><td>0.003726</td><td>2.0238</td><td>0.8943</td><td>0.7971</td><td>83</td></tr>
+<tr style="background-color:#fff6ea"><td>CNN</td><td>4.64</td><td>0.001344</td><td>1.7410</td><td>0.8073</td><td>0.7956</td><td>71</td></tr>
+<tr style="background-color:#fff6ea"><td>CED</td><td>13.19</td><td>0.000161</td><td>1.6780</td><td>0.8386</td><td>0.7655</td><td>65</td></tr>
+<tr style="background-color:#fff6ea"><td>R-CED</td><td>14.53</td><td>0.000117</td><td>2.0542</td><td>0.8677</td><td>0.6480</td><td>74</td></tr>
+<tr style="background-color:#fff6ea"><td>UNet</td><td>16.99</td><td>0.000069</td><td>2.1384</td><td>0.8940</td><td>0.7076</td><td>87</td></tr>
+<tr style="background-color:#fff6ea"><td>Conv-TasNet</td><td>18.06</td><td>0.000063</td><td>2.4329</td><td>0.9112</td><td>0.6741</td><td>139</td></tr>
+</tbody>
+</table>
 
-> 🔍 ML models outperformed all classical denoising methods in both numerical and perceptual evaluation.
+> 🔍 While Conv-TasNet achieved strong metrics across the board, PESQ scores still fall well short of the theoretical max (4.5), suggesting room for perceptual enhancement.
 
 ---
 
 ## 🗂️ Repository Structure
 
-```
+```bash
 .Project/
 ├── main.py              # Entry point for training/evaluation
 ├── config.py            # Central config for datasets, models, training params
@@ -65,11 +74,32 @@ Key contributions include:
 │   ├── denoise.py       # Inference utilities
 │   ├── train.py         # Model training/validation logic
 │   └── models.py        # Model architectures (CNN, CED, R-CED, UNet, Conv-TasNet)
-├── Models/              # Saved model weights
-├── Output/              # Evaluation outputs & audio files
-├── Cache/               # Intermediate spectrograms and logs
-├── extras/              # Test scripts and experimental helpers
-└── main.pdf             # 📄 Final Year Project Report (Grade A)
+├── Models/              # Saved model weights by experiment
+│   ├── 25/
+│   ├── dataset/
+│   └── oom/
+├── Output/              # Denoising outputs (wav, txt, png)
+│   ├── 25/
+│   ├── dataset/
+│   ├── oom/
+│   ├── png/
+│   ├── txt/
+│   └── wav/
+├── Cache/               # Cached spectrograms and length logs
+│   ├── dynamic/
+│   ├── static/
+│   └── pto/
+├── ssh/                 # SLURM-compatible job scripts
+│   ├── main.sh
+│   ├── latex.sh
+│   └── notebook.sh
+├── Template/            # Report LaTeX source
+│   ├── main.pdf         # 📄 Final Year Project Report (Grade A)
+│   ├── main.tex
+│   ├── build/
+│   ├── content/
+│   └── references.bib
+└── .gitignore
 ```
 
 ---
@@ -80,7 +110,7 @@ The system uses the **Noisy Speech Database** from the University of Edinburgh:
 - 🔗 [https://datashare.ed.ac.uk/handle/10283/2791](https://datashare.ed.ac.uk/handle/10283/2791)
 - License: Creative Commons Attribution 4.0 International
 
-> Audio preprocessing is done through **magnitude spectrograms**, which standardizes input for all model types.
+> Audio is converted to **magnitude spectrograms** for all training, validation, and inference steps.
 
 ---
 
@@ -99,48 +129,46 @@ To modify:
 
 Edit `config.py` accordingly.
 
-> Denoising can be performed on a single `.wav` file or entire batches. Output can be written to waveform or evaluated with metrics.
+> Inference can denoise a single `.wav` or full batch with metric evaluation.
 
 ---
 
-## 📈 Evaluation Metrics
+## 📊 Evaluation Metrics
 
 - **SNR** – Signal-to-noise ratio
 - **MSE** – Mean squared error
-- **PESQ** – Perceptual evaluation of speech quality
+- **PESQ** – Perceptual evaluation of speech quality (max = 4.5)
 - **STOI** – Short-time objective intelligibility
 - **LSD** – Log-spectral distance
 
-Each model was evaluated using a consistent real-time batch pipeline. All metrics reported in this README are averaged across the full test set.
+All metrics reflect **average batch performance** across full dataset splits.
 
 ---
 
-## 🔬 Notable Engineering Findings
+## 🔬 Key Findings
 
-- ✅ **Dynamic Bucketing** was the most efficient dataset handling strategy, balancing memory and performance.
-- ⚙️ **OOM Handling Techniques** like FP16, garbage collection, and gradient accumulation allowed training of large models like UNet and Conv-TasNet without degradation.
-- 📊 The perceptual quality of **ML models** exceeded classical methods — especially in PESQ and STOI.
-- 🚀 The modular pipeline allows future researchers to test custom datasets and model variants with minimal effort.
-
----
-
-## 🚫 Omitted Files
-
-Some internal SLURM `.sh` scripts, user emails, and university path references have been **excluded** from this public version.
-
-If needed, portable `.sh` templates can be found in the `extras/` directory to reproduce training or notebook jobs on any SLURM-compatible cluster.
+- ✅ **Dynamic Bucketing** enabled optimal training speed for variable-length inputs.
+- 💡 **OOM techniques** (FP16, GC, accumulation) enabled deep model training with no metric drop.
+- 📉 Classical models (e.g., **WF**) performed decently on perceptual metrics, but fell far behind in numerical ones.
+- 🧠 **Conv-TasNet** emerged best overall, but still left headroom in PESQ and generalisation.
+- ⚒️ The pipeline supports:
+  - Transformer and diffusion model integration
+  - Real-time audio and beamforming extensions
+  - Generalisation to unseen noise domains
 
 ---
 
 ## 📘 Final Report
 
-📄 The full dissertation is included here: [`main.pdf`](main.pdf)
+📄 Read the full dissertation here: [`main.pdf`](main.pdf)
 
-It contains methodology, architecture diagrams, evaluation metrics, and ablation study results. This project was awarded an **A Grade**.
+Includes methodology, system design, ablation studies, and model evaluation.
+
+> 🎓 This project received an **A Grade** in the B.Sc. (Hons.) Computer Engineering programme.
 
 ---
 
-## 👨🏻‍💻 Author
+## 👨‍💻 Author
 
 **Graham Pellegrini**  
 B.Sc. (Hons.) Computer Engineering  
