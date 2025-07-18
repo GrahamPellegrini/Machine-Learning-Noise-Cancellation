@@ -13,7 +13,7 @@
 </p>
 
 <p align="center">
-  Final Year Project submitted for the degree of <strong>B.Sc. (Hons.) in Computer Engineering</strong> at the <a href="https://www.um.edu.mt">University of Malta</a> under the supervision of <a href="https://www.um.edu.mt/profile/trevorspiteri">Dr. Trevor Spiteri</a>. This project was awarded an <strong>A Grade</strong>.
+  Final Year Project submitted for the degree of <strong>B.Sc. (Hons.) in Computer Engineering</strong> at the <a href="https://www.um.edu.mt">University of Malta</a> under the supervision of <a href="https://www.um.edu.mt/profile/trevorspiteri">Dr. Trevor Spiteri</a>.
 </p>
 
 ---
@@ -94,7 +94,7 @@ Key contributions include:
 │   ├── latex.sh
 │   └── notebook.sh
 ├── Template/            # Report LaTeX source
-│   ├── main.pdf         # 📄 Final Year Project Report (Grade A)
+│   ├── main.pdf         # Final Year Project Report
 │   ├── main.tex
 │   ├── build/
 │   ├── content/
@@ -137,7 +137,7 @@ Edit `config.py` accordingly.
 
 - **SNR** – Signal-to-noise ratio
 - **MSE** – Mean squared error
-- **PESQ** – Perceptual evaluation of speech quality (max = 4.5)
+- **PESQ** – Perceptual evaluation of speech quality 
 - **STOI** – Short-time objective intelligibility
 - **LSD** – Log-spectral distance
 
