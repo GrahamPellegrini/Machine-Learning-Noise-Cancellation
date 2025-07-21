@@ -1,29 +1,21 @@
 #!/bin/bash
-# ALWAYS specify CPU and RAM resources needed as well as walltime
-##SBATCH --partition=teaching_gpu
-#SBATCH --ntasks=1
-#SBATCH --gres=gpu:1
-#SBATCH --cpus-per-task=4
-#SBATCH --mem-per-cpu=1G
-#SBATCH --time=0-24:00:00
-##SBATCH --reservation=cce3015
 
+# === SLURM Directives ===
+#SBATCH --job-name=latex-build         # Job name
+#SBATCH --output=logs/latex_output.log # Standard output log
+#SBATCH --error=logs/latex_error.log   # Standard error log
 
-# job parameters
-#SBATCH --output=/opt/users/gpel0001/nnc-fyp/ssh/out/latex.out
-#SBATCH --error=/opt/users/gpel0001/nnc-fyp/ssh/err/latex.err
-#SBATCH --account=undergrad
-#SBATCH --job-name=Latex
+# Optional email notifications
+##SBATCH --mail-user=your-email@example.com
+##SBATCH --mail-type=ALL
 
-# email user with progress
-#SBATCH --mail-user=graham.pellegrini.22@um.edu.mt
-#SBATCH --mail-type=all
+# Change to your LaTeX project directory
+cd /path/to/your/latex/project || exit
 
-cd /opt/users/gpel0001/nnc-fyp/Template
-
-# Make clean
+# Clean previous builds
 make clean
 
-# Make
+# Compile LaTeX document
 make
 
+echo "LaTeX build completed."

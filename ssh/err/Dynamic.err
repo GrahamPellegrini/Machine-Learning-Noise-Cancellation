@@ -1,6 +1,0 @@
-Traceback (most recent call last):
-  File "/opt/users/gpel0001/nnc-fyp/.Project/main.py", line 201, in <module>
-    single_denoise(
-  File "/opt/users/gpel0001/nnc-fyp/.Project/Utils/denoise.py", line 265, in single_denoise
-    if not os.path.exists(model_pth): raise FileNotFoundError(f"Missing model: {model_pth}")
-FileNotFoundError: Missing model: Models/25/dynamic.pth

@@ -34,7 +34,7 @@ MODEL_PTH = "Models/25/" + MODEL + "_" + PAD_METHOD + ".pth"
 
 # Classical Denoising Parameters
 CLASSICAL = False  # Use classical methods for denoising
-CLASSICAL_METHOD = "mmse_lsa"  # Options: 'baseline', 'spectral_sub', 'wiener', 'mmse_lsa'
+CLASSICAL_METHOD = "spectral_sub"  # Options: 'baseline', 'spectral_sub', 'wiener', 'mmse_lsa'
 
 # Batch Denoising Path
 METRICS_PTH = (
@@ -44,8 +44,8 @@ METRICS_PTH = (
 )
 
 # Single File Denoising
-SINGLE = False  # Denoise a single audio file
-SPEAKER_ID = "p232_334"  # Speaker ID for the audio file
+SINGLE = True  # Denoise a single audio file
+SPEAKER_ID = "p232_188"  # Speaker ID for the audio file
 NOISY_PTH = DATASET_DIR + "/noisy_testset_wav/" +  SPEAKER_ID + ".wav"  # Path to the noisy audio file
 #"/opt/users/gpel0001/nnc-fyp/ED-Noisy-Speech-Datashare/foreign/sp07_restaurant_sn5.wav"
 

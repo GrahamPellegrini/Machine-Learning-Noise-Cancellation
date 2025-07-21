@@ -1,8 +1,0 @@
-Virtual environment found, activating
-Using GPU: NVIDIA GeForce RTX 3060
-Device set to: cuda
-Loaded cache file: cache/dynamic/testset_buckets.pkl
---- Test Dataset ../ED-Noisy-Speech-Datashare loaded successfully ---
---- Model `ConvTasNet` loaded successfully ---
-✅ Denoised audio saved to: Output/wav/ConvTasNet_dynamic_p232_334.wav
-Job finished successfully
