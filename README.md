@@ -18,7 +18,7 @@
 
 ---
 
-## 🔊 Project Overview
+## Project Overview
 
 This project explores the application of machine learning (ML) techniques for speech enhancement, aiming to justify their superiority over classical methods in real-time denoising scenarios.
 
@@ -42,7 +42,7 @@ All models were trained on **magnitude spectrograms**, with batch handling strat
 
 ---
 
-## 📊 Evaluation Metrics
+## Evaluation Metrics
 
 - **SNR** – Signal-to-noise ratio
 - **MSE** – Mean squared error
@@ -54,7 +54,7 @@ The metrics were selected based on relevance in related literature and provide a
 
 ---
 
-## 🧠 Model & Method Performance
+## Model & Method Performance
 
 <table>
 <thead>
@@ -75,7 +75,7 @@ The metrics were selected based on relevance in related literature and provide a
 
 ---
 
-## 🔬 Key Findings
+## Key Findings
 
 - **Dynamic Bucketing** was selected as the preferred dataset handling method. It used **K-Means clustering** to assign samples into optimally sized buckets, improving training efficiency over **Static Bucketing** while avoiding the runtime penalties of **Padding-Truncation Output-Truncation (PTO)** during inference.
   
@@ -95,7 +95,7 @@ The metrics were selected based on relevance in related literature and provide a
 
 ---
 
-## 🚧 Limitations & Future Work
+## Limitations & Future Work
 
 Despite achieving strong numerical and perceptual performance, this project leaves several avenues for improvement:
 
@@ -112,7 +112,7 @@ Despite achieving strong numerical and perceptual performance, this project leav
 
 ---
 
-## 🗂️ Repository Structure
+## Repository Structure
 
 ```bash
 .Project/
@@ -153,7 +153,7 @@ Despite achieving strong numerical and perceptual performance, this project leav
 
 ---
 
-## 📥 Dataset
+## Dataset
 
 The system uses the **Noisy Speech Database** from the University of Edinburgh:
 - 🔗 [https://datashare.ed.ac.uk/handle/10283/2791](https://datashare.ed.ac.uk/handle/10283/2791)
@@ -163,7 +163,7 @@ The system uses the **Noisy Speech Database** from the University of Edinburgh:
 
 ---
 
-## ⚙️ Usage
+## Usage
 
 All functionality is controlled via `main.py` and `config.py`:
 
@@ -182,17 +182,17 @@ Edit `config.py` accordingly.
 
 ---
 
-## 📘 Final Report
+## Final Report
 
-📄 Read the full dissertation here: [`main.pdf`](main.pdf)
+Read the full dissertation here: [`main.pdf`](main.pdf)
 
 Includes methodology, system design, ablation studies, and model evaluation.
 
-> 🎓 This project received an **A Grade** in the B.Sc. (Hons.) Computer Engineering programme.
+> This project received an **A Grade** in the B.Sc. (Hons.) Computer Engineering programme.
 
 ---
 
-## 👨‍💻 Author
+## Author
 
 **Graham Pellegrini**  
 B.Sc. (Hons.) Computer Engineering  
