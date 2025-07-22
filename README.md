@@ -143,7 +143,7 @@ Despite achieving strong numerical and perceptual performance, this project leav
 │   ├── latex.sh
 │   └── notebook.sh
 ├── Template/            # Report LaTeX source
-│   ├── main.pdf         # 📄 Final Year Project Report
+│   ├── main.pdf         # Final Year Project Report
 │   ├── main.tex
 │   ├── build/
 │   ├── content/
@@ -156,7 +156,7 @@ Despite achieving strong numerical and perceptual performance, this project leav
 ## Dataset
 
 The system uses the **Noisy Speech Database** from the University of Edinburgh:
-- 🔗 [https://datashare.ed.ac.uk/handle/10283/2791](https://datashare.ed.ac.uk/handle/10283/2791)
+- [https://datashare.ed.ac.uk/handle/10283/2791](https://datashare.ed.ac.uk/handle/10283/2791)
 - License: Creative Commons Attribution 4.0 International
 
 > Audio is converted to **magnitude spectrograms** for all training, validation, and inference steps.
